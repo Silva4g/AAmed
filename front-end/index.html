@@ -2,21 +2,70 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
+        <link rel="stylesheet" href="/TCC-master/front-end/css/container.css">
+        <title>TCC</title>
+        <style>
+            html, body {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                background: #fff;
+            }
+
+            .container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 10vh 70vh 30vh 10vh;
+                grid-gap: 30px;
+                grid-template-areas: "h h"
+                                    "m a"
+                                    "b b"
+                                    "f f";
+            }
+
+            .container header {
+                background: yellow;
+                grid-area: h;
+            }
+
+            .container main {
+                background: blue;
+                grid-area: m;
+            }
+
+            .container aside {
+                background: green;
+                grid-area: a;
+            }
+
+            .container bar {
+                background: red;
+                grid-area: b;
+            }
+
+            .container footer {
+                background: black;
+                grid-area: f;
+            }
+        </style>
     </head>
     <body>
-        <bar>
-            <img src=""/>
-        </bar>
-        <section>
-        </section>
-        <logo>            
-        </logo>
-        <termos>            
-        </termos>
-        <rodape>            
-        </rodape>
+        <div class="container">
+            <header>
+
+            </header>
+            <main>
+
+            </main>
+            <aside>
+
+            </aside>
+            <bar>
+
+            </bar>
+            <footer>
+
+            </footer>
+        </div>
     </body>
 </html>

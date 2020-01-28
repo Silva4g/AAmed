@@ -1,0 +1,47 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #7159c1;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 20vh 70vh 30vh 10vh;
+    grid-template-areas: "h h"
+                         "m a"
+                         "b b"
+                         "f f";
+}
+
+.container header {
+    background: yellow;
+    height: 100px;
+    grid-area: h;
+}
+
+.container main {
+    background: blue;
+    height: 100px;
+    grid-area: m;
+}
+
+.container aside {
+    background: green;
+    height: 100px;
+    grid-area: a;
+}
+
+.container bar {
+    background: red;
+    height: 100px;
+    grid-area: b;
+}
+
+.container footer {
+    background: black;
+    height: 100px;
+    grid-area: f;
+}
+
