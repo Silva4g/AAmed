@@ -1,0 +1,9 @@
+# IMPORTAR
+## YARN ADD
+### MONGOOSE
+### NODEMON -D
+### EXPRESS
+### MULTER
+
+# DAORA 
+## kkkkkkkkkk
