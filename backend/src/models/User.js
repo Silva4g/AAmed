@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 const PointSchema = require('./utils/PointSchema');
 
-const HospitalSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true,
@@ -13,14 +17,15 @@ const HospitalSchema = new mongoose.Schema({
         required: true,
         select: false
     },
-    name: {
-        type: String,
-        required: true,
-    },
     location: {
         type: PointSchema,
         index: '2dsphere'
+
+    },
+    susCard: {
+        type: String,
+        required: true,
+        unique: true,
     }
 });
-
-module.exports = mongoose.model('Hospital', HospitalSchema);
+module.exports = mongoose.model('User', UserSchema);
