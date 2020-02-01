@@ -12,7 +12,7 @@ module.exports = {
     },
     async store(req, res) {
         try {
-            const { email, password, latitude, longitude, name } = req.body;
+            const { email, password, latitude, longitude, name, telefone, cnpj } = req.body;
 
             if (await Hospital.findOne({ email })) return res.status(400).send({ error: 'Hospital já cadastrado' })
 
@@ -26,6 +26,8 @@ module.exports = {
                 password,
                 name,
                 location,
+                telefone,
+                cnpj
             })
             return res.json(hospital);
 
@@ -35,12 +37,13 @@ module.exports = {
     },
     async update(req, res) {
         try {
-            const { email, password, latitude, longitude, name } = req.body;
-            if (email || password) return res.status(400).send({ error: 'Esses dados não podem ser atualizados' })
+            const { email, password, latitude, longitude, name, telefone, cnpj } = req.body;
+            if (email || password || cnpj) return res.status(400).send({ error: 'Esses dados não podem ser atualizados' })
             const hospital = await Hospital.findByIdAndUpdate(req.params.id, {
                 latitude,
                 longitude,
-                name
+                name,
+                telefone
             }, { new: true });
             return res.json(hospital);
         } catch (err) {
