@@ -1,19 +1,14 @@
-const Med = require('../models/Med');
-const parseStringArray = require('../utils/parseStringArray');
+const Hospital = require('../models/Hospital');
+// const parseStringArray = require('../utils/parseStringArray');
 
 module.exports = {
-    async index(request, response) {
-        const { latitude, longitude, hosps } = request.query;
+    async index(req, res) {
+        const { latitude, longitude } = req.query;
 
-        const hospsArray = parseStringasArray(hosps);
-
-        const meds = await Med.find({
-            hosps: {
-                $in: hospsArray,
-            },
+        const hospitais = await Hospital.find({
             location: {
                 $near: {
-                    $geomatry: {
+                    $geometry: {
                         type: 'Point',
                         coordinates: [longitude, latitude],
                     },
@@ -22,6 +17,6 @@ module.exports = {
             },
         });
 
-        return response.json({ meds });
+        return res.json({ hospitais });
     }
 }

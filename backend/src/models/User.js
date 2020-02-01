@@ -23,6 +23,7 @@ const UserSchema = new mongoose.Schema({
 
     },
     susCard: {
+        //tem 15 numeros
         type: String,
         required: true,
         unique: true,

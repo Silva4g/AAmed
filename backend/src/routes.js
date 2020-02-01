@@ -1,13 +1,21 @@
 const { Router } = require('express');
 
-const MedController = require('./controllers/MedController');
+const HospitalController = require('./controllers/HospitalController');
 const UserController = require('./controllers/UserController');
+const SearchHospital = require('./controllers/SearchHospital');
 
 const routes = Router();
 //route get all hospitals
-routes.get('/hosp', MedController.index);
+routes.get('/hospital', HospitalController.index);
 //route register hospitals
-routes.get('/hosp', MedController.store);
+routes.post('/hospital', HospitalController.store);
+//route delete hospital
+routes.delete('/hospital/:id', HospitalController.destroy);
+//route update hospital
+routes.put('/hospital/:id', HospitalController.update);
+
+//route 10km distance hospital from user
+routes.get('/search', SearchHospital.index);
 
 //route register users
 routes.post('/user', UserController.store);
