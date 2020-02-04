@@ -1,71 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="/TCC-master/front-end/css/container.css">
-        <title>TCC</title>
-        <style>
-            html, body {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                background: #fff;
-            }
 
-            .container {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: 10vh 70vh 30vh 10vh;
-                grid-gap: 30px;
-                grid-template-areas: "h h"
-                                    "m a"
-                                    "b b"
-                                    "f f";
-            }
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/container.css">
+    <title>TCC</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: #fff;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 10vh 70vh 30vh 10vh;
+            grid-gap: 30px;
+            grid-template-areas: "h h" "m a" "b b" "f f";
+        }
+        
+        .container header {
+            background: yellow;
+            grid-area: h;
+        }
+        
+        .container main {
+            background: blue;
+            grid-area: m;
+        }
+        
+        .container aside {
+            background: green;
+            grid-area: a;
+        }
+        
+        .container bar {
+            background: red;
+            grid-area: b;
+        }
+        
+        .container footer {
+            background: black;
+            grid-area: f;
+        }
+    </style>
+</head>
 
-            .container header {
-                background: yellow;
-                grid-area: h;
-            }
+<body>
+    <div class="container">
+        <header>
 
-            .container main {
-                background: blue;
-                grid-area: m;
-            }
+        </header>
+        <main>
 
-            .container aside {
-                background: green;
-                grid-area: a;
-            }
+        </main>
+        <aside>
 
-            .container bar {
-                background: red;
-                grid-area: b;
-            }
+        </aside>
+        <bar>
 
-            .container footer {
-                background: black;
-                grid-area: f;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <header>
+        </bar>
+        <footer>
 
-            </header>
-            <main>
+        </footer>
+    </div>
+</body>
 
-            </main>
-            <aside>
-
-            </aside>
-            <bar>
-
-            </bar>
-            <footer>
-
-            </footer>
-        </div>
-    </body>
 </html>
