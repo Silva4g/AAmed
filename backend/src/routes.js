@@ -5,6 +5,7 @@ const UserController = require('./controllers/UserController');
 const SearchHospital = require('./controllers/SearchHospital');
 
 const routes = Router();
+
 //route get all hospitals
 routes.get('/hospital', HospitalController.index);
 //route register hospitals
@@ -25,5 +26,9 @@ routes.get('/user', UserController.index);
 routes.delete('/user/:id', UserController.destroy);
 //route update user
 routes.put('/user/:id', UserController.update);
+
+routes.get('/', (req, res) => {
+    res.send('ola')
+});
 
 module.exports = routes;

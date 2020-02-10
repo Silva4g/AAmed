@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const PointSchema = require('./utils/PointSchema');
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -16,11 +15,6 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
         select: false
-    },
-    location: {
-        type: PointSchema,
-        index: '2dsphere'
-
     },
     susCard: {
         //tem 15 numeros
