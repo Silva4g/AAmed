@@ -5,12 +5,6 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-        lowercase: true
-    },
     cpf: {
         type: String,
         required: true,
@@ -20,6 +14,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
         select: false
+    },
+    bio: {
+        type: String,
+        required: true,
     },
     susCard: {
         //tem 15 numeros
