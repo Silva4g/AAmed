@@ -11,6 +11,11 @@ const UserSchema = new mongoose.Schema({
         unique: true,
         lowercase: true
     },
+    cpf: {
+        type: String,
+        required: true,
+        unique: true,
+    },
     password: {
         type: String,
         required: true,
