@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -13,7 +14,7 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        select: false
+        select: false //quando for listar os users, a senha não é mostrada
     },
     bio: {
         type: String,
@@ -25,5 +26,12 @@ const UserSchema = new mongoose.Schema({
         required: true,
         unique: true,
     }
+});
+
+//antes de salvar no banco, faz um hash na senha para encriptar
+UserSchema.pre('save', async function(next) {
+    const hash = await bcrypt.hash(this.password, 10);
+    this.password = hash;
+    next();
 });
 module.exports = mongoose.model('User', UserSchema);

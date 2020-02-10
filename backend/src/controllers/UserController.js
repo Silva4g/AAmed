@@ -1,28 +1,59 @@
 const User = require('../models/User');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+const authConfig = require('../config/auth.json');
+
+function generateToken(params = {}) {
+    return jwt.sign(params, authConfig.secret, {
+        expiresIn: 86400
+    });
+}
 
 module.exports = {
     async store(req, res) {
         try {
-            const { name, email, susCard, cpf, bio } = req.body;
+            const { name, password, susCard, cpf, bio } = req.body;
 
-            if (await User.findOne({ email })) return res.status(400).send({ error: 'Usuário existente' })
+            if (await User.findOne({ cpf })) return res.status(400).send({ error: 'Usuário existente' })
             if (await User.findOne({ susCard })) return res.status(400).send({ error: 'Usuário existente' })
 
             const user = await User.create({
-                email,
+                password,
                 name,
                 cpf,
                 bio,
                 susCard
             });
 
-            return res.json(user);
+            return res.json({
+                user,
+                token: generateToken({ id: user.id })
+            });
 
         } catch (err) {
-            return res.status(400).send({ error: 'Falha no cadastro' })
+            return res.status(400).send({ error: 'Falha no cadastro: ' + err })
         }
 
     },
+    async login(req, res) {
+        const { cpf, password } = req.body;
+        const user = await User.findOne({ cpf }).select('+password');
+
+        if (!user) {
+            res.status(401).send({ error: 'Usuário não encontrado' });
+        }
+
+        if (!await bcrypt.compare(password, user.password)) {
+            return res.status(401).send({ error: 'Senha inválida' });
+        }
+        user.password = undefined;
+        res.send({
+            user,
+            token: generateToken({ id: user.id })
+        })
+    },
+
     async index(req, res) {
         try {
             const user = await User.find();

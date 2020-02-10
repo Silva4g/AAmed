@@ -20,6 +20,8 @@ routes.get('/search', SearchHospital.index);
 
 //route register users
 routes.post('/user', UserController.store);
+//route auth user
+routes.post('/login', UserController.login);
 //route get all users
 routes.get('/user', UserController.index);
 //route delete user
