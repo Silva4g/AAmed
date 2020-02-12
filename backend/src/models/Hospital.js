@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const PointSchema = require('./utils/PointSchema');
+const bcrypt = require('bcryptjs');
 
 const HospitalSchema = new mongoose.Schema({
     email: {
@@ -45,5 +46,9 @@ const HospitalSchema = new mongoose.Schema({
         index: '2dsphere'
     }
 });
-
+HospitalSchema.pre('save', async function(next) {
+    const hash = await bcrypt.hash(this.password, 10);
+    this.password = hash;
+    next();
+});
 module.exports = mongoose.model('Hospital', HospitalSchema);

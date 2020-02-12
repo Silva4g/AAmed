@@ -14,6 +14,8 @@ routes.post('/hospital', HospitalController.store); // Cadastrar
 routes.delete('/hospital/:id', HospitalController.destroy); // Delete
 //route update hospital
 routes.put('/hospital/:id', HospitalController.update); //Atualizar/Editar
+// route auth hospital
+routes.post('/loginHospital', HospitalController.login);
 
 //route 10km distance hospital from user
 routes.get('/search', SearchHospital.index);
@@ -21,7 +23,7 @@ routes.get('/search', SearchHospital.index);
 //route register users
 routes.post('/user', UserController.store);
 //route auth user
-routes.post('/login', UserController.login);
+routes.post('/loginUser', UserController.login);
 //route get all users
 routes.get('/user', UserController.index);
 //route delete user

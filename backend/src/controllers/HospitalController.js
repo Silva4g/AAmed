@@ -1,4 +1,6 @@
 const Hospital = require('../models/Hospital');
+const bcrypt = require('bcryptjs');
+const generateToken = require('../utils/generateToken');
 //const parseStringArray = require('../utils/parseStringArray');
 
 module.exports = {
@@ -40,6 +42,23 @@ module.exports = {
         } catch (err) {
             return res.status(400).send({ error: 'Falha no cadastro' })
         }
+    },
+    async login(req, res) {
+        const { email, password } = req.body;
+        const hospital = await Hospital.findOne({ email }).select('+password');
+
+        if (!hospital) {
+            return res.status(401).send({ error: 'Hospital não encontrado' });
+        }
+
+        if (!await bcrypt.compare(password, hospital.password)) {
+            return res.status(401).send({ error: 'Senha inválida'});
+        }
+        hospital.password = undefined;
+        res.send({
+            hospital,
+            token: generateToken({ id: hospital.id })
+        })
     },
     async update(req, res) {
         try {
