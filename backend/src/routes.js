@@ -7,13 +7,13 @@ const SearchHospital = require('./controllers/SearchHospital');
 const routes = Router();
 
 //route get all hospitals
-routes.get('/hospital', HospitalController.index);
+routes.get('/hospital', HospitalController.index); // Listar/Pesquisar
 //route register hospitals
-routes.post('/hospital', HospitalController.store);
+routes.post('/hospital', HospitalController.store); // Cadastrar
 //route delete hospital
-routes.delete('/hospital/:id', HospitalController.destroy);
+routes.delete('/hospital/:id', HospitalController.destroy); // Delete
 //route update hospital
-routes.put('/hospital/:id', HospitalController.update);
+routes.put('/hospital/:id', HospitalController.update); //Atualizar/Editar
 
 //route 10km distance hospital from user
 routes.get('/search', SearchHospital.index);
