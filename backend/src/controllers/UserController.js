@@ -65,7 +65,7 @@ module.exports = {
     },
     async update(req, res) {
         try {
-            const { name, password, susCard, cpf } = req.body;
+            const { name, password, susCard, cpf, bio } = req.body;
 
             if (password || susCard || cpf) return res.status(400).send({ error: 'Esses dados não podem ser atualizados' });
 
@@ -76,7 +76,7 @@ module.exports = {
 
             return res.json(user);
         } catch (err) {
-            return res.status(400).send({ error: 'Falha na atualização do usuário' })
+            return res.status(400).send({ error: 'Falha na atualização do usuário' + err })
         }
 
     },
