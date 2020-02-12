@@ -12,9 +12,11 @@ module.exports = {
     },
     async store(req, res) {
         try {
-            const { email, password, latitude, longitude, name, telefone, cnpj } = req.body;
+            const { email, password, latitude, longitude, name, phone, cnpj, cnes, city, state } = req.body;
 
-            if (await Hospital.findOne({ email })) return res.status(400).send({ error: 'Hospital já cadastrado' })
+            if (await Hospital.findOne({ email })) return res.status(400).send({ error: 'Hospital já cadastrado' });
+            if (await Hospital.findOne({ cnes })) return res.status(400).send({ error: 'Hospital já cadastrado' });
+            if (await Hospital.findOne({ cnpj })) return res.status(400).send({ error: 'Hospital já cadastrado' });
 
             const location = {
                 type: 'Point',
@@ -26,9 +28,15 @@ module.exports = {
                 password,
                 name,
                 location,
-                telefone,
-                cnpj
-            })
+                phone,
+                cnpj,
+                cnes,
+                city,
+                state
+            });
+
+            hospital.password = undefined;
+
             return res.json(hospital);
 
         } catch (err) {
@@ -37,13 +45,16 @@ module.exports = {
     },
     async update(req, res) {
         try {
-            const { email, password, latitude, longitude, name, telefone, cnpj } = req.body;
-            if (email || password || cnpj) return res.status(400).send({ error: 'Esses dados não podem ser atualizados' })
+            const { email, password, latitude, longitude, name, phone, cnpj, cnes, city, state} = req.body;
+
+            if (email || password || cnpj || cnes ) return res.status(400).send({ error: 'Esses dados não podem ser atualizados' });
             const hospital = await Hospital.findByIdAndUpdate(req.params.id, {
                 latitude,
                 longitude,
                 name,
-                telefone
+                phone,
+                state,
+                city,
             }, { new: true });
             return res.json(hospital);
         } catch (err) {
@@ -56,7 +67,7 @@ module.exports = {
             await Hospital.findOneAndDelete(req.params.id);
             return res.send();
         } catch (err) {
-            return res.status(400).send({ error: 'Falha na remoção do hospital' })
+            return res.status(400).send({ error: 'Falha na remoção do hospital' });
         }
     },
 }

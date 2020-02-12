@@ -4,6 +4,7 @@ const cors = require('cors');
 const routes = require('./routes');
 
 const app = express();
+
 mongoose.connect("mongodb://localhost:27017/tcc", {
     useUnifiedTopology: true,
     useNewUrlParser: true,

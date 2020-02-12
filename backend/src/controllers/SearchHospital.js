@@ -4,7 +4,6 @@ const Hospital = require('../models/Hospital');
 module.exports = {
     async index(req, res) {
         const { latitude, longitude } = req.query;
-
         const hospitais = await Hospital.find({
             location: {
                 $near: {
