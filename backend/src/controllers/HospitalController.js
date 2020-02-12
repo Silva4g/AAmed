@@ -34,9 +34,7 @@ module.exports = {
                 city,
                 state
             });
-
             hospital.password = undefined;
-
             return res.json(hospital);
 
         } catch (err) {
