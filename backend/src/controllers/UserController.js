@@ -7,6 +7,15 @@ module.exports = {
         try {
             const { name, password, susCard, cpf, bio } = req.body;
 
+            const file = req.files.avatar;
+            file.mv("tmp/uploads" + file.name, function(err){
+                if(err){
+                    console.log('Imagem não upada');
+                }else{
+                    console.log('Imagem upada');
+                }
+            });
+
             if (await User.findOne({ cpf })) return res.status(400).send({ error: 'Usuário existente' })
             if (await User.findOne({ susCard })) return res.status(400).send({ error: 'Usuário existente' })
 
@@ -15,9 +24,10 @@ module.exports = {
                 name,
                 cpf,
                 bio,
-                susCard
+                susCard,
+                image: file.name
             });
-
+            user.password = undefined;
             return res.json({
                 user,
                 token: generateToken({ id: user.id })
@@ -39,7 +49,6 @@ module.exports = {
         if (!await bcrypt.compare(password, user.password)) {
             return res.status(401).send({ error: 'Senha inválida' });
         }
-        user.password = undefined;
         res.send({
             user,
             token: generateToken({ id: user.id })
