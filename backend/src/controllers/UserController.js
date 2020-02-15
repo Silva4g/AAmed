@@ -7,11 +7,11 @@ module.exports = {
         try {
             const { name, password, susCard, cpf, bio } = req.body;
 
-            const file = req.files.avatar;
+            const avatar = req.files.avatar;
 
             //console.log(file);
 
-            file.mv("tmp/uploads"+file.name, function(err){
+            avatar.mv("tmp/uploads/"+avatar.name, function(err){
                 if(err){
                     console.log('Imagem não upada');
                 }else{
@@ -28,7 +28,7 @@ module.exports = {
                 cpf,
                 bio,
                 susCard,
-                image: file.name
+                image: avatar.name
             });
             user.password = undefined;
             return res.json({
