@@ -5,10 +5,12 @@ const generateToken = require('../utils/generateToken');
 module.exports = {
     async store(req, res) {
         try {
-            const { name, password, susCard, cpf, bio } = req.body;
+            //const { name, password, susCard, cpf, bio } = req.body;
 
             const file = req.files.avatar;
-            file.mv("tmp/uploads" + file.name, function(err){
+
+            console.log(file);
+            file.mv("tmp/uploads"+file.name, function(err){
                 if(err){
                     console.log('Imagem não upada');
                 }else{
