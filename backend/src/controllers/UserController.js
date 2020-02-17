@@ -9,7 +9,7 @@ module.exports = {
 
             const avatar = req.files.avatar;
 
-            //console.log(file);
+            console.log(file);
 
             avatar.mv("tmp/uploads/"+avatar.name, function(err){
                 if(err){
@@ -19,7 +19,7 @@ module.exports = {
                 }
             });
 
-            if (await User.findOne({ cpf })) return res.status(400).send({ error: 'Usuário existente' })
+            if (await User.findOne({ cpf, susCard })) return res.status(400).send({ error: 'Usuário existente' })
             if (await User.findOne({ susCard })) return res.status(400).send({ error: 'Usuário existente' })
 
             const user = await User.create({
@@ -46,11 +46,11 @@ module.exports = {
         const user = await User.findOne({ cpf }).select('+password');
 
         if (!user) {
-            res.status(401).send({ error: 'Usuário não encontrado' });
+            res.status(401).send({ error: 'Usuário e/ou senha incorretos!' });
         }
 
         if (!await bcrypt.compare(password, user.password)) {
-            return res.status(401).send({ error: 'Senha inválida' });
+            return res.status(401).send({ error: 'Usuário e/ou senha incorretos!' });
         }
         res.send({
             user,
@@ -61,7 +61,7 @@ module.exports = {
     async index(req, res) {
         try {
             const user = await User.find();
-            user.password = undefined;
+            //user.password = undefined;
             return res.json(user);
         } catch (err) {
             return res.status(400).send({ error: 'Falha na listagem' })

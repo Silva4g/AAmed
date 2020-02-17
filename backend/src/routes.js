@@ -31,8 +31,4 @@ routes.delete('/user/:id', UserController.destroy);
 //route update user
 routes.put('/user/:id', UserController.update);
 
-routes.get('/', (req, res) => {
-    res.send('ola')
-});
-
 module.exports = routes;
