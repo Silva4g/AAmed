@@ -11,7 +11,7 @@ export default class App extends Component {
   handleForm = (e) => {
     e.preventDefault();
     const data = new FormData();
-    data.append('avatar', this.state.upload);
+    data.append('file', this.state.upload);
     data.append('name', 'ana');
     data.append('cpf', '223883');
     data.append('bio', 'nada');
@@ -35,7 +35,7 @@ export default class App extends Component {
       <div className="App">
         <h1>Cadastro de user</h1>
         <form encType="multipart/form-data">
-          <input type="file" name="avatar" onChange={this.handleFile}/>
+          <input type="file" name="file" onChange={this.handleFile}/>
           <button type="submit" onClick={this.handleForm}>Eviar</button>
         </form>
       </div>

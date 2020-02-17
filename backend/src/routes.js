@@ -3,6 +3,8 @@ const { Router } = require('express');
 const HospitalController = require('./controllers/HospitalController');
 const UserController = require('./controllers/UserController');
 const SearchHospital = require('./controllers/SearchHospital');
+const multer = require('multer');
+const multerConfig = require('./config/multer');
 
 const routes = Router();
 
@@ -21,7 +23,7 @@ routes.post('/loginHospital', HospitalController.login);
 routes.get('/search', SearchHospital.index);
 
 //route register users
-routes.post('/user', UserController.store);
+routes.post('/user', multer(multerConfig).single('avatar'), UserController.store);
 //route auth user
 routes.post('/loginUser', UserController.login);
 //route get all users

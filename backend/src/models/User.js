@@ -29,6 +29,10 @@ const UserSchema = new mongoose.Schema({
     image:{
         type:String,
         required: true
+    },
+    key: {
+        type: String,
+        required: true
     }
 });
 
@@ -36,6 +40,9 @@ const UserSchema = new mongoose.Schema({
 UserSchema.pre('save', async function(next) {
     const hash = await bcrypt.hash(this.password, 10);
     this.password = hash;
+    if(!this.image){
+        this.image = `http://localhost:3333/files/${this.key}`;
+    }
     next();
 });
 module.exports = mongoose.model('User', UserSchema);

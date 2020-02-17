@@ -7,28 +7,19 @@ module.exports = {
         try {
             const { name, password, susCard, cpf, bio } = req.body;
 
-            const avatar = req.files.avatar;
-
-            console.log(file);
-
-            avatar.mv("tmp/uploads/"+avatar.name, function(err){
-                if(err){
-                    console.log('Imagem não upada');
-                }else{
-                    console.log('Imagem upada');
-                }
-            });
+            const { location: url = "", key } = req.file;
 
             if (await User.findOne({ cpf, susCard })) return res.status(400).send({ error: 'Usuário existente' })
             if (await User.findOne({ susCard })) return res.status(400).send({ error: 'Usuário existente' })
 
             const user = await User.create({
-                password,
-                name,
-                cpf,
-                bio,
-                susCard,
-                image: avatar.name
+                password: '123456',
+                name: 'sla',
+                cpf: '1354823',
+                bio: 'sei la',
+                susCard: '6412313',
+                image: url,
+                key
             });
             user.password = undefined;
             return res.json({
