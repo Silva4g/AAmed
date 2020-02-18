@@ -2,12 +2,13 @@ import React from 'react';
 import { Slide } from 'react-slideshow-image';
 import './Slide.css'
 import img1 from '../external/imgSlide1.jpg'
+import img2 from '../external/imgSlide2.jpg'
 
  const properties = {
   duration: 5000,
   transitionDuration: 500,
   infinite: true,
-  indicators: true,
+  indicators: false,
   arrows: true,
   onChange: (oldIndex, newIndex) => {
     console.log(`slide transition from ${oldIndex} to ${newIndex}`);
@@ -19,15 +20,15 @@ const Slideshow = () => {
       <div className="slide-container">
         <Slide {...properties}>
           <div className="each-slide">
-          <img src ={img1 } alt="img1"></img>
+          <img src ={img2 } alt="img2"></img>
             </div>
          
           <div className="each-slide">
-          <img src ={img1} alt="img1"></img>
+          <img src ={img2} alt="img2"></img>
             </div>
           
           <div className="each-slide">
-          <img src ={img1} alt="img1"></img>
+          <img src ={img2} alt="imgimg2"></img>
             </div>
          
         </Slide>

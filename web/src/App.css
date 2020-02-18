@@ -1,53 +1,195 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
-
-*{  /* Deixar tela inteira */
-	margin:0;
-    padding:0;
+* {
+    /* Deixar tela inteira */
+    margin: 0;
+    padding: 0;
 }
 
-html,body{
-    height:100%;
+html, body {
+    height: 100%;
 }
 
-.menu{
+@media only screen and (max-width: 1920px) {
+    .menu {
+        width: 100%;
+        height: 200px;
+        position: fixed;
+        z-index: 5;
+        background-color: white;
+    }
+    .logo {
+        width: 9%;
+        height: 100%;
+        position: relative;
+        float: left;
+        margin-left: 6%;
+    }
+    .itemsMenu {
+        width: 31%;
+        height: 170px;
+        position: relative;
+        float: left;
+        margin-left: 18%;
+    }
+    .itemsMenu ul {
+        padding: 0px;
+        margin: 0px;
+        float: left;
+        width: 100%;
+        list-style: none;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: bold;
+    }
+    .itemsMenu ul li {
+        display: inline;
+    }
+    .itemsMenu ul li a {
+        color: #7a7a7a;
+        text-decoration: none;
+        padding: 95px 15px;
+        float: left;
+        font-size: 20px;
+    }
+    .itemsMenu ul li a:hover {
+        color: #52c8fa;
+    }
+    .signInUp {
+        width: 15%;
+        height: 170px;
+        margin-left: 85%;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 20px;
+        align-items: center;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .signInUp a {
+        text-decoration: none;
+        color: #7a7a7a;
+        margin-top: 35px;
+    }
+    .signInUp a:hover {
+        color: #52c8fa;
+        text-decoration: underline;
+    }
+    .signInUp button {
+        width: 40%;
+        height: 40px;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: bold;
+        text-align: center;
+        border-radius: 6px;
+        background-color: #52c8fa;
+        align-items: center;
+        color: white;
+        border: 0px;
+        margin-top: 35px;
+    }
+    .signInUp button:active {
+        background-color: #2196f3;
+        text-decoration: underline;
+    }
+    .patrocinios {
+        width: 100%;
+        position: absolute;
+        margin-top: 700px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 9VH 30vh;
+        column-gap: 4%;
+        row-gap: 15%;
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+    .tituloPatrocinio {
+        grid-column: 3/3;
+        grid-row: 1/2;
+        transition: .3s ease-in;
+        font-weight: bold;
+        text-align: center;
+        font-size: 25px;
+        line-height: 80px;
+        color: #7a7a7a;
+    }
+    .patrocinio1 {
+        grid-column: 1/2;
+        grid-row: 2/2;
+    }
+    .patrocinio1 img {
+        margin-left: 20%;
+    }
+    .patrocinio2 {
+        grid-column: 2/3;
+        grid-row: 2/2;
+    }
+    .patrocinio2 img {
+        margin-left: 20%;
+    }
+    .patrocinio3 {
+        grid-column: 3/4;
+        grid-row: 2/2;
+    }
+    .patrocinio3 img {
+        margin-left: 20%;
+    }
+    .patrocinio4 {
+        grid-column: 4/5;
+        grid-row: 2/2;
+    }
+    .patrocinio4 img {
+        margin-left: 20%;
+    }
+    .patrocinio5 {
+        grid-column: 5/5;
+        grid-row: 2/2;
+    }
+    .patrocinio5 img {
+        margin-left: 20%;
+    }
+}
+
+.menu {
     width: 100%;
     height: 200px;
     position: fixed;
 }
 
-.logo{
+.logo {
     width: 9%;
     height: 100%;
-    position:relative;
+    position: relative;
     float: left;
     margin-left: 6%;
 }
 
-.itemsMenu{
+.itemsMenu {
     width: 31%;
     height: 170px;
-    position:relative;
+    position: relative;
     float: left;
     margin-left: 18%;
 }
 
 .itemsMenu ul {
-    padding:0px;
-    margin:0px;
+    padding: 0px;
+    margin: 0px;
     float: left;
     width: 100%;
-    list-style:none;
+    list-style: none;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: bold;
 }
 
-.itemsMenu ul li { display: inline; }
+.itemsMenu ul li {
+    display: inline;
+}
 
 .itemsMenu ul li a {
     color: #7a7a7a;
     text-decoration: none;
     padding: 95px 15px;
-    float:left;
+    float: left;
     font-size: 20px;
 }
 
@@ -55,8 +197,7 @@ html,body{
     color: #52c8fa;
 }
 
-
-.signInUp{
+.signInUp {
     width: 15%;
     height: 170px;
     margin-left: 85%;
@@ -69,18 +210,18 @@ html,body{
     justify-content: space-evenly;
 }
 
-.signInUp a{
-    text-decoration:none;
+.signInUp a {
+    text-decoration: none;
     color: #7a7a7a;
     margin-top: 35px;
 }
 
-.signInUp a:hover{
+.signInUp a:hover {
     color: #52c8fa;
-    text-decoration:underline;
+    text-decoration: underline;
 }
 
-.signInUp button{
+.signInUp button {
     width: 40%;
     height: 40px;
     font-family: 'Source Sans Pro', sans-serif;
@@ -90,6 +231,6 @@ html,body{
     background-color: #52c8fa;
     align-items: center;
     color: white;
-    border: 0px;  
+    border: 0px;
     margin-top: 35px;
 }
