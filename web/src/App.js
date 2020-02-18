@@ -15,7 +15,7 @@ import SlideShow from "./components/Slide" /* Importando o SlideShow da classe m
         <div className="App">
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/about" component={About} />
+          <Route path="/about" componenst={About} />
           <Route path="/shop" component={Shop} />
         </Switch>
       </div>
@@ -52,8 +52,8 @@ export default class App extends Component {
                     </div>
 
                     <div className="itemsMenu">
-                        <ul>
-                            <li><a href="">HOME</a></li>
+                        <ul> {/* IREI ARRUMAR OS LINKS */ }
+                            <li><a href="">HOME</a></li> 
                             <li><a href="">PICTURE</a></li>
                             <li><a href="">SUPORTE</a></li>
                             <li><a href="">ESTUDOS</a></li>
