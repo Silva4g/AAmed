@@ -1,3 +1,6 @@
+import React, {Component} from 'react';
+import axios from 'axios';
+
 export default class App extends Component {
 
     state = {
@@ -7,7 +10,7 @@ export default class App extends Component {
     handleForm = (e) => {
       e.preventDefault();
       const data = new FormData();
-      data.append('file', this.state.upload);
+      data.append('avatar', this.state.upload);
       data.append('name', 'ana');
       data.append('cpf', '223883');
       data.append('bio', 'nada');

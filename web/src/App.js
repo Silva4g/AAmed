@@ -3,7 +3,37 @@ import './App.css'
 import logo from "./external/logo.png"
 import SlideShow from "./components/Slide" /* Importando o SlideShow da classe master slide */
 
-export default class App extends React.Component {
+/* no react não tem o <a href></a> o que precisa é isso aqui 
+    import { BrouserRouter, Switch, Route } from 'react-router-dom';
+    <BrowserRouter>
+        <div className="App">
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/shop" component={Shop} />
+        </Switch>
+      </div>
+    </BrowserRouter>
+
+    const Home = () => (
+        <div>
+            <h1>Home Page</h1>
+        </div>
+    );
+    const About = () => (
+        <div>
+            <h1>About Page</h1>
+        </div>
+    );
+    const Shop = () => (
+        <div>
+            <h1>Shop Page</h1>
+        </div>
+    );
+
+*/
+
+export default class App extends Component {
     render() {
         return (
 
