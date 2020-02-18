@@ -13,12 +13,12 @@ module.exports = {
             if (await User.findOne({ susCard })) return res.status(400).send({ error: 'Usuário existente' })
 
             const user = await User.create({
-                password: '123456',
-                name: 'sla',
-                cpf: '1354823',
-                bio: 'sei la',
-                susCard: '6412313',
-                image: url,
+                password,
+                name,
+                cpf,
+                bio,
+                susCard,
+                url,
                 key
             });
             user.password = undefined;

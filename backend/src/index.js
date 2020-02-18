@@ -16,7 +16,7 @@ mongoose.connect("mongodb://localhost:27017/tcc", {
 
 app.use(cors());
 app.use(express.json());
+app.use('/files', express.static(path.resolve(__dirname, '..', 'tmp', 'uploads')));
 app.use(routes);
 app.use(morgan('dev'));
-app.use('/files', express.static(path.resolve(__dirname, '..', 'tmp', 'uploads')))
 app.listen(3333);

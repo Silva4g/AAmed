@@ -26,23 +26,21 @@ const UserSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    image:{
+    url:{
         type:String,
-        required: true
     },
     key: {
         type: String,
-        required: true
     }
 });
 
 //antes de salvar no banco, faz um hash na senha para encriptar
 UserSchema.pre('save', async function(next) {
+    if(this.url === ''){
+        this.url = `http://localhost:3333/files/${this.key}`;
+    }
     const hash = await bcrypt.hash(this.password, 10);
     this.password = hash;
-    if(!this.image){
-        this.image = `http://localhost:3333/files/${this.key}`;
-    }
     next();
 });
 module.exports = mongoose.model('User', UserSchema);
