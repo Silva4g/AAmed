@@ -1,44 +1,44 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from 'react'
+import './App.css'
+import logo from "./external/logo.png"
+import SlideShow from "./components/Slide" /* Importando o SlideShow da classe master slide */
 
+export default class App extends React.Component {
+    render() {
+        return (
 
-export default class App extends Component {
+            <>
+                <div className="menu">
 
-  state = {
-    upload: null
-  }
+                    <div className="logo">
+                        <img src={logo} />
+                    </div>
 
-  handleForm = (e) => {
-    e.preventDefault();
-    const data = new FormData();
-    data.append('file', this.state.upload);
-    data.append('name', 'ana');
-    data.append('cpf', '223883');
-    data.append('bio', 'nada');
-    data.append('password', '123456');
-    data.append('susCard','13548532' );
+                    <div className="itemsMenu">
+                        <ul>
+                            <li><a href="">HOME</a></li>
+                            <li><a href="">PICTURE</a></li>
+                            <li><a href="">SUPORTE</a></li>
+                            <li><a href="">ESTUDOS</a></li>
+                        </ul>
+                    </div>
 
-    axios.post("http://localhost:3333/user", data)
-    .then(res => {
-      console.log(res);
-    })
-  };
+                    <div className="signInUp">
+                        <a href="">LOG IN</a>
+                        <button>SIGN UP</button>
+                    </div>
 
-  handleFile = (e) => {
-    this.setState({
-      upload: e.target.files[0]
-    });
-  }
+                </div>
 
-  render(){
-    return (
-      <div className="App">
-        <h1>Cadastro de user</h1>
-        <form encType="multipart/form-data">
-          <input type="file" name="file" onChange={this.handleFile}/>
-          <button type="submit" onClick={this.handleForm}>Eviar</button>
-        </form>
-      </div>
-    );
-  }
+                <div className="slide" >
+                    <SlideShow />
+                </div>
+            </>
+
+        );
+    }
 }
+
+
+
+
