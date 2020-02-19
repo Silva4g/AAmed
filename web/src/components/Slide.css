@@ -1,8 +1,8 @@
 .slide-container {
-  position: absolute;
+  /* position: absolute; */
   width: 100%;
   margin: auto;
-  margin-top: 200px;
+  /* margin-top: 200px; */
 }
 
 .each-slide>div {
@@ -42,7 +42,7 @@
   background: #adceed;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   .slide-container {
     position: initial;
   }

@@ -43,56 +43,87 @@ export default class App extends Component {
         return (
 
             <>
+                <div className="fora">
+                    <div className="menu">
 
-                <div className="menu">
+                        <div className="logo">
+                            <img src={logo} alt="logo" />
+                        </div>
 
-                    <div className="logo">
-                        <img src={logo} alt="logo" />
+                        <div className="itemsMenu">
+                            <ul> {/* IREI ARRUMAR OS LINKS */}
+                                <li><a href="/">HOME</a></li>
+                                <li><a href="/">PICTURE</a></li>
+                                <li><a href="/">SUPORTE</a></li>
+                                <li><a href="/">ESTUDOS</a></li>
+                            </ul>
+                        </div>
+
+                        <div className="signInUp">
+                            <a href="/">LOG IN</a>
+                            <button>SIGN UP</button>
+                        </div>
+
                     </div>
-
-                    <div className="itemsMenu">
-                        <ul> {/* IREI ARRUMAR OS LINKS */}
-                            <li><a href="/">HOME</a></li>
-                            <li><a href="/">PICTURE</a></li>
-                            <li><a href="/">SUPORTE</a></li>
-                            <li><a href="/">ESTUDOS</a></li>
-                        </ul>
-                    </div>
-
-                    <div className="signInUp">
-                        <a href="/">LOG IN</a>
-                        <button>SIGN UP</button>
-                    </div>
-
                 </div>
 
                 <div className="slide" >
                     <SlideShow />
                 </div>
 
-                <div className="tituloPatrocinio">
-                    <p>PATROCÍNIOS</p>
-                </div>
                 <div className="patrocinios">
+                    <div className="tituloPatrocinio">
+                        <p>PATROCÍNIOS</p>
+                    </div>
+                    <ul>
+                        <li>
+                            <div className="pat-respon">
+                                <img src={sus} alt="banner-sus" />
+                            </div>
+                        </li>
+                        <li>
+                            <div className="pat-repon">
+                                <img src={ima} alt="banner-ima" />
+                            </div>
+                        </li>
+                        <li>
+                            <div className="pat-respon">
+                                <img src={unimed} alt="banner-unimed" />
+                            </div>
+                        </li>
+                        <li>
+                            <div className="pat-respon">
+                                <img src={maps} alt="banner-google-maps" />
+                            </div>
+                        </li>
+                        <li>
+                            <div className="pat-respon">
+                                <img src={unicamp} alt="banner-unicamp" />
+                            </div>
+                        </li>
+                    </ul>
 
-                    <div className="patrocinio1 pat-respon">
-                        <img src={sus} alt="banner-sus" />
+                    {/* <div className="patrocinio1 pat-respon">
+                        
                     </div>
 
                     <div className="patrocinio2 pat-respon">
-                        <img src={ima} alt="banner-ima" />
+                        
                     </div>
                     <div className="patrocinio3 pat-respon">
-                        <img src={unimed} alt="banner-unimed" />
+                        
                     </div>
 
                     <div className="patrocinio4 pat-respon">
-                        <img src={maps} alt="banner-google-maps" />
+                        
                     </div>
 
                     <div className="patrocinio5 pat-respon">
-                        <img src={unicamp} alt="banner-unicamp" />
-                    </div>
+                        
+                    </div> */}
+                </div>
+                <div className="teste">
+                    
                 </div>
             </>
 
