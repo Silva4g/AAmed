@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "./App.css";
-import sus from "./external/sus.png";
-import unimed from "./external/unimed.png";
-import maps from "./external/maps.png";
-import unicamp from "./external/unicamp.png";
-import ima from "./external/ima.png";
+import sus from "./assets/sus.png";
+import unimed from "./assets/unimed.png";
+import maps from "./assets/maps.png";
+import unicamp from "./assets/unicamp.png";
+import ima from "./assets/ima.png";
 import Menu from "./components/Menu";
 import Rodape from "./components/Rodape";
 import Slide from './components/Slide';
