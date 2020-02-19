@@ -1,7 +1,6 @@
 import React from 'react';
 import { Slide } from 'react-slideshow-image';
 import './Slide.css'
-import img1 from '../external/imgSlide1.jpg'
 import img2 from '../external/imgSlide2.jpg'
 
  const properties = {
