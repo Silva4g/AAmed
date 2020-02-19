@@ -5,7 +5,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 
-const Rodape = () => {
+export default function Rodape() {
   return (
 
     <div className="rodape">
@@ -14,33 +14,25 @@ const Rodape = () => {
 
         <div className="redes_sociais">
 
-          <div className="facebook">
-            <h2>
-              <FaFacebookF />{" "}
-            </h2>
+          <div>
+              <FaFacebookF />
           </div>
 
-          <div className="instagram">
-            <h2>
-              <FaInstagram />{" "}
-            </h2>
+          <div>
+              <FaInstagram />
           </div>
 
-          <div className="linkedin">
-            <h2>
-              <FaLinkedin />{" "}
-            </h2>
+          <div>
+              <FaLinkedin />
           </div>
 
-          <div className="twitter">
-            <h2>
-              <FaTwitter />{" "}
-            </h2>
+          <div >
+              <FaTwitter />
           </div>
 
         </div>
 
-        <div className="fale_conosco">
+        <div>
           <i>Fale Conosco: (19) 3269-4089</i>
         </div>
 
@@ -86,5 +78,3 @@ const Rodape = () => {
     </div>
   );
 };
-
-export default Rodape; /* Exportando apresentação */

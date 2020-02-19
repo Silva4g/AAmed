@@ -1,7 +1,7 @@
 import React from "react";
 import { Slide } from "react-slideshow-image";
 import "./style.css";
-import img2 from "./imgSlide2.jpg";
+import img2 from "../../assets/imgSlide2.jpg";
 
 const properties = {
   duration: 5000,
@@ -9,9 +9,7 @@ const properties = {
   infinite: true,
   indicators: false,
   arrows: true,
-  onChange: (oldIndex, newIndex) => {
-    console.log(`slide transition from ${oldIndex} to ${newIndex}`);
-  }
+  onChange: (oldIndex, newIndex) => {}
 };
 
 const Slideshow = () => {

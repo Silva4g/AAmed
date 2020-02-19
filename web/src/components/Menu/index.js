@@ -1,12 +1,11 @@
 import React from "react";
 import "./style.css";
-import logo from "./logo.png";
+import logo from "../../assets/logo.png";
 
-const Menu = () => {
+export default function Menu() {
   return (
 
-    <div className="fora">
-
+    <div className="content">
       <div className="menu">
 
         <div className="logo">
@@ -14,28 +13,21 @@ const Menu = () => {
         </div>
 
         <div className="itemsMenu">
-
           <ul>
             {/* IREI ARRUMAR OS LINKS */}
-
             <li>
               <a href="/">HOME</a>
             </li>
-
             <li>
               <a href="/">PICTURE</a>
             </li>
-
             <li>
               <a href="/">SUPORTE</a>
             </li>
-
             <li>
               <a href="/">ESTUDOS</a>
             </li>
-
           </ul>
-
         </div>
 
         <div className="signInUp">
@@ -44,9 +36,6 @@ const Menu = () => {
         </div>
 
       </div>
-      
     </div>
   );
 };
-
-export default Menu; /* Exportando apresentação */

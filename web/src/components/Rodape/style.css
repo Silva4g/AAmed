@@ -22,58 +22,35 @@
     display: flex;
     justify-content: space-evenly;
 }
-
-.facebook {
-    color: #5677bf;
+.redes_sociais > div{
+    font-size: 22px;
 }
-
-.linkedin {
+.redes_sociais >div:nth-child(1){
+    color: #3b5998;
+}
+.redes_sociais >div:nth-child(3){
     color: #0270ad;
 }
-
-.twitter {
-    color: white;
+.sub_rodape >div:nth-child(2){
+    color: #fff;
 }
-
-.instagram {
-    color: white;
-}
-
-.fale_conosco {
-    width: auto;
-    height: auto;
-    display: flex;
-    font-size: 20px;
-    color: white;
-}
-
 .sub_rodape2 {
-    padding: 55px 360px;
     width: 100%;
     height: auto;
     background-color: #004355;
     display: flex;
-    flex-direction: row;
     justify-content: space-around;
 }
 
 .sub_rodape2 ul li {
     color: white;
     list-style: none;
+    font-size: 12px;
     margin: 15px 0;
+    color:#dedede;
 }
-
-.usuarios {
+.sub_rodape2 ul span {
     color: white;
     font-weight: bold;
-}
-
-.hospitais {
-    color: white;
-    font-weight: bold;
-}
-
-.fast_Help {
-    color: white;
-    font-weight: bold;
+    font-size: 22px;
 }
