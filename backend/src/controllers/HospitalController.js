@@ -48,13 +48,12 @@ module.exports = {
         const hospital = await Hospital.findOne({ email }).select('+password');
 
         if (!hospital) {
-            return res.status(401).send({ error: 'Hospital não encontrado' });
+            return res.status(401).send({ error: 'Email e/ou senha não encontrado' });
         }
 
         if (!await bcrypt.compare(password, hospital.password)) {
-            return res.status(401).send({ error: 'Senha inválida'});
+            return res.status(401).send({ error: 'Email e/ou senha não encontrado'});
         }
-        hospital.password = undefined;
         res.send({
             hospital,
             token: generateToken({ id: hospital.id })
