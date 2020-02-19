@@ -5,9 +5,9 @@ import unimed from "./external/unimed.png";
 import maps from "./external/maps.png";
 import unicamp from "./external/unicamp.png";
 import ima from "./external/ima.png";
-import SlideShow from "./components/Slide/index";
-import Menu from "./components/Menu/index";
-import Rodape from "./components/Rodape/index"; 
+import Menu from "./components/Menu";
+import Rodape from "./components/Rodape";
+import Slide from './components/Slide';
 
 /* no react não tem o
 <a href></a> o que precisa é isso aqui import { BrouserRouter, Switch, Route } from 'react-router-dom';
@@ -42,10 +42,7 @@ export default class App extends Component {
     return (
       <>
         <Menu />
-
-        <div className="slide">
-          <SlideShow />
-        </div>
+        <Slide />
 
         <div className="patrocinios">
 
