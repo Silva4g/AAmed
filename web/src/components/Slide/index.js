@@ -11,7 +11,7 @@ const properties = {
   infiniteLoop: true,
   stopOnHover: true,
   interval: 3000,
-  transitionTime: 350,
+  transitionTime: 550,
   autoPlay: true
 };
 
