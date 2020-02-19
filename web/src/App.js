@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './App.css'
 import logo from "./external/logo.png"
 import sus from "./external/sus.png"
-import samu from "./external/samu.png"
 import unimed from "./external/unimed.png"
 import maps from "./external/maps.png"
 import unicamp from "./external/unicamp.png"
@@ -48,20 +47,20 @@ export default class App extends Component {
                 <div className="menu">
 
                     <div className="logo">
-                        <img src={logo} />
+                        <img src={logo} alt="logo" />
                     </div>
 
                     <div className="itemsMenu">
-                        <ul> {/* IREI ARRUMAR OS LINKS */ }
-                            <li><a href="">HOME</a></li> 
-                            <li><a href="">PICTURE</a></li>
-                            <li><a href="">SUPORTE</a></li>
-                            <li><a href="">ESTUDOS</a></li>
+                        <ul> {/* IREI ARRUMAR OS LINKS */}
+                            <li><a href="/">HOME</a></li>
+                            <li><a href="/">PICTURE</a></li>
+                            <li><a href="/">SUPORTE</a></li>
+                            <li><a href="/">ESTUDOS</a></li>
                         </ul>
                     </div>
 
                     <div className="signInUp">
-                        <a href="">LOG IN</a>
+                        <a href="/">LOG IN</a>
                         <button>SIGN UP</button>
                     </div>
 
@@ -71,30 +70,28 @@ export default class App extends Component {
                     <SlideShow />
                 </div>
 
+                <div className="tituloPatrocinio">
+                    <p>PATROCÍNIOS</p>
+                </div>
                 <div className="patrocinios">
 
-                    <div className="tituloPatrocinio">
-                        <p>PATROCÍNIOS</p>
+                    <div className="patrocinio1 pat-respon">
+                        <img src={sus} alt="banner-sus" />
                     </div>
 
-                    <div className="patrocinio1">
-                        <img src={sus} />
+                    <div className="patrocinio2 pat-respon">
+                        <img src={ima} alt="banner-ima" />
+                    </div>
+                    <div className="patrocinio3 pat-respon">
+                        <img src={unimed} alt="banner-unimed" />
                     </div>
 
-                    <div className="patrocinio2">
-                        <img src={ima} />
+                    <div className="patrocinio4 pat-respon">
+                        <img src={maps} alt="banner-google-maps" />
                     </div>
 
-                    <div className="patrocinio3">
-                        <img src={unimed} />
-                    </div>
-
-                    <div className="patrocinio4">
-                        <img src={maps} />
-                    </div>
-
-                    <div className="patrocinio5">
-                        <img src={unicamp} />
+                    <div className="patrocinio5 pat-respon">
+                        <img src={unicamp} alt="banner-unicamp" />
                     </div>
                 </div>
             </>
