@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+
 import "./style.css";
 import logo from "../../assets/logo.png";
 
@@ -15,24 +17,39 @@ export default function Menu() {
         <div className="itemsMenu">
           <ul>
             {/* IREI ARRUMAR OS LINKS */}
+
             <li>
-              <a href="/">HOME</a>
+              <Link to="/">
+                HOME
+                </Link>
+            </li>
+
+
+            <li>
+              <Link to="/picture">
+                PICTURE
+              </Link>
+            </li>
+
+
+            <li>
+              <Link to="/support">
+                SUPORTE
+            </Link>
             </li>
             <li>
-              <a href="/">PICTURE</a>
-            </li>
-            <li>
-              <a href="/">SUPORTE</a>
-            </li>
-            <li>
-              <a href="/">ESTUDOS</a>
+              <Link to="/study">
+                ESTUDOS
+              </Link>
             </li>
           </ul>
         </div>
 
         <div className="signInUp">
-          <a href="/">LOG IN</a>
-          <button>SIGN UP</button>
+          <Link to="/login">LOG IN</Link>
+          <Link to="/register">
+            <button>SIGN UP</button>
+          </Link>
         </div>
 
       </div>
