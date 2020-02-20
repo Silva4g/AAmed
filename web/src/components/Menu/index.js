@@ -33,12 +33,12 @@ export default function Menu() {
 
             <li>
               <Link to="/support">
-                SUPORTE
+              SUPPORT
             </Link>
             </li>
             <li>
               <Link to="/study">
-                ESTUDOS
+                ABOUT
               </Link>
             </li>
           </ul>

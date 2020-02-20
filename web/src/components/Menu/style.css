@@ -18,13 +18,16 @@ a{
     top: 0;
     background-color: #fff;
     z-index: 99;
-    box-shadow: 0 3px 3px #cecece;
+    box-shadow: 0 2px 2px #cecece;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 .logo{
     width: 120px;
+}
+.logo img{
+    cursor: pointer;
 }
 .itemsMenu ul{
     display: flex;

@@ -34,6 +34,7 @@
     margin-left: 30px;
     font-size: 22px;
     list-style: none;
+    cursor: pointer;
 }
 .redes_sociais li:nth-child(1){
     color: #3b5998;
@@ -46,7 +47,7 @@
 }
 .sub_rodape2 {
     width: 100%;
-    background-color: #003644;
+    background-color: #004355;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -63,6 +64,7 @@
     font-size: 15px;
     margin: 15px 0;
     color:#dedede;
+    cursor: pointer;
 }
 .sub_rodape2 ul span {
     color: white;
