@@ -33,20 +33,24 @@ module.exports = {
 
     },
     async login(req, res) {
-        const { cpf, password } = req.body;
-        const user = await User.findOne({ cpf }).select('+password');
+        try {
+            const { cpf, password } = req.body;
+            const user = await User.findOne({ cpf }).select('+password');
 
-        if (!user) {
-            res.status(401).send({ error: 'Usuário e/ou senha incorretos!' });
-        }
+            if (!user) {
+                res.status(401).send({ error: 'Usuário e/ou senha incorretos!' });
+            }
 
-        if (!await bcrypt.compare(password, user.password)) {
-            return res.status(401).send({ error: 'Usuário e/ou senha incorretos!' });
+            if (!await bcrypt.compare(password, user.password)) {
+                return res.status(401).send({ error: 'Usuário e/ou senha incorretos!' });
+            }
+            res.send({
+                user,
+                token: generateToken({ id: user.id })
+            })
+        } catch (error) {
+            return res.status(400).send({ error: 'Falha no login: ' + err })
         }
-        res.send({
-            user,
-            token: generateToken({ id: user.id })
-        })
     },
 
     async index(req, res) {

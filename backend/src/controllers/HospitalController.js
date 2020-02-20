@@ -44,26 +44,31 @@ module.exports = {
         }
     },
     async login(req, res) {
-        const { email, password } = req.body;
-        const hospital = await Hospital.findOne({ email }).select('+password');
+        try {
+            const { email, password } = req.body;
+            const hospital = await Hospital.findOne({ email }).select('+password');
 
-        if (!hospital) {
-            return res.status(401).send({ error: 'Email e/ou senha não encontrado' });
+            if (!hospital) {
+                return res.status(401).send({ error: 'Email e/ou senha não encontrado' });
+            }
+
+            if (!await bcrypt.compare(password, hospital.password)) {
+                return res.status(401).send({ error: 'Email e/ou senha não encontrado' });
+            }
+            res.send({
+                hospital,
+                token: generateToken({ id: hospital.id })
+            })
+        } catch (error) {
+            return res.status(400).send({ error: 'Falha no login' })
         }
 
-        if (!await bcrypt.compare(password, hospital.password)) {
-            return res.status(401).send({ error: 'Email e/ou senha não encontrado'});
-        }
-        res.send({
-            hospital,
-            token: generateToken({ id: hospital.id })
-        })
     },
     async update(req, res) {
         try {
-            const { email, password, latitude, longitude, name, phone, cnpj, cnes, city, state} = req.body;
+            const { email, password, latitude, longitude, name, phone, cnpj, cnes, city, state } = req.body;
 
-            if (email || password || cnpj || cnes ) return res.status(400).send({ error: 'Esses dados não podem ser atualizados' });
+            if (email || password || cnpj || cnes) return res.status(400).send({ error: 'Esses dados não podem ser atualizados' });
             const hospital = await Hospital.findByIdAndUpdate(req.params.id, {
                 latitude,
                 longitude,

@@ -1,7 +1,7 @@
 import Home from './Home';
 import Estudos from './Estudos';
 import Register from './Register';
-import Suport from './Suport';
+import Suport from './Suporte';
 import Picture from './Picture';
 import Login from './Login';
 
