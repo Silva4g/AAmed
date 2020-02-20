@@ -16,7 +16,6 @@ export default function Menu() {
 
         <div className="itemsMenu">
           <ul>
-            {/* IREI ARRUMAR OS LINKS */}
 
             <li>
               <Link to="/">

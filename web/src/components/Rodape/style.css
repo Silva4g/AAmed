@@ -36,21 +36,26 @@
 }
 .sub_rodape2 {
     width: 100%;
-    height: auto;
-    background-color: #004355;
+    background-color: #003644;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
+}
+.sub_rodape2 > div {
+    margin-top:25px;
+    flex: 1 1 400px;
+    text-align: center;
 }
 
 .sub_rodape2 ul li {
     color: white;
     list-style: none;
-    font-size: 12px;
+    font-size: 15px;
     margin: 15px 0;
     color:#dedede;
 }
 .sub_rodape2 ul span {
     color: white;
     font-weight: bold;
-    font-size: 22px;
+    font-size: 28px;
 }
