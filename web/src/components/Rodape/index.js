@@ -1,29 +1,32 @@
 import React from "react";
 import "./style.css";
-import { FaFacebookF } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaLinkedin, FaTwitter, FaInstagram } from "react-icons/fa";
 
 export default function Rodape() {
+
+  const handleForm = () => {
+    console.log('aa');
+  }
+
   return (
 
     <div className="rodape">
-
       <div className="sub_rodape">
         <div className="redes_sociais">
-          <div>
-            <FaFacebookF />
-          </div>
-          <div>
-            <FaInstagram />
-          </div>
-          <div>
-            <FaLinkedin />
-          </div>
-          <div >
-            <FaTwitter />
-          </div>
+          <ul>
+            <li>
+              <FaFacebookF />
+            </li>
+            <li>
+              <FaInstagram />
+            </li>
+            <li>
+              <FaLinkedin />
+            </li>
+            <li>
+              <FaTwitter />
+            </li>
+          </ul>
         </div>
 
         <div>

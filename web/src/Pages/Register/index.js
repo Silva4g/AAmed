@@ -1,6 +1,5 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-
 // import { Container } from './styles';
 
 export default function Register() {
