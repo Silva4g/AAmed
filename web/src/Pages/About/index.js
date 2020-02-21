@@ -9,7 +9,7 @@ export default class About extends Component {
   render() {
     return (
       <>
-        <div classNam="img_Inicial">
+        <div className="img_Inicial">
           <img src={imgInicial} alt="imgInicial"></img>
 
           <div className="frase_img">
@@ -28,7 +28,6 @@ export default class About extends Component {
             <h2>FourMembers é considerada</h2>
             <h2>a melhor empresa para se</h2>
             <h2>trabalhar em Campinas</h2>
-            <h2></h2>
           </div>
         </div>
 

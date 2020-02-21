@@ -3,11 +3,6 @@ import "./style.css";
 import { FaFacebookF, FaLinkedin, FaTwitter, FaInstagram } from "react-icons/fa";
 
 export default function Rodape() {
-
-  const handleForm = () => {
-    console.log('aa');
-  }
-
   return (
 
     <div className="rodape">
