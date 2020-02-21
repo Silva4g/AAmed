@@ -20,12 +20,12 @@ export default function Suporte() {
 
   return (
     <div className="wrapper">
-      <div className="content-form">
+      <div className="content-form-support">
         <h1>FORMULÁRIO DE SUPORTE</h1>
         <p>Connect with us by sending your views.</p>
       </div>
 
-      <form action="/" className="form" onSubmit={handleSubmit} method="POST">
+      <form action="/" className="form-support" onSubmit={handleSubmit} method="POST">
         <div className="top-form">
           <div className="inner-form">
             <div className="label"><label htmlFor="email">Email</label></div>
