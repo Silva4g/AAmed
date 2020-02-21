@@ -25,6 +25,10 @@ module.exports = {
                 coordinates: [longitude, latitude],
             };
 
+            const address = {
+                state, city
+            };
+
             const hospital = await Hospital.create({
                 email,
                 password,
@@ -33,8 +37,7 @@ module.exports = {
                 phone,
                 cnpj,
                 cnes,
-                city,
-                state
+                address
             });
             hospital.password = undefined;
             return res.json(hospital);
