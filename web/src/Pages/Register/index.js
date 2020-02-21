@@ -22,6 +22,7 @@ export default function Register() {
   const [check, setCheck] = useState(true);
   const [passEqual, setPassequal] = useState(false);
   const [lenghtName, setLenghtname] = useState(false);
+  const [modal, setModal] = useState(false);
 
   function changeCheck(e) {
     const target = e.target;
@@ -50,6 +51,7 @@ export default function Register() {
       await api.post('/hospital', {
         name, password, cnes, cnpj, latitude, longitude, state, city, phone, email
       });
+      setModal(true);
       setName('');
       setCnpj('');
       setCnes('');
@@ -60,10 +62,8 @@ export default function Register() {
       setCity('');
       setEmail('');
     }catch(err){
-
+      console.log(err);
     }
-    
-
   };
 
   useEffect(() => {
@@ -84,6 +84,9 @@ export default function Register() {
 
   return (
     <div className="container" >
+      {
+        modal ? <div className="modal"></div> : ""
+      }
       <div className="wave wave1"></div>
       <div className="wave wave2"></div>
       <div className="wave wave3"></div>
