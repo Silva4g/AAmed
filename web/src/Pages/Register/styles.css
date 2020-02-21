@@ -24,14 +24,14 @@
     z-index: 999;
     opacity: .5;
     animation-delay: -5s;
-    bottom: 10px;
+    bottom: 0px;
 }
 .container .wave.wave3{
     animation: animate 15s linear infinite;
     z-index: 998;
     opacity: .2;
     animation-delay: -5s;
-    bottom: 15px;
+    bottom: 0px;
 }
 @keyframes animate{
     0%{
@@ -55,19 +55,22 @@
     top: 50%;
     left:50%;
     transform: translate(-50%,-55%);
+    box-shadow: 0 0 4px rgba(0,0,0,.4);
+    padding: 10px;
 }
 .content-form h1{
     text-align: center;
     font-weight: normal;
+    padding: 8px 0;
 }
 .form-register input{
     display: block;
-    margin: 8px 0;
+    margin: 8px auto;
     text-align: left;
     padding: 4px 12px;
     border: 0;
     border-bottom: .7px solid #cecece;
-    width: 100%;
+    width: 90%;
 }
 .form-register button{
     display: block;
@@ -92,6 +95,7 @@
     margin: 20px 0 0 0;
 }
 .termos > div:nth-child(1){
+    text-align: center;
     display: block;
 }
 .termos > div:nth-child(1){
