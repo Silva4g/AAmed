@@ -6,6 +6,12 @@ export default function Register() {
 
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [cnes, setCnes] = useState('');
+  const [phone, setPhone] = useState('');
+  const [cnpj, setCnpj] = useState('');
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
