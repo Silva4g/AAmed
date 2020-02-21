@@ -1,12 +1,12 @@
 import Home from './Home';
-import Estudos from './Estudos';
+import About from './About';
 import Register from './Register';
 import Suport from './Suporte';
 import Picture from './Picture';
 import Login from './Login';
 
 const defaults = {
-    Home, Estudos, Register, Suport, Picture, Login
+    Home, About, Register, Suport, Picture, Login
 }
 
 export default defaults;

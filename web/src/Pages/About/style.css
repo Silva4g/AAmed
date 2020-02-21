@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+
+*{
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: unset;
+}
+.img_Inicial{
+    width: 100%;
+    display: flex;
+    height: auto;
+}
+
+.frase_img{
+    position: absolute;
+    width: 250px;
+    top: 240px;
+    left: 160px;
+    
+}
+.frase_img span{
+    color: white;
+    font-size: 35px;
+    font-weight: 700;
+    text-rendering: optimizeLegibility;
+    font-family: 'Source Sans Pro';  
+}  
+.frase_img a{
+    position: absolute;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 150px;
+    height: 40px;
+    margin-top: 35px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #52c8fa;
+    background-color: transparent;
+    border: 1px solid #52c8fa;   
+}
+.frase_img a:hover{
+    background-color: #52c8fa;
+    color: white;
+}
+.descricao{
+    width: 100%;
+    height: auto;
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+.img_Descricao{
+    display: flex;
+    width: 60%;
+    padding-left:300px;
+}
+.img_Descricao img{
+    width: 750px;
+    height: 400px;
+}
+.text_Descricao{
+    width: 30%;   
+}
+.text_Descricao > h2:nth-child(1){
+    color: #0e739e;
+    font-weight: 700;
+}
+.text_Descricao > h2:nth-child(2){
+    color: #52c8fa;
+}
+.text_Descricao > h2:nth-child(3){
+    color: #52c8fa;
+}
+.text_Descricao > h2:nth-child(4){
+    color: #52c8fa;
+}
+   
+   
+.c1{
+    height: 100vh;
+    
+}
+.c2{
+    height: 100vh;
+    background: chocolate;
+}
+section{
+    height: 400px;
+    background-color: crimson;
+}
