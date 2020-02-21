@@ -3,6 +3,7 @@ const { Router } = require('express');
 const HospitalController = require('./controllers/HospitalController');
 const UserController = require('./controllers/UserController');
 const SearchHospital = require('./controllers/SearchHospital');
+const SupportController = require('./controllers/SupportController');
 const multer = require('multer');
 const multerConfig = require('./config/multer');
 
@@ -32,5 +33,12 @@ routes.get('/user', UserController.index);
 routes.delete('/user/:id', UserController.destroy);
 //route update user
 routes.put('/user/:id', UserController.update);
+
+//route register a support
+routes.post('/support', SupportController.store);
+//route get all supports
+routes.get('/support', SupportController.index);
+//route delete support
+routes.delete('/support/:id', SupportController.destroy);
 
 module.exports = routes;
