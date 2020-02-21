@@ -17,7 +17,7 @@ a{
     position: fixed;
     top: 0;
     background-color: #fff;
-    z-index: 99;
+    z-index: 9999;
     box-shadow: 0 2px 2px #cecece;
     display: flex;
     justify-content: space-around;
