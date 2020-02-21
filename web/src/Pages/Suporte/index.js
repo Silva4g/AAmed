@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
+import "./style.css";
 
 // import { Container } from './styles';
 
 export default class Suporte extends Component {
   render() {
     return (
-      <div><h1>Página de suporte</h1></div>
+      <>
+          <h2>Página de suporte</h2>
+      </>
+     
     );
   }
 }

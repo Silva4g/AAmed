@@ -37,7 +37,7 @@ export default function Menu() {
             </Link>
             </li>
             <li>
-              <Link to="/study">
+              <Link to="/about">
                 ABOUT
               </Link>
             </li>
