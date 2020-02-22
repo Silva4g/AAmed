@@ -41,17 +41,25 @@ export default function Register() {
       setPassequal(false);
     }
 
+    if (check) {
+      setCheck(true);
+    } else {
+      setCheck(false);
+      return;
+    }
+
     if (name.length < 5) {
       setLenghtname(true);
       return;
     } else {
       setLenghtname(false);
     }
+
     try {
       await api.post('/hospital', {
         name, password, cnes, cnpj, latitude, longitude, state, city, phone, email
       });
-      window.scrollTo(0,0);
+      window.scrollTo(0, 0);
       setModal(true);
       setName('');
       setCnpj('');
@@ -212,11 +220,12 @@ export default function Register() {
                   onChange={changeCheck}
                 />
               </div>
+              { check ? "" : <span className="error">Você deve aceitar os termos</span> }
               <div>
                 <span>Termos de cadastro do sistema: </span>
                 <Link to="/terms">
                   Veja nossos termos para cadastro
-              </Link>
+                </Link>
               </div>
             </div>
             <button
