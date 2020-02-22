@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import api from '../../services/api';
 import '../Support/styles.css';
 
 export default function Support() {
@@ -6,34 +7,61 @@ export default function Support() {
   const [subject, setSubject] = useState('');
   const [description, setDescription] = useState('');
 
-  // array temporário apenas para teste
-  const formSupportData = [];
+  // verificações
+  const [hasEmail, setHasEmail] = useState(false);
+  const [hasSubject, setHasSubject] = useState(false);
+  const [hasDescription, setHasDescription] = useState(false);
+  const [isOK, setIsOK] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email || email === undefined || email === null) return console.log('email requerido');
-    if (!subject || subject === undefined || subject === null) return console.log('assunto requerido');
-    if (!description || description === undefined || description === null) return console.log('descrição requerida');
+    // verificações
+    if (!email || email === undefined || email === null) {
+      return setHasEmail(true);
+    } else {
+      setHasEmail(false);
+    }
 
-    formSupportData.push({email, subject, description});
-    console.log(formSupportData);
-    // console.log(email)
-    // console.log(subject)
-    // console.log(description)
-    setEmail('');
-    setSubject('');
-    setDescription('');
+    if (!subject || subject === undefined || subject === null) {
+      return setHasSubject(true);
+    } else {
+      setHasSubject(false);
+    }
+
+    if (!description || description === undefined || description === null) {
+      return setHasDescription(true);
+    } else {
+      setHasDescription(false);
+    }
+
+    // console.log(email, subject, description)
+
+    try {
+      await api.post('/support', {
+        email,
+        subject,
+        description
+      })
+      setEmail('');
+      setSubject('');
+      setDescription('');
+      setIsOK(true);
+    } catch (error) {
+      console.log("Houve um erro " + error);
+    }
+
   }
 
   return (
     <div className="wrapper">
+      {isOK ? <span className="success-support">Formulário enviado com suceso!</span> : ""}
       <div className="content-form-support">
         <h1>FORMULÁRIO DE SUPORTE</h1>
         <p>Connect with us by sending your views.</p>
       </div>
 
-      <form action="/" className="form-support" onSubmit={handleSubmit} method="POST">
+      <form className="form-support" onSubmit={handleSubmit} method="POST">
         <div className="top-form">
           <div className="inner-form">
             {/* <div className="label"><label htmlFor="email">Email</label></div> */}
@@ -43,8 +71,9 @@ export default function Support() {
               id="email"
               placeholder="Email"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={email => setEmail(email.target.value)}
             />
+            {hasEmail ? <span className="error-support">Email requerido.</span> : ""}
           </div>
         </div>
 
@@ -59,6 +88,7 @@ export default function Support() {
               value={subject}
               onChange={e => setSubject(e.target.value)}
             />
+            {hasSubject ? <span className="error-support">Assunto requerido.</span> : ""}
           </div>
         </div>
 
@@ -73,6 +103,7 @@ export default function Support() {
               value={description}
               onChange={e => setDescription(e.target.value)}
             ></textarea>
+            {hasDescription ? <span className="error-support">Descrição requerida.</span> : ""}
           </div>
         </div>
 

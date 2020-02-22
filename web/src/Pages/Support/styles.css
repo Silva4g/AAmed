@@ -2,6 +2,14 @@ body {
     background: #52c8fa00;
 }
 
+.error-support {
+    color: #e9103f;
+}
+
+.success-support {
+    color: #06ac2a;
+}
+
 .wrapper {
     width: 100%;
     max-width: 900px;
@@ -21,7 +29,7 @@ body {
 
 .content-form-support h1 {
     letter-spacing: 1px;
-    line-height: 80px;
+    line-height: 60px;
 }
 
 .form-support {
