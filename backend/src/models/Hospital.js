@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const PointSchema = require('./utils/PointSchema');
+const AddressSchema = require('./utils/AddressSchema');
 const bcrypt = require('bcryptjs');
 
 const HospitalSchema = new mongoose.Schema({
@@ -19,7 +20,7 @@ const HospitalSchema = new mongoose.Schema({
         required: true,
     },
     address:{
-        type: [String],
+        type: AddressSchema,
         required: true,
     },
     cnes: {

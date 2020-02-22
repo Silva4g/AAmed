@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import api from '../../services/api';
+import InputMask from 'react-input-mask';
 
 import './styles.css'
 
@@ -14,25 +16,54 @@ export default function Register() {
   const [cnpj, setCnpj] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
+
+  //restrições, verificações
   const [confirmPassword, setConfirmpass] = useState('');
   const [check, setCheck] = useState(true);
-  const [passEqual, setPassequal] = useState(false)
+  const [passEqual, setPassequal] = useState(false);
+  const [lenghtName, setLenghtname] = useState(false);
+  const [modal, setModal] = useState(false);
 
-  const changeCheck = e => {
+  function changeCheck(e) {
     const target = e.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     setCheck(value);
-    console.log(value);
-  }
+  };
 
-  const handleForm = e => {
+
+  async function handleForm(e) {
     e.preventDefault();
 
-    if(password !== confirmPassword){
+    if (password !== confirmPassword) {
       setPassequal(true);
+      return;
+    } else {
+      setPassequal(false);
     }
 
-
+    if (name.length < 5) {
+      setLenghtname(true);
+      return;
+    } else {
+      setLenghtname(false);
+    }
+    try{
+      await api.post('/hospital', {
+        name, password, cnes, cnpj, latitude, longitude, state, city, phone, email
+      });
+      setModal(true);
+      setName('');
+      setCnpj('');
+      setCnes('');
+      setPassword('');
+      setPassequal('');
+      setPhone('');
+      setState('');
+      setCity('');
+      setEmail('');
+    }catch(err){
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -53,13 +84,16 @@ export default function Register() {
 
   return (
     <div className="container" >
+      {
+        modal ? <div className="modal"></div> : ""
+      }
       <div className="wave wave1"></div>
       <div className="wave wave2"></div>
       <div className="wave wave3"></div>
       <div className="content-form">
         <h1>Cadastre seu hospital</h1>
-        <div className="form">
-          <form onSubmit={handleForm}>
+        <div>
+          <form className="form-register" onSubmit={handleForm}>
             <input
               type="email"
               name="email"
@@ -77,7 +111,7 @@ export default function Register() {
               value={password}
             />
             {
-              passEqual ? <span className="passError">Senhas incompatíveis</span> : ""
+              passEqual ? <span className="error">Senhas incompatíveis</span> : ""
             }
             <input
               type="password"
@@ -88,9 +122,9 @@ export default function Register() {
               value={confirmPassword}
             />
             {
-              passEqual ? <span className="passError">Senhas incompatíveis</span> : ""
+              passEqual ? <span className="error">Senhas incompatíveis</span> : ""
             }
-            
+
             <input
               type="text"
               required
@@ -99,7 +133,11 @@ export default function Register() {
               onChange={name => setName(name.target.value)}
               value={name}
             />
-            <input
+            {
+              lenghtName ? <span className="error">Nome deve ter pelo menos 5 caracteres!</span> : ""
+            }
+            <InputMask
+              mask="9999999"
               type="text"
               required
               name="cnes"
@@ -107,17 +145,18 @@ export default function Register() {
               onChange={cnes => setCnes(cnes.target.value)}
               value={cnes}
             />
-            <input
+            <InputMask
               type="text"
               required
-              name="cnpj"
+              mask="99.999.999/9999-99"
               placeholder="CNPJ"
               onChange={cnpj => setCnpj(cnpj.target.value)}
               value={cnpj}
             />
-            <input
+            <InputMask
               type="text"
               name="phone"
+              mask="(99)9999-9999"
               required
               placeholder="Telefone do hospital"
               onChange={phone => setPhone(phone.target.value)}
