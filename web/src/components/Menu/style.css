@@ -11,8 +11,12 @@ a{
     position: relative;
     height: 120px;
 }
+.hide{
+    transform: translateY(-120px);
+}
 .menu{
     width:100%;
+    transition: transform .3s ease;
     height: 120px;
     position: fixed;
     top: 0;

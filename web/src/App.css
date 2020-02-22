@@ -12,6 +12,3 @@ body {
     height: 100%;
     font-family: 'Source Sans Pro', sans-serif;
 }
-.hide{
-    transform: translateY(-120px);
-}
