@@ -1,57 +1,59 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 
 import "./style.css";
 import logo from "../../assets/logo.png";
 
-export default function Menu() {
-  return (
+export default class Menu extends Component {
+  render() {
+    return (
 
-    <div className="content">
-      <div className="menu">
+      <div className="content">
+        <div className="menu">
 
-        <div className="logo">
-          <img src={logo} alt="logo" />
-        </div>
+          <div className="logo">
+            <img src={logo} alt="logo" />
+          </div>
 
-        <div className="itemsMenu">
-          <ul>
+          <div className="itemsMenu">
+            <ul>
 
-            <li>
-              <Link to="/">
-                HOME
+              <li>
+                <Link to="/">
+                  HOME
                 </Link>
-            </li>
+              </li>
 
 
-            <li>
-              <Link to="/picture">
-                PICTURE
+              <li>
+                <Link to="/picture">
+                  PICTURE
               </Link>
-            </li>
+              </li>
 
 
-            <li>
-              <Link to="/support">
-              SUPPORT
+              <li>
+                <Link to="/support">
+                  SUPPORT
             </Link>
-            </li>
-            <li>
-              <Link to="/about">
-                ABOUT
+              </li>
+              <li>
+                <Link to="/about">
+                  ABOUT
               </Link>
-            </li>
-          </ul>
-        </div>
+              </li>
+            </ul>
+          </div>
 
-        <div className="signInUp">
-          <Link to="/login">LOG IN</Link>
-          <Link to="/register">
-            <button>SIGN UP</button>
-          </Link>
-        </div>
+          <div className="signInUp">
+            <Link to="/login">LOG IN</Link>
+            <Link to="/register">
+              <button>SIGN UP</button>
+            </Link>
+          </div>
 
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
+}

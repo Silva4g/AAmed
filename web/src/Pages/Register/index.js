@@ -47,21 +47,22 @@ export default function Register() {
     } else {
       setLenghtname(false);
     }
-    try{
+    try {
       await api.post('/hospital', {
         name, password, cnes, cnpj, latitude, longitude, state, city, phone, email
       });
+      window.scrollTo(0,0);
       setModal(true);
       setName('');
       setCnpj('');
       setCnes('');
       setPassword('');
-      setPassequal('');
+      setConfirmpass('');
       setPhone('');
       setState('');
       setCity('');
       setEmail('');
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
   };
@@ -84,14 +85,19 @@ export default function Register() {
 
   return (
     <div className="container" >
-      {
-        modal ? <div className="modal"></div> : ""
-      }
       <div className="wave wave1"></div>
       <div className="wave wave2"></div>
       <div className="wave wave3"></div>
       <div className="content-form">
         <h1>Cadastre seu hospital</h1>
+        {
+          modal ?
+            (
+              <div className="modal">
+                <div className="success">Cadastro realizado com sucesso</div>
+              </div>
+            ) : ""
+        }
         <div>
           <form className="form-register" onSubmit={handleForm}>
             <input
@@ -221,6 +227,5 @@ export default function Register() {
         </div>
       </div>
     </div>
-
   );
 }
