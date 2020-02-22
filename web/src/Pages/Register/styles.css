@@ -194,7 +194,7 @@
     background-color: #2196f3;
 }
 .coordinate{
-    /*pointer-events: none;*/
+    pointer-events: none;
 }
 .termos{
     margin: 20px 0 0 0;
