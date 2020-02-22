@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import './styles.css';
+import '../Suporte/styles.css';
 
 export default function Suporte() {
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
   const [description, setDescription] = useState('');
+
+  // array temporário apenas para teste
+  const formSupportData = [];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,9 +16,14 @@ export default function Suporte() {
     if (!subject || subject === undefined || subject === null) return console.log('assunto requerido');
     if (!description || description === undefined || description === null) return console.log('descrição requerida');
 
-    console.log(email)
-    console.log(subject)
-    console.log(description)
+    formSupportData.push({email, subject, description});
+    console.log(formSupportData);
+    // console.log(email)
+    // console.log(subject)
+    // console.log(description)
+    setEmail('');
+    setSubject('');
+    setDescription('');
   }
 
   return (
@@ -28,7 +36,7 @@ export default function Suporte() {
       <form action="/" className="form-support" onSubmit={handleSubmit} method="POST">
         <div className="top-form">
           <div className="inner-form">
-            <div className="label"><label htmlFor="email">Email</label></div>
+            {/* <div className="label"><label htmlFor="email">Email</label></div> */}
             <input
               type="email"
               name="email"
@@ -36,14 +44,13 @@ export default function Suporte() {
               placeholder="Email"
               value={email}
               onChange={e => setEmail(e.target.value)}
-              
             />
           </div>
         </div>
 
         <div className="middle-form">
           <div className="inner-form">
-            <div className="label"><label htmlFor="subject">Assunto</label></div>
+            {/* <div className="label"><label htmlFor="subject">Assunto</label></div> */}
             <input
               type="text"
               name="subject"
@@ -57,7 +64,7 @@ export default function Suporte() {
 
         <div className="bottom-form">
           <div className="inner-form">
-            <div className="inner-form"><label htmlFor="description">Descrição</label></div>
+            {/* <div className="label"><label htmlFor="description">Descrição</label></div> */}
             <textarea
               name="description"
               id="description"

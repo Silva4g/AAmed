@@ -11,6 +11,8 @@ body {
     border: 1px solid #7a7a7a55;
     border-radius: 5px;
     box-shadow: 0px 0px 5px 5px #d6d6d699;
+    animation: fade 0.4s;
+    overflow: hidden;
 }
 
 .content-form-support {
@@ -27,31 +29,27 @@ body {
     margin: 25px 0;
 }
 
-.top-form,
-.middle-form,
-.bottom-form {
+.top-form, .middle-form, .bottom-form {
     width: 100%;
     min-height: 65px;
     margin: 10px 0;
     overflow: hidden;
 }
 
-.form-support input,
-.form-support textarea {
+.form-support input, .form-support textarea {
     padding: 15px 5px;
     box-sizing: border-box;
     width: 100%;
-    border: 1px solid #52c8fa;
+    border: none;
+    border-bottom: 1px solid #52c8fa;
     border-radius: 2px;
     outline: none;
     transition: all 0.2s ease;
 }
 
-.form-support input:focus,
-.form-support textarea:focus {
+.form-support input:focus, .form-support textarea:focus {
     border-color: #2196f3;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.0125),
-                0 0 8px rgba(76, 161, 175, 0.5);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.0125), 0 0 8px rgba(76, 161, 175, 0.5);
 }
 
 .form-support .label {
@@ -86,8 +84,7 @@ body {
     cursor: pointer;
 }
 
-.btn button:hover,
-.btn button:active {
+.btn button:hover, .btn button:active {
     background: #2196f3;
 }
 
@@ -96,6 +93,62 @@ body {
     text-transform: capitalize;
 }
 
+/* animations */
+.top-form {
+    animation: movee 500ms;
+    animation-delay: 150ms;
+    /* name, duration, fill-mode*/
+}
+
+.middle-form {
+    animation: movee 500ms backwards;
+    animation-delay: 350ms;
+}
+
+.bottom-form {
+    animation: movee 400ms backwards;
+    animation-delay: 550ms;
+}
+
+.btn {
+    animation: moveeButton 400ms backwards;
+    animation-delay: 650ms;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes movee {
+    from {
+        opacity: 0;
+        transform: translateX(-35%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes moveeButton {
+    from {
+        opacity: 0;
+        transform: translateY(250%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+/* media query */
 @media screen and (max-width: 600px) {
     .wrapper {
         margin: 25px auto 0;
