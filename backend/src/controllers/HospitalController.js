@@ -26,7 +26,8 @@ module.exports = {
             };
 
             const address = {
-                state, city
+               city: city,
+               state: state
             };
 
             const hospital = await Hospital.create({
@@ -43,7 +44,7 @@ module.exports = {
             return res.json(hospital);
 
         } catch (err) {
-            return res.status(400).send({ error: 'Falha no cadastro' })
+            return res.status(400).send({ error: 'Falha no cadastro: ' + err })
         }
     },
     async login(req, res) {
