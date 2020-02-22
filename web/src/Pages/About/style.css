@@ -1,5 +1,32 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
 
+@keyframes descricao1_texto {
+    0%  {margin-left:200px; opacity: 0;}
+    50%  {margin-left:200px; opacity: 0;}
+    100% {margin-left:0px; top:0px;opacity: 1;}
+}
+
+@keyframes descricao1_img {
+    0%  {opacity: 0;}
+    50%  {opacity: 0;}
+    75% {margin-left:150px; top:0px;opacity: 1;}
+    100% {margin-right:150px; top:0px;opacity: 1;}
+}
+
+@keyframes descricao2_texto {
+    0%  {margin-top:200px; opacity: 0;}
+    50%  {margin-top:200px; opacity: 0;}
+    100% {margin-bottom:0px; top:0px;opacity: 1;}
+}
+
+@keyframes descricao2_img {
+    0%  {opacity: 0;}
+    50%  {opacity: 0;}
+    75% {margin-left:150px; top:0px;opacity: 1;}
+    100% {margin-right:50px; top:0px;opacity: 1;}
+}
+
+
 *{
     scroll-behavior: smooth;
     margin: 0;
@@ -7,7 +34,130 @@
     box-sizing: border-box;
     text-align: unset;
 }
-.img_Inicial{
+
+/* Fazendo pelo meu pc, estou testando, depois arrumo os media */
+@media (max-width: 1690px) {
+    .img_inicial{
+        width: 100%;
+        display: flex;
+        height: auto;
+    }
+    
+    .frase_img{
+        position: absolute;
+        width: 250px;
+        top: 240px;
+        left: 160px;
+        
+    }
+    .frase_img span{
+        color: white;
+        font-size: 35px;
+        font-weight: 700;
+        text-rendering: optimizeLegibility;
+        font-family: 'Source Sans Pro';  
+    }  
+    .frase_img a{
+        display:flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 150px;
+        height: 40px;
+        margin-top: 35px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #52c8fa;
+        background-color: transparent;
+        border: 1px solid #52c8fa;   
+        transition: .3s all;
+    }
+    .frase_img a:hover{
+        background-color: #52c8fa;
+        color: white;
+    }
+    .descricao1{
+        width: 100%;
+        height: auto;
+        margin-top: 100px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .img_descricao1{
+        display: flex;
+        width: 60%;
+        height: auto;
+    }
+    .img_descricao1 img{
+        width: 750px;
+        height: 400px;
+        transition: .3s ease-in; 
+        animation-name: descricao1_img;
+        animation-duration: 2s;       
+    }
+    .img_descricao1 img:hover{
+        transform: scale(1.1);
+        box-shadow: 0px 0px 5px;
+    }
+    .text_descricao1{
+        width: 30%;  
+    }
+    .text_descricao1 h2{
+        color: #52c8fa;
+        text-rendering: optimizeLegibility;
+        animation-name: descricao1_texto;
+        animation-duration: 2s;
+    }
+    .text_descricao1 > h2:nth-child(1){
+        color: #0e739e;
+        font-weight: 700;
+    }
+    .descricao2{
+        width: 100%;
+        height: auto;
+        margin-top: 150px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+        align-items: center;
+    }
+    .img_descricao2{
+        width: 60%;
+        height: auto;
+        justify-content: flex-end;  
+        display: flex;
+    }
+    .img_descricao2 img{
+        width: 750px;
+        height: 400px;
+        transition: .3s ease-in;  
+        animation-name: descricao2_img;
+        animation-duration: 2s;    
+    }
+    .img_descricao2 img:hover{
+        transform: scale(1.1);
+        box-shadow: 0px 0px 5px;
+    }
+    .text_descricao2{
+        width: 40%;   
+        padding-left:60px;
+    }
+    .text_descricao2 h2{
+        color: #52c8fa;
+        text-rendering: optimizeLegibility;
+        animation-name: descricao2_texto;
+        animation-duration: 2s;
+        
+    }
+    .text_descricao2 > h2:nth-child(1){
+        color: #0e739e;
+        font-weight: 700;
+    }
+       
+}
+
+/* testando , testando */
+.img_inicial{
     width: 100%;
     display: flex;
     height: auto;
@@ -28,7 +178,6 @@
     font-family: 'Source Sans Pro';  
 }  
 .frase_img a{
-    position: absolute;
     display:flex;
     justify-content: space-around;
     align-items: center;
@@ -40,56 +189,88 @@
     color: #52c8fa;
     background-color: transparent;
     border: 1px solid #52c8fa;   
+    transition: .3s all;
 }
 .frase_img a:hover{
     background-color: #52c8fa;
     color: white;
 }
-.descricao{
+.descricao1{
     width: 100%;
     height: auto;
     margin-top: 100px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: row;
 }
-.img_Descricao{
+.img_descricao1{
     display: flex;
     width: 60%;
-    padding-left:300px;
+    height: auto;
 }
-.img_Descricao img{
+.img_descricao1 img{
     width: 750px;
     height: 400px;
+    transition: .3s ease-in; 
+    animation-name: descricao1_img;
+    animation-duration: 2s;       
 }
-.text_Descricao{
-    width: 30%;   
+.img_descricao1 img:hover{
+    transform: scale(1.1);
+    box-shadow: 0px 0px 5px;
 }
-.text_Descricao > h2:nth-child(1){
+.text_descricao1{
+    width: 30%;  
+}
+.text_descricao1 h2{
+    color: #52c8fa;
+    text-rendering: optimizeLegibility;
+    animation-name: descricao1_texto;
+    animation-duration: 2s;
+}
+.text_descricao1 > h2:nth-child(1){
     color: #0e739e;
     font-weight: 700;
 }
-.text_Descricao > h2:nth-child(2){
-    color: #52c8fa;
+.descricao2{
+    width: 100%;
+    height: auto;
+    margin-top: 150px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    align-items: center;
 }
-.text_Descricao > h2:nth-child(3){
-    color: #52c8fa;
+.img_descricao2{
+    width: 60%;
+    height: auto;
+    justify-content: flex-end;  
+    display: flex;
 }
-.text_Descricao > h2:nth-child(4){
-    color: #52c8fa;
+.img_descricao2 img{
+    width: 750px;
+    height: 400px;
+    transition: .3s ease-in;  
+    animation-name: descricao2_img;
+    animation-duration: 2s;    
 }
-   
-   
-.c1{
-    height: 100vh;
+.img_descricao2 img:hover{
+    transform: scale(1.1);
+    box-shadow: 0px 0px 5px;
+}
+.text_descricao2{
+    width: 40%;   
+    padding-left:60px;
+}
+.text_descricao2 h2{
+    color: #52c8fa;
+    text-rendering: optimizeLegibility;
+    animation-name: descricao2_texto;
+    animation-duration: 2s;
     
 }
-.c2{
-    height: 100vh;
-    background: chocolate;
+.text_descricao2 > h2:nth-child(1){
+    color: #0e739e;
+    font-weight: 700;
 }
-section{
-    height: 400px;
-    background-color: crimson;
-}
+   
