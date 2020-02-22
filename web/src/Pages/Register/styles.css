@@ -1,11 +1,10 @@
 .container{
-    height: 110vh;
     overflow: hidden;
     position: relative;
 }
 .container .wave{
     position: absolute;
-    bottom: 0;
+    bottom: -33px;
     left: 0;
     width: 100%;
     height: 60px;
@@ -17,21 +16,18 @@
     z-index: 1000;
     opacity: 1;
     animation-delay: 0s;
-    bottom: 0;
 }
 .container .wave.wave2{
     animation: animate2 15s linear infinite;
     z-index: 999;
     opacity: .5;
     animation-delay: -5s;
-    bottom: 0px;
 }
 .container .wave.wave3{
     animation: animate 15s linear infinite;
     z-index: 998;
     opacity: .2;
     animation-delay: -5s;
-    bottom: 0px;
 }
 @keyframes animate{
     0%{
@@ -51,12 +47,20 @@
 }
 .content-form{
     width: 550px;
-    position: relative;
-    top: 50%;
-    left:50%;
-    transform: translate(-50%,-55%);
+    margin: 20px auto;
     box-shadow: 0 0 4px rgba(0,0,0,.4);
     padding: 10px;
+    animation: fade 500ms;
+    border-radius: 6px;
+}
+@keyframes fade{
+    from{
+        opacity: 0;
+        transform: scale(.8);
+    }to{
+        opacity: 1;
+        transform: scale(1)
+    }
 }
 .content-form h1{
     text-align: center;
@@ -65,12 +69,18 @@
 }
 .form-register input{
     display: block;
+    outline: none;
     margin: 8px auto;
     text-align: left;
-    padding: 4px 12px;
-    border: 0;
-    border-bottom: .7px solid #cecece;
+    padding: 15px 5px;
+    border: none;
+    border-bottom: 1px solid #52c8fa;
     width: 90%;
+    transition: .7s ease;
+}
+.form-register input:focus{
+    border-color: #2196f3;
+    /* box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.0125), 0 0 8px rgba(76, 161, 175, 0.5); */
 }
 .form-register button{
     display: block;
@@ -79,14 +89,91 @@
     border: none;
     border-radius: 25px;
     text-align: center;
-    background-color: rgba(45, 139, 227, .7);
+    background-color:#52c8fa;
     cursor: pointer;
     color:#fff;
     font-size: 18px;
     margin: 10px auto;
 }
+.form-register input:nth-child(1){
+    animation: move 500ms;
+}
+.form-register input:nth-child(2){
+    animation: move 500ms;
+    animation-delay: 200ms;
+    animation-fill-mode: backwards;
+}
+.form-register input:nth-child(3){
+    animation: move 500ms;
+    animation-delay: 400ms;
+    animation-fill-mode: backwards;
+}
+.form-register input:nth-child(4){
+    animation: move 500ms;
+    animation-delay: 600ms;
+    animation-fill-mode: backwards;
+}
+.form-register input:nth-child(5){
+    animation: move 500ms;
+    animation-delay: 800ms;
+    animation-fill-mode: backwards;
+}
+.form-register input:nth-child(6){
+    animation: move 500ms;
+    animation-delay: 1000ms;
+    animation-fill-mode: backwards;
+}
+.form-register input:nth-child(7){
+    animation: move 500ms;
+    animation-delay: 1200ms;
+    animation-fill-mode: backwards;
+}
+.form-register input:nth-child(8){
+    animation: move 500ms;
+    animation-delay: 1400ms;
+    animation-fill-mode: backwards;
+}
+.form-register input:nth-child(9){
+    animation: move 500ms;
+    animation-delay: 1600ms;
+    animation-fill-mode: backwards;
+}
+.form-register input:nth-child(10){
+    animation: move 500ms;
+    animation-delay: 1800ms;
+    animation-fill-mode: backwards;
+}
+.form-register input:nth-child(11){
+    animation: move 500ms;
+    animation-delay: 2000ms;
+    animation-fill-mode: backwards;
+}
+.form-register button{
+    animation: up 1000ms;
+    transition: .7s all;
+}
+
+@keyframes up{
+    from{
+        opacity: 0;
+        transform: translateY(200px);
+    }to{
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+@keyframes move{
+    from{
+        opacity: 0;
+        transform: translateX(-30%);
+    }to{
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
 .form-register button:hover{
-    background-color: rgba(45, 139, 227, .6);
+    background-color: #2196f3;
 }
 .coordinate{
     pointer-events: none;
