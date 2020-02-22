@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../Suporte/styles.css';
+import '../Support/styles.css';
 
 export default function Support() {
   const [email, setEmail] = useState('');
