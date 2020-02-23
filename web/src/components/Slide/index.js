@@ -15,29 +15,29 @@ const properties = {
   autoPlay: true
 };
 
-const Slide = () => (
-  <Carousel {...properties}>
-    <div>
-      <img src={img2} alt="" />
-      {/* <p className="legend">Legend 1</p> */}
-    </div>
-    <div>
-      <img src={img2} alt="" />
-      {/* <p className="legend">Legend 2</p> */}
-    </div>
-    <div>
-      <img src={img2} alt="" />
-      {/* <p className="legend">Legend 3</p> */}
-    </div>
-    <div>
-      <img src={img2} alt="" />
-      {/* <p className="legend">Legend 4</p> */}
-    </div>
-    <div>
-      <img src={img2} alt="" />
-      {/* <p className="legend">Legend 5</p> */}
-    </div>
-  </Carousel>
-);
-
-export default Slide;
+export default function Slide() {
+  return (
+    <Carousel {...properties}>
+      <div>
+        <img src={img2} alt="" />
+        {/* <p className="legend">Legend 1</p> */}
+      </div>
+      <div>
+        <img src={img2} alt="" />
+        {/* <p className="legend">Legend 2</p> */}
+      </div>
+      <div>
+        <img src={img2} alt="" />
+        {/* <p className="legend">Legend 3</p> */}
+      </div>
+      <div>
+        <img src={img2} alt="" />
+        {/* <p className="legend">Legend 4</p> */}
+      </div>
+      <div>
+        <img src={img2} alt="" />
+        {/* <p className="legend">Legend 5</p> */}
+      </div>
+    </Carousel>
+  );
+}

@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 
 import $ from 'jquery';
-import {findDOMNode} from 'react-dom';
+import { findDOMNode } from 'react-dom';
 
-import "./style.css";
+import "./styles.css";
 import logo from "../../assets/logo.png";
 
 export default class Menu extends Component {
@@ -28,7 +28,9 @@ export default class Menu extends Component {
         <div className="menu" ref="menu">
 
           <div className="logo">
+          <Link to="/">
             <img src={logo} alt="logo" />
+          </Link>
           </div>
 
           <div className="itemsMenu">
@@ -44,19 +46,19 @@ export default class Menu extends Component {
               <li>
                 <Link to="/picture">
                   PICTURE
-              </Link>
+                </Link>
               </li>
 
 
               <li>
                 <Link to="/support">
                   SUPPORT
-            </Link>
+                </Link>
               </li>
               <li>
                 <Link to="/about">
                   ABOUT
-              </Link>
+                </Link>
               </li>
             </ul>
           </div>

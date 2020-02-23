@@ -58,7 +58,7 @@ export default function Support() {
       {isOK ? <span className="success-support">Formulário enviado com suceso!</span> : ""}
       <div className="content-form-support">
         <h1>FORMULÁRIO DE SUPORTE</h1>
-        <p>Connect with us by sending your views.</p>
+        {/* <p>Connect with us by sending your views.</p> */}
       </div>
 
       <form className="form-support" onSubmit={handleSubmit} method="POST">

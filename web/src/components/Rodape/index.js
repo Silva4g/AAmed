@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css";
+import "./styles.css";
 import { FaFacebookF, FaLinkedin, FaTwitter, FaInstagram } from "react-icons/fa";
 
 export default function Rodape() {

@@ -8,11 +8,11 @@ import defaults from './Pages/index';
 const { Home, Picture, Support, About, Login, Register } = defaults;
 
 export default class App extends Component {
-  
+
   render() {
     return (
       <Router>
-        <Menu/>
+        <Menu />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/picture" component={Picture} />
