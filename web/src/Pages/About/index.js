@@ -14,7 +14,7 @@ export default class About extends Component {
           <img src={imgInicial} alt="imginicial"></img>
 
           <div className="frase_img">
-            <span typeof="text"> De uma sala para o mundo!</span>
+            <span typeof="text">De uma sala para o mundo!</span>
             <a href="#descricao2">Saiba mais!</a>
           </div>
 
@@ -40,12 +40,12 @@ export default class About extends Component {
           </div>
 
           <div className="text_descricao2">
-            <h2>De uma sala para o mundo!</h2>
+          <h2>De uma sala para o mundo!</h2>
             <h2>Somos a FourMembers, uma empresa de tecnologia voltada para melhorar e automatizar</h2>
             <h2> ações que a sociedade necessita.</h2>
             <h2>O surgimento da FourMembers partiu de um projeto para conclusão de curso feito por</h2>
             <h2>quatro estudantes, a porta de entrada para o</h2>
-            <h2>ápice da FourMembers foi o aplicativo FastHelp.</h2>    
+            <h2>ápice da FourMembers foi o aplicativo FastHelp.</h2>     
           </div>
 
         </div>

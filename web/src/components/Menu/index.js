@@ -45,28 +45,28 @@ export default class Menu extends Component {
 
               <li>
                 <Link to="/picture">
-                  PICTURE
+                  FOTOS
                 </Link>
               </li>
 
 
               <li>
                 <Link to="/support">
-                  SUPPORT
+                  SUPORTE
                 </Link>
               </li>
               <li>
                 <Link to="/about">
-                  ABOUT
+                  SOBRE
                 </Link>
               </li>
             </ul>
           </div>
 
           <div className="signInUp">
-            <Link to="/login">LOG IN</Link>
+            <Link to="/login">LOGIN</Link>
             <Link to="/register">
-              <button>SIGN UP</button>
+              <button>CADASTRAR</button>
             </Link>
           </div>
 
