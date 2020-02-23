@@ -3,7 +3,7 @@ import SlideShow from "../../components/Slide/index";
 
 // ima foi trocado por sebrae por conta do tamanho 
 import sus from "../../assets/sus.png";
-import sebare from "../../assets/sebrae.png";
+import sebrae from "../../assets/sebrae.png";
 import unimed from "../../assets/unimed2.png";
 import maps from "../../assets/google_maps_2020.png";
 import unicamp from "../../assets/unicamp.png";
@@ -24,7 +24,7 @@ export default function Home() {
                 <img src={sus} alt="banner-sus" />
               </div>
               <div className="pat-respon">
-                <img src={sebare} alt="banner-ima" />
+                <img src={sebrae} alt="banner-ima" />
               </div>
               <div className="pat-respon">
                 <img src={unimed} alt="banner-unimed" />
