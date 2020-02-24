@@ -22,8 +22,8 @@
 @keyframes descricao2_img {
     0%  {opacity: 0;}
     50%  {opacity: 0;}
-    75% {margin-left:150px; top:0px;opacity: 1;}
-    100% {margin-right:50px; top:0px;opacity: 1;}
+    75% {margin-right:50px; top:0px;opacity: 1;}
+    100% {margin-right:0px; top:0px;opacity: 1;}
 }
 
 
@@ -36,129 +36,296 @@
 }
 
 
-/* TESTANDO media, não liguem */
-@media (max-width: 1690px) {
-    .img_inicial{
-        width: 100%;
-        display: flex;
-        height: auto;
+.img_inicial{
+    width: 100%;
+    display: flex;
+    height: auto;
+}
+
+.frase_img{
+    position: absolute;
+    width: 250px;
+    top: 240px;
+    left: 160px;
+    
+}
+.frase_img span{
+    color: white;
+    font-size: 35px;
+    font-weight: 700;
+    text-rendering: optimizeLegibility;
+    font-family: 'Source Sans Pro';  
+}  
+.frase_img a{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 150px;
+    height: 40px;
+    margin-top: 35px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #52c8fa;
+    background-color: transparent;
+    border: 1px solid #52c8fa;   
+    transition: .3s all;
+}
+.frase_img a:hover{
+    background-color: #52c8fa;
+    color: white;
+}
+.descricao1{
+    width: 100%;
+    height: auto;
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.img_descricao1{
+    display: flex;
+    width: 60%;
+    height: auto;
+}
+.img_descricao1 img{
+    width: 750px;
+    height: 400px;
+    animation-name: descricao1_img;  
+    animation-duration: 2s;   
+}
+
+.text_descricao1{
+    width: 21%;
+    margin-right: 105px;
+}
+.text_descricao1 h2{
+    color: #52c8fa;
+    text-rendering: optimizeLegibility;
+    animation-name: descricao1_texto;
+    animation-duration: 2s;
+}
+.text_descricao1 > h2:nth-child(1){
+    color: #0e739e;
+    font-weight: 700;
+}
+.descricao2{
+    width: 100%;
+    height: auto;
+    margin-top: 150px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+.img_descricao2{
+    width: 60%;
+    height: auto;
+    justify-content: flex-end;  
+    display: flex;
+}
+.img_descricao2 img{
+    width: 750px;
+    height: 400px;
+    animation-name: descricao2_img;
+    animation-duration: 2s;    
+}
+.text_descricao2{
+    width: 40%;   
+    padding-left:60px;
+}
+.text_descricao2 h2{
+    color: #52c8fa;
+    text-rendering: optimizeLegibility;
+    animation-name: descricao2_texto;
+    animation-duration: 2s;  
+    font-size: 20px;
+}
+.text_descricao2 > h2:nth-child(1){
+    color: #0e739e;
+    font-weight: 700;
+}
+
+.div_top{
+    width: 100;
+    height: 50px;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 1300px){
+    .frase_img{
+        top: 360px;
+        left: 135px;
+    }
+
+    .frase_img span{
+        font-size: 25px; 
     }
     
-    .frase_img{
-        position: absolute;
-        width: 250px;
-        top: 240px;
-        left: 160px;
-        
-    }
-    .frase_img span{
-        color: white;
-        font-size: 35px;
-        font-weight: 700;
-        text-rendering: optimizeLegibility;
-        font-family: 'Source Sans Pro';  
-    }  
     .frase_img a{
-        display:flex;
-        justify-content: space-around;
-        align-items: center;
-        width: 150px;
+        width: 130px;
         height: 40px;
-        margin-top: 35px;
+        margin-top: 25px;
         font-size: 12px;
-        font-weight: 700;
-        color: #52c8fa;
-        background-color: transparent;
-        border: 1px solid #52c8fa;   
-        transition: .3s all;
     }
-    .frase_img a:hover{
-        background-color: #52c8fa;
-        color: white;
-    }
-    .descricao1{
-        width: 100%;
-        height: auto;
-        margin-top: 100px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .img_descricao1{
-        display: flex;
-        width: 60%;
-        height: auto;
-    }
-    .img_descricao1 img{
-        width: 750px;
-        height: 400px;
-        transition: .3s ease-in; 
-        animation-name: descricao1_img;
-        animation-duration: 2s;       
-    }
-    .img_descricao1 img:hover{
-        transform: scale(1.1);
-        box-shadow: 0px 0px 5px;
-    }
-    .text_descricao1{
-        width: 30%;  
-    }
-    .text_descricao1 h2{
-        color: #52c8fa;
-        text-rendering: optimizeLegibility;
-        animation-name: descricao1_texto;
-        animation-duration: 2s;
-    }
-    .text_descricao1 > h2:nth-child(1){
-        color: #0e739e;
-        font-weight: 700;
-    }
-    .descricao2{
-        width: 100%;
-        height: auto;
-        margin-top: 150px;
-        display: flex;
-        justify-content: space-between;
-        flex-direction: row-reverse;
-        align-items: center;
-    }
+    
     .img_descricao2{
-        width: 60%;
-        height: auto;
-        justify-content: flex-end;  
-        display: flex;
-    }
-    .img_descricao2 img{
-        width: 750px;
-        height: 400px;
-        transition: .3s ease-in;  
-        animation-name: descricao2_img;
-        animation-duration: 2s;    
-    }
-    .img_descricao2 img:hover{
-        transform: scale(1.1);
-        box-shadow: 0px 0px 5px;
-    }
-    .text_descricao2{
-        width: 40%;   
-        padding-left:60px;
+        width: 50%;
     }
     .text_descricao2 h2{
-        color: #52c8fa;
-        text-rendering: optimizeLegibility;
-        animation-name: descricao2_texto;
-        animation-duration: 2s;
-        
-    }
-    .text_descricao2 > h2:nth-child(1){
-        color: #0e739e;
-        font-weight: 700;
-    }
-    
-    .div_top{
-        width: 100;
-        height: 50px;
-        margin-bottom: 30px;
+        padding-left: 50px;
     }
 }
+
+@media (max-width: 1150px){
+    .frase_img{
+        top: 365px;
+        left: 95px;
+    }
+
+    .frase_img span{
+        font-size: 18px; 
+    }
+    
+    .frase_img a{
+        width: 110px;
+        height: 25px;
+        margin-top: 15px;
+        font-size: 10px;
+    }  
+    .img_descricao1 {
+       width: 55%;
+    }  
+    .img_descricao1 img, .img_descricao2  img {
+        height: 300px;
+    }
+    .text_descricao1 h2{
+        font-size: 20px;
+    }
+    .text_descricao2 h2{
+        font-size: 15px;
+    }
+   
+}
+
+@media (max-width: 950px){
+    .frase_img{
+        top: 365px;
+        left: 90px;
+    }
+
+    .frase_img span{
+        font-size: 15px; 
+    }
+    
+    .frase_img a{
+        width: 95px;
+        height: 25px;
+        margin-top: 11px;
+        font-size: 9px;
+    } 
+    .descricao1 {
+        margin-top: 40px;
+    }
+     .descricao2 {
+        margin-top: 75px;
+     }    
+    .img_descricao1 {
+        width: 55%;
+        margin-top: 40px;
+     }  
+     .img_descricao1 img, .img_descricao2  img {
+         height: 250px;
+     }
+     
+     .text_descricao2 h2, .text_descricao1 h2{
+         font-size: 15px;
+     }
+}
+
+@media (max-width: 800px){
+    .frase_img{
+        top: 330px;
+        left: 70px;
+    }
+
+    .frase_img span{
+        font-size: 13px; 
+    }
+    
+    .frase_img a{
+        width: 80px;
+        height: 20px;
+        margin-top: 10px;
+        font-size: 7px;
+    } 
+
+    .descricao1, .descricao2{
+        flex-direction: column;
+    }
+
+    .img_descricao1, .img_descricao2 {
+        width: 100%;
+    }
+
+    .img_descricao1 img, .img_descricao2 img {
+        width: 100%;
+        height: 300px;
+    }
+
+    .text_descricao1{
+        width: 100%;
+        padding-top: 30px;
+        text-align: center;
+    }
+
+    .text_descricao2{
+        width: 100%;
+        text-align: center;
+        margin-right: 96px;
+        padding-top: 30px;
+    }
+    .text_descricao1 h2, .text_descricao2 h2{
+       font-size: 15px;
+       line-height: 25px;
+       
+    }
+
+}
+
+@media(max-width:700px){
+    .text_descricao1{
+        width: 50%;
+        padding-top: 30px;
+        text-align: center;
+        margin-left: 50px;
+    }
+}
+
+@media (max-width: 600px){
+    .frase_img{
+        top: 300px;
+        left: 70px;
+    }
+
+    .frase_img span{
+        font-size: 11px; 
+    }
+    
+    .frase_img a{
+        width: 75px;
+        height: 20px;
+        margin-top: 6px;
+        font-size: 7px;
+    } 
+
+    .text_descricao1{
+        width: 50%;
+        padding-top: 30px;
+        text-align: center;
+        margin-left: 100px;
+    }
+
+   
+}
+
    

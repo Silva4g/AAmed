@@ -25,10 +25,8 @@ export default class About extends Component {
             <img src={imgDescription2} alt="imgDescription2"></img>
           </div>
           <div className="text_descricao1">
-            <h2>A melhor empresa</h2>
-            <h2>FourMembers é considerada</h2>
-            <h2>a melhor empresa para se</h2>
-            <h2>trabalhar em Campinas</h2>
+            <h2> A melhor empresa</h2>
+            <h2> FourMembers é considerada a melhor empresa para se trabalhar em Campinas</h2>
           </div>
 
         </div>
@@ -41,11 +39,12 @@ export default class About extends Component {
 
           <div className="text_descricao2">
           <h2>De uma sala para o mundo!</h2>
-            <h2>Somos a FourMembers, uma empresa de tecnologia voltada para melhorar e automatizar</h2>
-            <h2> ações que a sociedade necessita.</h2>
-            <h2>O surgimento da FourMembers partiu de um projeto para conclusão de curso feito por</h2>
-            <h2>quatro estudantes, a porta de entrada para o</h2>
-            <h2>ápice da FourMembers foi o aplicativo FastHelp.</h2>     
+          
+          <h2>Somos a FourMembers, uma empresa de tecnologia voltada para melhorar e automatizar
+             ações que a sociedade necessita.
+            O surgimento da FourMembers partiu de um projeto para conclusão de curso feito por
+            quatro estudantes, a porta de entrada para o
+            ápice da FourMembers foi o aplicativo FastHelp.</h2>     
           </div>
 
         </div>
