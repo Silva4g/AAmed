@@ -46,12 +46,15 @@
     }
 }
 .content-form{
-    width: 550px;
+    width:100% !important;
+    max-width: 550px !important;
     margin: 20px auto;
     box-shadow: 0 0 4px rgba(0,0,0,.4);
     padding: 10px;
     animation: fade 500ms;
     border-radius: 6px;
+    display: flex;
+    flex-direction: column;
 }
 @keyframes fade{
     from{
@@ -61,24 +64,6 @@
         opacity: 1;
         transform: scale(1)
     }
-}
-@keyframes nono{
-    0%{
-      transform: translateX(0);
-    }
-    35%{
-      transform: translateX(-15%);
-    }
-    70%{
-      transform: translateX(15%);
-    }
-    100%{
-      transform: translateX(0%);
-    }
-}
-.form-register.nono{
-    animation: nono 400ms linear, fade paused;
-    animation-iteration-count: 2;
 }
 .content-form h1{
     text-align: center;
