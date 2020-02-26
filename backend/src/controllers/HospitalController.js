@@ -1,6 +1,7 @@
 const Hospital = require('../models/Hospital');
 const bcrypt = require('bcryptjs');
 const generateToken = require('../utils/generateToken');
+const cep = require('cep-promise');
 //const parseStringArray = require('../utils/parseStringArray');
 
 module.exports = {
@@ -14,7 +15,7 @@ module.exports = {
     },
     async store(req, res) {
         try {
-            const { email, password, latitude, longitude, name, phone, cnpj, cnes, city, state } = req.body;
+            const { email, password, latitude, longitude, name, phone, cnpj, cnes, cep_hospital } = req.body;
 
             if (await Hospital.findOne({ email })) return res.status(400).send({ error: 'Hospital já cadastrado' });
             if (await Hospital.findOne({ cnes })) return res.status(400).send({ error: 'Hospital já cadastrado' });
@@ -25,9 +26,14 @@ module.exports = {
                 coordinates: [longitude, latitude],
             };
 
+            const { city, state, street, neighborhood } = await cep(cep_hospital);
+
             const address = {
-               city: city,
-               state: state
+                city,
+                state,
+                street,
+                neighborhood,
+                cep: cep_hospital
             };
 
             const hospital = await Hospital.create({
@@ -41,7 +47,10 @@ module.exports = {
                 address
             });
             hospital.password = undefined;
-            return res.json(hospital);
+            return res.json({
+                hospital,
+                token: generateToken({ id: hospital.id })
+            });
 
         } catch (err) {
             return res.status(400).send({ error: 'Falha no cadastro: ' + err })

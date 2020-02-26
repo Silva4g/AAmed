@@ -24,7 +24,6 @@ const HospitalSchema = new mongoose.Schema({
         required: true,
     },
     cnes: {
-        //7 numeros
         type: String,
         unique: true
     },
@@ -33,7 +32,6 @@ const HospitalSchema = new mongoose.Schema({
         required: true
     },
     cnpj: {
-        //tem 14 numeros
         type: String,
         required: true,
         unique: true

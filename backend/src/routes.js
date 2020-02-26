@@ -4,6 +4,8 @@ const HospitalController = require('./controllers/HospitalController');
 const UserController = require('./controllers/UserController');
 const SearchHospital = require('./controllers/SearchHospital');
 const SupportController = require('./controllers/SupportController');
+const HomeController = require('./controllers/HomeController');
+const authConfig = require('./middleware/auth');
 const multer = require('multer');
 const multerConfig = require('./config/multer');
 
@@ -40,5 +42,8 @@ routes.post('/support', SupportController.store);
 routes.get('/support', SupportController.index);
 //route delete support
 routes.delete('/support/:id', SupportController.destroy);
+
+//route logged
+routes.get('/home', authConfig, HomeController.home);
 
 module.exports = routes;
