@@ -14,8 +14,8 @@ export default function Register() {
   const [cnes, setCnes] = useState('');
   const [phone, setPhone] = useState('');
   const [cnpj, setCnpj] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
+  const [cep_hospital, setCep] = useState('');
+  const [error, setError] = useState(null);
 
   //restrições, verificações
   const [confirmPassword, setConfirmpass] = useState('');
@@ -57,7 +57,7 @@ export default function Register() {
 
     try {
       await api.post('/hospital', {
-        name, password, cnes, cnpj, latitude, longitude, state, city, phone, email
+        name, password, cnes, cnpj, latitude, longitude, cep_hospital, phone, email
       });
       window.scrollTo(0, 0);
       setModal(true);
@@ -67,11 +67,11 @@ export default function Register() {
       setPassword('');
       setConfirmpass('');
       setPhone('');
-      setState('');
-      setCity('');
+      setCep('');
       setEmail('');
-    } catch (err) {
-      console.log(err);
+    } catch (response) {
+      window.scrollTo(0, 0);
+      setError(response.response.data.error)
     }
   };
 
@@ -102,7 +102,15 @@ export default function Register() {
           modal ?
             (
               <div className="modal">
-                <div className="success">Cadastro realizado com sucesso</div>
+                <div>Cadastro realizado com sucesso</div>
+              </div>
+            ) : ""
+        }
+        {
+          error !== null ?
+            (
+              <div className="modal-error">
+                <div>{error}</div>
               </div>
             ) : ""
         }
@@ -176,21 +184,14 @@ export default function Register() {
               onChange={phone => setPhone(phone.target.value)}
               value={phone}
             />
-            <input
+            <InputMask
+              mask="99999999"
               type="text"
-              name="city"
+              name="cep_hospital"
               required
-              placeholder="Cidade"
-              onChange={city => setCity(city.target.value)}
-              value={city}
-            />
-            <input
-              type="text"
-              name="state"
-              required
-              placeholder="Estado"
-              onChange={state => setState(state.target.value)}
-              value={state}
+              placeholder="CEP"
+              onChange={cep => setCep(cep.target.value)}
+              value={cep_hospital}
             />
             <input
               type="text"
@@ -220,7 +221,7 @@ export default function Register() {
                   onChange={changeCheck}
                 />
               </div>
-              { check ? "" : <span className="error">Você deve aceitar os termos</span> }
+              {check ? "" : <span className="error">Você deve aceitar os termos</span>}
               <div>
                 <span>Termos de cadastro do sistema: </span>
                 <Link to="/terms">

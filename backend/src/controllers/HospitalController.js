@@ -14,9 +14,9 @@ module.exports = {
         }
     },
     async store(req, res) {
-        try {
-            const { email, password, latitude, longitude, name, phone, cnpj, cnes, cep_hospital } = req.body;
+        const { email, password, latitude, longitude, name, phone, cnpj, cnes, cep_hospital } = req.body;
 
+        try {
             if (await Hospital.findOne({ email })) return res.status(400).send({ error: 'Hospital já cadastrado' });
             if (await Hospital.findOne({ cnes })) return res.status(400).send({ error: 'Hospital já cadastrado' });
             if (await Hospital.findOne({ cnpj })) return res.status(400).send({ error: 'Hospital já cadastrado' });

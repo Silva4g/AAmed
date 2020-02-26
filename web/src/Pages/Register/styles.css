@@ -216,3 +216,9 @@
     color:#fff;
     text-align: center;
 }
+.modal-error{
+    background-color: #cc081c;
+    padding: 5px 12px;
+    color:#fff;
+    text-align: center;
+}
