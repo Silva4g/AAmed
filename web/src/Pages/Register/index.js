@@ -15,7 +15,6 @@ export default function Register() {
   const [phone, setPhone] = useState('');
   const [cnpj, setCnpj] = useState('');
   const [cep_hospital, setCep] = useState('');
-  const [error, setError] = useState(null);
 
   //restrições, verificações
   const [confirmPassword, setConfirmpass] = useState('');
@@ -23,6 +22,8 @@ export default function Register() {
   const [passEqual, setPassequal] = useState(false);
   const [lenghtName, setLenghtname] = useState(false);
   const [modal, setModal] = useState(false);
+  const [error, setError] = useState(null);
+  const [show, setShow] = useState(false);
 
   function changeCheck(e) {
     const target = e.target;
@@ -60,6 +61,7 @@ export default function Register() {
         name, password, cnes, cnpj, latitude, longitude, cep_hospital, phone, email
       }).then((res) => {
         window.scrollTo(0, 0);
+        setShow(false);
         setModal(true);
         setName('');
         setCnpj('');
@@ -70,12 +72,13 @@ export default function Register() {
         setCep('');
         setEmail('');
       }).catch((exp) => {
-        console.log(exp.response);
+        setShow(true)
+        setTimeout(() => {
+          setShow(false);
+        },7500);
         setError(exp.response === undefined ? 'Falha na conexão com o servidor!' : exp.response.data.error);
       });
     } catch (response) {
-      //console.log(response);
-      //setError( !res'Ops! Parece que houve um erro durante o cadastro')
       window.scrollTo(0, 0);
     }
   };
@@ -114,7 +117,7 @@ export default function Register() {
         {
           error !== null ?
             (
-              <div className="modal-error">
+              <div className={ show ? 'modal-error' : 'hide-modal'}>
                 <div>{error}</div>
               </div>
             ) : ""

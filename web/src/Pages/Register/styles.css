@@ -206,4 +206,9 @@
     padding: 5px 12px;
     color:#fff;
     text-align: center;
+    transition: .7s all;
+}
+.hide-modal{
+    transition: .7s all;
+    display: none;    
 }
