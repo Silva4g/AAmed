@@ -9,14 +9,22 @@ import imgDescription1 from "../../assets/imgDescription.jpeg";
 export default class About extends Component {
   render() {
     return (
-      <>
+     
+     <>
+
+     <div className="max_width">
+
         <div className="img_inicial">
           <img src={imgInicial} alt="imginicial"></img>
 
+        <div className="mae_fraseimg">
+          
           <div className="frase_img">
             <span typeof="text">De uma sala para o mundo!</span>
             <a href="#descricao2">Saiba mais!</a>
           </div>
+
+        </div>
 
         </div>
 
@@ -51,7 +59,9 @@ export default class About extends Component {
 
         <div className="div_top"></div>
 
-      </>
+      </div>
+     
+     </>
 
     );
   }
