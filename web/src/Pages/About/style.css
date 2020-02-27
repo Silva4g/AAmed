@@ -34,12 +34,16 @@
     text-align: unset;
 }
 
+.max_width{
+    max-width: 2100px;
+    margin: 0 auto;
+}
 
 .img_inicial{
     width: 100%;
     display: flex;
     height: auto;
-    position: absolute;
+    position: relative;
 }
 
 .mae_fraseimg{
@@ -83,7 +87,7 @@
 .descricao1{
     width: 100%;
     height: auto;
-    margin-top: 400px;
+    margin-top: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -179,10 +183,6 @@
         font-size: 12px;
     }
 
-    .descricao1{
-        margin-top: 345px;
-    }
-
     .img_descricao2{
         width: 50%;
     }
@@ -212,10 +212,6 @@
         margin-top: 15px;
         font-size: 10px;
     }
-
-    .descricao1{
-        margin-top: 335px;
-    }  
 
     .img_descricao1 {
        width: 55%;
@@ -252,7 +248,7 @@
     } 
 
     .descricao1{
-        margin-top: 240px;
+       margin-bottom: 0px;
     }
 
      .descricao2 {
@@ -261,7 +257,6 @@
 
     .img_descricao1 {
         width: 55%;
-        margin-top: 40px;
     }  
 
      .img_descricao1 img, .img_descricao2  img {
@@ -294,7 +289,7 @@
     } 
 
     .descricao1{
-        margin-top: 180px;
+        margin-bottom: 0px;
     }
 
     .descricao1, .descricao2{
@@ -342,7 +337,7 @@
     }
 
     .descricao1{
-        margin-top: 170px;
+        margin-bottom: 0px;
     }
 }
 
@@ -367,9 +362,9 @@
     } 
 
     .descricao1{
-        margin-top: 145px;
+        margin-bottom: 0px;
     }
-    
+
     .text_descricao1{
         width: 50%;
         padding-top: 30px;
