@@ -13,10 +13,14 @@ export default class About extends Component {
         <div className="img_inicial">
           <img src={imgInicial} alt="imginicial"></img>
 
+        <div className="mae_fraseimg">
+          
           <div className="frase_img">
             <span typeof="text">De uma sala para o mundo!</span>
             <a href="#descricao2">Saiba mais!</a>
           </div>
+
+        </div>
 
         </div>
 
