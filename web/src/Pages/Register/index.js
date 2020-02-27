@@ -58,20 +58,25 @@ export default function Register() {
     try {
       await api.post('/hospital', {
         name, password, cnes, cnpj, latitude, longitude, cep_hospital, phone, email
+      }).then((res) => {
+        window.scrollTo(0, 0);
+        setModal(true);
+        setName('');
+        setCnpj('');
+        setCnes('');
+        setPassword('');
+        setConfirmpass('');
+        setPhone('');
+        setCep('');
+        setEmail('');
+      }).catch((exp) => {
+        console.log(exp.response);
+        setError(exp.response === undefined ? 'Falha na conexão com o servidor!' : exp.response.data.error);
       });
-      window.scrollTo(0, 0);
-      setModal(true);
-      setName('');
-      setCnpj('');
-      setCnes('');
-      setPassword('');
-      setConfirmpass('');
-      setPhone('');
-      setCep('');
-      setEmail('');
     } catch (response) {
+      //console.log(response);
+      //setError( !res'Ops! Parece que houve um erro durante o cadastro')
       window.scrollTo(0, 0);
-      setError(response.response.data.error)
     }
   };
 
