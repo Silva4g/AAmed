@@ -1,6 +1,7 @@
 .container{
     overflow: hidden;
     position: relative;
+    height: 100vh;
 }
 .container .wave{
     position: absolute;
