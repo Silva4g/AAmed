@@ -61,7 +61,6 @@ export default function Register() {
         name, password, cnes, cnpj, latitude, longitude, cep_hospital, phone, email
       }).then((res) => {
         window.scrollTo(0, 0);
-        setShow(false);
         setModal(true);
         setName('');
         setCnpj('');
