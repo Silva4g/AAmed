@@ -5,7 +5,7 @@ import "./App.css";
 import Menu from "./components/Menu/index";
 import Rodape from "./components/Rodape/index";
 import defaults from './Pages/index';
-const { Home, Picture, Support, About, Login, Register } = defaults;
+const { Home, Picture, Support, About, Login, Register, NotFound } = defaults;
 
 export default class App extends Component {
 
@@ -20,6 +20,7 @@ export default class App extends Component {
           <Route path="/about" component={About} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="*" component={NotFound} />
         </Switch>
         <Rodape />
       </Router>
