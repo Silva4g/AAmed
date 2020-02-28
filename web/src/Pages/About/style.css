@@ -41,15 +41,14 @@
 
 .img_inicial{
     width: 100%;
-    display: flex;
     height: auto;
     position: relative;
 }
 
 .mae_fraseimg{
-    position: relative;
-    right: 95%;
-    top: 90px; 
+    position: absolute ;
+    top: 155px;
+    left: 80px;
 }
 
 .frase_img{  
@@ -87,10 +86,10 @@
 .descricao1{
     width: 100%;
     height: auto;
-    margin-top: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 60px;
 }
 
 .img_descricao1{
@@ -171,6 +170,10 @@
 }
 
 @media (max-width: 1300px){
+    .mae_fraseimg{
+        top: 90px;
+        left: 65px;
+    }
 
     .frase_img span{
         font-size: 25px; 
@@ -194,9 +197,6 @@
 }
 
 @media (max-width: 1150px){
-    .mae_fraseimg{
-        top: 90px; 
-    }
 
      .frase_img{  
         width: 140px;
@@ -232,6 +232,11 @@
 }
 
 @media (max-width: 950px){
+    .mae_fraseimg{
+        top: 75px;
+        left: 50px;
+    }
+
     .frase_img{  
         width: 115px;
     }
@@ -269,12 +274,14 @@
 }
 
 @media (max-width: 800px){
+
     .mae_fraseimg{
-        top: 80px; 
+        top: 65px;
+        left: 45px;
     }
 
     .frase_img{
-       width: 150px;
+       width: 100px;
     }
 
     .frase_img span{
@@ -326,7 +333,8 @@
 
 @media(max-width:700px){
     .mae_fraseimg{
-        top: 55px; 
+        top:55px;
+        left: 40px;
     }
 
     .text_descricao1{
@@ -343,7 +351,8 @@
 
 @media (max-width: 600px){
     .mae_fraseimg{
-        top: 55px; 
+        top: 60px;
+        left: 30px;
     }
 
     .frase_img{
