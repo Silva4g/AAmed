@@ -46,9 +46,9 @@
 }
 
 .mae_fraseimg{
-    position: relative;
-   bottom: 300px;
-   left: 80px;
+    position: absolute ;
+    top: 155px;
+    left: 80px;
 }
 
 .frase_img{  
@@ -89,6 +89,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 60px;
 }
 
 .img_descricao1{
@@ -170,7 +171,8 @@
 
 @media (max-width: 1300px){
     .mae_fraseimg{
-        bottom: 185px; 
+        top: 90px;
+        left: 65px;
     }
 
     .frase_img span{
@@ -195,9 +197,6 @@
 }
 
 @media (max-width: 1150px){
-    .mae_fraseimg{
-        bottom: 165px; 
-    }
 
      .frase_img{  
         width: 140px;
@@ -234,7 +233,8 @@
 
 @media (max-width: 950px){
     .mae_fraseimg{
-        bottom: 130px; 
+        top: 75px;
+        left: 50px;
     }
 
     .frase_img{  
@@ -274,8 +274,10 @@
 }
 
 @media (max-width: 800px){
+
     .mae_fraseimg{
-        bottom: 105px; 
+        top: 65px;
+        left: 45px;
     }
 
     .frase_img{
@@ -331,7 +333,8 @@
 
 @media(max-width:700px){
     .mae_fraseimg{
-       bottom: 110px;
+        top:55px;
+        left: 40px;
     }
 
     .text_descricao1{
@@ -348,7 +351,8 @@
 
 @media (max-width: 600px){
     .mae_fraseimg{
-        bottom: 80px;
+        top: 60px;
+        left: 30px;
     }
 
     .frase_img{
