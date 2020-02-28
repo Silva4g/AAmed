@@ -25,7 +25,7 @@ export default function Login() {
       <div className="wave wave3"></div>
       <div className="content-form">
         <h1>Cadastre seu hospital</h1>
-        <form onSubmit={submit}>
+        <form className="form-register" onSubmit={submit}>
         <input
           type="email"
           name="email"
