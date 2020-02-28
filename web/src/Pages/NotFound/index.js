@@ -5,13 +5,24 @@ import { FaAngleLeft } from 'react-icons/fa';
 import './styles.css';
 
 export default class NotFound extends Component {
+  constructor(props) {
+    super(props);
+
+    this.onRedirect = this.onRedirect.bind(this);
+  }
+
+  onRedirect() {
+    window.history.go(-1);
+  }
+
   render() {
     return (
       <div className="wrapper-404">
         <header>
           <nav>
             <div className="back">
-              <Link to="/"><span><FaAngleLeft />Back</span></Link>
+              {/* <Link to={this.onRedirect}></Link> */}
+              <button onClick={this.onRedirect}><span><FaAngleLeft />Back</span></button>
             </div>
           </nav>
 
