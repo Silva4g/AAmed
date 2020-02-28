@@ -11,7 +11,8 @@ export default function Support() {
   const [hasEmail, setHasEmail] = useState(false);
   const [hasSubject, setHasSubject] = useState(false);
   const [hasDescription, setHasDescription] = useState(false);
-  const [isOK, setIsOK] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [show, setShow] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,8 +36,6 @@ export default function Support() {
       setHasDescription(false);
     }
 
-    // console.log(email, subject, description)
-
     try {
       await api.post('/support', {
         email,
@@ -46,8 +45,17 @@ export default function Support() {
       setEmail('');
       setSubject('');
       setDescription('');
-      setIsOK(true);
+      setModal(true);
+      setTimeout(() => {
+        setModal(false);
+      }, 6000);
+      window.scrollTo(0, 0);
     } catch (error) {
+      setShow(true);
+      setTimeout(() => {
+        setShow(false);
+      }, 6000);
+      window.scrollTo(0, 0);
       console.log("Houve um erro " + error);
     }
 
@@ -55,7 +63,8 @@ export default function Support() {
 
   return (
     <div className="wrapper">
-      {isOK ? <span className="success-support">Formulário enviado com suceso!</span> : ""}
+      {modal ? <span className="success-support">Formulário enviado com suceso!</span> : ""}
+      {show ? <span className="error-support">HOUVE UM ERRO INTERNO, POR FAVOR TENTE NOVAMENTE MAIS TARDE!!</span> : ""}
       <div className="content-form-support">
         <h1>FORMULÁRIO DE SUPORTE</h1>
         {/* <p>Connect with us by sending your views.</p> */}
