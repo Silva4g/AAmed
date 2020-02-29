@@ -12,7 +12,8 @@ export default class NotFound extends Component {
   }
 
   onRedirect() {
-    window.history.go(-1);
+    const { history } = this.props;
+    history.goBack();
   }
 
   render() {
@@ -22,7 +23,9 @@ export default class NotFound extends Component {
           <nav>
             <div className="back">
               {/* <Link to={this.onRedirect}></Link> */}
-              <button onClick={this.onRedirect}><span><FaAngleLeft />Back</span></button>
+              <button onClick={this.onRedirect}>
+                <span><FaAngleLeft />Voltar</span>
+              </button>
             </div>
           </nav>
 
