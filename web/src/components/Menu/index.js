@@ -31,47 +31,6 @@ export default class Menu extends Component {
   }
   render() {
     return (
-
-      // <div className="content">
-      //   <div className="menu" ref="menu">
-
-      //     <div className="logo">
-      //       <Link to="/">
-      //         <img src={logo} alt="logo" />
-      //       </Link>
-      //     </div>
-
-      //     <div className="itemsMenu">
-      //       <ul>
-      //         <li>
-      //           <Link to="/">
-      //             HOME
-      //           </Link>
-      //         </li>
-      //         <li>
-      //           <Link to="/picture">
-      //             FOTOS
-      //           </Link>
-      //         </li>
-      //         <li>
-      //           <Link to="/support">
-      //             SUPORTE
-      //           </Link>
-      //         </li>
-      //         <li>
-      //           <Link to="/about">
-      //             SOBRE
-      //           </Link>
-      //         </li>
-      //       </ul>
-      //     </div>
-
-      //     <div className="signInUp">
-      //       <Link to="/login">LOGIN</Link>
-      //       <Link to="/register">
-      //         <button>CADASTRAR</button>
-      //       </Link>
-      //     </div>
       <div className="content">
         <div className="menu" ref="menu">
           <div className="logo">
@@ -83,9 +42,6 @@ export default class Menu extends Component {
             <ul>
               <li>
                 <Link to="/">HOME</Link>
-              </li>
-              <li>
-                <Link to="/picture">FOTOS</Link>
               </li>
               <li>
                 <Link to="/support">SUPORTE</Link>
