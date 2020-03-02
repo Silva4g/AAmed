@@ -7,6 +7,9 @@ import imgDescription1 from "../../assets/imgDescription.jpeg";
 // import { Container } from './styles';
 
 export default class About extends Component {
+  componentDidMount(){
+    document.title = "Sobre"
+  }
   render() {
     return (
      

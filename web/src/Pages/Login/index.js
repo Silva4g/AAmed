@@ -5,6 +5,7 @@ import InputMask from 'react-input-mask';
 import { Link } from 'react-router-dom';
 
 export default function Login(props) {
+  document.title = "Login";
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('');
@@ -42,7 +43,7 @@ export default function Login(props) {
       <div className="wave wave2"></div>
       <div className="wave wave3"></div>
       <div className="content-form">
-        <h1>Cadastre seu hospital</h1>
+        <h1>Faça login com seu hospital</h1>
         {
           error !== null ?
             (

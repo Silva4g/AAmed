@@ -3,6 +3,8 @@ import api from '../../services/api';
 import '../Support/styles.css';
 
 export default function Support() {
+  document.title = "Suporte";
+
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
   const [description, setDescription] = useState('');

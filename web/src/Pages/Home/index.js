@@ -16,6 +16,7 @@ import './styles.css';
 import api from '../../services/api';
 
 export default function Home() {
+  document.title = "1° Socorros"
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');

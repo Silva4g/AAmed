@@ -30,14 +30,17 @@ export default class App extends Component {
               <LoginLogged path="/login" component={Login} />
               <RegisterLogged path="/register" component={Register} />
               <LogoutRoute path="/logout" component={Logout} />
+              <Route path="*" component={NotFound} />
+
             </>
             :
             <>
               <LoginRoute path="/login" component={Login} />
               <RegisterRoute path="/register" component={Register} />
+              <Route path="*" component={NotFound} />
+
             </>
           }
-          <Route path="*" component={NotFound} />
         </Switch>
         <Rodape />
       </Router>

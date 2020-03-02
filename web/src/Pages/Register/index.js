@@ -6,6 +6,8 @@ import InputMask from 'react-input-mask';
 import './styles.css'
 
 export default function Register() {
+  document.title = "Cadastre seu hospital";
+
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   const [email, setEmail] = useState('');
