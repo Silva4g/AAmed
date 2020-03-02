@@ -25,11 +25,18 @@ export default class App extends Component {
           <Route path="/" exact component={Home} />
           <Route path="/support" component={Support} />
           <Route path="/about" component={About} />
-          <LoginLogged path="/login" component={Login} />
-          <RegisterLogged path="/register" component={Register} />
-          <LoginRoute path="/login" component={Login} />
-          <RegisterRoute path="/register" component={Register} />
-          <LogoutRoute path="/logout" component={Logout} />
+          {isLogged() ?
+            <>
+              <LoginLogged path="/login" component={Login} />
+              <RegisterLogged path="/register" component={Register} />
+              <LogoutRoute path="/logout" component={Logout} />
+            </>
+            :
+            <>
+              <LoginRoute path="/login" component={Login} />
+              <RegisterRoute path="/register" component={Register} />
+            </>
+          }
           <Route path="*" component={NotFound} />
         </Switch>
         <Rodape />
