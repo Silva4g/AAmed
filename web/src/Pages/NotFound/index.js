@@ -7,8 +7,11 @@ import './styles.css';
 export default class NotFound extends Component {
   constructor(props) {
     super(props);
-    document.title = "Ops! Não encontramos"
     this.onRedirect = this.onRedirect.bind(this);
+  }
+
+  componentDidMount(){
+    document.title = "Ops! Não encontramos"
   }
 
   onRedirect() {

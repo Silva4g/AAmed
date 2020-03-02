@@ -104,11 +104,25 @@ const RegisterLogged = ({ component: Component, ...rest }) => {
         />
     )
 }
-
+const ProfileLogged = ({ component: Component, ...rest }) => {
+    return (
+        <Route
+            {...rest}
+            render={props =>
+                isAuth() ? (
+                    <Component {...props} />
+                ) : (
+                        <Redirect to={{ pathname: '/' }} />
+                    )
+            }
+        />
+    )
+}
 export {
     LoginRoute,
     RegisterRoute,
     LogoutRoute,
     RegisterLogged,
-    LoginLogged
+    LoginLogged,
+    ProfileLogged
 }

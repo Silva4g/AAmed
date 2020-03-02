@@ -6,8 +6,9 @@ import Menu from "./components/Menu/index";
 import Rodape from "./components/Rodape/index";
 import defaults from './Pages/index';
 import Logout from "./Pages/Logout";
-import { LoginLogged, RegisterLogged, LoginRoute, RegisterRoute, LogoutRoute } from './auth';
+import { LoginLogged, RegisterLogged, LoginRoute, RegisterRoute, LogoutRoute, ProfileLogged } from './auth';
 import isLogged from './utils/logged';
+import Profile from "./Pages/Profile";
 
 const { Home, Support, About, Login, Register, NotFound } = defaults;
 
@@ -30,17 +31,16 @@ export default class App extends Component {
               <LoginLogged path="/login" component={Login} />
               <RegisterLogged path="/register" component={Register} />
               <LogoutRoute path="/logout" component={Logout} />
-              <Route path="*" component={NotFound} />
-
+              <ProfileLogged path="/profile" component={Profile} />
             </>
             :
             <>
               <LoginRoute path="/login" component={Login} />
               <RegisterRoute path="/register" component={Register} />
               <Route path="*" component={NotFound} />
-
             </>
           }
+
         </Switch>
         <Rodape />
       </Router>

@@ -5,7 +5,7 @@ import InputMask from 'react-input-mask';
 import { Link } from 'react-router-dom';
 
 export default function Login(props) {
-  document.title = "Login";
+  document.title = "Faça login com seu hospital";
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('');

@@ -16,15 +16,15 @@ export default function Sidebar({ hospital }) {
           <FaUserCircle size={25} />
           <span>Perfil</span>
         </Link>
-        <Link className="items">
+        <Link to="/settings" className="items">
           <IoMdSettings size={25} />
           <span>Configurações</span>
         </Link>
-        <Link className="items">
+        <Link to="/hospitals" className="items">
           <FaList size={25} />
           <span>Hospitais</span>
         </Link>
-        <Link className="items">
+        <Link to="/treatment" className="items">
           <AiFillMedicineBox size={25} />
           <span>Atendimentos</span>
         </Link>
