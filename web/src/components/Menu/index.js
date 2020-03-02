@@ -1,13 +1,19 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 
+import logo from "../../assets/logo.png";
+import "./styles.css";
+// import isLogged from "../../utils/logged";
+
 import $ from 'jquery';
 import { findDOMNode } from 'react-dom';
 
-import "./styles.css";
-import logo from "../../assets/logo.png";
-
 export default class Menu extends Component {
+
+  state = {
+    log: null
+  }
+
   componentDidMount() {
     var node = findDOMNode(this.refs.btn);
     var links = findDOMNode(this.refs.links);
@@ -28,6 +34,15 @@ export default class Menu extends Component {
       }
       lastScroll = st;
     });
+
+    this.isLogged();
+  }
+  isLogged() {
+    var logg;
+    const token = localStorage.getItem('tk-hopt');
+    console.log(token)
+    token !== null ? logg = true : logg = false
+    return logg;
   }
   render() {
     return (
@@ -38,26 +53,36 @@ export default class Menu extends Component {
               <img src={logo} alt="logo" />
             </Link>
           </div>
-          <div className="itemsMenu" id="links" ref="links">
-            <ul>
-              <li>
-                <Link to="/">HOME</Link>
-              </li>
-              <li>
-                <Link to="/support">SUPORTE</Link>
-              </li>
-              <li>
-                <Link to="/about">SOBRE</Link>
-              </li>
-            </ul>
-
-            <div className="signInUp">
-              <Link to="/login">LOGIN</Link>
-              <Link to="/register">
-                <button>CADASTRAR</button>
-              </Link>
-            </div>
-          </div>
+          {
+            this.isLogged() ?
+              <>
+              <div className="logout">
+                <Link to="/logout">
+                  <button>Logout</button>
+                </Link>
+              </div>
+              </>
+              :
+              <div className="itemsMenu" id="links" ref="links">
+                <ul>
+                  <li>
+                    <Link to="/">HOME</Link>
+                  </li>
+                  <li>
+                    <Link to="/support">SUPORTE</Link>
+                  </li>
+                  <li>
+                    <Link to="/about">SOBRE</Link>
+                  </li>
+                </ul>
+                <div className="signInUp">
+                  <Link to="/login">LOGIN</Link>
+                  <Link to="/register">
+                    <button>CADASTRAR</button>
+                  </Link>
+                </div>
+              </div>
+          }
           <div className="burger" id="btn" ref="btn">
             <div className="line1"></div>
             <div className="line2"></div>

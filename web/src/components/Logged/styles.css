@@ -1,0 +1,32 @@
+.container-logged{
+    background-color: #edecec;
+}
+aside{
+    width:320px;
+    height: 100vh;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+.items{
+    width:100%;
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    color: #0d9ddb;
+}
+.items span{
+    margin-left: 20px;
+    text-transform: uppercase;
+}
+.logout span{
+    width: 80%;
+    color:#fff;
+    text-align: center;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #0d9ddb;
+}
+aside img{
+    box-shadow: -7px 0px 11px rgba(0,0,0,.4)
+}

@@ -69,7 +69,6 @@ module.exports = {
                 return res.status(401).send({ error: 'Email e/ou senha não encontrado' });
             }
             res.send({
-                hospital,
                 token: generateToken({ id: hospital.id })
             })
         } catch (error) {
