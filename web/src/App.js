@@ -25,20 +25,25 @@ export default class App extends Component {
         <Switch>
           {isLogged() ?
             <>
-              <Route path="/" exact component={Home} />
-              <LoginLogged path="/login" component={Login} />
-              <RegisterLogged path="/register" component={Register} />
-              <LogoutRoute path="/logout" component={Logout} />
-              <ProfileLogged path="/profile" component={Profile} />
+              <Switch>
+                <Route path="/" exact component={Home} />
+                <LoginLogged path="/login" component={Login} />
+                <RegisterLogged path="/register" component={Register} />
+                <LogoutRoute path="/logout" component={Logout} />
+                <ProfileLogged path="/profile" component={Profile} />
+                <NotFoundL path="*" component={NotFound} />
+              </Switch>
             </>
             :
             <>
-              <Route path="/" exact component={Home} />
-              <Route path="/support" component={Support} />
-              <Route path="/about" component={About} />
-              <LoginRoute path="/login" component={Login} />
-              <RegisterRoute path="/register" component={Register} />
-              <NotFoundL path="*" component={NotFound} />
+              <Switch>
+                <Route path="/" exact component={Home} />
+                <Route path="/support" component={Support} />
+                <Route path="/about" component={About} />
+                <LoginRoute path="/login" component={Login} />
+                <RegisterRoute path="/register" component={Register} />
+                <NotFoundL path="*" component={NotFound} />
+              </Switch>
             </>
           }
 
