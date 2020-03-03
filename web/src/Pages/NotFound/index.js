@@ -5,33 +5,16 @@ import { FaAngleLeft } from 'react-icons/fa';
 import './styles.css';
 
 export default class NotFound extends Component {
-  constructor(props) {
-    super(props);
-    this.onRedirect = this.onRedirect.bind(this);
-  }
 
-  componentDidMount(){
+  componentDidMount() {
     document.title = "Ops! Não encontramos"
-  }
-
-  onRedirect() {
-    const { history } = this.props;
-    history.goBack();
   }
 
   render() {
     return (
       <div className="wrapper-404">
         <header>
-          <nav>
-            <div className="back">
-              {/* <Link to={this.onRedirect}></Link> */}
-              <button onClick={this.onRedirect}>
-                <span><FaAngleLeft />Voltar</span>
-              </button>
-            </div>
-          </nav>
-
+          <nav></nav>
           <div className="broken">
             <p className="upper">Oops! 404 - Not found.</p>
             <img src={logo} alt="logo broken" />

@@ -64,64 +64,94 @@ export default function Support() {
   }
 
   return (
-    <div className="wrapper">
-      {modal ? <span className="success-support">Formulário enviado com suceso!</span> : ""}
-      {show ? <span className="error-support">HOUVE UM ERRO INTERNO, POR FAVOR TENTE NOVAMENTE MAIS TARDE!!</span> : ""}
-      <div className="content-form-support">
-        <h1>FORMULÁRIO DE SUPORTE</h1>
-        {/* <p>Connect with us by sending your views.</p> */}
+    <>
+      <div className="content-support">
+        <div>
+          <h2>Suporte do 1° Socorros</h2>
+          <span>O que nós podemos fazer por você?</span>
+          <a href="#form-support">Entre em contato conosco! :)</a>
+        </div>
+        <div>
+          <img src={require('../../assets/support.png')} alt="Suporte do 1° Socorros" title="Suporte do 1° Socorros" />
+        </div>
       </div>
-
-      <form className="form-support" onSubmit={handleSubmit} method="POST">
-        <div className="top-form">
-          <div className="inner-form">
-            {/* <div className="label"><label htmlFor="email">Email</label></div> */}
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Email"
-              value={email}
-              onChange={email => setEmail(email.target.value)}
-            />
-            {hasEmail ? <span className="error-support">Email requerido.</span> : ""}
+      <div className="support-types">
+        <h2>Em que nós damos suportes?</h2>
+        <div className="line"></div>
+        <div className="support-user">
+          <div>
+            <img src={require('../../assets/computer.png')} alt="" srcset="" />
+            <span>Sistema e design</span>
+          </div>
+          <div>
+            <img src={require('../../assets/engine.png')} alt="" srcset="" />
+            <span>Nossas funcionalidades</span>
+          </div>
+          <div>
+            <img src={require('../../assets/comunication.png')} alt="" srcset="" />
+            <span>Ajude-nos a melhorar.</span>
+          </div>
+          <div>
+            <img src={require('../../assets/user.png')} alt="" srcset="" />
+            <span>Contas e usuários</span>
           </div>
         </div>
+      </div>
+      <div className="wrapper" id="form-support">
+        {modal ? <span className="success-support">Formulário enviado com suceso!</span> : ""}
+        {show ? <span className="error-support">HOUVE UM ERRO INTERNO, POR FAVOR TENTE NOVAMENTE MAIS TARDE!!</span> : ""}
+        <div className="content-form-support">
+          <h1>Envie uma mensagem para nós!</h1>
+        </div>
 
-        <div className="middle-form">
-          <div className="inner-form">
-            {/* <div className="label"><label htmlFor="subject">Assunto</label></div> */}
-            <input
-              type="text"
-              name="subject"
-              id="subject"
-              placeholder="Assunto"
-              value={subject}
-              onChange={e => setSubject(e.target.value)}
-            />
-            {hasSubject ? <span className="error-support">Assunto requerido.</span> : ""}
+        <form className="form-support" onSubmit={handleSubmit} method="POST">
+          <div className="top-form">
+            <div className="inner-form">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email"
+                value={email}
+                onChange={email => setEmail(email.target.value)}
+              />
+              {hasEmail ? <span className="error-support">Email requerido.</span> : ""}
+            </div>
           </div>
-        </div>
 
-        <div className="bottom-form">
-          <div className="inner-form">
-            {/* <div className="label"><label htmlFor="description">Descrição</label></div> */}
-            <textarea
-              name="description"
-              id="description"
-              className="form-area"
-              placeholder="Descrição"
-              value={description}
-              onChange={e => setDescription(e.target.value)}
-            ></textarea>
-            {hasDescription ? <span className="error-support">Descrição requerida.</span> : ""}
+          <div className="middle-form">
+            <div className="inner-form">
+              <input
+                type="text"
+                name="subject"
+                id="subject"
+                placeholder="Assunto"
+                value={subject}
+                onChange={e => setSubject(e.target.value)}
+              />
+              {hasSubject ? <span className="error-support">Assunto requerido.</span> : ""}
+            </div>
           </div>
-        </div>
 
-        <div className="btn">
-          <button type="submit">Enviar</button>
-        </div>
-      </form>
-    </div>
+          <div className="bottom-form">
+            <div className="inner-form">
+              <textarea
+                name="description"
+                id="description"
+                className="form-area"
+                placeholder="Descrição"
+                value={description}
+                onChange={e => setDescription(e.target.value)}
+              ></textarea>
+              {hasDescription ? <span className="error-support">Descrição requerida.</span> : ""}
+            </div>
+          </div>
+
+          <div className="btn">
+            <button type="submit">Enviar</button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }

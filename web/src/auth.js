@@ -118,11 +118,27 @@ const ProfileLogged = ({ component: Component, ...rest }) => {
         />
     )
 }
+
+const NotFoundL = ({ component: Component, ...rest }) => {
+    return (
+        <Route
+            {...rest}
+            render={props =>
+                isAuth() ? (
+                    <Redirect to={{ pathname: "/"}} />
+                ) : (
+                    <Component {...props}/>
+                )
+            }
+        />
+    )
+}
 export {
     LoginRoute,
     RegisterRoute,
     LogoutRoute,
     RegisterLogged,
     LoginLogged,
-    ProfileLogged
+    ProfileLogged,
+    NotFoundL
 }
