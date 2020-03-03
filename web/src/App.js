@@ -27,11 +27,12 @@ export default class App extends Component {
             <>
               <Switch>
                 <Route path="/" exact component={Home} />
+                <Route path="/hospitals" component={() => <h1>TESTE</h1>} />
                 <LoginLogged path="/login" component={Login} />
                 <RegisterLogged path="/register" component={Register} />
                 <LogoutRoute path="/logout" component={Logout} />
                 <ProfileLogged path="/profile" component={Profile} />
-                <NotFoundL path="*" component={NotFound} />
+                <Route path="*" component={NotFound} />
               </Switch>
             </>
             :
