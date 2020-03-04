@@ -89,6 +89,7 @@
     top:12px;
     left: 40px;
     transition: .5s all;
+    color: #969696;
 }
 .form-register div input:focus + label,
 .form-register div input:valid + label
@@ -200,6 +201,13 @@
     animation: move 500ms;
     animation-delay: 2000ms;
     animation-fill-mode: backwards;
+}
+.form-register .passwords{
+    display: flex;
+    justify-content: space-around;
+}
+.form-register .passwords div{
+    width: 300px;
 }
 .form-register > div button{
     animation: up 1000ms;

@@ -19,6 +19,7 @@ export default function Register(props) {
   const [phone, setPhone] = useState('');
   const [cnpj_hospital, setCnpj] = useState('');
   const [cep_hospital, setCep] = useState('');
+  const [coords, setCoords] = useState(false);
 
   //restrições, verificações
   const [confirmPassword, setConfirmpass] = useState('');
@@ -45,6 +46,13 @@ export default function Register(props) {
       return;
     } else {
       setPassequal(false);
+    }
+
+    if(!latitude && !longitude){
+      setCoords(true);
+      return;
+    }else{
+      setCoords(false);
     }
 
     if (check) {
@@ -121,6 +129,9 @@ export default function Register(props) {
 
   return (
     <div className="container" >
+      {
+        coords ? window.alert('Você deve permitir a localização. Precisamos da latitude e longitude') : ""
+      }
       <div className="wave wave1"></div>
       <div className="wave wave2"></div>
       <div className="wave wave3"></div>
@@ -261,7 +272,7 @@ export default function Register(props) {
                   required
                   placeholder="Latitude"
                   className="coordinate"
-                  value={latitude}
+                  value={latitude || null}
                   onChange={latitude => setLatitude(latitude.target.value)}
                 />
               </div>
@@ -272,7 +283,7 @@ export default function Register(props) {
                   placeholder="Longitude"
                   required
                   className="coordinate"
-                  value={longitude}
+                  value={longitude || null}
                   onChange={longitude => setLongitude(longitude.target.value)}
                 />
               </div>

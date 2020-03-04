@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SlideShow from "../../components/Slide/index";
 
-// ima foi trocado por sebrae por conta do tamanho 
 import sus from "../../assets/sus.png";
 import sebrae from "../../assets/sebrae.png";
 import unimed from "../../assets/unimed2.png";
@@ -31,7 +30,7 @@ export default function Home() {
 
     if (token) {
       await api.get('/home', {
-        headers: { Authorization: "Bearer " + token }
+        headers: { Authorization: `Bearer ${token}` }
       })
         .then(response => {
           setHospital(response.data);
