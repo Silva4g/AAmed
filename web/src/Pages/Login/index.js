@@ -60,7 +60,7 @@ export default function Login(props) {
                 </div>
               ) : ""
           }
-          <form className="form-register" onSubmit={submit}>
+          <form className="form-login" onSubmit={submit}>
             <div>
               <input
                 type="email"
@@ -68,6 +68,7 @@ export default function Login(props) {
                 id="email"
                 placeholder="Digite seu email"
                 autoCapitalize="none"
+                
                 onChange={
                   e => setEmail(e.target.value)
                 }

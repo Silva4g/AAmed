@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../services/api';
+
 import InputMask from 'react-input-mask';
+import { cnpj } from 'cpf-cnpj-validator';
 
 import './styles.css'
 
-export default function Register() {
+export default function Register(props) {
   document.title = "Cadastre seu hospital";
 
   const [latitude, setLatitude] = useState('');
@@ -15,13 +17,14 @@ export default function Register() {
   const [name, setName] = useState('');
   const [cnes, setCnes] = useState('');
   const [phone, setPhone] = useState('');
-  const [cnpj, setCnpj] = useState('');
+  const [cnpj_hospital, setCnpj] = useState('');
   const [cep_hospital, setCep] = useState('');
 
   //restrições, verificações
   const [confirmPassword, setConfirmpass] = useState('');
   const [check, setCheck] = useState(true);
   const [passEqual, setPassequal] = useState(false);
+  const [validateCnpj, setValidateCnpj] = useState(true)
   const [lenghtName, setLenghtname] = useState(false);
   const [modal, setModal] = useState(false);
   const [error, setError] = useState(null);
@@ -58,9 +61,16 @@ export default function Register() {
       setLenghtname(false);
     }
 
+    if (cnpj.isValid(cnpj_hospital)) {
+      setValidateCnpj(true);
+    } else {
+      setValidateCnpj(false);
+      return;
+    }
+
     try {
       await api.post('/hospital', {
-        name, password, cnes, cnpj, latitude, longitude, cep_hospital, phone, email
+        name, password, cnes, cnpj: cnpj_hospital, latitude, longitude, cep_hospital, phone, email
       }).then((res) => {
         window.scrollTo(0, 0);
         setModal(true);
@@ -72,17 +82,26 @@ export default function Register() {
         setPhone('');
         setCep('');
         setEmail('');
+        goToHome();
       }).catch((exp) => {
         setShow(true)
         setTimeout(() => {
           setShow(false);
-        },7500);
+        }, 7500);
         setError(exp.response === undefined ? 'Falha na conexão com o servidor!' : exp.response.data.error);
       });
     } catch (response) {
       window.scrollTo(0, 0);
     }
   };
+
+  async function goToHome() {
+    const response = await api.post('/loginHospital', { email, password });
+    localStorage.setItem('tk-hopt', response.data.token);
+    await api.get('/home', { headers: { Authorization: `Bearer ${response.data.token}` } });
+    props.history.push('/');
+    window.location.reload();
+  }
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -105,144 +124,182 @@ export default function Register() {
       <div className="wave wave1"></div>
       <div className="wave wave2"></div>
       <div className="wave wave3"></div>
-      <div className="content-form">
-        <h1>Cadastre seu hospital</h1>
-        {
-          modal ?
-            (
-              <div className="modal">
-                <div>Cadastro realizado com sucesso</div>
-              </div>
-            ) : ""
-        }
-        {
-          error !== null ?
-            (
-              <div className={ show ? 'modal-error' : 'hide-modal'}>
-                <div>{error}</div>
-              </div>
-            ) : ""
-        }
-        <div>
-          <form className="form-register" onSubmit={handleForm}>
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              required
-              onChange={email => setEmail(email.target.value)}
-              value={email}
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Senha"
-              required
-              onChange={password => setPassword(password.target.value)}
-              value={password}
-            />
-            {
-              passEqual ? <span className="error">Senhas incompatíveis</span> : ""
-            }
-            <input
-              type="password"
-              name="confirmPass"
-              required
-              placeholder="Confirmar senha"
-              onChange={confirmPassword => setConfirmpass(confirmPassword.target.value)}
-              value={confirmPassword}
-            />
-            {
-              passEqual ? <span className="error">Senhas incompatíveis</span> : ""
-            }
-
-            <input
-              type="text"
-              required
-              placeholder="Nome do hospital"
-              name="name"
-              onChange={name => setName(name.target.value)}
-              value={name}
-            />
-            {
-              lenghtName ? <span className="error">Nome deve ter pelo menos 5 caracteres!</span> : ""
-            }
-            <InputMask
-              mask="9999999"
-              type="text"
-              required
-              name="cnes"
-              placeholder="CNES"
-              onChange={cnes => setCnes(cnes.target.value)}
-              value={cnes}
-            />
-            <InputMask
-              type="text"
-              required
-              mask="99.999.999/9999-99"
-              placeholder="CNPJ"
-              onChange={cnpj => setCnpj(cnpj.target.value)}
-              value={cnpj}
-            />
-            <InputMask
-              type="text"
-              name="phone"
-              mask="(99)9999-9999"
-              required
-              placeholder="Telefone do hospital"
-              onChange={phone => setPhone(phone.target.value)}
-              value={phone}
-            />
-            <InputMask
-              mask="99999999"
-              type="text"
-              name="cep_hospital"
-              required
-              placeholder="CEP"
-              onChange={cep => setCep(cep.target.value)}
-              value={cep_hospital}
-            />
-            <input
-              type="text"
-              name="latitude"
-              required
-              placeholder="Latitude"
-              className="coordinate"
-              value={latitude}
-              onChange={latitude => setLatitude(latitude.target.value)}
-            />
-            <input
-              type="text"
-              name="longitude"
-              placeholder="Longitude"
-              required
-              className="coordinate"
-              value={longitude}
-              onChange={longitude => setLongitude(longitude.target.value)}
-            />
-            <div className="termos">
+      <div className="container-register">
+        <div className="side">
+          <div>
+            <h2>Olá! Faça o cadastro de seu hospital</h2>
+            <span>Junte-se a nós e ajude a salvar o próximo!</span>
+          </div>
+          <div>
+            <img src={require('../../assets/logo.png')} alt="" srcset="" />
+          </div>
+        </div>
+        <div className="content-form-register">
+          <h1>Cadastre seu hospital</h1>
+          {
+            modal ?
+              (
+                <div className="modal">
+                  <div>Cadastro realizado com sucesso</div>
+                </div>
+              ) : ""
+          }
+          {
+            error !== null ?
+              (
+                <div className={show ? 'modal-error' : 'hide-modal'}>
+                  <div>{error}</div>
+                </div>
+              ) : ""
+          }
+          <div>
+            <form className="form-register" onSubmit={handleForm}>
               <div>
-                <label htmlFor="termos">Aceitar termos de cadastro</label>
                 <input
-                  type="checkbox"
-                  id="termos"
-                  checked={check}
-                  onChange={changeCheck}
+                  type="email"
+                  name="email"
+                  id="email"
+                  required
+                  onChange={email => setEmail(email.target.value)}
+                  value={email}
+                />
+                <label htmlFor="email">Digite seu email</label>
+              </div>
+              <div>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  required
+                  onChange={password => setPassword(password.target.value)}
+                  value={password}
+                />
+                <label htmlFor="passowrd">Digite sua senha</label>
+              </div>
+              <div>
+                <input
+                  type="password"
+                  name="confirmPass"
+                  id="confirmPass"
+                  required
+                  onChange={confirmPassword => setConfirmpass(confirmPassword.target.value)}
+                  value={confirmPassword}
+                />
+                <label htmlFor="confirmPass">Confirmar senha</label>
+              </div>
+              {
+                passEqual ? <span className="error">Senhas incompatíveis</span> : ""
+              }
+              <div>
+                <input
+                  type="text"
+                  required
+                  id="name"
+                  name="name"
+                  onChange={name => setName(name.target.value)}
+                  value={name}
+                />
+                <label htmlFor="name">Digite o nome do hospital</label>
+              </div>
+              {
+                lenghtName ? <span className="error">Nome deve ter pelo menos 5 caracteres!</span> : ""
+              }
+              <div>
+                <InputMask
+                  mask="9999999"
+                  type="text"
+                  required
+                  name="cnes"
+                  id="cnes"
+                  onChange={cnes => setCnes(cnes.target.value)}
+                  value={cnes}
+                />
+                <label htmlFor="cnes">Digite o número do CNES</label>
+              </div>
+              <div>
+                <InputMask
+                  type="text"
+                  required
+                  mask="99.999.999/9999-99"
+                  id="cnpj"
+                  onChange={cnpj_hpt => setCnpj(cnpj_hpt.target.value)}
+                  value={cnpj_hospital}
+                />
+                <label htmlFor="cnpj">Digite o cnpj do hospital</label>
+              </div>
+              {
+                validateCnpj ? "" : <span className="error">CNPJ inválido!</span>
+              }
+              <div>
+                <InputMask
+                  type="text"
+                  name="phone"
+                  mask="(99)9999-9999"
+                  required
+                  id="phone"
+                  onChange={phone => setPhone(phone.target.value)}
+                  value={phone}
+                />
+                <label htmlFor="phone">Digite o telefone do hospital</label>
+              </div>
+              <div>
+                <InputMask
+                  mask="99999999"
+                  type="text"
+                  name="cep_hospital"
+                  required
+                  id="cep"
+                  onChange={cep => setCep(cep.target.value)}
+                  value={cep_hospital}
+                />
+                <label htmlFor="cep">CEP do hospital</label>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="latitude"
+                  required
+                  placeholder="Latitude"
+                  className="coordinate"
+                  value={latitude}
+                  onChange={latitude => setLatitude(latitude.target.value)}
                 />
               </div>
-              {check ? "" : <span className="error">Você deve aceitar os termos</span>}
               <div>
-                <span>Termos de cadastro do sistema: </span>
-                <Link to="/terms">
-                  Veja nossos termos para cadastro
-                </Link>
+                <input
+                  type="text"
+                  name="longitude"
+                  placeholder="Longitude"
+                  required
+                  className="coordinate"
+                  value={longitude}
+                  onChange={longitude => setLongitude(longitude.target.value)}
+                />
               </div>
-            </div>
-            <button
-              type="submit">
-              Cadastrar
+              <div className="termos">
+                <div>
+                  <label htmlFor="termos">Aceitar termos de cadastro</label>
+                  <input
+                    type="checkbox"
+                    id="termos"
+                    checked={check}
+                    onChange={changeCheck}
+                  />
+                </div>
+                {check ? "" : <span className="error">Você deve aceitar os termos</span>}
+                <div>
+                  <span>Termos de cadastro do sistema: </span>
+                  <Link to="/terms">
+                    Veja nossos termos para cadastro
+                </Link>
+                </div>
+              </div>
+              <button
+                type="submit">
+                Cadastrar
             </button>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>

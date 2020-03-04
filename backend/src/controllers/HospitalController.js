@@ -25,8 +25,9 @@ module.exports = {
                 type: 'Point',
                 coordinates: [longitude, latitude],
             };
-
-            const { city, state, street, neighborhood } = await cep(cep_hospital);
+            const { city, state, street, neighborhood } = await cep(cep_hospital).catch(err => { return res.status(400).send({error: 'Cep inválido'}) });
+            
+            
 
             const address = {
                 city,

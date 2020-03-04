@@ -67,7 +67,6 @@
     padding: 10px;
     width:100%;
     animation: fade 500ms;
-    border-radius: 6px;
 }
 @keyframes fade{
     from{
@@ -83,7 +82,7 @@
     font-weight: normal;
     padding: 8px 0;
 }
-.form-register input{
+.form-login input{
     position: relative;
     display: block;
     outline: none;
@@ -96,10 +95,10 @@
     width: 60%;
     transition: .7s ease;
 }
-.form-register input:focus{
+.form-login input:focus{
     border-color: #2196f3;
 }
-.form-register button{
+.form-login button{
     display: block;
     width: 60%;
     padding: 12px 8px;
@@ -112,60 +111,60 @@
     font-size: 18px;
     margin: 10px auto;
 }
-.form-register input:nth-child(1){
+.form-login input:nth-child(1){
     animation: move 500ms;
 }
-.form-register input:nth-child(2){
+.form-login input:nth-child(2){
     animation: move 500ms;
     animation-delay: 200ms;
     animation-fill-mode: backwards;
 }
-.form-register input:nth-child(3){
+.form-login input:nth-child(3){
     animation: move 500ms;
     animation-delay: 400ms;
     animation-fill-mode: backwards;
 }
-.form-register input:nth-child(4){
+.form-login input:nth-child(4){
     animation: move 500ms;
     animation-delay: 600ms;
     animation-fill-mode: backwards;
 }
-.form-register input:nth-child(5){
+.form-login input:nth-child(5){
     animation: move 500ms;
     animation-delay: 800ms;
     animation-fill-mode: backwards;
 }
-.form-register input:nth-child(6){
+.form-login input:nth-child(6){
     animation: move 500ms;
     animation-delay: 1000ms;
     animation-fill-mode: backwards;
 }
-.form-register input:nth-child(7){
+.form-login input:nth-child(7){
     animation: move 500ms;
     animation-delay: 1200ms;
     animation-fill-mode: backwards;
 }
-.form-register input:nth-child(8){
+.form-login input:nth-child(8){
     animation: move 500ms;
     animation-delay: 1400ms;
     animation-fill-mode: backwards;
 }
-.form-register input:nth-child(9){
+.form-login input:nth-child(9){
     animation: move 500ms;
     animation-delay: 1600ms;
     animation-fill-mode: backwards;
 }
-.form-register input:nth-child(10){
+.form-login input:nth-child(10){
     animation: move 500ms;
     animation-delay: 1800ms;
     animation-fill-mode: backwards;
 }
-.form-register input:nth-child(11){
+.form-login input:nth-child(11){
     animation: move 500ms;
     animation-delay: 2000ms;
     animation-fill-mode: backwards;
 }
-.form-register button{
+.form-login button{
     animation: up 1000ms;
     transition: .7s all;
 }
@@ -189,7 +188,7 @@
         transform: translateX(0%);
     }
 }
-.form-register button:hover{
+.form-login button:hover{
     background-color: #2196f3;
 }
 .coordinate{
