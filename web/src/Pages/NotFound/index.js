@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from "../../assets/logo.png";
 import { Link } from 'react-router-dom';
-import { FaAngleLeft } from 'react-icons/fa';
+//import { FaAngleLeft } from 'react-icons/fa';
 import './styles.css';
 
 export default class NotFound extends Component {

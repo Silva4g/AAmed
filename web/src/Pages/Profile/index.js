@@ -1,9 +1,9 @@
 import React from 'react';
 import api from '../../services/api';
-import { useEffect } from 'react';
+//import { useEffect } from 'react';
 import { Component } from 'react';
-import { render } from 'react-dom';
-import Sidebar from '../../components/Logged';
+//import { render } from 'react-dom';
+//import Sidebar from '../../components/Logged';
 
 // import { Container } from './styles';
 
