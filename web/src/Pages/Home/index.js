@@ -23,7 +23,7 @@ export default function Home() {
 
   const token = localStorage.getItem('tk-hopt');
   useEffect(() => {
-    getData()
+   getData()
   }, [token]);
 
   async function getData() {
@@ -42,7 +42,7 @@ export default function Home() {
       return null;
     }
 
-  }
+  } 
 
   return (
     isLogged() ?

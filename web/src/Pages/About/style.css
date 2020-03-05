@@ -141,8 +141,8 @@
     width: 750px;
     height: 400px;
     animation-name: descricao1_img;
-    animation-duration: 2s;
-    transition-delay: 0.1s;
+    animation-duration: 1.5s;
+    /*transition-delay: 0.1s;*/
 }
 
 .text_descricao1 {
