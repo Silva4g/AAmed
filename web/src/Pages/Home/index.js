@@ -17,8 +17,8 @@ import api from '../../services/api';
 export default function Home() {
   document.title = "1° Socorros"
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  //const [name, setName] = useState('');
+  //const [email, setEmail] = useState('');
   const [hospital, setHospital] = useState({});
 
   const token = localStorage.getItem('tk-hopt');

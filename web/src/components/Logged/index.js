@@ -11,7 +11,7 @@ export default function Sidebar({ hospital }) {
   return (
     <div className="container-logged">
       <aside>
-        <img src={require('../../assets/hospital.jpg')} />
+        <img src={require('../../assets/hospital.jpg')} alt="" />
         <Link to="/profile" className="items">
           <FaUserCircle size={25} />
           <span>Perfil</span>
