@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+
 @keyframes descricao1_texto {
     0% {
         margin-left: 200px;
@@ -25,8 +26,7 @@
         top: 0px;
         opacity: 1;
     }
-    /* 50%  {opacity: 0;}
-    100% {margin-right:150px; top:0px;opacity: 1;} */
+    
 }
 
 @keyframes descricao2_texto {
@@ -142,7 +142,6 @@
     height: 400px;
     animation-name: descricao1_img;
     animation-duration: 1.5s;
-    /*transition-delay: 0.1s;*/
 }
 
 .text_descricao1 {
