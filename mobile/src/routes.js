@@ -17,7 +17,7 @@ const Routes = createAppContainer(
     Register: {
       screen: Register,
       navigationOptions: {
-        title: 'Register yourself'
+        title: 'Cadastro'
       }
     },
     ForgotPassword: {
@@ -25,7 +25,6 @@ const Routes = createAppContainer(
       navigationOptions: {
         title: 'ForgotPassword',
         headerTitleAlign: 'center',
-        backgroundColor: '#737b'
       }
     },
     Map: {
@@ -40,14 +39,13 @@ const Routes = createAppContainer(
       defaultNavigationOptions: {
         gestureEnabled: true,
         gestureDirection: "horizontal",
-        // headerBackground: '#fa97bc'
-        headerPressColorAndroid: '#F90',
+        headerPressColorAndroid: '#fff',
         headerTitleStyle: {
-          color: '#5a55fc',
+          color: '#fff',
         },
-        headerTintColor: '#b4d',
+        headerTintColor: '#fff',
         headerStyle: {
-          backgroundColor: '#ff4757'
+          backgroundColor: '#52c8fa'
         }
       }
     })
