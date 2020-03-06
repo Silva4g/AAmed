@@ -9,15 +9,15 @@
 
 
 #Instalações
-  - [Node.js](https://nodejs.org/en/) versão acima de 10
-  - [VSCode](https://code.visualstudio.com/download)
-  - [mongodb](https://www.mongodb.com/download-center)
-  - Recomendamos o [yarn](https://classic.yarnpkg.com/pt-BR/docs/install/#windows-stable) mas pode utilizar o npm também
-  - E instalar o react native junto com o expo globalmente
+  - [Node.js](https://nodejs.org/en/) versão acima de 10.
+  - Recomendamos instalar o editor [VSCode](https://code.visualstudio.com/download).
+  - Instalar o [mongodb](https://www.mongodb.com/download-center) par aexecução do banco de dados.
+  - E instalar o react native junto com o expo globalmente.
   ``` sh
   $ npm install -g expo-cli
   ```
-  - Pelo prompt do VSCode entre na pasta backend, web e mobile para dar o seguinte comando.
+  - Recomendamos o [yarn](https://classic.yarnpkg.com/pt-BR/docs/install/#windows-stable) mas pode utilizar o npm para a execução de codigo.
+  - Pelo prompt de comando entre na pasta backend, web e mobile e execute o comando a baixo em cada pasta respectivamente.
   ```sh
   $ npm install
   ```
