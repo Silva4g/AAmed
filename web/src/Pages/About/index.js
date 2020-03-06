@@ -4,8 +4,6 @@ import imgInicial from "../../assets/imgAbout.jpeg";
 import imgDescription2 from "../../assets/imgDescription2.jpeg";
 import imgDescription1 from "../../assets/imgDescription.jpeg";
 
-// import { Container } from './styles';
-
 export default class About extends Component {
   componentDidMount(){
     document.title = "Sobre"
