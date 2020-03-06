@@ -1,5 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import {  View, StyleSheet,Text, Image, Dimensions, TextInput, TouchableOpacity, Button } from 'react-native';
+import bolaLogin from "../../../assets/bolaLogin.png";
+
+import styles from './styles';
 
 export default function Login({navigation}) {
 
@@ -8,34 +11,30 @@ export default function Login({navigation}) {
   // }
 
   return (
-    <View>
-      <Text>OLÁ LOGIN</Text>
-      <TouchableOpacity
-      style={{alignSelf: 'center', justifyContent: 'center', backgroundColor: '#F30', height: 30, width: 100, alignItems: 'center'}}
-      onPress={() => {
-        navigation.navigate('Register');
-      }} 
-      >
-        <Text>CADASTRO</Text>
-      </TouchableOpacity>
+    
+    <View style={styles.loginPrincipal}>
+    
+    <Image style={styles.image} source={(bolaLogin)} />
+    <View style={styles.formulario}> 
 
-      <TouchableOpacity 
-        style={{alignSelf: 'center', justifyContent: 'center', backgroundColor: '#F90', height: 30, width: 100, alignItems: 'center'}} 
-        onPress={() => {
-          console.log(navigation)
-          navigation.navigate('ForgotPassword');
-        }}>
-        <Text>FORGOT</Text>
-      </TouchableOpacity>
+    <Text style={styles.textoLogin}>Login</Text>
 
-      <TouchableOpacity
-      style={{alignSelf: 'center', justifyContent: 'center', backgroundColor: '#F00', height: 30, width: 100, alignItems: 'center'}}
-      onPress={() => {
-        navigation.navigate('Map');
-      }}
-      >
-        <Text>MAP</Text>
-      </TouchableOpacity>
+   <TextInput style={styles.inputEmail}
+        placeholder="Email"
+        placeholderTextColor='white'
+        backgroundColor = '#72d2fb'
+        //underlineColorAndroid='green' 
+      />
+
+      <TextInput style={styles.inputSenha}
+        placeholder="Senha"
+        placeholderTextColor='white'
+        backgroundColor = '#72d2fb'
+      />
+
+
     </View>
+
+  </View>
   );
 }
