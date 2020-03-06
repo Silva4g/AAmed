@@ -13,6 +13,10 @@
   - [VSCode](https://code.visualstudio.com/download)
   - [mongodb](https://www.mongodb.com/download-center)
   - Recomendamos o [yarn](https://classic.yarnpkg.com/pt-BR/docs/install/#windows-stable) mas pode utilizar o npm também
+  - E instalar o react native junto com o expo globalmente
+  ``` sh
+  $ npm install -g expo-cli
+  ```
   - Pelo prompt do VSCode entre na pasta backend, web e mobile para dar o seguinte comando.
   ```sh
   $ npm install
@@ -21,6 +25,7 @@
   ```
   $ yarn install
   ```
+  
   
   ##Dependencias
   - react
