@@ -1,14 +1,14 @@
 # 1 Socorros
 
-#INDICE
+# INDICE
  - [Instalações necessarias](#instalacoes) - todas as aplicações usadas na nossa plataforma.
  - [Executar a plataforma](#codigos) - Como executar nossa plataforma.
  
-#IMAGENS
+# IMAGENS
   EM BREVE.
 
 
-#Instalações
+# Instalações
   - [Node.js](https://nodejs.org/en/) versão acima de 10.
   - Recomendamos instalar o editor [VSCode](https://code.visualstudio.com/download).
   - Instalar o [mongodb](https://www.mongodb.com/download-center) par aexecução do banco de dados.
@@ -27,7 +27,7 @@
   ```
   
   
-  ##Dependencias
+  ## Dependencias
   - react
   - react icons
   - react input mask
