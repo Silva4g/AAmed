@@ -13,9 +13,14 @@
   - [VSCode](https://code.visualstudio.com/download)
   - [mongodb](https://www.mongodb.com/download-center)
   - Recomendamos o [yarn](https://classic.yarnpkg.com/pt-BR/docs/install/#windows-stable) mas pode utilizar o npm também
-  - Pelo prompt do VSCode entre na pasta backend, web e mobile para dar o seguinte comando. `npm install`
+  - Pelo prompt do VSCode entre na pasta backend, web e mobile para dar o seguinte comando.
+  ```sh
+  $ npm install
+  ```
   ou 
-  `yarn install`
+  ```
+  $ yarn install
+  ```
   
   ##Dependencias
   - react
