@@ -11,7 +11,7 @@
 # Instalações
   - [Node.js](https://nodejs.org/en/) versão acima de 10.
   - Recomendamos instalar o editor [VSCode](https://code.visualstudio.com/download).
-  - Instalar o [mongodb](https://www.mongodb.com/download-center) par aexecução do banco de dados.
+  - Instalar o [mongodb](https://www.mongodb.com/download-center) para a execução do banco de dados.
   - E instalar o react native junto com o expo globalmente.
   ``` sh
   $ npm install -g expo-cli
