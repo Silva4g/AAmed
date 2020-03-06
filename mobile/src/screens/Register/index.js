@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5'
 export default function Register() {
   return (
     <View>
-      <Text>OLÁ CADASTRO</Text>
+      <Text>Página de CADASTRO</Text>
       <Icon.Button
         name="facebook"
         backgroundColor="#3b5998"
