@@ -1,5 +1,11 @@
 .container-logged{
     background-color: #edecec;
+    display: grid;
+    grid-template-columns:1fr 2fr 2fr;
+    grid-template-areas:"a b b"
+                        "a c d"
+                        "a c d";
+    grid-template-rows: 20vh 70vh 10vh;
 }
 aside{
     width:320px;
@@ -7,6 +13,9 @@ aside{
     background-color: #fff;
     display: flex;
     flex-direction: column;
+}
+.grid aside {
+    grid-area: a;
 }
 .items{
     width:100%;
@@ -38,4 +47,41 @@ aside{
 }
 aside img{
     box-shadow: -7px 0px 11px rgba(0,0,0,.4)
+}
+.menu-logado {
+    float: top;
+    background-color: green;
+    height: 100px;
+    width: 100%;
+    align-content: center;
+    grid-area: b;
+}
+.menu-logado table {
+    font-family: arial, sans-serif;
+    /*border-collapse: collapse;*/
+    width: 100%;
+}
+.menu-logado th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    text-align: center;
+}
+.menu-logado button {
+    font-size: 20px;
+    text-decoration: white;
+}
+button {
+    background-color: green;
+    border: none;
+}
+.espera {
+    grid-area: c;
+    background-color: yellow;
+    /*height: 300px;*/
+}
+.atendimento {
+    grid-area: d;
+    background-color: tomato;
+    /*height: 300px;*/
 }

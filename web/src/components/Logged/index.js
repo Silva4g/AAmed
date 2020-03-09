@@ -10,7 +10,7 @@ import './styles.css';
 export default function Sidebar({ hospital }) {
   return (
     <div className="container-logged">
-      <aside>
+      <aside className="grid">
         <img src={require('../../assets/hospital.jpg')} alt="" />
         <Link to="/profile" className="items">
           <FaUserCircle size={25} />
@@ -32,6 +32,25 @@ export default function Sidebar({ hospital }) {
           <span>Sair</span>
         </Link>
       </aside>
+      <div className="menu-logado">
+        <table>
+          <tr>
+            <th>
+              <button>pacientes</button>
+            </th>
+            <th>
+              <button>leitos</button>
+            </th>
+            <th>
+              <button>medicos</button>
+            </th>
+          </tr>
+        </table>
+      </div>
+      <div className="espera">
+        
+      </div>
+      <div className="atendimento"></div>
     </div>
   );
 }
