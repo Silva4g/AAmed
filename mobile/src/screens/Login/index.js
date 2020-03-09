@@ -13,73 +13,45 @@ export default function Login({ navigation }) {
 
   return (
 
-    <View style={styles.loginPrincipal}>
+    <>
+      <View style={{ flex: 3, backgroundColor: '#3498db' }}>
+        <View style={styles.div}>
+          <Text style={styles.textoLogin}>
+            Login
+          </Text>
 
-      {/*<Image style={styles.image} source={(bolaLogin)} />*/}
-      <View style={styles.formulario}>
+          <View style={styles.inputContainer}>
+            <Icon style={styles.iconUser} name="user" />
+            <TextInput style={styles.input}
+              placeholder="Email"
+              placeholderTextColor='white'
+              backgroundColor='#72d2fb'
+            //underlineColorAndroid='green' 
+            />
+          </View>
 
-        <Text style={styles.textoLogin}>Login</Text>
-
-      <View style={styles.containerEmail}>
-
-        <TextInput style={styles.inputEmail}
-            placeholder="Email"
-            placeholderTextColor='white'
-            backgroundColor='#72d2fb'
-          //underlineColorAndroid='green' 
-          />
-
-        <Icon style={styles.iconUser} name ="user" />
-        
-      </View>
-
-      <View style={styles.containerPassword}>
-
-        <TextInput style={styles.inputPassword}
-            placeholder="Senha"
-            placeholderTextColor='white'
-            backgroundColor='#72d2fb'
-        />
-
-        <Icon style={styles.iconLock} name ="lock" />
-        <Icon style={styles.iconEye} name ="eye" />
-
-      </View>
-
-        <TouchableOpacity   style={styles.botaoEntrar}
-        
+          <View style={styles.inputContainer}>
+            <Icon style={styles.iconLock} name="lock" />
+            <Icon style={styles.iconEye} name="eye" />
+            <TextInput style={styles.input}
+              placeholder="Senha"
+              placeholderTextColor='white'
+              backgroundColor='#72d2fb'
+            />
+          </View>
+        </View>
+        <TouchableOpacity style={styles.botaoEntrar}
           onPress={() => {
             navigation.navigate('Register');
           }}
-
         >
           <Text style={styles.txtBtEntrar}>Entrar</Text>
         </TouchableOpacity>
-
       </View>
 
-      <View style={{marginLeft: 220}}>
-       
-
-        {/* <TouchableOpacity
-          style={{ alignSelf: 'center', justifyContent: 'center', backgroundColor: '#fff', height: 30, width: 100, alignItems: 'center', marginBottom: 5 }}
-          onPress={() => {
-            console.log(navigation)
-            navigation.navigate('ForgotPassword');
-          }}>
-          <Text>FORGOT</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={{ alignSelf: 'center', justifyContent: 'center', backgroundColor: '#fff', height: 30, width: 100, alignItems: 'center' }}
-          onPress={() => {
-            navigation.navigate('Map');
-          }}
-        >
-          <Text>MAP</Text>
-        </TouchableOpacity> */}
+      <View style={{ flex: 1 }}>
 
       </View>
-    </View>
+    </>
   );
 }
