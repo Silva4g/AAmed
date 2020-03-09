@@ -10,7 +10,7 @@ import { LoginLogged, RegisterLogged, LoginRoute, RegisterRoute, LogoutRoute, Pr
 import isLogged from './utils/logged';
 import Profile from "./Pages/Profile";
 
-const { Home, Support, About, Login, Register, NotFound } = defaults;
+const { Home, Support, About, Login, Register, NotFound, Edit } = defaults;
 
 
 export default class App extends Component {
@@ -28,10 +28,11 @@ export default class App extends Component {
               <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/hospitals" component={() => <h1>TESTE</h1>} />
-                <LoginLogged path="/login" component={Login} />
-                <RegisterLogged path="/register" component={Register} />
-                <LogoutRoute path="/logout" component={Logout} />
-                <ProfileLogged path="/profile" component={Profile} />
+                <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
+                <Route path="/logout" component={Logout} />
+                <Route path="/profile" component={Profile} />
+                <Route path="/edit" component={Edit} />
                 <Route path="*" component={NotFound} />
               </Switch>
             </>
@@ -43,7 +44,7 @@ export default class App extends Component {
                 <Route path="/about" component={About} />
                 <LoginRoute path="/login" component={Login} />
                 <RegisterRoute path="/register" component={Register} />
-                <NotFoundL path="*" component={NotFound} />
+                <Route path="*" component={NotFound} />
               </Switch>
             </>
           }

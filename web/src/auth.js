@@ -63,70 +63,8 @@ const LogoutRoute = ({ component: Component, ...rest }) => {
   )
 }
 
-/**rotas bloqueadas para hospital logado */
-const LoginLogged = ({ component: Component, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        isAuth()
-          ?
-          (<Redirect to={{ pathname: '/' }} />)
-          :
-          (<Component {...props} />)
-      }
-    />
-  )
-}
-const RegisterLogged = ({ component: Component, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        isAuth()
-          ?
-          (<Redirect to={{ pathname: '/' }} />)
-          :
-          (<Component {...props} />)
-      }
-    />
-  )
-}
-const ProfileLogged = ({ component: Component, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        isAuth()
-          ?
-          (<Component {...props} />)
-          :
-          (<Redirect to={{ pathname: '/' }} />)
-      }
-    />
-  )
-}
-
-const NotFoundL = ({ component: Component, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        isAuth()
-          ?
-          (<Redirect to={{ pathname: "/" }} />)
-          :
-          (<Component {...props} />)
-      }
-    />
-  )
-}
 export {
   LoginRoute,
   RegisterRoute,
   LogoutRoute,
-  RegisterLogged,
-  LoginLogged,
-  ProfileLogged,
-  NotFoundL
 }

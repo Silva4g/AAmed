@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-import { IoMdArrowRoundBack } from 'react-icons/io';
+import { IoMdArrowRoundBack, IoMdArrowRoundForward } from 'react-icons/io';
 import { MdLocationOn } from 'react-icons/md';
 
 import api from '../../services/api';
@@ -13,14 +14,11 @@ export default function Profile(props) {
     const [phone, setPhone] = useState('');
     const [cnpj, setCnpj] = useState('');
     const [cnes, setCnes] = useState('');
-    const [id, setId] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [street, setStreet] = useState('');
     const [neighborhood, setNeighborhood] = useState('');
     const [cep, setCep] = useState('');
-    const [latitude, setLatitude] = useState('')
-    const [longitude, setLongitude] = useState('')
 
     const getHospital = async () => {
         if (localStorage.getItem('tk-hopt') !== null) {
@@ -33,14 +31,11 @@ export default function Profile(props) {
             setPhone(phone);
             setCnes(cnes);
             setCnpj(cnpj);
-            setId(_id);
             setCity(address.city);
             setState(address.state);
             setStreet(address.street);
             setNeighborhood(address.neighborhood);
             setCep(address.cep);
-            setLatitude(location.coordinates[1]);
-            setLongitude(location.coordinates[0]);
         } else {
             return null;
         }
@@ -68,21 +63,34 @@ export default function Profile(props) {
                     </div>
                 </div>
                 <div className="container-bottom">
-                    <h2>Informações de contato</h2>
+                    <h2>Veja abaixo suas informações :)</h2>
                     <div className="content-bottom">
                         <div>
                             <h2>Nome: </h2>
-                            <h2>Endereço: </h2>
+                            <h2>Bairro: </h2>
+                            <h2>Cidade: </h2>
+                            <h2>Estado: </h2>
+                            <h2>CEP: </h2>
                             <h2>E-mail: </h2>
                             <h2>CNES: </h2>
                             <h2>Cnpj: </h2>
+                            <h2>Telefone: </h2>
                         </div>
                         <div>
                             <h2>{name}</h2>
-                            <h2>{street}, {city} {state} - {cep}</h2>
+                            <h2>{neighborhood}</h2>
+                            <h2>{city}</h2>
+                            <h2>{state}</h2>
+                            <h2>{cep}</h2>
                             <h2>{email}</h2>
                             <h2>{cnes}</h2>
                             <h2>{cnpj}</h2>
+                            <h2>{phone}</h2>
+                        </div>
+                        <div className="edit-profile">
+                            <button>
+                                <Link to="/edit">Quero editar minhas informações</Link><IoMdArrowRoundForward size={20}/>
+                            </button>
                         </div>
                     </div>
                 </div>
