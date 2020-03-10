@@ -41,6 +41,7 @@ const HospitalSchema = new mongoose.Schema({
         index: '2dsphere'
     }
 });
+//antes de salvar no banco, faz um hash na senha do hospital (encriptando)
 HospitalSchema.pre('save', async function(next) {
     const hash = await bcrypt.hash(this.password, 10);
     this.password = hash;

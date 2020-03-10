@@ -14,7 +14,7 @@ export default function Login(props) {
   async function submit(e) {
     e.preventDefault()
     try {
-      await api.post('/loginHospital', {
+      await api.post('/login/hospital', {
         email,
         password
       }).then(response => {

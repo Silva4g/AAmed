@@ -104,7 +104,7 @@ export default function Register(props) {
   };
 
   async function goToHome() {
-    const response = await api.post('/loginHospital', { email, password });
+    const response = await api.post('/login/hospital', { email, password });
     localStorage.setItem('tk-hopt', response.data.token);
     await api.get('/home', { headers: { Authorization: `Bearer ${response.data.token}` } });
     props.history.push('/');

@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth.json');
 
+//todas as verificações para o token do hospital
 module.exports = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
@@ -20,8 +21,7 @@ module.exports = (req, res, next) => {
     jwt.verify(token, authConfig.secret, (err, decoded) => {
         if (err) return res.status(401).send({ error: 'Token inválido' });
 
-        req.hospitalId = decoded.id;
-
+        req.hospitalId = decoded.id;//se der certo ele trará o token e continuará
         return next();
     })
 };

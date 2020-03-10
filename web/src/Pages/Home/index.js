@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import SlideShow from "../../components/Slide/index";
+import SlideShow from "../../components/Slide";
 
 import sus from "../../assets/sus.png";
 import sebrae from "../../assets/sebrae.png";
@@ -9,45 +9,37 @@ import unicamp from "../../assets/unicamp.png";
 
 import isLogged from '../../utils/logged';
 
-import Sidebar from "../../components/Logged";
+import Logged from "../Logged";
 
 import './styles.css';
 import api from '../../services/api';
 
 export default function Home() {
-  document.title = "1° Socorros"
-
-  //const [name, setName] = useState('');
-  //const [email, setEmail] = useState('');
+  document.title = "1° Socorros";
   const [hospital, setHospital] = useState({});
 
   const token = localStorage.getItem('tk-hopt');
-  useEffect(() => {
+
+  useEffect(() => {//quando a pagina alterar o token, a função é chamada
    getData()
   }, [token]);
 
   async function getData() {
-
     if (token) {
       await api.get('/home', {
         headers: { Authorization: `Bearer ${token}` }
       })
-        .then(response => {
-          setHospital(response.data);
-        })
-        .catch(exp => {
-          console.log(exp);
-        })
+        .then(response => {})
+        .catch(exp => {console.log(exp);})
     } else {
       return null;
     }
-
   } 
 
   return (
     isLogged() ?
       <>
-        <Sidebar hospital={hospital} />
+        <Logged />
       </>
       :
       <>
