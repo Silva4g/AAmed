@@ -6,7 +6,7 @@ const SearchHospital = require('./controllers/SearchHospital');
 const SupportController = require('./controllers/SupportController');
 const HomeController = require('./controllers/HomeController');
 const authConfig = require('./middleware/auth');
-const multer = require('multer');
+const multer = require('multer'); //envio de arquivos
 const multerConfig = require('./config/multer');
 
 const routes = Router();
@@ -20,7 +20,7 @@ routes.delete('/hospital/:id', HospitalController.destroy); // Delete
 //route update hospital
 routes.put('/hospital/:id', HospitalController.update); //Atualizar/Editar
 // route auth hospital
-routes.post('/loginHospital', HospitalController.login);
+routes.post('/login/hospital', HospitalController.login);
 
 //route 10km distance hospital from user
 routes.get('/search', SearchHospital.index);
@@ -28,7 +28,7 @@ routes.get('/search', SearchHospital.index);
 //route register users
 routes.post('/user', multer(multerConfig).single('avatar'), UserController.store);
 //route auth user
-routes.post('/loginUser', UserController.login);
+routes.post('/login/user', UserController.login);
 //route get all users
 routes.get('/user', UserController.index);
 //route delete user
@@ -43,7 +43,7 @@ routes.get('/support', SupportController.index);
 //route delete support
 routes.delete('/support/:id', SupportController.destroy);
 
-//route logged
+//route hospital logged
 routes.get('/home', authConfig, HomeController.home);
 
 module.exports = routes;

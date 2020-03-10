@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+//tipo de dado para salbar as cordenadas (lat, long)
 const PointSchema = new mongoose.Schema({
   type: {
     type: String,

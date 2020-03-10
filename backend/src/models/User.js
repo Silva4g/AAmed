@@ -21,24 +21,23 @@ const UserSchema = new mongoose.Schema({
         required: true,
     },
     susCard: {
-        //tem 15 numeros
         type: String,
         required: true,
         unique: true,
     },
-    url:{
-        type:String,
+    url: {
+        type: String,
     },
     key: {
         type: String,
     }
 });
 
-//antes de salvar no banco, faz um hash na senha para encriptar
-UserSchema.pre('save', async function(next) {
-    if(this.url === ''){
+UserSchema.pre('save', async function (next) {
+    if (this.url === '') {//se a imagem não for salva no awss3, será salvo no local e trará essa url:
         this.url = `http://localhost:3333/files/${this.key}`;
     }
+    //antes de salvar no banco, faz um hash na senha para encriptar
     const hash = await bcrypt.hash(this.password, 10);
     this.password = hash;
     next();

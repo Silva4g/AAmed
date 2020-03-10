@@ -1,7 +1,7 @@
 const Support = require('../models/Support');
 
 module.exports = {
-    async store(req, res) {
+    async store(req, res) { //cadastrar uma critica
         try {
             const { email, subject, description } = req.body;
 
@@ -19,16 +19,15 @@ module.exports = {
         }
 
     },
-    async index(req, res) {
+    async index(req, res) { //trazer todas as criticas
         try {
             const support = await Support.find();
-            //user.password = undefined;
             return res.json(support);
         } catch (err) {
             return res.status(400).send({ error: 'Falha na listagem' })
         }
     },
-    async destroy(req, res) {
+    async destroy(req, res) { //apagar critica
         try {
             await Support.findOneAndDelete(req.params.id);
             return res.send();
