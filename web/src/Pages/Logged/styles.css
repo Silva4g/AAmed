@@ -1,15 +1,17 @@
 .container-logged{
     background-color: #edecec;
     display: grid;
-    grid-template-columns:1fr 2fr 2fr;
+    grid-template-columns:1fr 3fr 3fr;
     grid-template-areas:"a b b"
                         "a c d"
                         "a c d";
-    grid-template-rows: 20vh 70vh 10vh;
+    grid-template-rows: 7vh 85vh 10vh;
+    grid-row-gap: 50px;
+    margin-bottom: 50px;
 }
 aside{
     width:320px;
-    height: 100vh;
+    height: 115vh;
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -49,9 +51,8 @@ aside img{
     box-shadow: -7px 0px 11px rgba(0,0,0,.4)
 }
 .menu-logado {
-    float: top;
-    background-color: green;
-    height: 100px;
+    background-color: #0d9ddb;
+    height: 43px;
     width: 100%;
     align-content: center;
     grid-area: b;
@@ -60,28 +61,31 @@ aside img{
     font-family: arial, sans-serif;
     /*border-collapse: collapse;*/
     width: 100%;
+    border: none;
 }
 .menu-logado th {
-    border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
     text-align: center;
+
 }
 .menu-logado button {
     font-size: 20px;
     text-decoration: white;
 }
 button {
-    background-color: green;
+    background-color: #0d9ddb;
     border: none;
 }
 .espera {
     grid-area: c;
-    background-color: yellow;
+    background-color: rgb(233, 233, 233);
+    border-right-style: solid;
+    border-width: 1px;
     /*height: 300px;*/
 }
 .atendimento {
     grid-area: d;
-    background-color: tomato;
+    background-color: rgb(255, 255, 255);
     /*height: 300px;*/
 }

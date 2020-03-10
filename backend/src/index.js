@@ -7,7 +7,7 @@ const routes = require('./routes');
 const path = require('path');
 
 const app = express();
-
+//conexão com o banco de dados mongo local
 mongoose.connect("mongodb://localhost:27017/tcc", {
     useUnifiedTopology: true,
     useNewUrlParser: true,
@@ -15,8 +15,11 @@ mongoose.connect("mongodb://localhost:27017/tcc", {
 
 
 app.use(cors());
+//uso do json para envio e recebimento de dados
 app.use(express.json());
+//url de fotos
 app.use('/files', express.static(path.resolve(__dirname, '..', 'tmp', 'uploads')));
 app.use(routes);
+//log de requisições http
 app.use(morgan('dev'));
 app.listen(3333);

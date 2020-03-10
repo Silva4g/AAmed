@@ -1,4 +1,4 @@
-# 1 Socorros
+# 1º Socorros
 
 # INDICE
  - [Instalações necessarias](#instalacoes) - todas as aplicações usadas na nossa plataforma.
