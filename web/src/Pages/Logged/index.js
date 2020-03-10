@@ -7,7 +7,7 @@ import { FaUserCircle, FaList } from 'react-icons/fa';
 
 import './styles.css';
 
-export default function Sidebar({ hospital }) {
+export default function Logged() {
   return (
     <div className="container-logged">
       <aside className="grid">

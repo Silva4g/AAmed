@@ -19,20 +19,4 @@ module.exports = {
         }
 
     },
-    async index(req, res) { //trazer todas as criticas
-        try {
-            const support = await Support.find();
-            return res.json(support);
-        } catch (err) {
-            return res.status(400).send({ error: 'Falha na listagem' })
-        }
-    },
-    async destroy(req, res) { //apagar critica
-        try {
-            await Support.findOneAndDelete(req.params.id);
-            return res.send();
-        } catch (err) {
-            return res.status(400).send({ error: 'Falha na remoção' })
-        }
-    }
 }
