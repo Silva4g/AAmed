@@ -4,6 +4,10 @@ const generateToken = require('../utils/generateToken');
 const cep = require('cep-promise');
 
 module.exports = {
+    async index(req, res){
+        const hospitais = await Hospital.find();
+        return res.send(hospitais);
+    },
     async store(req, res) { //cadastro de hospital
         const { email, password, latitude, longitude, name, phone, cnpj, cnes, cep_hospital } = req.body;
 

@@ -17,6 +17,7 @@ routes.post('/hospital', HospitalController.store);
 routes.put('/hospital/:id', HospitalController.update);
 // route auth hospital
 routes.post('/login/hospital', HospitalController.login);
+routes.get('/hospital', HospitalController.index);
 
 //route 10km distance hospital from user
 routes.get('/search', SearchHospital.index);
