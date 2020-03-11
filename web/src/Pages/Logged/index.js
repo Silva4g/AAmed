@@ -42,23 +42,27 @@ export default function Logged() {
       </div>
       <div className="menu-logado">
         <table>
+          {/** ENFEITAR OS SPANS POIS SÃO BOTÕES PARA 
+           * RENDERIZAR A MESMA PAGINA **/}
           <tr>
             <th>
               <span>Pacientes</span>
             </th>
             <th>
-              <span>leitos</span>
+              <span>Leitos</span>
             </th>
             <th>
-              <span>medicos</span>
+              <span>Medicos</span>
             </th>
           </tr>
         </table>
       </div>
       <div className="espera">
-
+        <a>A caminho</a>
       </div>
-      <div className="atendimento"></div>
+      <div className="atendimento">
+        <a>Em atendimento</a>
+      </div>
     </div>
   );
 }
