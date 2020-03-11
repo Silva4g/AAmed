@@ -3,23 +3,21 @@ import { Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
 
-  /* image:{
-    flex: 1,
-    width: Dimensions.get('window').width,
-    height:450,
-    position:'relative'
-  }*/
-
-  textoLogin: {
-    //fontFamily:'helvetica',
-    color: '#dbfeff',
-    fontSize: 40,
-    alignSelf: 'center',
-    marginTop: 15
+  
+  containerBlue:{
+    flex: 2, 
+    backgroundColor: '#3498db', 
   },
 
-  div: {
-    paddingHorizontal: 30
+  content: {
+    paddingHorizontal: 30,
+  },
+
+  textoLogin: {
+    color: '#fff',
+    fontSize: 50,
+    alignSelf: 'center',
+    marginTop: 15
   },
 
   inputContainer: {
@@ -36,9 +34,36 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
   },
 
+  iconUser: {
+    color: 'black',
+    fontSize: 30,
+    position: 'absolute',
+    top: 25,
+    left: 7,
+    zIndex: 5,
+  },
+
+  iconLock: {
+    color: 'black',
+    fontSize: 30,
+    position: 'absolute',
+    top: 25,
+    left: 7,
+    zIndex: 5
+  },
+
+  iconEye: {
+    color: 'black',
+    fontSize: 30,
+    position: 'absolute',
+    top: 25,
+    right: 10,
+    zIndex: 5
+  },
+
   botaoEntrar: {
-    backgroundColor: '#ffffff',
-    marginTop: 20,
+    backgroundColor: '#fff',
+    marginTop: 30,
     width: 140,
     height: 60,
     alignItems: 'center',
@@ -52,33 +77,49 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
-
-
-  iconUser: {
-    color: 'black',
-    fontSize: 30,
-    position: 'absolute',
-    top: 15,
-    left: 7,
-    zIndex: 5,
+  esqueceuSenha:{
+    color:'#fff',
+    textAlign:'center',
+    marginTop:30,
+    fontSize:15,
   },
 
-  iconLock: {
-    color: 'black',
-    fontSize: 30,
-    position: 'absolute',
-    top: 15,
-    left: 7,
-    zIndex: 5
+  containerWhite:{
+    flex: 1,
+    display:'flex',
+    backgroundColor:'#fff',
+    alignItems:'center'
   },
 
-  iconEye: {
-    color: 'black',
-    fontSize: 30,
-    position: 'absolute',
-    top: 15,
-    right: 10,
-    zIndex: 5
+  textCadastre:{
+    color:'black',
+    textAlign:'center',
+    marginTop:30,
+    fontSize:15,
+  },
+
+  textEntreCom:{
+    color:'black',
+    textAlign:'center',
+    marginTop:10,
+    fontSize:15,
+  },
+
+  contentIcons:{
+    display:'flex',
+    flexDirection:'row',
+    marginTop:20,
+  },
+
+  iconGoogle: {
+    color: '#ff7171',
+    fontSize: 50,
+  },
+
+  iconFacebook: {
+    color: '#495d9e',
+    fontSize: 50,
+    marginLeft:40,
   },
 
 });

@@ -16,8 +16,8 @@ export default function Login() {
   return (
 
     <>
-      <View style={{ flex: 3, backgroundColor: '#3498db' }}>
-        <View style={styles.div}>
+      <View style={styles.containerBlue}>
+        <View style={styles.content}>
           <Text style={styles.textoLogin}>
             Login
           </Text>
@@ -25,7 +25,7 @@ export default function Login() {
           <View style={styles.inputContainer}>
             <Icon style={styles.iconUser} name="user" />
             <TextInput style={styles.input}
-              placeholder="Email"
+              placeholder="CPF"
               placeholderTextColor='white'
               backgroundColor='#72d2fb'
             //underlineColorAndroid='green' 
@@ -42,6 +42,7 @@ export default function Login() {
             />
           </View>
         </View>
+
         <TouchableOpacity style={styles.botaoEntrar}
           onPress={() => {
             navigation.navigate('Register');
@@ -49,13 +50,24 @@ export default function Login() {
         >
           <Text style={styles.txtBtEntrar}>Entrar</Text>
         </TouchableOpacity>
+
+        <Text style={styles.esqueceuSenha}>
+            Esqueceu a senha?
+        </Text>
       </View>
 
-      <View style={{ flex: 1 }}>
-        <Button title="Register" onPress={() => navigate('Register')} />
-        <Button title="ForgotPass" onPress={() => navigate('ForgotPassword')} />
-        <Button title="HomeUser" onPress={() => navigate('HomeUser')} />
+      <View style={styles.containerWhite}>
+        <Text style={styles.textCadastre}>
+              Não possui login? <Text style={{fontWeight:'bold', textDecorationLine:'underline'}}>Cadastre-se </Text>
+        </Text>
+        <Text style={styles.textEntreCom}>
+             ou entre com
+        </Text>
+      <View style={styles.contentIcons}>
+        <Icon name="google" style={styles.iconGoogle} />
+        <Icon name="facebook-square" style={styles.iconFacebook} />
       </View>
+    </View>
     </>
   );
 }
