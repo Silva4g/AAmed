@@ -1,15 +1,16 @@
 import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 
-// import ForgotPassword from './src/screens/ForgotPassword/index';
 import Routes from './src/routes';
 
 export default function App() {
   return (
     <>
-      <StatusBar hidden={false} barStyle="light-content" backgroundColor="#41bb78" />
-      <Routes />
-      {/* <ForgotPassword /> */}
+      <NavigationContainer>
+        <StatusBar hidden={false} barStyle="light-content" backgroundColor="#41bb78" />
+        <Routes />
+      </NavigationContainer>
     </>
   );
 }

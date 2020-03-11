@@ -1,15 +1,17 @@
 import React from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from '@react-navigation/native';
 import bolaLogin from "../../../assets/bolaLogin.png";
 
 import styles from './styles';
 
-export default function Login({ navigation }) {
+export default function Login() {
 
   // function goToForgot() {
   //   return props.navigate.navigation('ForgotPassword');
   // }
+  const { navigate } = useNavigation();
 
   return (
 
@@ -50,7 +52,9 @@ export default function Login({ navigation }) {
       </View>
 
       <View style={{ flex: 1 }}>
-
+        <Button title="Register" onPress={() => navigate('Register')} />
+        <Button title="ForgotPass" onPress={() => navigate('ForgotPassword')} />
+        <Button title="HomeUser" onPress={() => navigate('HomeUser')} />
       </View>
     </>
   );
