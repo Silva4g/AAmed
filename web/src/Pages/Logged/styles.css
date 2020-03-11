@@ -22,7 +22,9 @@ aside img{
     height: 100%;
     background-color: white;
 }
-
+.open-config{
+    display: none;
+}
 .items{
     width:100%;
     display: flex;
@@ -33,6 +35,16 @@ aside img{
     transition: .3s all;
     background-color: white;
 }
+
+.items span{
+    margin-left: 20px;
+    text-transform: uppercase;
+}
+.config label{
+    display: block;
+    margin-left: 20px;
+    text-transform: uppercase;
+}
 .items:hover{
     background-color: #e3e5e8;
 }
@@ -40,11 +52,43 @@ aside img{
     background-color:white;
     border-bottom: none;
 }
-.items span{
-    margin-left: 20px;
-    text-transform: uppercase;
+.hidden{
+    display: none;
 }
-
+.click{
+    cursor: pointer;
+}
+.info-config{
+    height: 0px;
+    display: none;
+    transition: .4s all;
+    margin-left: 40px;
+}
+.info-config a{
+    display: block;
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+    width:100%;
+    opacity: 0;
+    transition: opacity 1s all;
+    color:#0d9ddb;
+    transition: .4s all;
+}
+.info-config a:hover{
+    background-color: #0d9ddb;
+    color:#fff;
+}
+input:checked ~ .config{
+    background-color: aquamarine;
+}
+.items input:checked ~ .info-config{
+    display: block;
+    height: 130px;
+}
+.items input:checked ~ .info-config a{
+    opacity: 1;
+}
 .logout span{
     width: 80%;
     color:#fff;
@@ -52,7 +96,6 @@ aside img{
     padding: 15px;
     border-radius: 8px;
     background-color: #0d9ddb;
-
 }
 
 .menu-logado {
