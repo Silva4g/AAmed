@@ -10,7 +10,7 @@ import './styles.css';
 export default function Logged() {
   return (
     <div className="container-logged">
-      <aside className="grid">
+      <div className="grid">
         <img src={require('../../assets/hospital.jpg')} alt="" />
         <Link to="/profile" className="items">
           <FaUserCircle size={25} />
@@ -31,18 +31,18 @@ export default function Logged() {
         <Link to='/logout' className="items logout">
           <span>Sair</span>
         </Link>
-      </aside>
+      </div>
       <div className="menu-logado">
         <table>
           <tr>
             <th>
-              <button>pacientes</button>
+              <span>Pacientes</span>
             </th>
             <th>
-              <button>leitos</button>
+              <span>leitos</span>
             </th>
             <th>
-              <button>medicos</button>
+              <span>medicos</span>
             </th>
           </tr>
         </table>
