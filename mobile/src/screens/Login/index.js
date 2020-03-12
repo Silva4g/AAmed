@@ -1,9 +1,8 @@
 import React from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity, Button } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
 import bolaLogin from "../../../assets/bolaLogin.png";
-
 import styles from './styles';
 
 export default function Login() {
@@ -45,20 +44,33 @@ export default function Login() {
 
         <TouchableOpacity style={styles.botaoEntrar}
           onPress={() => {
-            navigation.navigate('Register');
+              navigate('HomeUser');
           }}
         >
-          <Text style={styles.txtBtEntrar}>Entrar</Text>
+          <Text style={styles.txtBtEntrar}>ENTRAR</Text>
         </TouchableOpacity>
 
-        <Text style={styles.esqueceuSenha}>
+        <Text style={styles.esqueceuSenha} 
+          onPress={() => {
+                navigate('ForgotPassword');
+            }}
+          >
             Esqueceu a senha?
         </Text>
       </View>
 
       <View style={styles.containerWhite}>
+
         <Text style={styles.textCadastre}>
-              Não possui login? <Text style={{fontWeight:'bold', textDecorationLine:'underline'}}>Cadastre-se </Text>
+        Não possui login? 
+          <Text 
+            style={{fontWeight:'bold', textDecorationLine:'underline'}} 
+            onPress={() => {
+              navigate('Register');
+            }}
+          >
+              Cadastre-se 
+          </Text>
         </Text>
         <Text style={styles.textEntreCom}>
              ou entre com

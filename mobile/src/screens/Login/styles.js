@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   
   containerBlue:{
     flex: 2, 
-    backgroundColor: '#3498db', 
+    backgroundColor: '#52c8fa', 
   },
 
   content: {
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 
   textoLogin: {
     color: '#fff',
-    fontSize: 50,
+    fontSize: 45,
     alignSelf: 'center',
     marginTop: 15
   },
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
 
   iconUser: {
-    color: 'black',
+    color: '#ffffff88',
     fontSize: 30,
     position: 'absolute',
     top: 25,
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   },
 
   iconLock: {
-    color: 'black',
+    color: '#ffffff88',
     fontSize: 30,
     position: 'absolute',
     top: 25,
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
 
   iconEye: {
-    color: 'black',
+    color: '#ffffff88',
     fontSize: 30,
     position: 'absolute',
     top: 25,
@@ -75,6 +75,8 @@ const styles = StyleSheet.create({
   txtBtEntrar: {
     fontSize: 15,
     textAlign: 'center',
+    fontWeight:'700',
+    color:'#595959',
   },
 
   esqueceuSenha:{
@@ -82,6 +84,7 @@ const styles = StyleSheet.create({
     textAlign:'center',
     marginTop:30,
     fontSize:15,
+    textDecorationLine:'underline',
   },
 
   containerWhite:{
@@ -92,14 +95,14 @@ const styles = StyleSheet.create({
   },
 
   textCadastre:{
-    color:'black',
+    color: '#939393',
     textAlign:'center',
     marginTop:30,
     fontSize:15,
   },
 
   textEntreCom:{
-    color:'black',
+    color: '#939393',
     textAlign:'center',
     marginTop:10,
     fontSize:15,
@@ -113,12 +116,13 @@ const styles = StyleSheet.create({
 
   iconGoogle: {
     color: '#ff7171',
-    fontSize: 50,
+    fontSize: 42
+    ,
   },
 
   iconFacebook: {
     color: '#495d9e',
-    fontSize: 50,
+    fontSize: 42,
     marginLeft:40,
   },
 
