@@ -5,7 +5,7 @@ const cep = require('cep-promise');
 
 module.exports = {
     async index(req, res){
-        const hospitais = await Hospital.find();
+        const hospitais = await Hospital.find({}, '-_id').select('+password');
         return res.send(hospitais);
     },
     async store(req, res) { //cadastro de hospital

@@ -22,7 +22,7 @@ export default function Profile(props) {
 
     const getHospital = async () => {
         if (localStorage.getItem('tk-hopt') !== null) {
-            const response = await api.get('/home', {
+            const response = await api.get('/hospital/home', {
                 headers: { Authorization: `Bearer ${localStorage.getItem('tk-hopt')}` }
             });
             const { cnes, cnpj, name, email, _id, phone, address } = response.data;

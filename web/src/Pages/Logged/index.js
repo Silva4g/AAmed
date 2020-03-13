@@ -16,7 +16,7 @@ export default function Logged() {
           <FaUserCircle size={25} />
           <span>Perfil</span>
         </Link>
-        <a className="items config">
+        <a className="config">
           <IoMdSettings size={25} />
           <input type="checkbox" className="hidden" id="toggle" />
           <label htmlFor="toggle" className="click">Configurações</label>
