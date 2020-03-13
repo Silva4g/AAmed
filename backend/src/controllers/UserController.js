@@ -19,8 +19,8 @@ module.exports = {
                 cpf,
                 bio,
                 susCard,
-                url,
-                key
+                // url,
+                // key
             });
             user.password = undefined; //não trazer a senha quando cadastrar
             return res.json({

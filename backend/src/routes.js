@@ -32,7 +32,8 @@ routes.put('/user/:id', UserController.update);
 //route register a support
 routes.post('/support', SupportController.store);
 
-//route hospital logged
-routes.get('/home', authConfig, HomeController.home);
+//route hospital logged and user logged
+routes.get('/hospital/home', authConfig.hospital, HomeController.home);
+routes.get('/user/home', authConfig.user, HomeController.home);
 
 module.exports = routes;
