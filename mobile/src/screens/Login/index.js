@@ -33,7 +33,7 @@ export default function Login() {
               style={styles.input}
               placeholder="CPF"
               backgroundColor="#72d2fb"
-              placeholderTextColor="black"
+              placeholderTextColor="#000"
               //underlineColorAndroid='green'
             />
           </View>
@@ -44,7 +44,7 @@ export default function Login() {
             <TextInput
               style={styles.input}
               placeholder="Senha"
-              placeholderTextColor="black"
+              placeholderTextColor="#000"
               backgroundColor="#72d2fb"
             />
           </View>

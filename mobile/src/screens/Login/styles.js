@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 16,
     paddingHorizontal: 40,
-    color:'#ffffff'
+    color:'#000'
   },
 
   iconUser: {
