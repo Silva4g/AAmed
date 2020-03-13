@@ -16,7 +16,7 @@ export default function Routes() {
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-      <Stack.Screen name="HomeUser" component={HomeUserRoutes} />
+      <Stack.Screen name="HomeUser" options={{headerShown: false}} component={HomeUserRoutes} />
     </Stack.Navigator>
   );
 }
