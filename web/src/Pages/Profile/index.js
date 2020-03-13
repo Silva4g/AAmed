@@ -9,7 +9,6 @@ import './styles.css';
 export default function Profile(props) {
 
     const [name, setName] = useState('');
-    const [id, setId] = useState(null);
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [cnpj, setCnpj] = useState('');
@@ -25,8 +24,7 @@ export default function Profile(props) {
             const response = await api.get('/hospital/home', {
                 headers: { Authorization: `Bearer ${localStorage.getItem('tk-hopt')}` }
             });
-            const { cnes, cnpj, name, email, _id, phone, address } = response.data;
-            setId(_id);
+            const { cnes, cnpj, name, email, phone, address } = response.data;
             setName(name);
             setEmail(email);
             setPhone(phone);
@@ -81,7 +79,6 @@ export default function Profile(props) {
                         <h2>Veja abaixo suas informações :)</h2>
                         <div className="content-bottom">
                             <div>
-                                <h2>Id: </h2>
                                 <h2>Nome: </h2>
                                 <h2>Bairro: </h2>
                                 <h2>Rua: </h2>
@@ -94,7 +91,6 @@ export default function Profile(props) {
                                 <h2>Telefone: </h2>
                             </div>
                             <div>
-                                <h2>{id}</h2>
                                 <h2>{name}</h2>
                                 <h2>{neighborhood}</h2>
                                 <h2>{street}</h2>
