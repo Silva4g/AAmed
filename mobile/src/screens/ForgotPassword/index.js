@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 
 import styles from './styles';
 
@@ -19,10 +20,10 @@ export default function ForgotPasword() {
             <Text style={styles.textOne}>Esqueceu a senha?</Text>
             <Text style={styles.textTwo}>Informe seu email:</Text>
             <View style={styles.inputContainer}>
-              <Icon
+              <SimpleLineIcons
                 name={'user'}
-                size={28}
-                color={'#ffffff88'}
+                size={25}
+                color={'#333333'}
                 style={styles.icon}
               />
               <TextInput
@@ -30,7 +31,7 @@ export default function ForgotPasword() {
                 placeholder="Email"
                 keyboardType="email-address"
                 autoCapitalize="none"
-                placeholderTextColor="#ffffff88"
+                placeholderTextColor="#000"
                 selectionColor="#ffffff77"
                 underlineColorAndroid="transparent"
                 value={email}

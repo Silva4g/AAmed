@@ -8,7 +8,7 @@ module.exports = {
         try {
             const { name, password, susCard, cpf, bio } = req.body;
 
-            const { location: url = "", key } = req.file;
+            //const { location: url = "", key } = req.file;
             //verificar se tem no banco
             if (await User.findOne({ cpf, susCard })) return res.status(400).send({ error: 'Usuário existente' })
             if (await User.findOne({ susCard })) return res.status(400).send({ error: 'Usuário existente' })

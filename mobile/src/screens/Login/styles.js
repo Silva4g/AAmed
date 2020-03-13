@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Dimensions } from 'react-native';
+//import { Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
 
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 45,
     alignSelf: 'center',
-    marginTop: 15
+    marginTop: 50
   },
 
   inputContainer: {
@@ -32,11 +32,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 16,
     paddingHorizontal: 40,
+    color:'#000'
   },
 
   iconUser: {
-    color: '#ffffff88',
-    fontSize: 30,
+    color: '#333333',
+    fontSize: 25,
     position: 'absolute',
     top: 25,
     left: 7,
@@ -44,8 +45,8 @@ const styles = StyleSheet.create({
   },
 
   iconLock: {
-    color: '#ffffff88',
-    fontSize: 30,
+    color: '#333333',
+    fontSize: 25,
     position: 'absolute',
     top: 25,
     left: 7,
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
   },
 
   iconEye: {
-    color: '#ffffff88',
+    color: '#333333',
     fontSize: 30,
     position: 'absolute',
     top: 25,
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
   esqueceuSenha:{
     color:'#fff',
     textAlign:'center',
-    marginTop:30,
+    padding: 15,
     fontSize:15,
     textDecorationLine:'underline',
   },

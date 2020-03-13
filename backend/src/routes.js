@@ -23,7 +23,7 @@ routes.get('/hospital', HospitalController.index);
 routes.get('/search', SearchHospital.index);
 
 //route register users
-routes.post('/user', multer(multerConfig).single('avatar'), UserController.store);
+routes.post('/user'/*, multer(multerConfig).single('avatar')*/, UserController.store);
 //route auth user
 routes.post('/login/user', UserController.login);
 //route update user
