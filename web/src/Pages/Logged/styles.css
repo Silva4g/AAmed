@@ -79,14 +79,11 @@ aside img{
     background-color: #0d9ddb;
     color:#fff;
 }
-input:checked ~ .config{
-    background-color: aquamarine;
-}
-.items input:checked ~ .info-config{
+input:checked ~ .info-config{
     display: block;
     height: 130px;
 }
-.items input:checked ~ .info-config a{
+input:checked ~ .info-config a{
     opacity: 1;
 }
 .logout span{
