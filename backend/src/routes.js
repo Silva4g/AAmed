@@ -13,6 +13,7 @@ routes.post('/hospital', HospitalController.store);
 routes.put('/hospital/:id', HospitalController.update);
 // route auth hospital
 routes.post('/login/hospital', HospitalController.login);
+//all hospitals
 routes.get('/hospital', HospitalController.index);
 
 //route 10km distance hospital from user
@@ -24,6 +25,8 @@ routes.post('/user'/*, multer(multerConfig).single('avatar')*/, UserController.s
 routes.post('/login/user', UserController.login);
 //route update user
 routes.put('/user/:id', UserController.update);
+//all users
+routes.get('/user', UserController.index);
 
 //route register a support
 routes.post('/support', SupportController.store);

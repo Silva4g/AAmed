@@ -3,6 +3,11 @@ const bcrypt = require('bcryptjs');
 const generateToken = require('../utils/generateToken');
 
 module.exports = {
+    //listar usuarios
+    async index(req, res) {
+        const users = await User.find({}, '-_id');
+        return res.send(users);
+    }, 
     //cadastro de usuarios
     async store(req, res) {
         try {
