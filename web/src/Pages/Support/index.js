@@ -80,19 +80,19 @@ export default function Support() {
         <div className="line"></div>
         <div className="support-user">
           <div>
-            <img src={require('../../assets/computer.png')} alt="" srcset="" />
+            <img src={require('../../assets/computer.png')} alt=""/>
             <span>Sistema e design</span>
           </div>
           <div>
-            <img src={require('../../assets/engine.png')} alt="" srcset="" />
+            <img src={require('../../assets/engine.png')} alt=""/>
             <span>Nossas funcionalidades</span>
           </div>
           <div>
-            <img src={require('../../assets/comunication.png')} alt="" srcset="" />
+            <img src={require('../../assets/comunication.png')} alt=""/>
             <span>Ajude-nos a melhorar.</span>
           </div>
           <div>
-            <img src={require('../../assets/user.png')} alt="" srcset="" />
+            <img src={require('../../assets/user.png')} alt=""/>
             <span>Contas e usuários</span>
           </div>
         </div>

@@ -1,10 +1,6 @@
 const { Router } = require('express');
 
-const HospitalController = require('./controllers/HospitalController');
-const UserController = require('./controllers/UserController');
-const SearchHospital = require('./controllers/SearchHospital');
-const SupportController = require('./controllers/SupportController');
-const HomeController = require('./controllers/HomeController');
+const { HomeController, HospitalController, SearchHospital, SupportController, UserController } = require('./controllers');
 const authConfig = require('./middleware/auth');
 const multer = require('multer'); //envio de arquivos
 const multerConfig = require('./config/multer');

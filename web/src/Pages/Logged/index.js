@@ -16,7 +16,7 @@ export default function Logged() {
           <FaUserCircle size={25} />
           <span>Perfil</span>
         </Link>
-        <a className="config">
+        <span className="config">
           <IoMdSettings size={25} />
           <input type="checkbox" className="hidden" id="toggle" />
           <label htmlFor="toggle" className="click">Configurações</label>
@@ -27,7 +27,7 @@ export default function Logged() {
               <Link to="/deleteaccount">Excluir conta</Link>
             </ul>
           </div>
-        </a>
+        </span>
         <Link to="/hospitals" className="items">
           <FaList size={25} />
           <span>Hospitais</span>
@@ -42,26 +42,28 @@ export default function Logged() {
       </div>
       <div className="menu-logado">
         <table>
-          {/** ENFEITAR OS SPANS POIS SÃO BOTÕES PARA 
+          <tbody>
+            {/** ENFEITAR OS SPANS POIS SÃO BOTÕES PARA 
            * RENDERIZAR A MESMA PAGINA **/}
-          <tr>
-            <th>
-              <span>Pacientes</span>
-            </th>
-            <th>
-              <span>Leitos</span>
-            </th>
-            <th>
-              <span>Medicos</span>
-            </th>
-          </tr>
+            <tr>
+              <th>
+                <span>Pacientes</span>
+              </th>
+              <th>
+                <span>Leitos</span>
+              </th>
+              <th>
+                <span>Medicos</span>
+              </th>
+            </tr>
+          </tbody>
         </table>
       </div>
       <div className="espera">
-        <a>A caminho</a>
+        <span>A caminho</span>
       </div>
       <div className="atendimento">
-        <a>Em atendimento</a>
+        <span>Em atendimento</span>
       </div>
     </div>
   );

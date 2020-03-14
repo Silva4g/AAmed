@@ -1,28 +1,13 @@
-import React, {useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import "./App.css";
-import Menu from "./components/Menu/index";
-import Rodape from "./components/Rodape/index";
-import defaults from './Pages/index';
-import Logout from "./Pages/Logout";
+import {Menu, Rodape} from "./components";
+import {About, Edit, Home, Login, Logout, NotFound, Profile, Register, Support} from './Pages';
 import { LoginRoute, RegisterRoute } from './auth';
 import isLogged from './utils/logged';
-import Profile from "./Pages/Profile";
-import { useEffect } from "react";
-import { useState } from "react";
-
-const { Home, Support, About, Login, Register, NotFound, Edit } = defaults;
-
 
 export default function App() {
-
-  const [menu, setMenu] = useState(false);
-
-  useEffect(() => {
-    isLogged() ? setMenu(false) : setMenu(true)
-  }, [isLogged()]);
-
   return (
     <Router>
       {isLogged() ? '' : <Menu />}

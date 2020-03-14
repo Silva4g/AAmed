@@ -5,9 +5,7 @@ import Support from './Support';
 import Login from './Login';
 import NotFound from './NotFound';
 import Edit from './Edit';
+import Logout from './Logout';
+import Profile from './Profile';
 
-const defaults = {
-    Home, About, Register, Support, Login, NotFound, Edit
-}
-
-export default defaults;
+export { Home, About, Register, Support, Login, NotFound, Edit, Logout, Profile };

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import logo from "../../assets/logo.png";
 import "./styles.css";
-import isLogged from '../../utils/logged';
 import $ from 'jquery';
 import { findDOMNode } from 'react-dom';
 
