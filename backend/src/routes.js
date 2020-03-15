@@ -15,6 +15,8 @@ routes.put('/hospital/:id', HospitalController.update);
 routes.post('/login/hospital', HospitalController.login);
 //all hospitals
 routes.get('/hospital', HospitalController.index);
+//delete hospital
+routes.delete('/hospital/:id', HospitalController.destroy);
 
 //route 10km distance hospital from user
 routes.get('/search', SearchHospital.index);

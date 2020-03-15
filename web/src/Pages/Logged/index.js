@@ -6,8 +6,21 @@ import { AiFillMedicineBox } from 'react-icons/ai';
 import { FaUserCircle, FaList } from 'react-icons/fa';
 
 import './styles.css';
+import { useEffect } from 'react';
 
 export default function Logged() {
+
+  let click = React.createRef();
+  let changeColor = React.createRef();
+
+  useEffect(() => {
+    const evt = click.current;
+    const cc = changeColor.current;
+    evt.addEventListener('click', () => {
+      cc.classList.toggle('bgcolorClick');
+    });
+  }, [changeColor, click]);
+
   return (
     <div className="container-logged">
       <div className="grid">
@@ -17,11 +30,11 @@ export default function Logged() {
           <span>Perfil</span>
         </Link>
         <span className="config">
-          <IoMdSettings size={25} />
-          <input type="checkbox" className="hidden" id="toggle" />
-          <label htmlFor="toggle" className="click">Configurações</label>
-          <div className="info-config">
-            <ul>
+          <div ref={changeColor}>
+            <IoMdSettings size={25} />
+            <input type="checkbox" className="hidden" id="toggle" />
+            <label htmlFor="toggle" className="click" ref={click}>Configurações</label>
+            <ul className="info-config">
               <Link to="/update">Atualizar</Link>
               <Link to="/changepassword">Trocar senha</Link>
               <Link to="/deleteaccount">Excluir conta</Link>
