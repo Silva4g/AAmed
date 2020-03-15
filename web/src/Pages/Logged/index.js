@@ -56,8 +56,6 @@ export default function Logged() {
       <div className="menu-logado">
         <table>
           <tbody>
-            {/** ENFEITAR OS SPANS POIS SÃO BOTÕES PARA 
-           * RENDERIZAR A MESMA PAGINA **/}
             <tr>
               <th>
                 <span>Pacientes</span>

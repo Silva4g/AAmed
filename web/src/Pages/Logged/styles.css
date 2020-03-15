@@ -128,13 +128,39 @@ input:checked ~ .info-config a{
     text-align: left;
     padding: 8px;
     text-align: center;
-
+    position: relative;
+    overflow: hidden;
 }
 .menu-logado span {
     font-size: 45px;
     color: white;
 }
-
+.menu-logado th::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: calc(-100% + 4px);
+    width:100%;
+    height: 100%;
+    background: #000;
+    transition: .6s ease-in-out;
+}
+.menu-logado th:hover::before{
+    bottom: 0;
+}
+.menu-logado th:nth-child(1):before{
+    background: #ff56ac;
+}
+.menu-logado th:nth-child(2):before{
+    background: #1bcaff;
+}
+.menu-logado th:nth-child(3):before{
+    background: #e33cff;
+}
+.menu-logado span{
+    position: relative;
+    z-index: 2;
+}
 .espera {
     grid-area: c;
     background-color: rgba(255, 255, 255, 1);
