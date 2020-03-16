@@ -3,7 +3,6 @@ import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'r
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 
-import styles from './styles';
 
 export default function ForgotPasword() {
   const [email, setEmail] = useState('');

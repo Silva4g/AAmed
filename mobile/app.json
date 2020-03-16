@@ -5,7 +5,8 @@
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "androidStatusBar": {
-      "backgroundColor": "#000"
+      "barStyle": "dark-content",
+      "backgroundColor": "#00000000"
     },
     "platforms": [
       "ios",

@@ -1,14 +1,16 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 //import { Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
-
-  
   containerBlue:{
-    flex: 2, 
+    height: Dimensions.get('window').height * 3/4,
     backgroundColor: '#52c8fa', 
   },
-
+  containerWhite:{
+    flex:1,
+    backgroundColor:'#fff',
+    alignItems:'center',
+  },
   content: {
     paddingHorizontal: 30,
   },
@@ -27,7 +29,7 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    flex: 1,
+    width: '100%',
     height: 44,
     marginTop: 20,
     fontSize: 16,
@@ -87,14 +89,6 @@ const styles = StyleSheet.create({
     fontSize:15,
     textDecorationLine:'underline',
   },
-
-  containerWhite:{
-    flex: 1,
-    display:'flex',
-    backgroundColor:'#fff',
-    alignItems:'center'
-  },
-
   textCadastre:{
     color: '#939393',
     textAlign:'center',
@@ -110,15 +104,13 @@ const styles = StyleSheet.create({
   },
 
   contentIcons:{
-    display:'flex',
     flexDirection:'row',
     marginTop:20,
   },
 
   iconGoogle: {
     color: '#ff7171',
-    fontSize: 42
-    ,
+    fontSize: 42,
   },
 
   iconFacebook: {
