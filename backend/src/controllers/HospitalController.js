@@ -5,7 +5,7 @@ const cep = require('cep-promise');
 
 module.exports = {
     async index(req, res){
-        const hospitais = await Hospital.find();
+        const hospitais = await Hospital.find({}, '-_id -address -email -location');
         return res.send(hospitais);
     },
     async store(req, res) { //cadastro de hospital
@@ -91,4 +91,12 @@ module.exports = {
             return res.status(400).send({ error: 'Falha na atualização do hospital' })
         }
     },
+    async destroy(req, res) {
+        try{
+            await Hospital.findByIdAndDelete(req.params.id);
+            return res.send();
+        }catch(err){
+            
+        }
+    }
 }

@@ -40,29 +40,28 @@ aside img{
     margin-left: 20px;
     text-transform: uppercase;
 }
-.config label{
-    display: block;
-    margin-left: 20px;
-    text-transform: uppercase;
-}
-.items:hover{
+.config > div:hover{
     background-color: #e3e5e8;
 }
-.items:nth-child(6){
-    background-color:white;
-    border-bottom: none;
+.config > div{
+    padding: 22px;
+    color: #0d9ddb;
+    border-bottom: 1px solid #ccc;
+    transition: .3s all;
 }
-.hidden{
-    display: none;
+.config > div svg{
+    float: left;
 }
-.click{
-    cursor: pointer;
+.config label{
+    display: block;
+    margin-left: 45px;
+    text-transform: uppercase;
 }
 .info-config{
     height: 0px;
     display: none;
     transition: .4s all;
-    margin-left: 40px;
+    margin-top: 20px;
 }
 .info-config a{
     display: block;
@@ -79,15 +78,29 @@ aside img{
     background-color: #0d9ddb;
     color:#fff;
 }
-input:checked ~ .config{
-    background-color: aquamarine;
-}
-.items input:checked ~ .info-config{
+input:checked ~ .info-config{
     display: block;
     height: 130px;
 }
-.items input:checked ~ .info-config a{
+input:checked ~ .info-config a{
     opacity: 1;
+}
+.items:hover{
+    background-color: #e3e5e8;
+}
+
+.bgcolorClick{
+    background-color: #e3e5e8;
+}
+.items:nth-child(6){
+    background-color:white;
+    border-bottom: none;
+}
+.hidden{
+    display: none;
+}
+.click{
+    cursor: pointer;
 }
 .logout span{
     width: 80%;
@@ -115,13 +128,39 @@ input:checked ~ .config{
     text-align: left;
     padding: 8px;
     text-align: center;
-
+    position: relative;
+    overflow: hidden;
 }
 .menu-logado span {
     font-size: 45px;
     color: white;
 }
-
+.menu-logado th::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: calc(-100% + 4px);
+    width:100%;
+    height: 100%;
+    background: #000;
+    transition: .6s ease-in-out;
+}
+.menu-logado th:hover::before{
+    bottom: 0;
+}
+.menu-logado th:nth-child(1):before{
+    background: #ff56ac;
+}
+.menu-logado th:nth-child(2):before{
+    background: #1bcaff;
+}
+.menu-logado th:nth-child(3):before{
+    background: #e33cff;
+}
+.menu-logado span{
+    position: relative;
+    z-index: 2;
+}
 .espera {
     grid-area: c;
     background-color: rgba(255, 255, 255, 1);

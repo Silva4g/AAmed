@@ -1,12 +1,12 @@
 import { StyleSheet } from 'react-native';
-import { Dimensions } from 'react-native';
+//import { Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
 
   
   containerBlue:{
     flex: 2, 
-    backgroundColor: '#3498db', 
+    backgroundColor: '#52c8fa', 
   },
 
   content: {
@@ -15,9 +15,9 @@ const styles = StyleSheet.create({
 
   textoLogin: {
     color: '#fff',
-    fontSize: 50,
+    fontSize: 45,
     alignSelf: 'center',
-    marginTop: 15
+    marginTop: 50
   },
 
   inputContainer: {
@@ -32,11 +32,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 16,
     paddingHorizontal: 40,
+    color:'#000'
   },
 
   iconUser: {
-    color: 'black',
-    fontSize: 30,
+    color: '#333333',
+    fontSize: 25,
     position: 'absolute',
     top: 25,
     left: 7,
@@ -44,8 +45,8 @@ const styles = StyleSheet.create({
   },
 
   iconLock: {
-    color: 'black',
-    fontSize: 30,
+    color: '#333333',
+    fontSize: 25,
     position: 'absolute',
     top: 25,
     left: 7,
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
   },
 
   iconEye: {
-    color: 'black',
+    color: '#333333',
     fontSize: 30,
     position: 'absolute',
     top: 25,
@@ -75,13 +76,16 @@ const styles = StyleSheet.create({
   txtBtEntrar: {
     fontSize: 15,
     textAlign: 'center',
+    fontWeight:'700',
+    color:'#595959',
   },
 
   esqueceuSenha:{
     color:'#fff',
     textAlign:'center',
-    marginTop:30,
+    padding: 15,
     fontSize:15,
+    textDecorationLine:'underline',
   },
 
   containerWhite:{
@@ -92,14 +96,14 @@ const styles = StyleSheet.create({
   },
 
   textCadastre:{
-    color:'black',
+    color: '#939393',
     textAlign:'center',
     marginTop:30,
     fontSize:15,
   },
 
   textEntreCom:{
-    color:'black',
+    color: '#939393',
     textAlign:'center',
     marginTop:10,
     fontSize:15,
@@ -113,12 +117,13 @@ const styles = StyleSheet.create({
 
   iconGoogle: {
     color: '#ff7171',
-    fontSize: 50,
+    fontSize: 42
+    ,
   },
 
   iconFacebook: {
     color: '#495d9e',
-    fontSize: 50,
+    fontSize: 42,
     marginLeft:40,
   },
 

@@ -48,7 +48,7 @@ export default function Login(props) {
             <span>Faça login para continuar!</span>
           </div>
           <div>
-            <img src={require('../../assets/logo.png')} alt="" srcset="" />
+            <img src={require('../../assets/logo.png')} alt="" />
           </div>
         </div>
         <div className="content-form-login">

@@ -3,12 +3,17 @@ const bcrypt = require('bcryptjs');
 const generateToken = require('../utils/generateToken');
 
 module.exports = {
+    //listar usuarios
+    async index(req, res) {
+        const users = await User.find({}, '-_id');
+        return res.send(users);
+    }, 
     //cadastro de usuarios
     async store(req, res) {
         try {
             const { name, password, susCard, cpf, bio } = req.body;
 
-            const { location: url = "", key } = req.file;
+            //const { location: url = "", key } = req.file;
             //verificar se tem no banco
             if (await User.findOne({ cpf, susCard })) return res.status(400).send({ error: 'Usuário existente' })
             if (await User.findOne({ susCard })) return res.status(400).send({ error: 'Usuário existente' })
@@ -19,8 +24,8 @@ module.exports = {
                 cpf,
                 bio,
                 susCard,
-                url,
-                key
+                // url,
+                // key
             });
             user.password = undefined; //não trazer a senha quando cadastrar
             return res.json({

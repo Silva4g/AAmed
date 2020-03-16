@@ -1,13 +1,6 @@
-//import React, { Component } from 'react';
 import React, {  } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-const isAuth = () => {
-  if (localStorage.getItem('tk-hopt') !== null) {
-    return true;
-  }
-  return false;
-}
 const check = () => {
   var bool;
   var width = window.innerWidth;

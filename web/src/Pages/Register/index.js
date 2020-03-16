@@ -106,7 +106,7 @@ export default function Register(props) {
   async function goToHome() {
     const response = await api.post('/login/hospital', { email, password });
     localStorage.setItem('tk-hopt', response.data.token);
-    await api.get('/home', { headers: { Authorization: `Bearer ${response.data.token}` } });
+    await api.get('/hospital/home', { headers: { Authorization: `Bearer ${response.data.token}` } });
     props.history.push('/');
     window.location.reload();
   }
@@ -136,7 +136,7 @@ export default function Register(props) {
       <div className="wave wave2"></div>
       <div className="wave wave3"></div>
       <div className="container-register">
-        <div className="side">
+        <div className="side-register">
           <div>
             <h2>Olá! Faça o cadastro de seu hospital</h2>
             <span>Junte-se a nós e ajude a salvar o próximo!</span>
@@ -272,7 +272,7 @@ export default function Register(props) {
                   required
                   placeholder="Latitude"
                   className="coordinate"
-                  value={latitude || null}
+                  value={latitude || ''}
                   onChange={latitude => setLatitude(latitude.target.value)}
                 />
               </div>
@@ -283,7 +283,7 @@ export default function Register(props) {
                   placeholder="Longitude"
                   required
                   className="coordinate"
-                  value={longitude || null}
+                  value={longitude || ''}
                   onChange={longitude => setLongitude(longitude.target.value)}
                 />
               </div>

@@ -1,73 +1,94 @@
-import React from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity, Button } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { useNavigation } from '@react-navigation/native';
-import bolaLogin from "../../../assets/bolaLogin.png";
+import React from "react";
+import {
+  View,
+  Text,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  Button
+} from "react-native";
 
-import styles from './styles';
+import Icon from "react-native-vector-icons/FontAwesome5";
+import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import { useNavigation } from "@react-navigation/native";
+//import bolaLogin from "../../../assets/bolaLogin.png";
+import styles from "./styles";
 
 export default function Login() {
-
   // function goToForgot() {
   //   return props.navigate.navigation('ForgotPassword');
   // }
   const { navigate } = useNavigation();
 
   return (
-
     <>
       <View style={styles.containerBlue}>
         <View style={styles.content}>
-          <Text style={styles.textoLogin}>
-            Login
-          </Text>
+          <Text style={styles.textoLogin}>Login</Text>
 
           <View style={styles.inputContainer}>
-            <Icon style={styles.iconUser} name="user" />
-            <TextInput style={styles.input}
+            <SimpleLineIcons style={styles.iconUser} name="user" />
+            <TextInput
+              style={styles.input}
               placeholder="CPF"
-              placeholderTextColor='white'
-              backgroundColor='#72d2fb'
-            //underlineColorAndroid='green' 
+              backgroundColor="#72d2fb"
+              placeholderTextColor="#000"
+              //underlineColorAndroid='green'
             />
           </View>
 
           <View style={styles.inputContainer}>
-            <Icon style={styles.iconLock} name="lock" />
-            <Icon style={styles.iconEye} name="eye" />
-            <TextInput style={styles.input}
+            <SimpleLineIcons style={styles.iconLock} name="lock" />
+            <SimpleLineIcons style={styles.iconEye} name="eye" />
+            <TextInput
+              style={styles.input}
               placeholder="Senha"
-              placeholderTextColor='white'
-              backgroundColor='#72d2fb'
+              placeholderTextColor="#000"
+              backgroundColor="#72d2fb"
             />
           </View>
         </View>
 
-        <TouchableOpacity style={styles.botaoEntrar}
+        <TouchableOpacity
+          style={styles.botaoEntrar}
           onPress={() => {
-            navigation.navigate('Register');
+            navigate("HomeUser");
           }}
         >
-          <Text style={styles.txtBtEntrar}>Entrar</Text>
+          <Text style={styles.txtBtEntrar}>ENTRAR</Text>
         </TouchableOpacity>
 
-        <Text style={styles.esqueceuSenha}>
+        <View style={{width:200, alignSelf:'center'}}>
+          <Text
+            style={styles.esqueceuSenha}
+            onPress={() => {
+              navigate("ForgotPassword");
+            }}
+          >
             Esqueceu a senha?
-        </Text>
+          </Text>
+        </View>
       </View>
 
       <View style={styles.containerWhite}>
         <Text style={styles.textCadastre}>
-              Não possui login? <Text style={{fontWeight:'bold', textDecorationLine:'underline'}}>Cadastre-se </Text>
+          Não possui login?
+          <Text
+            style={{ fontWeight: "bold", textDecorationLine: "underline" }}
+            onPress={() => {
+              navigate("Register");
+            }}
+          >
+            Cadastre-se
+          </Text>
         </Text>
-        <Text style={styles.textEntreCom}>
-             ou entre com
-        </Text>
-      <View style={styles.contentIcons}>
-        <Icon name="google" style={styles.iconGoogle} />
-        <Icon name="facebook-square" style={styles.iconFacebook} />
+        <Text style={styles.textEntreCom}>ou entre com</Text>
+        <View style={styles.contentIcons}>
+          <Icon name="google" style={styles.iconGoogle} />
+          <Icon name="facebook-square" style={styles.iconFacebook} />
+        </View>
       </View>
-    </View>
     </>
   );
 }

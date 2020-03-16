@@ -6,8 +6,21 @@ import { AiFillMedicineBox } from 'react-icons/ai';
 import { FaUserCircle, FaList } from 'react-icons/fa';
 
 import './styles.css';
+import { useEffect } from 'react';
 
 export default function Logged() {
+
+  let click = React.createRef();
+  let changeColor = React.createRef();
+
+  useEffect(() => {
+    const evt = click.current;
+    const cc = changeColor.current;
+    evt.addEventListener('click', () => {
+      cc.classList.toggle('bgcolorClick');
+    });
+  }, [changeColor, click]);
+
   return (
     <div className="container-logged">
       <div className="grid">
@@ -16,18 +29,18 @@ export default function Logged() {
           <FaUserCircle size={25} />
           <span>Perfil</span>
         </Link>
-        <a className="items config">
-          <IoMdSettings size={25} />
-          <input type="checkbox" className="hidden" id="toggle" />
-          <label htmlFor="toggle" className="click">Configurações</label>
-          <div className="info-config">
-            <ul>
+        <span className="config">
+          <div ref={changeColor}>
+            <IoMdSettings size={25} />
+            <input type="checkbox" className="hidden" id="toggle" />
+            <label htmlFor="toggle" className="click" ref={click}>Configurações</label>
+            <ul className="info-config">
               <Link to="/update">Atualizar</Link>
               <Link to="/changepassword">Trocar senha</Link>
               <Link to="/deleteaccount">Excluir conta</Link>
             </ul>
           </div>
-        </a>
+        </span>
         <Link to="/hospitals" className="items">
           <FaList size={25} />
           <span>Hospitais</span>
@@ -42,26 +55,26 @@ export default function Logged() {
       </div>
       <div className="menu-logado">
         <table>
-          {/** ENFEITAR OS SPANS POIS SÃO BOTÕES PARA 
-           * RENDERIZAR A MESMA PAGINA **/}
-          <tr>
-            <th>
-              <span>Pacientes</span>
-            </th>
-            <th>
-              <span>Leitos</span>
-            </th>
-            <th>
-              <span>Medicos</span>
-            </th>
-          </tr>
+          <tbody>
+            <tr>
+              <th>
+                <span>Pacientes</span>
+              </th>
+              <th>
+                <span>Leitos</span>
+              </th>
+              <th>
+                <span>Medicos</span>
+              </th>
+            </tr>
+          </tbody>
         </table>
       </div>
       <div className="espera">
-        <a>A caminho</a>
+        <span>A caminho</span>
       </div>
       <div className="atendimento">
-        <a>Em atendimento</a>
+        <span>Em atendimento</span>
       </div>
     </div>
   );
