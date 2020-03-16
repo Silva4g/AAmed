@@ -1,40 +1,51 @@
-import React from "react";
+import React, { useState, Component } from "react";
 import {
   View,
   Text,
-  Image,
   TextInput,
   TouchableOpacity,
-  Button
+  StatusBar,
 } from "react-native";
 
 import Icon from "react-native-vector-icons/FontAwesome5";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
-import AntDesign from "@expo/vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
-//import bolaLogin from "../../../assets/bolaLogin.png";
+import { TextInputMask } from 'react-native-masked-text';
+import { validate } from 'gerador-validador-cpf';
+import * as Animatable from 'react-native-animatable';
+
 import styles from "./styles";
+import api from '../../utils/api';
+Animatable.createAnimatableComponent(Login);
+export default class Login extends Component {
 
-export default function Login() {
-  // function goToForgot() {
-  //   return props.navigate.navigation('ForgotPassword');
-  // }
-  const { navigate } = useNavigation();
+  constructor(props) {
+    super(props);
+    this.handleLogin = this.handleLogin.bind(this);
+  }
 
+  async handleLogin() {
+  //validate(cpf) ? console.log('valido') : console.log('falso');
+    console.log(`cpf: ${cpf} senha: ${pass}`)
+    const response = await api.get('/user');
+    console.log(response);
+  }
+render(){
   return (
     <>
       <View style={styles.containerBlue}>
         <View style={styles.content}>
           <Text style={styles.textoLogin}>Login</Text>
-
           <View style={styles.inputContainer}>
             <SimpleLineIcons style={styles.iconUser} name="user" />
-            <TextInput
+            <TextInputMask
               style={styles.input}
+              onChangeText={e => setCpf(e)}
+              value={cpf}
+              type={'cpf'}
               placeholder="CPF"
               backgroundColor="#72d2fb"
               placeholderTextColor="#000"
-              //underlineColorAndroid='green'
             />
           </View>
 
@@ -43,6 +54,9 @@ export default function Login() {
             <SimpleLineIcons style={styles.iconEye} name="eye" />
             <TextInput
               style={styles.input}
+              secureTextEntry={true}
+              onChangeText={e => setPass(e)}
+              value={pass}
               placeholder="Senha"
               placeholderTextColor="#000"
               backgroundColor="#72d2fb"
@@ -50,16 +64,16 @@ export default function Login() {
           </View>
         </View>
 
-        <TouchableOpacity
+        <Animatable.TouchableOpacity
+          animation="fadeInUp"
+
           style={styles.botaoEntrar}
-          onPress={() => {
-            navigate("HomeUser");
-          }}
+          onPress={handleLogin}
         >
           <Text style={styles.txtBtEntrar}>ENTRAR</Text>
-        </TouchableOpacity>
+        </Animatable.TouchableOpacity>
 
-        <View style={{width:200, alignSelf:'center'}}>
+        <View style={{ width: 200, alignSelf: 'center' }}>
           <Text
             style={styles.esqueceuSenha}
             onPress={() => {
@@ -91,4 +105,5 @@ export default function Login() {
       </View>
     </>
   );
+}
 }
