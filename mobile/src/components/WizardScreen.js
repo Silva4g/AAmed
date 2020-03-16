@@ -1,62 +1,51 @@
-import React, { PureComponent, useState } from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
-import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
-import AntDesign from '@expo/vector-icons/AntDesign';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import React, { PureComponent, useState } from "react";
+import { View, Text, TextInput, StyleSheet } from "react-native";
+import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
-import Wizard from './Wizard';
-// import Input from './Input';
+import Wizard from "./Wizard";
 
 const styles = StyleSheet.create({
   root: {
-    flex: 1,
+    flex: 1
   },
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#52c8fa',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#52c8fa"
   },
   inputContainer: {
     // backgroundColor: '#c1aa99',
-    width: '90%',
-    alignItems: 'center',
-    justifyContent: 'center',
+    width: "90%",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  input: {
+    backgroundColor: "#52c8fa00",
+    width: "90%",
+    height: 45,
+    paddingHorizontal: 40,
+    borderRadius: 2,
+    borderBottomWidth: 2,
+    borderBottomColor: "#24292e"
   },
   iconUser: {
-    position: 'absolute',
+    position: "absolute",
     top: 10,
     left: 25,
-    zIndex: 5,
-  },
+    zIndex: 5
+  }
 });
 
-// const algo = {
-//   alguma: {
-//     name: 'ola',
-//     cpf: '',
-//     email: '',
-//     senha: '',
-//     susCard: '',
-//     bio: '',
-//     [Symbol.iterator]: function*() {
-//       yield this.name;
-//       yield this.cpf;
-//       yield this.email;
-//       yield this.senha;
-//       yield this.susCard;
-//       yield this.bio;
-//     },
-//   },
-// };
-
 function WizardScreen() {
-  const [name, setName] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
-  const [susCard, setSusCard] = useState('');
-  const [bio, setBio] = useState('');
+  const [name, setName] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [susCard, setSusCard] = useState("");
+  const [bio, setBio] = useState("");
 
   const args = {
     name,
@@ -64,7 +53,7 @@ function WizardScreen() {
     email,
     senha,
     susCard,
-    bio,
+    bio
   };
 
   return (
@@ -80,6 +69,9 @@ function WizardScreen() {
                 style={styles.iconUser}
               />
               <TextInput
+                style={styles.input}
+                autoFocus
+                placeholderTextColor="#24292e"
                 placeholder="Nome completo"
                 onChangeText={setName}
                 value={name}
@@ -97,6 +89,9 @@ function WizardScreen() {
                 style={styles.iconUser}
               />
               <TextInput
+                style={styles.input}
+                autoFocus
+                placeholderTextColor="#24292e"
                 placeholder="CPF"
                 keyboardType="number-pad"
                 onChangeText={setCpf}
@@ -115,6 +110,9 @@ function WizardScreen() {
                 style={styles.iconUser}
               />
               <TextInput
+                style={styles.input}
+                autoFocus
+                placeholderTextColor="#24292e"
                 placeholder="Email"
                 keyboardType="email-address"
                 onChangeText={setEmail}
@@ -133,6 +131,9 @@ function WizardScreen() {
                 style={styles.iconUser}
               />
               <TextInput
+                style={styles.input}
+                autoFocus
+                placeholderTextColor="#24292e"
                 placeholder="Senha"
                 secureTextEntry
                 onChangeText={setSenha}
@@ -151,6 +152,9 @@ function WizardScreen() {
                 style={styles.iconUser}
               />
               <TextInput
+                style={styles.input}
+                autoFocus
+                placeholderTextColor="#24292e"
                 placeholder="Cartão do SUS"
                 keyboardType="number-pad"
                 onChangeText={setSusCard}
@@ -168,7 +172,14 @@ function WizardScreen() {
                 color="#24292e"
                 style={styles.iconUser}
               />
-              <TextInput placeholder="Bio" onChangeText={setBio} value={bio} />
+              <TextInput
+                style={styles.input}
+                autoFocus
+                placeholderTextColor="#24292e"
+                placeholder="Bio"
+                onChangeText={setBio}
+                value={bio}
+              />
             </View>
           </View>
         </Wizard.Step>
