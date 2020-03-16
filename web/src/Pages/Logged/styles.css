@@ -142,19 +142,19 @@ input:checked ~ .info-config a{
     bottom: calc(-100% + 4px);
     width:100%;
     height: 100%;
-    background: #000;
+    background: transparent;
     transition: .6s ease-in-out;
 }
 .menu-logado th:hover::before{
     bottom: 0;
 }
-.menu-logado th:nth-child(1):before{
+.menu-logado th:nth-child(1):hover:before{
     background: #ff56ac;
 }
-.menu-logado th:nth-child(2):before{
+.menu-logado th:nth-child(2):hover:before{
     background: #1bcaff;
 }
-.menu-logado th:nth-child(3):before{
+.menu-logado th:nth-child(3):hover:before{
     background: #e33cff;
 }
 .menu-logado span{

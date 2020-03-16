@@ -7,5 +7,6 @@ import NotFound from './NotFound';
 import Edit from './Edit';
 import Logout from './Logout';
 import Profile from './Profile';
+import Hospitals from './Hospitals';
 
-export { Home, About, Register, Support, Login, NotFound, Edit, Logout, Profile };
+export { Home, About, Register, Support, Login, NotFound, Edit, Logout, Profile, Hospitals };
