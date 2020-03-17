@@ -4,33 +4,29 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  StatusBar,
+  StatusBar
 } from "react-native";
 
 import Icon from "react-native-vector-icons/FontAwesome5";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import { useNavigation } from "@react-navigation/native";
-import { TextInputMask } from 'react-native-masked-text';
-import { validate } from 'gerador-validador-cpf';
-import * as Animatable from 'react-native-animatable';
+import { TextInputMask } from "react-native-masked-text";
+import { validate } from "gerador-validador-cpf";
 
 import styles from "./styles";
-import api from '../../utils/api';
-Animatable.createAnimatableComponent(Login);
-export default class Login extends Component {
+import api from "../../utils/api";
 
-  constructor(props) {
-    super(props);
-    this.handleLogin = this.handleLogin.bind(this);
-  }
+export default function Login() {
+  const { navigate } = useNavigation();
+  const [cpf, setCpf] = useState("");
+  const [pass, setPass] = useState("");
 
-  async handleLogin() {
-  //validate(cpf) ? console.log('valido') : console.log('falso');
-    console.log(`cpf: ${cpf} senha: ${pass}`)
-    const response = await api.get('/user');
-    console.log(response);
+  async function handleLogin() {
+    //validate(cpf) ? console.log('valido') : console.log('falso');
+    console.log(`cpf: ${cpf} senha: ${pass}`);
+    const response = await api.get("/user");
+    console.log(response.data);
   }
-render(){
   return (
     <>
       <View style={styles.containerBlue}>
@@ -42,7 +38,7 @@ render(){
               style={styles.input}
               onChangeText={e => setCpf(e)}
               value={cpf}
-              type={'cpf'}
+              type={"cpf"}
               placeholder="CPF"
               backgroundColor="#72d2fb"
               placeholderTextColor="#000"
@@ -63,17 +59,11 @@ render(){
             />
           </View>
         </View>
-
-        <Animatable.TouchableOpacity
-          animation="fadeInUp"
-
-          style={styles.botaoEntrar}
-          onPress={handleLogin}
-        >
+        <TouchableOpacity onPress={handleLogin}>
           <Text style={styles.txtBtEntrar}>ENTRAR</Text>
-        </Animatable.TouchableOpacity>
+        </TouchableOpacity>
 
-        <View style={{ width: 200, alignSelf: 'center' }}>
+        <View style={{ width: 200, alignSelf: "center" }}>
           <Text
             style={styles.esqueceuSenha}
             onPress={() => {
@@ -105,5 +95,4 @@ render(){
       </View>
     </>
   );
-}
 }

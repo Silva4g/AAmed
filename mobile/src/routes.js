@@ -4,7 +4,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import ForgotPassword from "./screens/ForgotPassword";
-// import HomeUser from './screens/HomeUser';
 
 import HomeUserRoutes from "./routes/homeUser.routes";
 
@@ -25,7 +24,16 @@ export default function Routes() {
         options={{ headerShown: false }}
       />
       <Stack.Screen name="Register" component={Register} options={options} />
-      <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+      <Stack.Screen
+        name="ForgotPassword"
+        component={ForgotPassword}
+        options={{
+          headerTransparent: true,
+          headerTitleAlign: 'center',
+          title: '',
+          headerTintColor: "#24292e",
+        }}
+      />
       <Stack.Screen
         name="HomeUser"
         options={{ headerShown: false }}

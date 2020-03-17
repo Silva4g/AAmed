@@ -1,69 +1,127 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Image,
+  StatusBar
+} from "react-native";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
+import logo from "../../../assets/logo.png";
 
 export default function ForgotPasword() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
+  const keyboardVerticalOffset = Platform.OS === "ios" ? 0 : 0;
 
   function handleSubmit() {
     console.log(email);
   }
 
   return (
-    <>
-      <KeyboardAvoidingView enabled={Platform.OS === 'android'} behavior="padding" style={{ flex: 2 }}>
-        <View style={styles.upperContainer}>
-          <View style={styles.wrapper}>
-            <Text style={styles.textOne}>Esqueceu a senha?</Text>
-            <Text style={styles.textTwo}>Informe seu email:</Text>
-            <View style={styles.inputContainer}>
-              <SimpleLineIcons
-                name={'user'}
-                size={25}
-                color={'#333333'}
-                style={styles.icon}
-              />
-              <TextInput
-                style={styles.input}
-                placeholder="Email"
-                keyboardType="email-address"
-                autoCapitalize="none"
-                placeholderTextColor="#000"
-                selectionColor="#ffffff77"
-                underlineColorAndroid="transparent"
-                value={email}
-                onChangeText={setEmail}
-              />
-            </View>
-            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-              <Text style={styles.buttonText}>Enviar</Text>
-            </TouchableOpacity>
+    <KeyboardAvoidingView
+      behavior="padding"
+      style={{
+        flex: 1,
+        backgroundColor: "#72d2fb",
+        padding: StatusBar.currentHeight
+      }}
+    >
+      {/* <View style={{ alignSelf: "center", backgroundColor: "#778beb00" }}>
+        <Image source={logo} style={{ width: 100, height: 100 }} />
+      </View> */}
+      <View style={{ justifyContent: "space-between", flex: 1 }}>
+        <View
+          style={{
+            backgroundColor: "#e77f6700",
+            alignItems: "center",
+            marginBottom: 12,
+            paddingTop: StatusBar.currentHeight * 3
+          }}
+        >
+          <Text style={{ fontSize: 35, marginBottom: 20, color: "#000" }}>
+            Esqueceu a senha?
+          </Text>
+          <View style={{ width: 250, alignItems: "center", marginTop: 10 }}>
+            <Text style={{ color: "#000", fontSize: 16 }}>
+              {`Digite seu endereço de e-mail 
+        e enviaremos um link 
+      para redefinir sua senha`}
+            </Text>
           </View>
         </View>
-      </KeyboardAvoidingView>
 
-      <View style={styles.bottomContainer}>
-        <Text style={styles.bottomText}>ou entre com </Text>
-        <View style={styles.others}>
-          <Icon
-            name={'google-plus-g'}
-            size={42}
-            color={'#ff7171'}
+        <View
+          style={{
+            backgroundColor: "#63cdda00"
+            // marginTop: 20
+          }}
+        >
+          <MaterialCommunityIcons
+            name="email-outline"
+            size={25}
+            style={{
+              color: "#24292e",
+              position: "absolute",
+              top: 10,
+              left: 7,
+              zIndex: 5
+            }}
           />
-          <Icon
-            name={'facebook-square'}
-            size={42}
-            color={'#495d9e'}
+          <TextInput
+            placeholder="Email"
+            placeholderTextColor="#24292e"
+            keyboardType="email-address"
+            onChangeText={setEmail}
+            value={email}
+            autoFocus
+            style={{
+              width: "100%",
+              height: 44,
+              fontSize: 16,
+              paddingHorizontal: 40,
+              color: "#24292e",
+              borderBottomWidth: 2,
+              borderBottomColor: "#24292e"
+            }}
           />
-          <Icon
-            name={'twitter'}
-            size={42}
-            color={'#6eafef'}
-          />
+
+          <TouchableOpacity
+            onPress={() => console.log(email)}
+            style={{
+              backgroundColor: "#fff",
+              width: "100%",
+              height: 60,
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 2,
+              marginTop: 20
+            }}
+          >
+            <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+              Resetar senha
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View
+          style={{
+            backgroundColor: "#cf6a8700",
+            alignItems: "center",
+            marginTop: 10,
+            marginBottom: 10
+          }}
+        >
+          <Text style={{ color: "#eee" }}>Não tem uma conta?</Text>
+          <TouchableOpacity>
+            <Text style={{ fontSize: 16, fontWeight: "bold", color: "#fff" }}>
+              Cadastre-se
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
-    </>
+    </KeyboardAvoidingView>
   );
 }
