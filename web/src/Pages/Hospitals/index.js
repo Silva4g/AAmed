@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Component } from 'react';
-import {Modal, Button, Row, Col, Form} from 'react-bootstrap';
+import { Modal, Button, Row, Col, Form } from 'react-bootstrap';
 
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import { MdLocationOn } from 'react-icons/md';
@@ -8,12 +8,6 @@ import api from '../../services/api';
 import './styles.css';
 
 export default function (props) {
-
-    constructor(props) {
-        super(props);
-    }
-
-
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
@@ -28,11 +22,11 @@ export default function (props) {
     const [hosp, setHosp] = useState([]);
 
     const getHospital = async () => {
-            const response = await api.get('/hospital', /*{
+        const response = await api.get('/hospital', /*{
             //     headers: { Authorization: `Bearer ${localStorage.getItem('tk-hopt')}` }
             // }*/);
-            console.log(response.data);
-            setHosp(response.data);
+        console.log(response.data);
+        setHosp(response.data);
     }
     useEffect(() => {
         getHospital();
@@ -56,7 +50,7 @@ export default function (props) {
                             <h1>{hospital.name}</h1>
                         </div>
                     </>
-                    ))}
+                ))}
             </div>
         </>
     );

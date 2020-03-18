@@ -11,6 +11,8 @@ const routes = Router();
 routes.post('/hospital', HospitalController.store);
 //route update hospital
 routes.put('/hospital/:id', HospitalController.update);
+//change password
+routes.put('/change/:id', HospitalController.change);
 // route auth hospital
 routes.post('/login/hospital', HospitalController.login);
 //all hospitals

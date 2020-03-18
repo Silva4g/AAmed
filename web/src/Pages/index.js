@@ -8,5 +8,7 @@ import Edit from './Edit';
 import Logout from './Logout';
 import Profile from './Profile';
 import Hospitals from './Hospitals';
+import Update from './Update';
+import ChangePass from './ChangePassword';
 
-export { Home, About, Register, Support, Login, NotFound, Edit, Logout, Profile, Hospitals };
+export { Home, About, Register, Support, Login, NotFound, Edit, Logout, Profile, Hospitals, Update, ChangePass };
