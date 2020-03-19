@@ -37,4 +37,8 @@
     color: #fff;
     font-weight: bold;
     cursor: pointer;
+    transition: .4s all;
+}
+.update-form > div button:hover{
+    background-color: #b31028;
 }

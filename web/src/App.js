@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import "./App.css";
 import { Menu, Rodape } from "./components";
-import { About, Edit, Home, Hospitals, Login, Logout, NotFound, Profile, Register, Support, Update, ChangePass } from './Pages';
+import { About, Edit, Home, Hospitals, Login, Logout, NotFound, Profile, Register, Support, Update, ChangePass, Delete } from './Pages';
 import { LoginRoute, RegisterRoute } from './auth';
 import isLogged from './utils/logged';
 
@@ -24,6 +24,7 @@ export default function App() {
               <Route path="/edit" component={Edit} />
               <Route path="/update" component={Update} />
               <Route path="/changepassword" component={ChangePass} />
+              <Route path="/deleteaccount" component={Delete} />
               <Route path="*" component={NotFound} />
             </Switch>
           </>

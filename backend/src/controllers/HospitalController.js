@@ -87,10 +87,18 @@ module.exports = {
     },
     async destroy(req, res) {
         try {
+            const { password } = req.body;
+            console.log(req.body);
+            const hospital = await Hospital.findById(req.params.id).select('+password');
+
+            if (!await bcrypt.compare(password, hospital.password)) {
+                return res.status(401).send({ error: 'Senha inváldia, tente novamente!' });
+            }
             await Hospital.findByIdAndDelete(req.params.id);
+
             return res.send();
         } catch (err) {
-            return res.status(400).send({ error: 'Falha na remoção do hospital' })
+            return res.status(400).send({ error: 'Falha na remoção do hospital ' + err })
         }
     },
     async change(req, res) {
