@@ -4,7 +4,7 @@ const generateToken = require('../utils/generateToken');
 const cep = require('cep-promise');
 
 module.exports = {
-    async index(req, res){
+    async index(req, res) {
         const hospitais = await Hospital.find({}, '-_id -address -email -location');
         return res.send(hospitais);
     },
@@ -22,8 +22,8 @@ module.exports = {
                 coordinates: [longitude, latitude],
             };
             //api de cep
-            const { city, state, street, neighborhood } = await cep(cep_hospital).catch(err => { return res.status(400).send({error: 'Cep inválido'}) });
-            
+            const { city, state, street, neighborhood } = await cep(cep_hospital).catch(err => { return res.status(400).send({ error: 'Cep inválido' }) });
+
             const address = { //deixar em array o endereço (AddressSchema)
                 city,
                 state,
@@ -74,17 +74,11 @@ module.exports = {
     },
     async update(req, res) { //atualizar dados do hospital
         try {
-            const { email, password, latitude, longitude, name, phone, cnpj, cnes, city, state } = req.body;
-            //esses dados não podem ser alterados
-            if (email || password || cnpj || cnes) return res.status(400).send({ error: 'Esses dados não podem ser atualizados' });
-            
+            const { name, phone, email } = req.body;
             const hospital = await Hospital.findByIdAndUpdate(req.params.id, {
-                latitude,
-                longitude,
                 name,
                 phone,
-                state,
-                city,
+                email,
             }, { new: true });
             return res.json(hospital);
         } catch (err) {
@@ -92,11 +86,40 @@ module.exports = {
         }
     },
     async destroy(req, res) {
-        try{
+        try {
+            const { password } = req.body;
+            console.log(req.body);
+            const hospital = await Hospital.findById(req.params.id).select('+password');
+
+            if (!await bcrypt.compare(password, hospital.password)) {
+                return res.status(401).send({ error: 'Senha inváldia, tente novamente!' });
+            }
             await Hospital.findByIdAndDelete(req.params.id);
+
             return res.send();
-        }catch(err){
-            
+        } catch (err) {
+            return res.status(400).send({ error: 'Falha na remoção do hospital ' + err })
         }
-    }
+    },
+    async change(req, res) {
+        try {
+            const { oldPassword, password } = req.body;
+            const hospital = await Hospital.findById(req.params.id).select('+password');
+
+            if (!await bcrypt.compare(oldPassword, hospital.password)) {
+                return res.status(401).send({ error: 'Senha inváldia, tente novamente!' });
+            }
+
+            const newPass = await bcrypt.hash(password, 10);
+
+            await Hospital.findByIdAndUpdate(req.params.id, {
+                password: newPass
+            }, { new: true });
+            return res.send();
+
+
+        } catch (err) {
+            return res.status(400).send({ error: 'Falha na atualização do hospital. ' + err })
+        }
+    },
 }

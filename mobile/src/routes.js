@@ -18,20 +18,16 @@ const options = {
 export default function Routes() {
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="Login"
-        component={Login}
-        options={{ headerShown: false }}
-      />
+      <Stack.Screen name="Login" component={Login}  options={{ headerShown: false }} />
       <Stack.Screen name="Register" component={Register} options={options} />
       <Stack.Screen
         name="ForgotPassword"
         component={ForgotPassword}
         options={{
           headerTransparent: true,
-          headerTitleAlign: 'center',
-          title: '',
-          headerTintColor: "#24292e",
+          headerTitleAlign: "center",
+          title: "",
+          headerTintColor: "#24292e"
         }}
       />
       <Stack.Screen

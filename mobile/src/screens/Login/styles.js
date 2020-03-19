@@ -1,124 +1,99 @@
-import { StyleSheet, Dimensions } from 'react-native';
-//import { Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, StatusBar } from "react-native";
+//import { Dimensions } from 'react-native';@import url('https://fonts.googleapis.com/css?family=Titan+One&display=swap')
 
 const styles = StyleSheet.create({
-  containerBlue:{
-    height: Dimensions.get('window').height * 3/4,
-    backgroundColor: '#52c8fa', 
-  },
-  containerWhite:{
-    flex:1,
-    backgroundColor:'#fff',
-    alignItems:'center',
-  },
-  content: {
-    paddingHorizontal: 30,
+  containerKeyboard: {
+    padding: StatusBar.currentHeight,
+    flex: 1
   },
 
-  textoLogin: {
-    color: '#fff',
-    fontSize: 45,
-    alignSelf: 'center',
-    marginTop: 50
+  wrapperContent: {
+    justifyContent: "space-between",
+    flex: 1
   },
 
-  inputContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+  containerInput: {
+    justifyContent: "center",
+    width: "100%"
   },
 
   input: {
-    width: '100%',
+    width: "100%",
     height: 44,
-    marginTop: 20,
+    marginTop: 40,
     fontSize: 16,
     paddingHorizontal: 40,
-    color:'#000'
+    color: "#000",
+    borderBottomWidth: 2,
+    borderBottomColor: "#24292e"
   },
 
-  iconUser: {
-    color: '#333333',
+  icon: {
+    color: "#333333",
     fontSize: 25,
-    position: 'absolute',
-    top: 25,
-    left: 7,
-    zIndex: 5,
-  },
-
-  iconLock: {
-    color: '#333333',
-    fontSize: 25,
-    position: 'absolute',
-    top: 25,
+    position: "absolute",
+    top: 45,
     left: 7,
     zIndex: 5
   },
 
   iconEye: {
-    color: '#333333',
-    fontSize: 30,
-    position: 'absolute',
-    top: 25,
+    color: "#333333",
+    fontSize: 25,
+    position: "absolute",
+    top: 45,
     right: 10,
     zIndex: 5
   },
 
   botaoEntrar: {
-    backgroundColor: '#fff',
-    marginTop: 30,
-    width: 140,
+    backgroundColor: "#52c8fa",
+    marginTop: 15,
+    width: "100%",
     height: 60,
-    alignItems: 'center',
-    alignSelf: 'center',
-    justifyContent: 'center',
-    borderRadius: 7,
+    alignItems: "center",
+    alignSelf: "center",
+    justifyContent: "center",
+    borderRadius: 2
   },
 
   txtBtEntrar: {
-    fontSize: 15,
-    textAlign: 'center',
-    fontWeight:'700',
-    color:'#595959',
+    textAlign: "center",
+    color: "#595959",
+    fontSize: 16,
+    fontWeight: "bold"
   },
 
-  esqueceuSenha:{
-    color:'#fff',
-    textAlign:'center',
+  viewTextSenha: {
+    width: 200,
+    alignSelf: "center"
+  },
+
+  textEsqueceuSenha: {
+    color: "#000",
+    textAlign: "center",
     padding: 15,
-    fontSize:15,
-    textDecorationLine:'underline',
-  },
-  textCadastre:{
-    color: '#939393',
-    textAlign:'center',
-    marginTop:30,
-    fontSize:15,
+    fontSize: 15,
+    textDecorationLine: "underline"
   },
 
-  textEntreCom:{
-    color: '#939393',
-    textAlign:'center',
-    marginTop:10,
-    fontSize:15,
+  viewTextCadastro: {
+    alignItems: "center",
+    marginBottom: 30
   },
 
-  contentIcons:{
-    flexDirection:'row',
-    marginTop:20,
+  textLogin: {
+    color: "#000",
+    textAlign: "center",
+    fontSize: 15
   },
 
-  iconGoogle: {
-    color: '#ff7171',
-    fontSize: 42,
-  },
-
-  iconFacebook: {
-    color: '#495d9e',
-    fontSize: 42,
-    marginLeft:40,
-  },
-
+  textCadastre: {
+    color: "#000",
+    textAlign: "center",
+    fontSize: 15,
+    fontWeight: "bold"
+  }
 });
 
 export default styles;

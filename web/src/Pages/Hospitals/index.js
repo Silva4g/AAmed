@@ -52,7 +52,7 @@ class Hospital extends React.Component {
                     <button onClick={() => props.history.goBack()}><IoMdArrowRoundBack size={25} />Voltar</button>
                 </div>
                 <div className="title-profile">
-                    <h2>Olá, {name}</h2>
+                    <h2>Olá</h2>
                 </div>
             </div>
             <div className="lista">
@@ -60,7 +60,7 @@ class Hospital extends React.Component {
                     <>
                         
                     </>
-                    ))}
+                ))}
             </div>
         </>
     );
