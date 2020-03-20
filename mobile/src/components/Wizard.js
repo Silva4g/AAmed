@@ -1,97 +1,74 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, useState } from 'react';
 import { View, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
+import api from '../utils/api';
 
 import Step from './Step';
 
-class Wizard extends PureComponent {
-  state = {
-    index: 0,
-    // values: {
-    //   ...this.props.initialValues,
-    // },
-  };
+export default function Wizard(props) {
+  const [index, setIndex] = useState(0);
+  const navigation = useNavigation();
+  // const { children } = props;
+  Wizard.Step = props => <Step {...props} />;
 
-  // valor = {
-  //   teste: {...this.props.initialValues,},
 
-  // };
+  function nextStep() {
+    // const { index } = this.state;
 
-  nextStep = () => {
-    const { children } = this.props;
-    const { index } = this.state;
-
-    if (index !== children.length - 1) {
-      this.setState(prevState => ({
-        index: prevState.index + 1,
-      }));
+    if (index !== props.children.length - 1) {
+      setIndex(index + 1);
     }
   };
 
-  prevStep = () => {
-    const { index } = this.state;
-
+  function prevStep() {
     if (index !== 0) {
-      this.setState(prevState => ({
-        index: prevState.index - 1,
-      }));
+      setIndex(index - 1)
     }
   };
 
-  // onChangeValue = (name, value) => {
-  //   this.setState(prevState => ({
-  //     values: {
-  //       ...prevState.values,
-  //       [name]: value,
-  //     },
-  //   }));
-  // };
-
-  onSubmit = () => {
-    // faz um for para pegar todos os valores e joga eles em um array,
-    // depois verifica se têm um valor vazio nele
-    // const arr = [];
-    // for (let prop of this.props.initialValues.alguma) {
-    //   arr.push(prop);
-    // }
-    // for (let prop in this.state.values) {
-    //   arr.push(prop);
-    // }
-
-    // const yes = arr.filter(ele => ele === '');
-
-    // console.log(arr);
-    // console.log(yes);
-    // console.log('ÈÈÈÈEÈÈÈ ', this.valor);
-    Alert.alert(JSON.stringify(this.props.initialValues));
+  async function onSubmit() {
+    const { name, cpf, email, senha, susCard, bio } = props.initialValues;
+    try {
+      const response = await api.post('/user', {
+        name,
+        cpf,
+        email,
+        password: senha,
+        susCard,
+        bio
+      });
+      Alert.alert('Sucesso', 'Cadastrado com sucesso');
+      navigation.navigate('SignIn');
+      console.log('cadastrado com sucesso!', response.data);
+    } catch (err) {
+      Alert.alert('Erro', 'Houve um erro interno');
+      console.log('houve um erro', err);
+    }
   };
 
-  static Step = Step; // before -> static Step = props => <Step {...props} />;
 
-  render() {
-    console.log('values', this.props.initialValues);
-    const { children } = this.props;
-    const { index, values } = this.state;
+  // console.log('values', this.props.initialValues);
+  // const { children } = props;
+  // const { index, values } = state;
+  console.log(props.initialValues);
+  return (
+    <View style={{ flex: 1, backgroundColor: '#24292e' }}>
+      {React.Children.map(props.children, (el, position) => {
+        if (position === index) {
+          return React.cloneElement(el, {
+            currentIndex: index,
 
-    return (
-      <View style={{ flex: 1, backgroundColor: '#24292e' }}>
-        {React.Children.map(children, (el, position) => {
-          if (position === index) {
-            return React.cloneElement(el, {
-              currentIndex: index,
-              onChangeValue: this.onChangeValue,
-              nextStep: this.nextStep,
-              prevStep: this.prevStep,
-              onSubmit: this.onSubmit,
-              isLast: index === children.length - 1,
-              values,
-            });
-          }
+            nextStep: nextStep,
+            prevStep: prevStep,
+            onSubmit: onSubmit,
+            isLast: index === props.children.length - 1,
+          });
+        }
 
-          return null;
-        })}
-      </View>
-    );
-  }
+        return null;
+      })}
+    </View>
+  );
 }
-
-export default Wizard;
+// export default Wizard;

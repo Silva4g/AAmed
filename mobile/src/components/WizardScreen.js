@@ -1,10 +1,11 @@
 import React, { PureComponent, useState } from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import { View, Text, TextInput, StyleSheet, Button } from "react-native";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 import Wizard from "./Wizard";
+import Step from './Step';
 
 const styles = StyleSheet.create({
   root: {
@@ -59,7 +60,7 @@ function WizardScreen() {
   return (
     <View style={styles.root}>
       <Wizard initialValues={args}>
-        <Wizard.Step>
+        <Step>
           <View style={styles.container}>
             <View style={styles.inputContainer}>
               <SimpleLineIcons
@@ -78,8 +79,8 @@ function WizardScreen() {
               />
             </View>
           </View>
-        </Wizard.Step>
-        <Wizard.Step>
+        </Step>
+        <Step>
           <View style={styles.container}>
             <View style={styles.inputContainer}>
               <AntDesign
@@ -99,8 +100,8 @@ function WizardScreen() {
               />
             </View>
           </View>
-        </Wizard.Step>
-        <Wizard.Step>
+        </Step>
+        <Step>
           <View style={styles.container}>
             <View style={styles.inputContainer}>
               <MaterialCommunityIcons
@@ -112,6 +113,7 @@ function WizardScreen() {
               <TextInput
                 style={styles.input}
                 autoFocus
+                autoCapitalize="none"
                 placeholderTextColor="#24292e"
                 placeholder="Email"
                 keyboardType="email-address"
@@ -120,8 +122,8 @@ function WizardScreen() {
               />
             </View>
           </View>
-        </Wizard.Step>
-        <Wizard.Step>
+        </Step>
+        <Step>
           <View style={styles.container}>
             <View style={styles.inputContainer}>
               <SimpleLineIcons
@@ -141,8 +143,8 @@ function WizardScreen() {
               />
             </View>
           </View>
-        </Wizard.Step>
-        <Wizard.Step>
+        </Step>
+        <Step>
           <View style={styles.container}>
             <View style={styles.inputContainer}>
               <SimpleLineIcons
@@ -162,8 +164,8 @@ function WizardScreen() {
               />
             </View>
           </View>
-        </Wizard.Step>
-        <Wizard.Step>
+        </Step>
+        <Step>
           <View style={styles.container}>
             <View style={styles.inputContainer}>
               <MaterialCommunityIcons
@@ -182,7 +184,49 @@ function WizardScreen() {
               />
             </View>
           </View>
-        </Wizard.Step>
+        </Step>
+        <Step>
+          <View style={styles.container}>
+            <View style={styles.inputContainer}>
+              <TextInput
+                style={styles.input}
+                editable={false}
+                placeholderTextColor="#24292e"
+                value={name}
+              />
+              <TextInput
+                style={styles.input}
+                editable={false}
+                placeholderTextColor="#24292e"
+                value={cpf}
+              />
+              <TextInput
+                style={styles.input}
+                editable={false}
+                placeholderTextColor="#24292e"
+                value={email}
+              />
+              <TextInput
+                style={styles.input}
+                editable={false}
+                placeholderTextColor="#24292e"
+                value={senha}
+              />
+              <TextInput
+                style={styles.input}
+                editable={false}
+                placeholderTextColor="#24292e"
+                value={susCard}
+              />
+              <TextInput
+                style={styles.input}
+                editable={false}
+                placeholderTextColor="#24292e"
+                value={bio}
+              />
+            </View>
+          </View>
+        </Step>
       </Wizard>
     </View>
   );

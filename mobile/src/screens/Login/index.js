@@ -89,7 +89,7 @@ export default function Login() {
           <Text
             style={styles.textCadastre}
             onPress={() => {
-              navigate("Register");
+              navigate("SignUp");
             }}
           >
             Cadastre-se

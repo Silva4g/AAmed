@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, View, StyleSheet } from 'react-native';
+import { Dimensions, View, StyleSheet, Button, AsyncStorage } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 const Screen = {
@@ -7,10 +7,18 @@ const Screen = {
   height: Dimensions.get('window').height,
 };
 
-export default function HomeUser() {
+// em andamento
+
+export default function Home({ navigation }) {
+
+  // async function handleLogout() {
+  //   // await AsyncStorage.removeItem('isLoggedin');
+  //   navigation.push('SignIn');
+  // }
+
   return (
     <View style={styles.container}>
-      <MapView
+      {/* <MapView
         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
         style={styles.mapContainer}
         region={{
@@ -19,7 +27,8 @@ export default function HomeUser() {
           latitudeDelta: 0.015,
           longitudeDelta: 0.0121,
         }}>
-      </MapView>
+      </MapView> */}
+      <Button title="Logout" onPress={() => signOut()} />
       <View style={styles.mapDrawerOverlay} />
     </View>
   );
@@ -28,6 +37,7 @@ export default function HomeUser() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center'
   },
   mapContainer: {
     width: Screen.width,

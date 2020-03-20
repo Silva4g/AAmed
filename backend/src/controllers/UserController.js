@@ -7,11 +7,11 @@ module.exports = {
     async index(req, res) {
         const users = await User.find({}, '-_id');
         return res.send(users);
-    }, 
+    },
     //cadastro de usuarios
     async store(req, res) {
         try {
-            const { name, password, susCard, cpf, bio } = req.body;
+            const { name, password, email, susCard, cpf, bio } = req.body;
 
             //const { location: url = "", key } = req.file;
             //verificar se tem no banco
@@ -19,11 +19,12 @@ module.exports = {
             if (await User.findOne({ susCard })) return res.status(400).send({ error: 'Usuário existente' })
 
             const user = await User.create({
-                password,
                 name,
                 cpf,
-                bio,
+                email,
+                password,
                 susCard,
+                bio,
                 // url,
                 // key
             });
@@ -61,12 +62,13 @@ module.exports = {
     //atualizar dados do usuario
     async update(req, res) {
         try {
-            const { name, password, susCard, cpf, bio } = req.body;
+            const { name, password, email, susCard, cpf, bio } = req.body;
             //esses dados não poderão ser alterados
             if (password || susCard || cpf) return res.status(400).send({ error: 'Esses dados não podem ser atualizados' });
 
             const user = await User.findByIdAndUpdate(req.params.id, {
                 name,
+                email,
                 bio
             }, { new: true });
 
