@@ -19,13 +19,59 @@
   - Recomendamos o [yarn](https://classic.yarnpkg.com/pt-BR/docs/install/#windows-stable) mas pode utilizar o npm para a execução de codigo.
   - Pelo prompt de comando entre na pasta backend, web e mobile e execute o comando a baixo em cada pasta respectivamente.
   ```sh
-  $ npm install
+  $ yarn install
   ```
   ou 
   ```
-  $ yarn install
+  $ npm install
   ```
-  
+
+  ## Web
+  - Para fazer os testes no sistema da web (front-ent) é necessário apenas um comando
+  - Dentro da pasta web:
+  ```
+  $ C:pasta-que-esta-o-projeto/web
+  ```
+  - Insira este comando
+  ```
+  $ yarn start
+  ```
+  ou
+  ```
+  $ npm start
+  ```
+  - Pronto, agora é só esperar o navegador executar a página
+
+  ## Backend
+  - Para o login, cadastro e a pagina de hospital logado funcione, é preciso que o servidor node esteja sendo executado.
+  - Dentro da pasta backend:
+  ```
+  $ C:pasta-que-esta-o-projeto/backend
+  ```
+  - Insira este comando
+  ```
+  $ node src/index.js
+  ```
+  - Observação: Para fazer todas as funcionalidades do backend, é necessário o mongodb instalado na sua máquina e o nome do banco deve ser "tcc"
+
+  ## Mobile
+  - Aqui é um pouco diferente pois você deve ter o expo instalado globalmente ( seiga o guia de instalações acima)
+  - Dentro da pasta mobile
+  ```
+  $ C:pasta-que-esta-o-projeto/mobile
+  ```
+  - Insira este comando
+  ```
+  $ yarn start
+  ```
+  ou
+  ```
+  $ npm start
+  ```
+  - O navegador irá abrir uma página que será o console da aplicação mobile
+  - Instale o Expo em seu dispositivo móvel
+  - Depois de instalado, abra e scaneie o QR CODE no navegador
+  - Utilize o app mobile em seu prórpio dispositivo
   
   ## Dependencias
   - react
