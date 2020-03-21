@@ -9,13 +9,10 @@ import Step from './Step';
 export default function Wizard(props) {
   const [index, setIndex] = useState(0);
   const navigation = useNavigation();
-  // const { children } = props;
   Wizard.Step = props => <Step {...props} />;
 
 
   function nextStep() {
-    // const { index } = this.state;
-
     if (index !== props.children.length - 1) {
       setIndex(index + 1);
     }
@@ -29,18 +26,24 @@ export default function Wizard(props) {
 
   async function onSubmit() {
     const { name, cpf, email, senha, susCard, bio } = props.initialValues;
+    // Da para melhorar, mas por enquanto está "resolvendo" o problema
     try {
-      const response = await api.post('/user', {
-        name,
-        cpf,
-        email,
-        password: senha,
-        susCard,
-        bio
-      });
-      Alert.alert('Sucesso', 'Cadastrado com sucesso');
-      navigation.navigate('SignIn');
-      console.log('cadastrado com sucesso!', response.data);
+      if (!(name === "" || cpf === "" || email === "" || senha === "" || susCard === "" || bio === "")) {
+        const response = await api.post('/user', {
+          name,
+          cpf,
+          email,
+          password: senha,
+          susCard,
+          bio
+        });
+
+        Alert.alert('Sucesso', 'Cadastrado com sucesso');
+        navigation.navigate('Login');
+        console.log('cadastrado com sucesso!', response.data);
+      } else {
+        Alert.alert('Erro', 'Por favor preencha todos os campos!');
+      }
     } catch (err) {
       Alert.alert('Erro', 'Houve um erro interno');
       console.log('houve um erro', err);

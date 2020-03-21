@@ -3,6 +3,7 @@ import { View, Text, TextInput, StyleSheet, Button } from "react-native";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import { TextInputMask } from "react-native-masked-text";
 
 import Wizard from "./Wizard";
 import Step from './Step';
@@ -40,6 +41,7 @@ const styles = StyleSheet.create({
   }
 });
 
+// Sobre os 200 A's do 'TextInputMask' do nome: é só um teste(por enquanto)
 function WizardScreen() {
   const [name, setName] = useState("");
   const [cpf, setCpf] = useState("");
@@ -69,12 +71,19 @@ function WizardScreen() {
                 color="#24292e"
                 style={styles.iconUser}
               />
-              <TextInput
+              <TextInputMask
+                type={'custom'}
+                options={{
+                  mask: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' +
+                  'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' +
+                  'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                  delimiter: '/'
+                }}
                 style={styles.input}
                 autoFocus
                 placeholderTextColor="#24292e"
                 placeholder="Nome completo"
-                onChangeText={setName}
+                onChangeText={e => setName(e)}
                 value={name}
               />
             </View>
@@ -89,13 +98,14 @@ function WizardScreen() {
                 color="#24292e"
                 style={styles.iconUser}
               />
-              <TextInput
+              <TextInputMask
+                type={'cpf'}
                 style={styles.input}
                 autoFocus
                 placeholderTextColor="#24292e"
                 placeholder="CPF"
                 keyboardType="number-pad"
-                onChangeText={setCpf}
+                onChangeText={e => setCpf(e)}
                 value={cpf}
               />
             </View>
@@ -153,13 +163,17 @@ function WizardScreen() {
                 color="#24292e"
                 style={styles.iconUser}
               />
-              <TextInput
+              <TextInputMask
+                type={'custom'}
+                options={{
+                  mask: '9 99 9999 9999 9999'
+                }}
                 style={styles.input}
                 autoFocus
                 placeholderTextColor="#24292e"
                 placeholder="Cartão do SUS"
                 keyboardType="number-pad"
-                onChangeText={setSusCard}
+                onChangeText={e => setSusCard(e)}
                 value={susCard}
               />
             </View>
