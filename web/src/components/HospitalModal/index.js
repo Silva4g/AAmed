@@ -5,16 +5,16 @@ import api from '../../services/api';
 
 export default function HospitalModal({ id }) {
     const [hospital, setHospital] = useState({});
+    const [address, setAddress] = useState({});
 
     useEffect(() => {
 
         async function getData() {
             const response = await api.get(`/hosp/${id}`);
             setHospital(response.data)
-            console.log(hospital.address.street);
+            setAddress(response.data.address);
         }
         getData();
-
     }, [id]);
     return (
         <div className="modal-hospital">
@@ -34,10 +34,10 @@ export default function HospitalModal({ id }) {
                     <h2>{hospital.name}</h2>
                     <h2>{hospital.email}</h2>
                     <h2>{hospital.phone}</h2>
-                    <h2>{hospital.street}</h2>
-                    <h2>{hospital.neighborhood}</h2>
-                    <h2>{hospital.state}</h2>
-                    <h2>{hospital.city}</h2>
+                    <h2>{address.street}</h2>
+                    <h2>{address.neighborhood}</h2>
+                    <h2>{address.state}</h2>
+                    <h2>{address.city}</h2>
                 </div>
             </div>
         </div>

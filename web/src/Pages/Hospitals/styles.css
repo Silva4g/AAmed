@@ -59,3 +59,14 @@
     font-size: 20px;
     transition: .3s all;
 }
+.notFound{
+    height: 200px;
+    width:450px;
+    padding: 15px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    box-shadow: 0 0 6px rgba(0,0,0,.4);
+}

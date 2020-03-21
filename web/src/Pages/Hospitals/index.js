@@ -4,7 +4,7 @@ import { IoMdArrowRoundBack } from 'react-icons/io';
 import api from '../../services/api';
 
 import './styles.css';
-import HospitalModal from '../../components/HospitalModal';
+import { HospitalModal } from '../../components';
 
 export default function Hospitals(props) {
 
@@ -61,15 +61,17 @@ export default function Hospitals(props) {
             </div>
             <div className="container-hospitals">
                 {
-                    hospitals.map(hospital => (
-                        <>
+                    hospitals.length ?
+                        hospitals.map((hospital, index) => (
                             <div key={hospital._id} className="box" >
                                 <h2>{hospital.name}</h2>
                                 <button className="btnOpen" onClick={() => { setIdclick(hospital._id); setModal(true) }}>Clique para saber mais</button>
-
                             </div>
-                        </>
-                    ))
+                        ))
+                        :
+                        <div className="notFound">
+                            <h2>Parece que não há hospitais perto de você! :(</h2>
+                        </div>
                 }
                 {modal ?
                     <>
