@@ -66,7 +66,7 @@ export default function Delete({ history }) {
                 </div>
             </div>
             <form onSubmit={handleSubmitDelete} className="update-form">
-                <h2>Atualize sua senha!</h2>
+                <h2>Excluir conta!</h2>
                 {error && <div className="modal-error"><div>{error}</div></div>}
                 <div>
                     <label htmlFor="password">Confirmar senha</label>

@@ -1,68 +1,82 @@
-import React, { useState, useEffect, Component } from 'react';
-import { Modal, Button, Row, Col, Form } from 'react-bootstrap';
-import { Button, ButtonToolBar } from 'react-bootstrap';
-import { AddDepModal } from '../../components/Modal/AddDepModal'
-
+import React, { useEffect, useState } from 'react';
 import { IoMdArrowRoundBack } from 'react-icons/io';
-import { MdLocationOn } from 'react-icons/md';
 
 import api from '../../services/api';
+
 import './styles.css';
+import HospitalModal from '../../components/HospitalModal';
 
-class Hospital extends React.Component {
+export default function Hospitals(props) {
 
-    // constructor(props) {
-    //     super(props);
-    //     this.state = { deep:[], addModalShow : false }
-    // }
+    const [hospitals, setHospitals] = useState([]);
+    const [nameLogged, setNamelogged] = useState('');
+    const [modal, setModal] = useState(null);
 
 
-    // const [name, setName] = useState('');
-    // const [email, setEmail] = useState('');
-    // const [phone, setPhone] = useState('');
-    // const [cnpj, setCnpj] = useState('');
-    // const [cnes, setCnes] = useState('');
-    // const [city, setCity] = useState('');
-    // const [state, setState] = useState('');
-    // const [street, setStreet] = useState('');
-    // const [neighborhood, setNeighborhood] = useState('');
-    // const [cep, setCep] = useState('');
+    useEffect(() => {
+        async function getHospitals10() {
 
-    // const [hosp, setHosp] = useState([]);
+            const hospitalLogged = await api.get('/hospital/home', {
+                headers: { Authorization: `Bearer ${localStorage.getItem('tk-hopt')}` }
+            });
 
-    // const getHospital = async () => {
-    //         const response = await api.get('/hospital', /*{
-    //         //     headers: { Authorization: `Bearer ${localStorage.getItem('tk-hopt')}` }
-    //         // }*/);
-    //         console.log(response.data);
-    //         setHosp(response.data);
-    // }
-    // useEffect(() => {
-    //     getHospital();
-    // }, []);
+            const { location, _id, name } = hospitalLogged.data;
+            setNamelogged(name);
+            const longitude = location.coordinates[0];
+            const latitude = location.coordinates[1];
 
-    render () {
-
-        let addModalClose =() => this.setState({addModalShow:false});
+            const response = await api.get('/search', {
+                headers: {
+                    hospital: _id
+                },
+                params: {
+                    latitude,
+                    longitude
+                }
+            });
+            setHospitals(response.data.hospitais);
+        }
+        getHospitals10();
+    }, []);
 
     return (
         <>
-            <div className="menu-profile">
+            <div className="menu-hospitals">
                 <div className="back">
                     <button onClick={() => props.history.goBack()}><IoMdArrowRoundBack size={25} />Voltar</button>
                 </div>
                 <div className="title-profile">
-                    <h2>Olá</h2>
+                    <h2>Olá, {nameLogged}</h2>
                 </div>
             </div>
-            <div className="lista">
-                {hosp.map(hospital => (
-                    <>
-                        
-                    </>
-                ))}
+            <div className="content-support">
+                <div>
+                    <h2>Veja abaixo os hospitais perto de você!</h2>
+                    <span>Aqui está os hospitais mais próximos!.</span>
+                </div>
+                <div>
+                    <img src={require('../../assets/profile.png')} alt="Suporte do 1° Socorros" title="Suporte do 1° Socorros" />
+                </div>
             </div>
+            <div className="container-hospitals">
+                {
+                    hospitals.map(hospital => (
+                        <>
+                            <div key={hospital._id} className="box" >
+                                <h2>{hospital.name}</h2>
+                                <button className="btnOpen" onClick={() => setModal(true)}>Clique para saber mais</button>
+                                {modal ?
+                                    <>
+                                        <HospitalModal name={hospital.name} email={hospital.email} phone={hospital.phone} cnpj={hospital.cnpj} street={hospital.address.street} neighborhood={hospital.address.neighborhood} city={hospital.address.city} state={hospital.address.state} />
+                                        <button className="btnClose" onClick={() => setModal(null)}>Fechar</button>
+                                    </>
+                                    : ''}
+                            </div>
+                        </>
+                    ))
+                }
+            </div>
+
         </>
     );
-}
 }

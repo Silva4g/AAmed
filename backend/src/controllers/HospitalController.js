@@ -88,7 +88,6 @@ module.exports = {
     async destroy(req, res) {
         try {
             const { password } = req.body;
-            console.log(req.body);
             const hospital = await Hospital.findById(req.params.id).select('+password');
 
             if (!await bcrypt.compare(password, hospital.password)) {
