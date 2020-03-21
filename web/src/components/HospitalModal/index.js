@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './styles.css';
+import api from '../../services/api';
 
-export default function HospitalModal({ name, cnpj, email, phone, street, neighborhood, state, city }) {
+export default function HospitalModal({ id }) {
+    const [hospital, setHospital] = useState({});
 
-    console.log(name);
+    useEffect(() => {
+
+        async function getData() {
+            const response = await api.get(`/hosp/${id}`);
+            setHospital(response.data)
+            console.log(hospital.address.street);
+        }
+        getData();
+
+    }, [id]);
     return (
         <div className="modal-hospital">
             <div>
@@ -19,14 +30,14 @@ export default function HospitalModal({ name, cnpj, email, phone, street, neighb
                     <h2>Cidade:</h2>
                 </div>
                 <div>
-                    <h2>{name}</h2>
-                    <h2>{cnpj}</h2>
-                    <h2>{email}</h2>
-                    <h2>{phone}</h2>
-                    <h2>{street}</h2>
-                    <h2>{neighborhood}</h2>
-                    <h2>{state}</h2>
-                    <h2>{city}</h2>
+                    <h2>{hospital.cnpj}</h2>
+                    <h2>{hospital.name}</h2>
+                    <h2>{hospital.email}</h2>
+                    <h2>{hospital.phone}</h2>
+                    <h2>{hospital.street}</h2>
+                    <h2>{hospital.neighborhood}</h2>
+                    <h2>{hospital.state}</h2>
+                    <h2>{hospital.city}</h2>
                 </div>
             </div>
         </div>

@@ -17,6 +17,8 @@ routes.put('/change/:id', HospitalController.change);
 routes.post('/login/hospital', HospitalController.login);
 //all hospitals
 routes.get('/hospital', HospitalController.index);
+//get one hospital
+routes.get('/hosp/:id', HospitalController.list);
 //delete hospital
 routes.delete('/hospital/:id', HospitalController.destroy);
 

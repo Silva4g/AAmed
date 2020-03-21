@@ -121,4 +121,8 @@ module.exports = {
             return res.status(400).send({ error: 'Falha na atualização do hospital. ' + err })
         }
     },
+    async list(req, res) {
+        const hospital = await Hospital.findById(req.params.id);
+        return res.json(hospital);
+    },
 }

@@ -11,6 +11,7 @@ export default function Hospitals(props) {
     const [hospitals, setHospitals] = useState([]);
     const [nameLogged, setNamelogged] = useState('');
     const [modal, setModal] = useState(null);
+    const [idClick, setIdclick] = useState(null);
 
 
     useEffect(() => {
@@ -64,17 +65,18 @@ export default function Hospitals(props) {
                         <>
                             <div key={hospital._id} className="box" >
                                 <h2>{hospital.name}</h2>
-                                <button className="btnOpen" onClick={() => setModal(true)}>Clique para saber mais</button>
-                                {modal ?
-                                    <>
-                                        <HospitalModal name={hospital.name} email={hospital.email} phone={hospital.phone} cnpj={hospital.cnpj} street={hospital.address.street} neighborhood={hospital.address.neighborhood} city={hospital.address.city} state={hospital.address.state} />
-                                        <button className="btnClose" onClick={() => setModal(null)}>Fechar</button>
-                                    </>
-                                    : ''}
+                                <button className="btnOpen" onClick={() => { setIdclick(hospital._id); setModal(true) }}>Clique para saber mais</button>
+
                             </div>
                         </>
                     ))
                 }
+                {modal ?
+                    <>
+                        <HospitalModal id={idClick} />
+                        <button className="btnClose" onClick={() => setModal(false)}>Fechar</button>
+                    </>
+                    : ''}
             </div>
 
         </>
