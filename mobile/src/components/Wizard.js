@@ -2,7 +2,7 @@ import React, { PureComponent, useState } from 'react';
 import { View, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import api from '../utils/api';
+import api from '../services/api';
 
 import Step from './Step';
 

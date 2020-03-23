@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
   }
 });
 
-// Sobre os 200 A's do 'TextInputMask' do nome: é só um teste(por enquanto)
 function WizardScreen() {
   const [name, setName] = useState("");
   const [cpf, setCpf] = useState("");
@@ -71,14 +70,7 @@ function WizardScreen() {
                 color="#24292e"
                 style={styles.iconUser}
               />
-              <TextInputMask
-                type={'custom'}
-                options={{
-                  mask: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' +
-                  'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' +
-                  'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                  delimiter: '/'
-                }}
+              <TextInput
                 style={styles.input}
                 autoFocus
                 placeholderTextColor="#24292e"

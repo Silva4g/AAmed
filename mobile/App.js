@@ -1,19 +1,30 @@
 import React from "react";
-import { View, StatusBar } from "react-native";
+import { ActivityIndicator } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
 
-import Routes from "./src/routes";
+import Loading from "./src/components/Loading";
+import { StoreProvider, useStore } from "./src/store/store";
+import { AuthStackScreen, GuestStackScreen } from "./src/routes";
+
+const Router = () => {
+  const [store] = useStore();
+
+  // Enquanto o processo de rehydrated não termina, a tela de loading aparece
+  if (!store.rehydrated) {
+    return <Loading />;
+  }
+
+  // Se tiver algo no auth(token/usuário) retorna a rota autenticada
+  // caso contrário renderiza a rota de 'usuário comum'
+  return store.auth ? <AuthStackScreen /> : <GuestStackScreen />;
+};
 
 export default function App() {
   return (
-    <>
-      <View style={{ flex: 1 }}>
-        <StatusBar
-          translucent
-          barStyle="dark-content"
-          backgroundColor="transparent"
-        />
-        <Routes />
-      </View>
-    </>
+    <NavigationContainer>
+      <StoreProvider>
+        <Router />
+      </StoreProvider>
+    </NavigationContainer>
   );
 }

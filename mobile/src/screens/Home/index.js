@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dimensions, View, StyleSheet, Button, AsyncStorage } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import { useAuth } from '../../utils/auth';
 
 const Screen = {
   width: Dimensions.get('window').width,
@@ -8,13 +9,8 @@ const Screen = {
 };
 
 // em andamento
-
-export default function Home({ navigation }) {
-
-  // async function handleLogout() {
-  //   // await AsyncStorage.removeItem('isLoggedin');
-  //   navigation.push('SignIn');
-  // }
+export default function Home() {
+  const [, { logout }] = useAuth();
 
   return (
     <View style={styles.container}>
@@ -28,7 +24,7 @@ export default function Home({ navigation }) {
           longitudeDelta: 0.0121,
         }}>
       </MapView> */}
-      <Button title="Logout" onPress={() => signOut()} />
+      <Button title="Logout" onPress={logout} />
       <View style={styles.mapDrawerOverlay} />
     </View>
   );
