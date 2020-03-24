@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import "./App.css";
 import { Menu, Rodape } from "./components";
-import { About, Edit, Home, Hospitals, Login, Logout, NotFound, Profile, Register, Support, Update, ChangePass, Delete } from './Pages';
+import { About, Edit, Home, Hospitals, Login, Logout, NotFound, Profile, Register, Support, Update, ChangePass, Delete, Logged } from './Pages';
 import { LoginRoute, RegisterRoute } from './auth';
 import isLogged from './utils/logged';
 
@@ -15,7 +15,7 @@ export default function App() {
         {isLogged() ?
           <>
             <Switch>
-              <Route path="/" exact component={Home} />
+              <Route path="/home/:id" component={Logged} />
               <Route path="/hospitals" component={Hospitals} />
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />

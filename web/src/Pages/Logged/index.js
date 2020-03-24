@@ -1,17 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+//socket io
+import socketio from 'socket.io-client';
 import { IoMdSettings } from 'react-icons/io';
 import { AiFillMedicineBox } from 'react-icons/ai';
 import { FaUserCircle, FaList } from 'react-icons/fa';
 
 import './styles.css';
 import { useEffect } from 'react';
+import api from '../../services/api';
 
 export default function Logged() {
 
   let click = React.createRef();
   let changeColor = React.createRef();
+
+  const [id, setId] = useState(null);
+
+  useEffect(() => {
+    async function getIdLogged() {
+      const response = await api.get('/hospital/home', {
+        headers: { Authorization: `Bearer ${localStorage.getItem('tk-hopt')}` }
+      });
+      setId(response.data._id);
+    }
+    getIdLogged();
+
+    const socket = socketio('http://localhost:3333', {
+      query: { hospital: id }
+    });
+
+  }, [id]);
+
+
 
   useEffect(() => {
     const evt = click.current;

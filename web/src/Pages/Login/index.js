@@ -1,5 +1,5 @@
 //import React, { useState, useEffect } from 'react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.css';
 import api from '../../services/api';
 
@@ -11,6 +11,14 @@ export default function Login(props) {
 
   const [show, setShow] = useState(false);
 
+
+  // async function getId() {
+  //   const resp = await api.get('/hospital/home', { headers: { Authorization: `Bearer ${localStorage.getItem('tk-hopt')}` } });
+  //   const { _id } = resp.data;
+  //   console.log(_id);
+  //   //setId(_id);
+  // }
+
   async function submit(e) {
     e.preventDefault()
     try {
@@ -20,8 +28,12 @@ export default function Login(props) {
       }).then(response => {
         const { history } = props;
         localStorage.setItem('tk-hopt', response.data.token);
-        history.push('/');
-        window.location.reload();
+        api.get('/hospital/home', { headers: { Authorization: `Bearer ${localStorage.getItem('tk-hopt')}` } })
+          .then(id => {
+            history.push(`/home/${id.data._id}`);
+            //window.location.reload();
+          })
+
       }).catch(exp => {
         setShow(true)
         setTimeout(() => {

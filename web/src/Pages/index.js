@@ -11,5 +11,6 @@ import Hospitals from './Hospitals';
 import Update from './Update';
 import ChangePass from './ChangePassword';
 import Delete from './Delete';
+import Logged from './Logged';
 
-export { Home, About, Register, Support, Login, NotFound, Edit, Logout, Profile, Hospitals, Update, ChangePass, Delete };
+export { Home, About, Register, Support, Login, NotFound, Logged, Edit, Logout, Profile, Hospitals, Update, ChangePass, Delete };
