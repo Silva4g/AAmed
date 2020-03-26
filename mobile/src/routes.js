@@ -18,7 +18,7 @@ export const AuthStackScreen = () => (
 const GuestStack = createStackNavigator();
 export const GuestStackScreen = () => (
   <GuestStack.Navigator>
-     <GuestStack.Screen name="HomeScreenRoutes" component={HomeScreenRoutes} options={{ headerShown: false }}/>
+     <GuestStack.Screen name="HomeScreenRoutes" component={HomeScreenRoutes} options={{ headerShown: true }}/>
     <GuestStack.Screen name="Login" component={Login} />
     <GuestStack.Screen name="SignUp" component={SignUp} />
     <GuestStack.Screen name="ForgotPassword" component={ForgotPassword} />

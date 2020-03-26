@@ -35,7 +35,7 @@ function CustomDrawerContent(props) {
 				<ImageBackground source={fundoDrawer} style={styles.imgTopDrawer}>
 					<Avatar
 						avatarStyle={styles.avatarStyle}
-            containerStyle={styles.avatarContainerStyle}
+						containerStyle={styles.avatarContainerStyle}
 						onPress={() => alert('Editar dados usuário')}
 						activeOpacity={0.7}
 						size="large"
@@ -53,10 +53,11 @@ function CustomDrawerContent(props) {
 
 			<DrawerItemList {...props} />
 			{/* <DrawerItem
+				inactiveBackgroundColor="#E0EFFF"
 				label="Sair"
 				inactiveTintColor="#656566"
-				labelStyle={{ fontWeight: 'bold'}}
-				onPress={() => alert('É um scroll automático então pode colocar vários itens')}
+				labelStyle={{ fontWeight: 'bold', fontSize: 14,paddingLeft:20}}
+				icon={() => <Feather name="log-out" size={16} color="#ff0000" />}
 			/> */}
 		</DrawerContentScrollView>
 	);
@@ -78,7 +79,7 @@ export default function HomeScreenRoutes() {
 			<Drawer.Screen
 				name="Home"
 				component={Home}
-				labelStyle={{ fontSize: 20 }}
+				labelStyle={{ fontSize: 23}}
 				options={{
 					drawerLabel: 'Home',
 					drawerIcon: ({ tintColor }) => <Feather name="user" size={16} />
