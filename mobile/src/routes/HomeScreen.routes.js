@@ -71,7 +71,7 @@ export default function HomeScreenRoutes() {
 		<Drawer.Navigator
 			drawerContentOptions={{
 				labelStyle: { fontWeight: 'bold' },
-				itemStyle: { padding: 22 },
+				itemStyle: { padding: 16 },
 				contentContainerStyle: { backgroundColor: '#fff' }
 			}}
 			drawerContent={(props) => <CustomDrawerContent {...props} />}
