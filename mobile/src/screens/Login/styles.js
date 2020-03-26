@@ -1,99 +1,88 @@
-import { StyleSheet, Dimensions, StatusBar } from "react-native";
-//import { Dimensions } from 'react-native';@import url('https://fonts.googleapis.com/css?family=Titan+One&display=swap')
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { TextInputMask } from "react-native-masked-text";
+import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import styled from "styled-components";
 
-const styles = StyleSheet.create({
-  containerKeyboard: {
-    padding: StatusBar.currentHeight,
-    flex: 1
-  },
+export const ImageContainer = styled(View)`
+  flex: 3;
+  align-items: center;
+  justify-content: center;
+`;
 
-  wrapperContent: {
-    justifyContent: "space-between",
-    flex: 1
-  },
+export const LoginBox = styled(View)`
+  flex: 2;
+  padding: 16px;
+  background-color: #778beb00;
+`;
 
-  containerInput: {
-    justifyContent: "center",
-    width: "100%"
-  },
+export const InputBox = styled(View)`
+  background-color: #59627500;
+`;
 
-  input: {
-    width: "100%",
-    height: 44,
-    marginTop: 40,
-    fontSize: 16,
-    paddingHorizontal: 40,
-    color: "#000",
-    borderBottomWidth: 2,
-    borderBottomColor: "#24292e"
-  },
+export const InputMask = styled(TextInputMask)`
+  background-color: #e9e9e9;
+  height: 30px;
+  font-size: 18px;
+  padding-left: 40px;
+  border-width: 1px;
+  border-color: #c9c9c9;
+  margin-bottom: 18px;
+`;
 
-  icon: {
-    color: "#333333",
-    fontSize: 25,
-    position: "absolute",
-    top: 45,
-    left: 7,
-    zIndex: 5
-  },
+export const Input = styled(TextInput)`
+  background-color: #e9e9e9;
+  height: 30px;
+  font-size: 18px;
+  padding-left: 40px;
+  border-color: #c9c9c9;
+  border-width: 1px;
+`;
 
-  iconEye: {
-    color: "#333333",
-    fontSize: 25,
-    position: "absolute",
-    top: 45,
-    right: 10,
-    zIndex: 5
-  },
+export const Icon = styled(SimpleLineIcons)`
+  font-size: 25px;
+  color: #24292e;
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  z-index: 5;
+`;
 
-  botaoEntrar: {
-    backgroundColor: "#52c8fa",
-    marginTop: 15,
-    width: "100%",
-    height: 60,
-    alignItems: "center",
-    alignSelf: "center",
-    justifyContent: "center",
-    borderRadius: 2
-  },
+export const TouchEye = styled(TouchableOpacity)`
+  top: 2px;
+  position: absolute;
+  left: 290px;
+  z-index: 5;
+`;
 
-  txtBtEntrar: {
-    textAlign: "center",
-    color: "#595959",
-    fontSize: 16,
-    fontWeight: "bold"
-  },
+export const IconEye = styled(MaterialCommunityIcons)`
+  font-size: 25px;
+  color: #24292e;
+`;
 
-  viewTextSenha: {
-    width: 200,
-    alignSelf: "center"
-  },
+export const Touch = styled(TouchableOpacity)`
+  background-color: #29B6F6;
+  padding: 12px;
+  align-items: center;
+  margin-top: 18px;
+  border-radius: 2px;
+  z-index: 10;
+`;
 
-  textEsqueceuSenha: {
-    color: "#000",
-    textAlign: "center",
-    padding: 15,
-    fontSize: 15,
-    textDecorationLine: "underline"
-  },
+export const ViewOptions = styled(View)`
+  flex: 1;
+  justify-content: flex-start;
+  padding: 16px;
+`;
 
-  viewTextCadastro: {
-    alignItems: "center",
-    marginBottom: 30
-  },
+export const Option = styled(Text)`
+  align-self: center;
+  font-size: 16px;
+  text-decoration: underline;
+`;
 
-  textLogin: {
-    color: "#000",
-    textAlign: "center",
-    fontSize: 15
-  },
-
-  textCadastre: {
-    color: "#000",
-    textAlign: "center",
-    fontSize: 15,
-    fontWeight: "bold"
-  }
-});
-
-export default styles;
+export const ErrorText = styled(Text)`
+  align-self: center;
+  color: #C62828;
+  font-size: 16px;
+`;

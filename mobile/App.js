@@ -1,5 +1,5 @@
 import React from "react";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 
 import Loading from "./src/components/Loading";
@@ -23,6 +23,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <StoreProvider>
+        <StatusBar backgroundColor="#00000000" translucent />
         <Router />
       </StoreProvider>
     </NavigationContainer>

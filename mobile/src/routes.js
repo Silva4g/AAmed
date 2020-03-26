@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Login } from "./screens/Login";
 import SignUp from "./screens/SignUp";
 import ForgotPassword from "./screens/ForgotPassword";
-import HomeScreenRoutes from './routes/HomeScreen.routes';
+import HomeScreenRoutes from "./routes/HomeScreen.routes";
 
 // Rota autenticada
 const AuthStack = createStackNavigator();
@@ -17,7 +17,9 @@ export const AuthStackScreen = () => (
 // Rota sem autenticação
 const GuestStack = createStackNavigator();
 export const GuestStackScreen = () => (
-  <GuestStack.Navigator>
+  <GuestStack.Navigator
+    screenOptions={{ headerStyle: { backgroundColor: "#29B6F6" } }}
+  >
     <GuestStack.Screen name="Login" component={Login} />
     <GuestStack.Screen name="SignUp" component={SignUp} />
     <GuestStack.Screen name="ForgotPassword" component={ForgotPassword} />
