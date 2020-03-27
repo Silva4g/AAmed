@@ -1,10 +1,10 @@
 import React from "react";
-import { ActivityIndicator, StatusBar } from "react-native";
+import { StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 
 import Loading from "./src/components/Loading";
 import { StoreProvider, useStore } from "./src/store/store";
-import { AuthStackScreen, GuestStackScreen } from "./src/routes";
+import { AuthDrawerScreen, GuestStackScreen } from "./src/routes";
 
 const Router = () => {
   const [store] = useStore();
@@ -16,7 +16,7 @@ const Router = () => {
 
   // Se tiver algo no auth(token/usuário) retorna a rota autenticada
   // caso contrário renderiza a rota de 'usuário comum'
-  return store.auth ? <AuthStackScreen /> : <GuestStackScreen />;
+  return store.auth ? <AuthDrawerScreen /> : <GuestStackScreen />;
 };
 
 export default function App() {
