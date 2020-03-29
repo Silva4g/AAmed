@@ -37,7 +37,6 @@ export default function CustomDrawerContent(props) {
       <DrawerItem
         onPress={logout}
         label="Sair"
-        inactiveTintColor="#656566"
         labelStyle={{ fontWeight: "bold" }}
         icon={() => <Feather name="log-out" size={20} color="#E53935" />}
       />

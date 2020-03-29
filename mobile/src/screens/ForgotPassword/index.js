@@ -5,16 +5,12 @@ import {
   TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
-  Image,
   StatusBar
 } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
-import logo from "../../../assets/logo.png";
-
 export default function ForgotPasword() {
   const [email, setEmail] = useState("");
-  const keyboardVerticalOffset = Platform.OS === "ios" ? 0 : 0;
 
   function handleSubmit() {
     console.log(email);

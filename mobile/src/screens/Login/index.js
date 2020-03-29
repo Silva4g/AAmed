@@ -23,8 +23,8 @@ import {
   Option,
   ErrorText
 } from "./styles";
-import screen from "../../../assets/screen.png";
-import logo from "../../../assets/logo.png";
+import screen from "../../assets/screen.png";
+import logo from "../../assets/logo.png";
 import api from "../../services/api";
 import { useAuth } from "../../utils/auth";
 
