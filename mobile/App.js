@@ -23,7 +23,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <StoreProvider>
-        <StatusBar backgroundColor="#00000000" translucent />
+        <StatusBar backgroundColor="#0277BD" translucent />
         <Router />
       </StoreProvider>
     </NavigationContainer>

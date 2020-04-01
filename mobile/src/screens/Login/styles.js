@@ -73,6 +73,7 @@ export const ViewOptions = styled(View)`
   flex: 1;
   justify-content: flex-start;
   padding: 16px;
+  margin-top: 30px;
 `;
 
 export const Option = styled(Text)`

@@ -20,6 +20,7 @@ const Screen = {
 export default function Home() {
   const [hospitals, setHospitals] = useState([]);
   const [currentRegion, setCurrentRegion] = useState(null);
+  const [regionChange, setRegionChange] = useState(null);
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -48,13 +49,24 @@ export default function Home() {
 
   useEffect(() => {
     async function loadHospitals() {
-      const response = await api.get("/hospital");
-      console.log(response.data);
-      setHospitals(response.data);
+      // const { latitude, longitude } = currentRegion;
+
+      try {
+        const response = await api.get("search");
+        // console.log(response.data.hospitais);
+        setHospitals(response.data.hospitais);
+      } catch (error) {
+        console.log("que tal? ", error);
+      }
     }
 
     loadHospitals();
   }, []);
+
+  function handleRegionChanged(region) {
+    console.log(region);
+    setRegionChange(region);
+  }
 
   if (!currentRegion) {
     return null;
@@ -76,18 +88,35 @@ export default function Home() {
         rightComponent={{ icon: "home", color: "#fff" }}
         backgroundColor="#29B6F6"
       />
-      <MapView initialRegion={currentRegion} style={styles.mapContainer}>
-        <Marker coordinate={{ latitude: -22.9161093, longitude: -47.0707415 }}>
-          <FontAwesome name="hospital-o" size={30} color="#E02041" />
+      <MapView
+        onRegionChangeComplete={handleRegionChanged}
+        initialRegion={currentRegion}
+        style={styles.mapContainer}
+      >
+        {hospitals.map(hospital => (
+          <Marker
+            key={hospital._id}
+            coordinate={{
+              latitude: hospital.location.coordinates[1],
+              longitude: hospital.location.coordinates[0]
+            }}
+          >
+            <FontAwesome name="hospital-o" size={30} color="#E02041" />
 
-          <Callout style={styles.callout}>
-            <Text style={styles.name}>Hospital?</Text>
-            <Text style={styles.desc}>Não sei.</Text>
-            <Text style={styles.data}>Não lista. Tirar o '-location'?</Text>
-          </Callout>
-        </Marker>
+            <Callout style={styles.callout}>
+              <Text style={styles.name}>{hospital.name}</Text>
+              <Text style={styles.desc}>
+                {hospital.address.street}/{hospital.address.neighborhood}/
+                {hospital.address.cep}
+              </Text>
+              <Text style={styles.data}>
+                {hospital.address.city}/{hospital.address.state}
+              </Text>
+            </Callout>
+          </Marker>
+        ))}
 
-        <Marker coordinate={{ latitude: -22.9442145, longitude: -47.0581135 }}>
+        <Marker coordinate={currentRegion}>
           <Image
             style={styles.avatar}
             source={{
@@ -96,7 +125,10 @@ export default function Home() {
             }}
           />
 
-          <Callout style={styles.callout}>
+          <Callout
+            onPress={() => console.log("hospitais", hospitals)}
+            style={styles.callout}
+          >
             <Text style={styles.name}>Nome do paciente</Text>
             <Text style={styles.desc}>Alguma descrição?</Text>
             <Text style={styles.data}>Dados?Não sei.</Text>
@@ -146,3 +178,5 @@ const styles = StyleSheet.create({
     marginTop: 5
   }
 });
+
+// { latitude: -22.9442145, longitude: -47.0581135 }

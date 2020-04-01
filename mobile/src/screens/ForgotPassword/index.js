@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -11,6 +12,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 export default function ForgotPasword() {
   const [email, setEmail] = useState("");
+  const navigation = useNavigation();
 
   function handleSubmit() {
     console.log(email);
@@ -111,7 +113,7 @@ export default function ForgotPasword() {
           }}
         >
           <Text style={{ color: "#eee" }}>Não tem uma conta?</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
             <Text style={{ fontSize: 16, fontWeight: "bold", color: "#fff" }}>
               Cadastre-se
             </Text>
