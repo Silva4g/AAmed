@@ -72,7 +72,7 @@
   - Instale o Expo em seu dispositivo móvel
   - Depois de instalado, abra e scaneie o QR CODE no navegador
   - Utilize o app mobile em seu prórpio dispositivo
-  - Caso ocorra algum erro, trocar o endereço de IP do arquivo api.js para o que for apresentado na página do expo ou o IP da máquina
+  - Caso ocorra algum erro, trocar o endereço de IP do arquivo api.js para o que for apresentado na página do expo ou o IP da máquina. ex: http://192.168...:3333
   
   ## Dependencias
   - react
