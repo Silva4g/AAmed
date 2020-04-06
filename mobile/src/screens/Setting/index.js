@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Text} from 'react-native';
 
+import styles from './styles.js';
+
 export default function Setting() {
 	return (
-		<Text style={{textAlign:'center', fontSize:30}}>Configurações</Text>
+		<Text style={styles.teste}>Configurações</Text>
 	);
 }
