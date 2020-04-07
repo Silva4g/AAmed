@@ -2,16 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Dimensions, View, StyleSheet, Image, Text } from "react-native";
 import MapView, { Marker, Callout } from "react-native-maps";
 import { useNavigation } from "@react-navigation/native";
-import { Header } from "react-native-elements";
-import { FontAwesome } from "@expo/vector-icons";
+import {
+  FontAwesome,
+  Ionicons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import {
   requestPermissionsAsync,
-  getCurrentPositionAsync
+  getCurrentPositionAsync,
 } from "expo-location";
 
-import styles from './styles.js';
+import CustomHeader from "../../components/CustomHeader";
+import styles from "./styles.js";
 import api from "../../services/api";
-
 
 // em andamento
 export default function Home() {
@@ -27,7 +30,7 @@ export default function Home() {
 
       if (granted) {
         const { coords } = await getCurrentPositionAsync({
-          enableHighAccuracy: true
+          enableHighAccuracy: true,
         });
 
         const { latitude, longitude } = coords;
@@ -36,7 +39,7 @@ export default function Home() {
           latitude,
           longitude,
           latitudeDelta: 0.04,
-          longitudeDelta: 0.04
+          longitudeDelta: 0.04,
         });
       }
     }
@@ -44,21 +47,22 @@ export default function Home() {
     loadInitialPosition();
   }, []);
 
-  useEffect(() => {
-    async function loadHospitals() {
-      // const { latitude, longitude } = currentRegion;
+  async function loadHospitals() {
+    const { latitude, longitude } = currentRegion;
 
-      try {
-        const response = await api.get("search");
-        // console.log(response.data.hospitais);
-        setHospitals(response.data.hospitais);
-      } catch (error) {
-        console.log("que tal? ", error);
-      }
+    try {
+      const response = await api.get("search", {
+        params: {
+          latitude,
+          longitude,
+        },
+      });
+      // console.log(response.data.hospitais);
+      setHospitals(response.data.hospitais);
+    } catch (error) {
+      console.log("que tal? ", error);
     }
-
-    loadHospitals();
-  }, []);
+  }
 
   function handleRegionChanged(region) {
     console.log(region);
@@ -69,36 +73,51 @@ export default function Home() {
     return null;
   }
 
+  // caso ainda não esteja funcionando tente:
+  // importa o DrawerActions do @react-navigation/native
+  // no onPress -> navigation.dispatch(DrawerActions.openDrawer());
   return (
     <View style={styles.container}>
-      <Header
-        leftComponent={{
-          icon: "menu",
-          color: "#fff",
-          iconStyle: { fontSize: 35 },
-          onPress: () => navigation.openDrawer()
-        }}
-        centerComponent={{
-          text: "First help?",
-          style: { color: "#fff", fontSize: 18 }
-        }}
-        rightComponent={{ icon: "home", color: "#fff" }}
-        backgroundColor="#29B6F6"
-      />
+      <CustomHeader>
+        <Ionicons
+          name="md-menu"
+          size={35}
+          color="#fff"
+          style={{ position: "absolute", left: 12 }}
+          onPress={() => navigation.toggleDrawer()}
+        />
+
+        <Text style={{ alignSelf: "center", color: "#fff" }}>
+          Nome ou logo do app?
+        </Text>
+
+        <MaterialCommunityIcons
+          name="hospital"
+          size={35}
+          color="#fff"
+          style={{ position: "absolute", right: 12 }}
+          onPress={() => loadHospitals()}
+        />
+      </CustomHeader>
+
       <MapView
         onRegionChangeComplete={handleRegionChanged}
         initialRegion={currentRegion}
         style={styles.mapContainer}
       >
-        {hospitals.map(hospital => (
+        {hospitals.map((hospital) => (
           <Marker
             key={hospital._id}
             coordinate={{
               latitude: hospital.location.coordinates[1],
-              longitude: hospital.location.coordinates[0]
+              longitude: hospital.location.coordinates[0],
             }}
           >
-            <FontAwesome name="hospital-o" size={30} color="#E02041" />
+            <MaterialCommunityIcons
+              name="hospital-marker"
+              size={40}
+              color="#0984e3"
+            />
 
             <Callout style={styles.callout}>
               <Text style={styles.name}>{hospital.name}</Text>
@@ -118,7 +137,7 @@ export default function Home() {
             style={styles.avatar}
             source={{
               uri:
-                "https://avatars1.githubusercontent.com/u/57529750?s=460&u=ecdea07170683c8188c3fda98756f90dff1978e6&v=4"
+                "https://avatars1.githubusercontent.com/u/57529750?s=460&u=ecdea07170683c8188c3fda98756f90dff1978e6&v=4",
             }}
           />
 

@@ -22,9 +22,11 @@ function getIds() {
   hospitals.map((hospital) => {
     allIds.push(hospital._id);
   });
+
   socket = socketio("http://localhost:3333", {
     query: { user_id },
   });
+  
   //emit que faz a requisição, ou seja, ele manda p backend uma informação
   socket.emit("hospitals_id", {
     ids: { allIds }, //ids de hospitais perto de mim
