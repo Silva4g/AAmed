@@ -68,7 +68,6 @@ export const GuestStackScreen = () => (
   <GuestStack.Navigator
     screenOptions={{ headerStyle: { backgroundColor: "#29B6F6" } }}
   >
-    <GuestStack.Screen name="Support" component={Support} />
     <GuestStack.Screen name="Login" component={Login} />
     <GuestStack.Screen name="SignUp" component={SignUp} />
     <GuestStack.Screen name="ForgotPassword" component={ForgotPassword} />

@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Dimensions, View, StyleSheet, Image, Text } from "react-native";
+import {
+  View,
+  Image,
+  Text,
+  AsyncStorage,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import MapView, { Marker, Callout } from "react-native-maps";
 import { useNavigation } from "@react-navigation/native";
-import {
-  FontAwesome,
-  Ionicons,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
+import io from "socket.io-client";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   requestPermissionsAsync,
   getCurrentPositionAsync,
@@ -15,16 +19,76 @@ import {
 import CustomHeader from "../../components/CustomHeader";
 import styles from "./styles.js";
 import api from "../../services/api";
+import LoadingCustom from "../../components/LoadingCustom";
 
-// em andamento
 export default function Home() {
   const [hospitals, setHospitals] = useState([]);
+  const [user, setUser] = useState(null);
   const [currentRegion, setCurrentRegion] = useState(null);
   const [regionChange, setRegionChange] = useState(null);
+  const [description, setDescription] = useState("Descrição padrão!");
   const navigation = useNavigation();
+  const [connection, setConnection] = useState(null);
+  // let connection = null;
 
   useEffect(() => {
-    // função que vai carregar a posição inicial do paciente no mapa
+    setConnection(io("http://192.168.15.11:3333"));
+    // socket.on("connect", () => console.log("[IO] Connect => connected on mobile"));
+  }, []);
+
+  // essa funcção não pode ficar em um botão (pelo menos a conexão do socket)
+  // depois retirar
+  // function getIds() {
+  //   const allIds = [];
+  //   hospitals.map((hospital) => {
+  //     allIds.push(hospital._id);
+  //   });
+
+  //   const user_id = user._id;
+  //   const user_email = user.email;
+  //   console.debug("[ID: user] => ", user_id);
+  //   console.debug("[EMAIL: user] => ", user_email);
+
+  //   socket.emit("hospitals_id", {
+  //     ids: { allIds }, //ids de hospitais perto de mim
+  //     user_id, //id do user logado
+  //     email: user_email, //email do user logado
+  //   });
+  // }
+
+  async function handleSolicitation() {
+    const user_data = await AsyncStorage.getItem("store");
+    const parsed_user = JSON.parse(user_data);
+    const user_id = parsed_user.auth.user._id;
+    const hospital_ids = [];
+
+    hospitals.map((hospital) => {
+      hospital_ids.push(hospital._id);
+    });
+
+    connection.emit("user_solicitation", {
+      hospital_ids,
+      user,
+      description,
+    });
+    Alert.alert("Solicitação enviada");
+    // try {
+    //   await api.post(`/hospital/${'5e829725a3525ef2988b818b'}/solicitation`,{
+    //       description,
+    //     },{
+    //       headers: { user_id },
+    //     }
+    //   );
+
+    //   Alert.alert("Solicitação enviada");
+    // } catch (err) {
+    //   console.og("[ERROR: solicitation] => ", err);
+    // }
+    // socket.emit("ola", { id: user_id, description });
+  }
+
+  // função que vai carregar a posição inicial do paciente no mapa
+  useEffect(() => {
     async function loadInitialPosition() {
       const { granted } = await requestPermissionsAsync();
 
@@ -34,6 +98,10 @@ export default function Home() {
         });
 
         const { latitude, longitude } = coords;
+
+        const data = await AsyncStorage.getItem("store");
+        const dataParse = JSON.parse(data);
+        setUser(dataParse.auth.user);
 
         setCurrentRegion({
           latitude,
@@ -47,57 +115,56 @@ export default function Home() {
     loadInitialPosition();
   }, []);
 
-  async function loadHospitals() {
-    const { latitude, longitude } = currentRegion;
+  // problemas aqui
 
-    try {
-      const response = await api.get("search", {
-        params: {
-          latitude,
-          longitude,
-        },
-      });
-      // console.log(response.data.hospitais);
-      setHospitals(response.data.hospitais);
-    } catch (error) {
-      console.log("que tal? ", error);
+  useEffect(() => {
+    async function loadHospitals() {
+      const { latitude, longitude } = currentRegion || 1;
+      try {
+        const response = await api.get("search", {
+          params: {
+            latitude,
+            longitude,
+          },
+        });
+
+        setHospitals(response.data.hospitais);
+        // console.log("[API] => ", response.data.hospitais);
+      } catch (err) {
+        console.debug("[ERROR: loadHospitals] => ", err);
+      }
     }
-  }
 
-  function handleRegionChanged(region) {
-    console.log(region);
+    loadHospitals();
+  }, [currentRegion]);
+
+  async function handleRegionChanged(region) {
+    // console.log(region);
     setRegionChange(region);
   }
 
   if (!currentRegion) {
-    return null;
+    return <LoadingCustom />;
   }
 
-  // caso ainda não esteja funcionando tente:
-  // importa o DrawerActions do @react-navigation/native
-  // no onPress -> navigation.dispatch(DrawerActions.openDrawer());
   return (
     <View style={styles.container}>
       <CustomHeader>
-        <Ionicons
-          name="md-menu"
-          size={35}
-          color="#fff"
-          style={{ position: "absolute", left: 12 }}
+        <TouchableOpacity
           onPress={() => navigation.toggleDrawer()}
-        />
+          style={{ position: "absolute", left: 12 }}
+        >
+          <Ionicons name="md-menu" size={35} color="#fff" />
+        </TouchableOpacity>
 
-        <Text style={{ alignSelf: "center", color: "#fff" }}>
-          Nome ou logo do app?
-        </Text>
+        <Text style={{ alignSelf: "center", color: "#fff" }}>Icone, nome?</Text>
 
-        <MaterialCommunityIcons
-          name="hospital"
-          size={35}
-          color="#fff"
+        <TouchableOpacity
+          onPress={() => handleSolicitation()}
           style={{ position: "absolute", right: 12 }}
-          onPress={() => loadHospitals()}
-        />
+        >
+          <MaterialCommunityIcons name="hospital" size={35} color="#fff" />
+        </TouchableOpacity>
       </CustomHeader>
 
       <MapView
@@ -123,7 +190,8 @@ export default function Home() {
               <Text style={styles.name}>{hospital.name}</Text>
               <Text style={styles.desc}>
                 {hospital.address.street}/{hospital.address.neighborhood}/
-                {hospital.address.cep}
+                {hospital.address.cep}/
+                {hospital._id}
               </Text>
               <Text style={styles.data}>
                 {hospital.address.city}/{hospital.address.state}

@@ -22,22 +22,31 @@ const io = socketio(server);
 //o certo seria colocar no banco, dps eu vejo isso
 const connectedUsers = {}; //id_user: id_socket
 io.on("connection", (socket) => {
-  console.log("socket conectado " + socket.id);
+  console.log("[SOCKET: connected] => ", socket.id);
+  console.log("[SOCKET: connected mobile] => ", socket.handshake.query);
   const { hospital_id } = socket.handshake.query;
   connectedUsers[hospital_id] = socket.id;
 
-  //vai funcionar no mobile quando o user clicar em uma opção, o código de exemplo está na
-  //pasta 'mobile/example'
-  socket.on("hospitals_id", (data) => {
-    data.ids.allIds.map((ids) => {
+  console.log('connectedUsersVar => ', connectedUsers);
+  // socket.on("user_solicitation", (data) => console.log(data.hospital_ids));
+
+  socket.on("user_solicitation", (data) => {
+    console.log(data);
+    const { user, description } = data;
+    data.hospital_ids.map((ids) => {
       const ownerSocket = connectedUsers[ids];
+      // console.log('[OWNERSOCKET] => ', ownerSocket);
       if (ownerSocket) {
-        socket //aqui os hospitais perto vão receber esse chamado
+        socket
           .to(ownerSocket)
-          .emit("aviso", { user: data.email, user_id: data.user_id });
+          .emit("aviso", { user, description }); //aqui os hospitais perto vão receber esse chamado
       }
     });
   });
+
+  socket.on("disconnect", (reason) =>
+    console.log("[SOCKET: disconnected] => ", reason)
+  );
 });
 
 app.use(cors());

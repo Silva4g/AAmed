@@ -1,10 +1,12 @@
 import React from "react";
-import { StatusBar } from "react-native";
+import { StatusBar, YellowBox } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 
 import Loading from "./src/components/Loading";
 import { StoreProvider, useStore } from "./src/store/store";
 import { AuthDrawerScreen, GuestStackScreen } from "./src/routes";
+
+YellowBox.ignoreWarnings(["Unrecognized WebSocket"]);
 
 const Router = () => {
   const [store] = useStore();
@@ -23,7 +25,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <StoreProvider>
-        <StatusBar backgroundColor="#0277BD" translucent />
+        <StatusBar backgroundColor="#004b8b" translucent />
         <Router />
       </StoreProvider>
     </NavigationContainer>

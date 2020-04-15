@@ -23,7 +23,7 @@ function getIds() {
     allIds.push(hospital._id);
   });
 
-  socket = socketio("http://localhost:3333", {
+  socket = socketio("http://192.168.15.2:3333", {
     query: { user_id },
   });
   

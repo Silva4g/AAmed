@@ -29,9 +29,10 @@ export default function Logged() {
     getIdLogged();
 
     const socket = socketio("http://localhost:3333", {
-      query: { hospital: id },
+      query: { hospital_id: id },
     });
     socket.on("aviso", (data) => {
+      console.log(data);
       setUser([...user, data]);
       setOk(true);
     });
@@ -49,9 +50,12 @@ export default function Logged() {
     <div className="container-logged">
       {ok
         ? user.map((users) => (
-            <div key={users.user_id}>
+            <div key={users.user._id}>
               <div className="user-help">
-                {user.user} está solicitando uma ajuda!
+                {users.user.name} está solicitando uma ajuda! com a seguinte
+                descrição: {users.description}
+                <button>ACEITAR</button><br/>
+                <button>RECUSAR</button>
               </div>
             </div>
           ))
