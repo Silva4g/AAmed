@@ -1,7 +1,6 @@
 const { Router } = require("express");
 
 const {
-  HomeController,
   HospitalController,
   SearchHospital,
   SupportController,
@@ -9,6 +8,8 @@ const {
   SolicitaionController,
   ApprovalController,
   RejectionController,
+  SessionController,
+  ProfileController,
 } = require("./controllers");
 const authConfig = require("./middleware/auth");
 const multer = require("multer"); //envio de arquivos
@@ -23,7 +24,7 @@ routes.put("/hospital/:id", HospitalController.update);
 //change password
 routes.put("/change/:id", HospitalController.change);
 // route auth hospital
-routes.post("/login/hospital", HospitalController.login);
+routes.post("/login/hospital", SessionController.index);
 //all hospitals
 routes.get("/hospital", HospitalController.index);
 //get one hospital
@@ -35,7 +36,10 @@ routes.delete("/hospital/:id", HospitalController.destroy);
 routes.get("/search", SearchHospital.index);
 
 //route register users
-routes.post("/user" /*, multer(multerConfig).single('avatar')*/, UserController.store);
+routes.post(
+  "/user" /*, multer(multerConfig).single('avatar')*/,
+  UserController.store
+);
 //all users
 routes.get("/user", UserController.index);
 //route auth user
@@ -47,13 +51,22 @@ routes.put("/user/:id", UserController.update);
 routes.post("/support", SupportController.store);
 
 //route hospital logged and user logged
-routes.get("/hospital/home", authConfig.hospital, HomeController.home);
-routes.get("/user/home", authConfig.user, HomeController.home);
+//precisa ver oq fazer com esse authConfig.hospital ja que agr está com cookies
+routes.get("/hospital/home", authConfig.hospital, ProfileController.index);
+routes.get("/hospital/logout", authConfig.hospital, ProfileController.logout);
+routes.get("/hospital/verify", authConfig.hospital, ProfileController.isLogged);
+//routes.get("/user/home", authConfig.user, HomeController.home);
 
 routes.get("/hospital/solicitations", SolicitaionController.index);
 routes.post("/hospital/:hospital_id/solicitation", SolicitaionController.store);
 
-routes.post("/solicitations/:solicitation_id/approvals", ApprovalController.store);
-routes.post("/solicitations/:solicitation_id/rejections", RejectionController.store);
+routes.post(
+  "/solicitations/:solicitation_id/approvals",
+  ApprovalController.store
+);
+routes.post(
+  "/solicitations/:solicitation_id/rejections",
+  RejectionController.store
+);
 
 module.exports = routes;

@@ -2,18 +2,19 @@ const HospitalController = require("./HospitalController");
 const UserController = require("./UserController");
 const SearchHospital = require("./SearchHospital");
 const SupportController = require("./SupportController");
-const HomeController = require("./HomeController");
 const SolicitaionController = require("./SolicitationController");
 const ApprovalController = require("./ApprovalController");
 const RejectionController = require("./RejectionController");
-
+const SessionController = require("./SessionController");
+const ProfileController = require("./ProfileController");
 module.exports = {
   HospitalController,
   UserController,
   SearchHospital,
   SupportController,
-  HomeController,
   SolicitaionController,
   ApprovalController,
   RejectionController,
+  SessionController,
+  ProfileController,
 };

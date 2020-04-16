@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const morgan = require("morgan");
 const routes = require("./routes");
@@ -23,11 +24,11 @@ const io = socketio(server);
 const connectedUsers = {}; //id_user: id_socket
 io.on("connection", (socket) => {
   console.log("[SOCKET: connected] => ", socket.id);
-  console.log("[SOCKET: connected mobile] => ", socket.handshake.query);
+  //console.log("[SOCKET: connected mobile] => ", socket.handshake.query);
   const { hospital_id } = socket.handshake.query;
   connectedUsers[hospital_id] = socket.id;
 
-  console.log('connectedUsersVar => ', connectedUsers);
+  //console.log('connectedUsersVar => ', connectedUsers);
   // socket.on("user_solicitation", (data) => console.log(data.hospital_ids));
 
   socket.on("user_solicitation", (data) => {
@@ -37,9 +38,7 @@ io.on("connection", (socket) => {
       const ownerSocket = connectedUsers[ids];
       // console.log('[OWNERSOCKET] => ', ownerSocket);
       if (ownerSocket) {
-        socket
-          .to(ownerSocket)
-          .emit("aviso", { user, description }); //aqui os hospitais perto vão receber esse chamado
+        socket.to(ownerSocket).emit("aviso", { user, description }); //aqui os hospitais perto vão receber esse chamado
       }
     });
   });
@@ -49,7 +48,13 @@ io.on("connection", (socket) => {
   );
 });
 
-app.use(cors());
+app.use(cookieParser());
+app.use(
+  cors({
+    credentials: true,
+    exposedHeaders: "id",
+  })
+);
 //uso do json para envio e recebimento de dados
 app.use(express.json());
 //url de fotos

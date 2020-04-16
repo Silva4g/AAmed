@@ -38,13 +38,10 @@ export default function Logged() {
     });
   }, [user, id]);
 
-  useEffect(() => {
-    const evt = click.current;
+  function handleClick() {
     const cc = changeColor.current;
-    evt.addEventListener("click", () => {
-      cc.classList.toggle("bgcolorClick");
-    });
-  }, [changeColor, click]);
+    cc.classList.toggle("bgcolorClick");
+  }
 
   return (
     <div className="container-logged">
@@ -54,7 +51,8 @@ export default function Logged() {
               <div className="user-help">
                 {users.user.name} está solicitando uma ajuda! com a seguinte
                 descrição: {users.description}
-                <button>ACEITAR</button><br/>
+                <button>ACEITAR</button>
+                <br />
                 <button>RECUSAR</button>
               </div>
             </div>
@@ -70,7 +68,12 @@ export default function Logged() {
           <div ref={changeColor}>
             <IoMdSettings size={25} />
             <input type="checkbox" className="hidden" id="toggle" />
-            <label htmlFor="toggle" className="click" ref={click}>
+            <label
+              htmlFor="toggle"
+              className="click"
+              onClick={handleClick}
+              ref={click}
+            >
               Configurações
             </label>
             <ul className="info-config">
