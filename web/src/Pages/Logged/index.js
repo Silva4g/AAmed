@@ -21,10 +21,9 @@ export default function Logged() {
 
   useEffect(() => {
     async function getIdLogged() {
-      const response = await api.get("/hospital/home", {
-        headers: { Authorization: `Bearer ${localStorage.getItem("tk-hopt")}` },
-      });
-      setId(response.data._id);
+      const response = await api.get("/hospital/home");
+      //setId(response.data.hospital._id);
+      console.log(response.data.hospital._id);
     }
     getIdLogged();
 
@@ -41,6 +40,12 @@ export default function Logged() {
   function handleClick() {
     const cc = changeColor.current;
     cc.classList.toggle("bgcolorClick");
+  }
+
+  async function handleLogout() {
+    await api.get("/hospital/logout", { withCredentials: true });
+    localStorage.removeItem("hptid");
+    window.location.href = "/";
   }
 
   return (
@@ -91,9 +96,9 @@ export default function Logged() {
           <AiFillMedicineBox size={25} />
           <span>Atendimentos</span>
         </Link>
-        <Link to="/logout" className="items logout">
+        <div onClick={handleLogout} href="#" className="items logout">
           <span>Sair</span>
-        </Link>
+        </div>
       </div>
       <div className="menu-logado">
         <table>

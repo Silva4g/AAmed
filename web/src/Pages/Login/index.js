@@ -29,7 +29,8 @@ export default function Login(props) {
         },
         { withCredentials: true }
       );
-      window.location.href = `home/${response.headers["id"]}`;
+      localStorage.setItem("hptid", true);
+      window.location.href = `/home/${response.headers["id"]}`;
     } catch (err) {
       window.scrollTo(0, 0);
       setShow(true);

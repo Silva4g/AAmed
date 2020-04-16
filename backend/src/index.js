@@ -53,6 +53,7 @@ app.use(
   cors({
     credentials: true,
     exposedHeaders: "id",
+    origin: "http://localhost:3000",
   })
 );
 //uso do json para envio e recebimento de dados

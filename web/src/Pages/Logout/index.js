@@ -1,12 +1,15 @@
-import { Component } from 'react';
+import { Component } from "react";
+import api from "../../services/api";
 
-export default class Logout extends Component{
-    componentWillMount(){
-        localStorage.removeItem('tk-hopt');
-        this.props.history.push('/');
-        window.location.reload();
+export default class Logout extends Component {
+  componentWillMount() {
+    async function logout() {
+      await api.get("/hospital/logout", { withCredentials: true });
+      window.location.href = "/";
     }
-    render(){
-        return null;
-    }
+    logout();
+  }
+  render() {
+    return null;
+  }
 }
