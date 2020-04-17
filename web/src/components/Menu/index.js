@@ -8,7 +8,7 @@ import { findDOMNode } from "react-dom";
 
 export default class Menu extends Component {
   componentDidMount() {
-    if (this.props) {
+    if (this.props.log) {
       return;
     } else {
       var node = findDOMNode(this.refs.btn);

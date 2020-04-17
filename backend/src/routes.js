@@ -52,23 +52,18 @@ routes.post("/support", SupportController.store);
 
 //route hospital logged and user logged
 //precisa ver oq fazer com esse authConfig.hospital ja que agr está com cookies
-// routes.get("/hospital/home", authConfig.hospital, ProfileController.index);
-routes.get("/hospital/home", ProfileController.index);
-// routes.get("/hospital/logout", authConfig.hospital, ProfileController.logout);
+//authConfig.hospital
+routes.get("/hospital/home", authConfig.hospital, ProfileController.index);
 routes.get("/hospital/logout", ProfileController.logout);
-routes.get("/hospital/verify", authConfig.hospital, ProfileController.isLogged);
+routes.get("/hospital/verify", ProfileController.isLogged);
+routes.get("/hospital/token", ProfileController.sendToken);
 //routes.get("/user/home", authConfig.user, HomeController.home);
 
 routes.get("/hospital/solicitations", SolicitaionController.index);
 routes.post("/hospital/:hospital_id/solicitation", SolicitaionController.store);
 
-routes.post(
-  "/solicitations/:solicitation_id/approvals",
-  ApprovalController.store
-);
-routes.post(
-  "/solicitations/:solicitation_id/rejections",
-  RejectionController.store
-);
+routes.get("/solicitations/:id", SolicitaionController.show);
+routes.post("/solicitations/:solicitation_id/approvals", ApprovalController.store);
+routes.post("/solicitations/:solicitation_id/rejections", RejectionController.store);
 
 module.exports = routes;

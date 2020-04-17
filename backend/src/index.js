@@ -53,6 +53,7 @@ app.use(
   cors({
     credentials: true,
     exposedHeaders: "id",
+    exposedHeaders: "tk_acc",
     origin: "http://localhost:3000",
   })
 );

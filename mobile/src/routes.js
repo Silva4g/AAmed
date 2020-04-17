@@ -22,9 +22,9 @@ export const AuthDrawerScreen = () => (
     drawerContentOptions={{
       labelStyle: { fontWeight: "bold" },
       itemStyle: { padding: 2 },
-      contentContainerStyle: { backgroundColor: "#fff" }
+      contentContainerStyle: { backgroundColor: "#fff" },
     }}
-    drawerContent={props => <CustomDrawerContent {...props} />}
+    drawerContent={(props) => <CustomDrawerContent {...props} />}
   >
     <AuthDrawer.Screen
       name="Home"
@@ -32,7 +32,7 @@ export const AuthDrawerScreen = () => (
       labelStyle={{ fontSize: 23 }}
       options={{
         drawerLabel: "HOME",
-        drawerIcon: () => <Feather name="user" size={20} />
+        drawerIcon: () => <Feather name="user" size={20} />,
       }}
     />
     <AuthDrawer.Screen
@@ -40,7 +40,7 @@ export const AuthDrawerScreen = () => (
       component={History}
       options={{
         drawerLabel: "HISTÓRICO",
-        drawerIcon: () => <Feather name="calendar" size={20} />
+        drawerIcon: () => <Feather name="calendar" size={20} />,
       }}
     />
     <AuthDrawer.Screen
@@ -48,7 +48,7 @@ export const AuthDrawerScreen = () => (
       component={Help}
       options={{
         drawerLabel: "AJUDA",
-        drawerIcon: () => <AntDesign name="questioncircleo" size={20} />
+        drawerIcon: () => <AntDesign name="questioncircleo" size={20} />,
       }}
     />
     <AuthDrawer.Screen
@@ -56,7 +56,7 @@ export const AuthDrawerScreen = () => (
       component={Setting}
       options={{
         drawerLabel: "CONFIGURAÇÕES",
-        drawerIcon: () => <Feather name="settings" size={20} />
+        drawerIcon: () => <Feather name="settings" size={20} />,
       }}
     />
   </AuthDrawer.Navigator>
