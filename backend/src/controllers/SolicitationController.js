@@ -25,4 +25,17 @@ module.exports = {
 
     return res.json(solicitation);
   },
+
+  async show(req, res) {
+    const { id } = req.params;
+
+    const solicitation = await Solicitation.find({
+      $or: [{ user: id }, { hospital: id }],
+    })
+      .populate("hospital")
+      .populate("user")
+      .exec();
+
+    return res.json(solicitation);
+  },
 };

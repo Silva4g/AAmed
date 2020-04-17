@@ -1,187 +1,109 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Dimensions, Switch } from "react-native";
+import { View, TouchableOpacity, Switch, StyleSheet } from "react-native";
 import { CommonActions } from "@react-navigation/native";
-import ToggleSwitch from "toggle-switch-react-native";
 
 import { Ionicons } from "@expo/vector-icons";
-
-import styles from "./styles.js";
 import CustomHeader from "../../components/CustomHeader.js";
+
+import {
+  Container,
+  Title,
+  Wrapper,
+  BoxTitle,
+  Separator,
+  SwitchSeparator,
+  SwitchBox,
+  SwitchText,
+} from "./styles.js";
 
 export default function Setting({ navigation }) {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#e2e2e2" }}>
+    <Container>
       <CustomHeader>
         <TouchableOpacity
           onPress={() => navigation.dispatch(CommonActions.goBack())}
-          style={{ position: "absolute", left: 12 }}
+          style={styles.button}
         >
           <Ionicons name="md-arrow-back" size={30} color="#fff" />
         </TouchableOpacity>
 
-        <Text style={{ alignSelf: "center", color: "#fff", fontSize: 16 }}>
-          CONFIGURAÇÕES
-        </Text>
+        <Title>CONFIGURAÇÕES</Title>
       </CustomHeader>
 
-      <View style={{ marginHorizontal: 10, flex: 1 }}>
-        <View
-          style={{
-            backgroundColor: "#e2e2e2",
-            borderRadius: 5,
-            marginTop: 20,
-            shadowColor: "#000",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.5,
-            shadowRadius: 2,
-            elevation: 10,
-          }}
-        >
-          <Text style={{ alignSelf: "flex-start", padding: 10, fontSize: 18, fontWeight: 'bold' }}>
-            Geral
-          </Text>
-
-          <View
-            style={{
-              width: "100%",
-              alignSelf: "center",
-              height: 1,
-              backgroundColor: "#004b8b00",
-            }}
-          ></View>
-
-          <View
-            style={{
-              position: "relative",
-              backgroundColor: "#c3c3c300",
-              justifyContent: "center",
-              borderRadius: 10,
-              padding: 10,
-              paddingTop: 15,
-              paddingBottom: 15,
-              paddingLeft: 10,
-              paddingRight: 10,
-            }}
-          >
-            <Text style={{ fontSize: 16 }}>Compartilhamento de dados</Text>
+      <Wrapper>
+        <View style={styles.boxView}>
+          <BoxTitle>Geral</BoxTitle>
+          <Separator />
+          <SwitchBox>
+            <SwitchText>Compartilhamento de dados</SwitchText>
             <Switch
               onValueChange={toggleSwitch}
               value={isEnabled}
-              style={{ position: "absolute", right: 0 }}
-							trackColor={{ false: "#767577", true: "#1167aa" }}
-							thumbColor={isEnabled ? "#004b8b" : "#f4f3f4"}
+              trackColor={{ false: "#767577", true: "#1167aa" }}
+              thumbColor={isEnabled ? "#004b8b" : "#f4f3f4"}
             />
-          </View>
+          </SwitchBox>
         </View>
 
-        <View
-          style={{
-            backgroundColor: "#e2e2e2",
-            borderRadius: 5,
-            marginTop: 20,
-            shadowColor: "#000",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.5,
-            shadowRadius: 2,
-            elevation: 10,
-          }}
-        >
-          <Text style={{ alignSelf: "flex-start", padding: 10, fontSize: 18, fontWeight: 'bold' }}>
-            Gerenciar notificações
-          </Text>
-
-          <View
-            style={{
-              width: "100%",
-              alignSelf: "center",
-              height: 1,
-              backgroundColor: "#004b8b00",
-            }}
-          ></View>
-
-          <View
-            style={{
-              position: "relative",
-              backgroundColor: "#c3c3c300",
-              justifyContent: "center",
-              paddingTop: 15,
-              paddingBottom: 15,
-              paddingLeft: 10,
-              paddingRight: 10,
-            }}
-          >
-            <Text style={{ fontSize: 16 }}>Notificações</Text>
+        <View style={styles.boxView}>
+          <BoxTitle>Gerenciar notificações</BoxTitle>
+          <Separator />
+          <SwitchBox>
+            <SwitchText>Notificações</SwitchText>
             <Switch
               onValueChange={toggleSwitch}
               value={isEnabled}
-              style={{ position: "absolute", right: 0 }}
-							trackColor={{ false: "#767577", true: "#1167aa" }}
-							thumbColor={isEnabled ? "#004b8b" : "#f4f3f4"}
+              trackColor={{ false: "#767577", true: "#1167aa" }}
+              thumbColor={isEnabled ? "#004b8b" : "#f4f3f4"}
             />
-          </View>
+          </SwitchBox>
 
-          <View
-            style={{
-              width: "100%",
-              height: 1,
-              backgroundColor: "#bfbfbf",
-            }}
-          ></View>
+          <SwitchSeparator />
 
-          <View
-            style={{
-              position: "relative",
-              backgroundColor: "#c3c3c300",
-              justifyContent: "center",
-              paddingTop: 15,
-              paddingBottom: 15,
-              paddingLeft: 10,
-              paddingRight: 10,
-            }}
-          >
-            <Text style={{ fontSize: 16 }}>E-mail</Text>
+          <SwitchBox>
+            <SwitchText>E-mail</SwitchText>
             <Switch
               onValueChange={toggleSwitch}
               value={isEnabled}
-              style={{ position: "absolute", right: 0 }}
-							trackColor={{ false: "#767577", true: "#1167aa" }}
-							thumbColor={isEnabled ? "#004b8b" : "#f4f3f4"}
+              trackColor={{ false: "#767577", true: "#1167aa" }}
+              thumbColor={isEnabled ? "#004b8b" : "#f4f3f4"}
             />
-          </View>
+          </SwitchBox>
 
-          <View
-            style={{
-              width: "100%",
-              height: 1,
-              backgroundColor: "#bfbfbf",
-            }}
-          ></View>
+          <SwitchSeparator />
 
-          <View
-            style={{
-              position: "relative",
-              backgroundColor: "#c3c3c300",
-              justifyContent: "center",
-              paddingTop: 15,
-              paddingBottom: 15,
-              paddingLeft: 10,
-              paddingRight: 10,
-            }}
-          >
-            <Text style={{ fontSize: 16 }}>SMS</Text>
+          <SwitchBox>
+            <SwitchText>SMS</SwitchText>
             <Switch
               onValueChange={toggleSwitch}
               value={isEnabled}
-              style={{ position: "absolute", right: 0 }}
-							trackColor={{ false: "#767577", true: "#1167aa" }}
-							thumbColor={isEnabled ? "#004b8b" : "#f4f3f4"}
+              trackColor={{ false: "#767577", true: "#1167aa" }}
+              thumbColor={isEnabled ? "#004b8b" : "#f4f3f4"}
             />
-          </View>
+          </SwitchBox>
         </View>
-      </View>
-    </View>
+      </Wrapper>
+    </Container>
   );
 }
+
+const styles = StyleSheet.create({
+  button: {
+    position: "absolute",
+    left: 12,
+  },
+
+  boxView: {
+    backgroundColor: "#e2e2e2",
+    borderRadius: 5,
+    marginTop: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 10,
+  },
+});

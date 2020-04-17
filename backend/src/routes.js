@@ -62,13 +62,8 @@ routes.get("/hospital/verify", authConfig.hospital, ProfileController.isLogged);
 routes.get("/hospital/solicitations", SolicitaionController.index);
 routes.post("/hospital/:hospital_id/solicitation", SolicitaionController.store);
 
-routes.post(
-  "/solicitations/:solicitation_id/approvals",
-  ApprovalController.store
-);
-routes.post(
-  "/solicitations/:solicitation_id/rejections",
-  RejectionController.store
-);
+routes.get("/solicitations/:id", SolicitaionController.show);
+routes.post("/solicitations/:solicitation_id/approvals", ApprovalController.store);
+routes.post("/solicitations/:solicitation_id/rejections", RejectionController.store);
 
 module.exports = routes;
