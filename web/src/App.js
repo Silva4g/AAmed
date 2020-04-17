@@ -28,6 +28,7 @@ export default function App() {
         <>
           <Menu log={true} />
           <Switch>
+            <Route path="/" exact component={Home} />
             <Route path="/home/:id" exact component={Logged} />
             <Route path="/hospitals" component={Hospitals} />
             <Route path="/login" component={Login} />

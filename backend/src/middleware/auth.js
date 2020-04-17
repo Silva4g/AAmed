@@ -1,52 +1,51 @@
-const jwt = require('jsonwebtoken');
-const authConfig = require('../config/auth.json');
-
+const jwt = require("jsonwebtoken");
+const authConfig = require("../config/auth.json");
 //todas as verificações para o token do hospital
 module.exports = {
-    async hospital(req, res, next) {
-        const authHeader = req.headers.authorization;
+  async hospital(req, res, next) {
+    const authHeader = req.headers.authorization;
+    if (!authHeader)
+      return res.status(401).send({ error: "Token não foi informado" });
 
-        if (!authHeader)
-            return res.status(401).send({ error: 'Token não foi informado' });
+    const parts = authHeader.split(" ");
 
-        const parts = authHeader.split(' ');
+    if (!parts.lenght === 2)
+      return res.status(401).send({ error: "Token error" });
 
-        if (!parts.lenght === 2)
-            return res.status(401).send({ error: 'Token error' });
+    const [scheme, token] = parts;
 
-        const [scheme, token] = parts;
+    if (!/^Bearer$/i.test(scheme))
+      return res.status(401).send({ error: "Token em formato diferente" });
 
-        if (!/^Bearer$/i.test(scheme))
-            return res.status(401).send({ error: 'Token em formato diferente' });
+    jwt.verify(token, authConfig.secret, (err, decoded) => {
+      if (err) {
+        return res.status(401).send({ error: `Token inválido: ${err}` });
+      }
+      req.hospitalId = decoded.id; //se der certo ele trará o token e continuará
+      return next();
+    });
+  },
+  async user(req, res, next) {
+    const authHeader = req.headers.authorization;
 
-        jwt.verify(token, authConfig.secret, (err, decoded) => {
-            if (err) return res.status(401).send({ error: 'Token inválido' });
+    if (!authHeader)
+      return res.status(401).send({ error: "Token não foi informado" });
 
-            req.hospitalId = decoded.id;//se der certo ele trará o token e continuará
-            return next();
-        })
-    },
-    async user(req, res, next) {
-        const authHeader = req.headers.authorization;
+    const parts = authHeader.split(" ");
 
-        if (!authHeader)
-            return res.status(401).send({ error: 'Token não foi informado' });
+    if (!parts.lenght === 2)
+      return res.status(401).send({ error: "Token error" });
 
-        const parts = authHeader.split(' ');
+    const [scheme, token] = parts;
 
-        if (!parts.lenght === 2)
-            return res.status(401).send({ error: 'Token error' });
+    if (!/^Bearer$/i.test(scheme))
+      return res.status(401).send({ error: "Token em formato diferente" });
 
-        const [scheme, token] = parts;
+    jwt.verify(token, authConfig.secret, (err, decoded) => {
+      if (err) return res.status(401).send({ error: "Token inválido" });
 
-        if (!/^Bearer$/i.test(scheme))
-            return res.status(401).send({ error: 'Token em formato diferente' });
-
-        jwt.verify(token, authConfig.secret, (err, decoded) => {
-            if (err) return res.status(401).send({ error: 'Token inválido' });
-
-            req.userId = decoded.id;//se der certo ele trará o token e continuará
-            return next();
-        })
-    }
-}
+      req.userId = decoded.id; //se der certo ele trará o token e continuará
+      return next();
+    });
+  },
+};

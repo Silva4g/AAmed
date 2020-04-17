@@ -144,7 +144,7 @@ export default function Home() {
   }
 
   if (!currentRegion) {
-    return <LoadingCustom />;
+    return null;
   }
 
   return (

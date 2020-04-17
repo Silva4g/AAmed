@@ -13,20 +13,33 @@ import api from "../../services/api";
 export default function Logged() {
   let click = React.createRef();
   let changeColor = React.createRef();
-
   const [id, setId] = useState(null);
   //requisição do socket
   const [user, setUser] = useState([]);
   const [ok, setOk] = useState(null);
 
-  useEffect(() => {
-    async function getIdLogged() {
-      const response = await api.get("/hospital/home");
-      //setId(response.data.hospital._id);
-      console.log(response.data.hospital._id);
-    }
-    getIdLogged();
+  //provavelmente não precisa desse useEffect aqui, vou ver dps
+  // useEffect(() => {
+  //   async function getIdLogged() {
+  //     const response = await api.get("/hospital/token", {
+  //       withCredentials: true,
+  //     });
+  //     const tk = response.headers["tk_acc"];
+  //     return tk;
+  //   }
+  //   async function reqTk() {
+  //     await api.get("/hospital/home", {
+  //       headers: {
+  //         Authorization: `Bearer ${await getIdLogged()}`,
+  //       },
+  //       withCredentials: true,
+  //     });
+  //   }
+  //   getIdLogged();
+  //   reqTk();
+  // }, [id]);
 
+  useEffect(() => {
     const socket = socketio("http://localhost:3333", {
       query: { hospital_id: id },
     });
@@ -35,7 +48,7 @@ export default function Logged() {
       setUser([...user, data]);
       setOk(true);
     });
-  }, [user, id]);
+  }, [id, user]);
 
   function handleClick() {
     const cc = changeColor.current;
