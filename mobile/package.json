@@ -35,7 +35,8 @@
     "react-navigation": "^4.2.2",
     "react-navigation-stack": "^2.2.3",
     "socket.io-client": "^2.3.0",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "toggle-switch-react-native": "^2.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

@@ -1,9 +1,15 @@
 import React from "react";
-import { View, Text, ImageBackground, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  ImageBackground,
+  StyleSheet,
+  Dimensions,
+} from "react-native";
 import {
   DrawerContentScrollView,
   DrawerItemList,
-  DrawerItem
+  DrawerItem,
 } from "@react-navigation/drawer";
 import { useAuth } from "../utils/auth";
 import { Feather } from "@expo/vector-icons";
@@ -25,7 +31,7 @@ export default function CustomDrawerContent(props) {
             rounded
             source={{
               uri:
-                "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg"
+                "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg",
             }}
             showEditButton
           />
@@ -34,9 +40,16 @@ export default function CustomDrawerContent(props) {
       </View>
 
       <DrawerItemList {...props} />
+      <View
+        style={{
+          width: Dimensions.get("window").width,
+          height: 1,
+          backgroundColor: "#e2e2e2",
+        }}
+      ></View>
       <DrawerItem
         onPress={logout}
-        label="Sair"
+        label="SAIR"
         labelStyle={{ fontWeight: "bold" }}
         icon={() => <Feather name="log-out" size={20} color="#E53935" />}
       />
@@ -48,26 +61,26 @@ const styles = StyleSheet.create({
   topDrawer: {
     flex: 1,
     height: 125,
-    justifyContent: "center"
+    justifyContent: "center",
   },
   imgTopDrawer: {
     width: 280,
-    height: 125
+    height: 125,
   },
   avatarStyle: {
     borderWidth: 3,
     borderColor: "white",
-    borderRadius: 40
+    borderRadius: 40,
   },
   avatarContainerStyle: {
     alignSelf: "center",
-    marginTop: 10
+    marginTop: 10,
   },
   nameAvatar: {
     color: "black",
     fontSize: 20,
     fontWeight: "bold",
     marginVertical: 8,
-    alignSelf: "center"
-  }
+    alignSelf: "center",
+  },
 });
