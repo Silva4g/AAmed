@@ -16,27 +16,88 @@ const styles = StyleSheet.create({
 	optionsContact: {
 		color: '#b3b5b9',
 		fontSize: 18,
-		height: 100
+		height: 45
 	},
 	viewInput: {
 		flexDirection: 'row',
 		justifyContent: 'center',
-		alignItems: 'center',
+		//alignItems: 'center',
 	},
 	inputSearch: {
-        flex:1,
-        height: 50,
-        paddingTop: 10,
-        paddingRight: 10,
-        paddingBottom: 10,
-        paddingLeft: 0,
+		width:'100%',
+		paddingRight:70,
+		height: 50,
+		textAlign:"center",
+		fontSize:14,
+
 		borderStyle: 'solid',
-		borderBottomWidth: 2,
+		borderWidth:1,
+		borderBottomWidth: 3,
 		borderRadius: 5,
 		backgroundColor: '#eff1f3',
+		borderColor:'#EAEBEF',
 		borderBottomColor: '#d3d3d7',
-		elevation: 2
+	},
+	iconSearch:{
+		position: 'absolute',
+		top: 10,
+		left: 20,
+		zIndex: 5,
+		color: '#006bad',
+		fontSize: 30,
+	},
+	textSearch:{
+		position: 'absolute',
+		height:100,
+		top: 15,
+		left: 220,
+		zIndex: 4,
+		color: '#006bad',
+		fontSize: 15,
+		fontWeight:'bold'
+	},
+	containerImage:{ 
+		flex:1,
+		paddingBottom:150, 
+	},
+    viewGreen: {
+		height:80,
+		width:'100%',
+		backgroundColor:'#04C07C',
+	},
+	buttonSuporte:{
+		height:40,
+		width:200,
+		marginTop:18,
+		alignSelf:'center',
+		borderRadius: 5,
+		borderWidth:2,
+		borderColor:'#fff',
+	},
+	textSuporte:{
+		fontSize:15,
+		color:'#fff',
+		textAlign:'center',
+		padding:6,
+		fontWeight:'bold',
+	},
+	viewIcon:{
+		justifyContent:"flex-end",
+		height: 200,
+		backgroundColor:'#006bad',
+	},
+	buttonOpcoes:{
+		width:'100%',
+		height:45,
+	},
+	textOpcoes:{
+		fontSize:15,
+		color:'#fff',
+		textAlign:'center',
+		padding:6,
+		fontWeight:'bold',
 	}
+
 });
 
 export default styles;

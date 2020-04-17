@@ -66,9 +66,9 @@ export const AuthDrawerScreen = () => (
 const GuestStack = createStackNavigator();
 export const GuestStackScreen = () => (
   <GuestStack.Navigator
-    screenOptions={{ headerStyle: { backgroundColor: "#29B6F6" } }}
+    screenOptions={{ headerShown: false  }}
   >
-    <GuestStack.Screen name="Home" component={Home} />
+    <GuestStack.Screen name="Help" component={Help}/>
     <GuestStack.Screen name="SignUp" component={SignUp} />
     <GuestStack.Screen name="ForgotPassword" component={ForgotPassword} />
   </GuestStack.Navigator>
