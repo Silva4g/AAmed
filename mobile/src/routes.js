@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { Feather } from "@expo/vector-icons";
+import { Feather, AntDesign } from "@expo/vector-icons";
 
 import { Login } from "./screens/Login";
 import SignUp from "./screens/SignUp";
@@ -9,7 +9,7 @@ import ForgotPassword from "./screens/ForgotPassword";
 
 import Home from "./screens/Home";
 import History from "./screens/History";
-import Support from "./screens/Support";
+import Help from "./screens/Help";
 import Setting from "./screens/Setting";
 
 import CustomDrawerContent from "./components/CustomDrawerContent";
@@ -21,7 +21,7 @@ export const AuthDrawerScreen = () => (
     drawerType="slide"
     drawerContentOptions={{
       labelStyle: { fontWeight: "bold" },
-      itemStyle: { padding: 16 },
+      itemStyle: { padding: 2 },
       contentContainerStyle: { backgroundColor: "#fff" }
     }}
     drawerContent={props => <CustomDrawerContent {...props} />}
@@ -31,32 +31,32 @@ export const AuthDrawerScreen = () => (
       component={Home}
       labelStyle={{ fontSize: 23 }}
       options={{
-        drawerLabel: "Home",
-        drawerIcon: () => <Feather name="user" size={16} />
+        drawerLabel: "HOME",
+        drawerIcon: () => <Feather name="user" size={20} />
       }}
     />
     <AuthDrawer.Screen
       name="Historic"
       component={History}
       options={{
-        drawerLabel: "Histórico",
-        drawerIcon: () => <Feather name="calendar" size={16} />
+        drawerLabel: "HISTÓRICO",
+        drawerIcon: () => <Feather name="calendar" size={20} />
       }}
     />
     <AuthDrawer.Screen
-      name="Support"
-      component={Support}
+      name="Help"
+      component={Help}
       options={{
-        drawerLabel: "Suporte",
-        drawerIcon: () => <Feather name="book-open" size={16} />
+        drawerLabel: "AJUDA",
+        drawerIcon: () => <AntDesign name="questioncircleo" size={20} />
       }}
     />
     <AuthDrawer.Screen
       name="Settings"
       component={Setting}
       options={{
-        drawerLabel: "Configurações",
-        drawerIcon: () => <Feather name="settings" size={16} />
+        drawerLabel: "CONFIGURAÇÕES",
+        drawerIcon: () => <Feather name="settings" size={20} />
       }}
     />
   </AuthDrawer.Navigator>
@@ -68,7 +68,7 @@ export const GuestStackScreen = () => (
   <GuestStack.Navigator
     screenOptions={{ headerStyle: { backgroundColor: "#29B6F6" } }}
   >
-    <GuestStack.Screen name="Login" component={Login} />
+    <GuestStack.Screen name="Home" component={Home} />
     <GuestStack.Screen name="SignUp" component={SignUp} />
     <GuestStack.Screen name="ForgotPassword" component={ForgotPassword} />
   </GuestStack.Navigator>
