@@ -18,24 +18,42 @@ export default function Profile(props) {
   const [neighborhood, setNeighborhood] = useState("");
   const [cep, setCep] = useState("");
 
-  async function getHospital() {
-    const response = await api.get("/hospital/home", {
-      withCredentials: true,
-    });
-    const { cnes, cnpj, name, email, phone, address } = response.data.hospital;
-    setName(name);
-    setEmail(email);
-    setPhone(phone);
-    setCnes(cnes);
-    setCnpj(cnpj);
-    setCity(address.city);
-    setState(address.state);
-    setStreet(address.street);
-    setNeighborhood(address.neighborhood);
-    setCep(address.cep);
-  }
   useEffect(() => {
-    getHospital();
+    async function getIdLogged() {
+      const response = await api.get("/hospital/token", {
+        withCredentials: true,
+      });
+      const tk = response.headers["tk_acc"];
+      return tk;
+    }
+    async function reqTk() {
+      const response = await api.get("/hospital/home", {
+        headers: {
+          Authorization: `Bearer ${await getIdLogged()}`,
+        },
+        withCredentials: true,
+      });
+      const {
+        cnes,
+        cnpj,
+        name,
+        email,
+        phone,
+        address,
+      } = response.data.hospital;
+      setName(name);
+      setEmail(email);
+      setPhone(phone);
+      setCnes(cnes);
+      setCnpj(cnpj);
+      setCity(address.city);
+      setState(address.state);
+      setStreet(address.street);
+      setNeighborhood(address.neighborhood);
+      setCep(address.cep);
+    }
+    getIdLogged();
+    reqTk();
   }, []);
 
   return (
