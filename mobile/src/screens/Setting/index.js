@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { View, TouchableOpacity, Switch, StyleSheet } from "react-native";
+import { View, TouchableOpacity, Text, Switch, StyleSheet } from "react-native";
 import { CommonActions } from "@react-navigation/native";
 
+import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import CustomHeader from "../../components/CustomHeader.js";
 
@@ -15,77 +16,92 @@ import {
   SwitchBox,
   SwitchText,
 } from "./styles.js";
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function Setting({ navigation }) {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-
+  
   return (
     <Container>
-      <CustomHeader>
-        <TouchableOpacity
-          onPress={() => navigation.dispatch(CommonActions.goBack())}
-          style={styles.button}
-        >
-          <Ionicons name="md-arrow-back" size={30} color="#fff" />
-        </TouchableOpacity>
+      <ScrollView>
+        <CustomHeader>
+          <TouchableOpacity
+            onPress={() => navigation.dispatch(CommonActions.goBack())}
+            style={styles.button}
+          >
+            <Ionicons name="md-arrow-back" size={30} color="#fff" />
+          </TouchableOpacity>
 
-        <Title>CONFIGURAÇÕES</Title>
-      </CustomHeader>
+          <Title>CONFIGURAÇÕES</Title>
+        </CustomHeader>
 
-      <Wrapper>
-        <View style={styles.boxView}>
-          <BoxTitle>Geral</BoxTitle>
-          <Separator />
-          <SwitchBox>
-            <SwitchText>Compartilhamento de dados</SwitchText>
-            <Switch
-              onValueChange={toggleSwitch}
-              value={isEnabled}
-              trackColor={{ false: "#767577", true: "#1167aa" }}
-              thumbColor={isEnabled ? "#004b8b" : "#f4f3f4"}
-            />
-          </SwitchBox>
+        <Wrapper>
+      
+          <View style={styles.boxView}>
+            <BoxTitle>Permissões</BoxTitle>
+            <Separator />
+            <SwitchBox>
+              <SwitchText style={{fontWeight:'bold'}}>Aceitar todas as permissões</SwitchText>
+              <Switch
+                onValueChange={toggleSwitch}
+                value={isEnabled}
+                trackColor={{ false: "#767577", true: "#1167aa" }}
+                thumbColor={isEnabled ? "#004b8b" : "#f4f3f4"}
+              />
+            </SwitchBox>
+            <SwitchSeparator />
+            <SwitchBox>
+              <SwitchText>Localização</SwitchText>
+              <Switch
+                onValueChange={toggleSwitch}
+                value={isEnabled}
+                trackColor={{ false: "#767577", true: "#1167aa" }}
+                thumbColor={isEnabled ? "#004b8b" : "#f4f3f4"}
+              />
+            </SwitchBox>
+
+            <SwitchSeparator />
+
+            <SwitchBox>
+              <SwitchText>Notificações</SwitchText>
+              <Switch
+                onValueChange={toggleSwitch}
+                value={isEnabled}
+                trackColor={{ false: "#767577", true: "#1167aa" }}
+                thumbColor={isEnabled ? "#004b8b" : "#f4f3f4"}
+              />
+            </SwitchBox>
+
+            <SwitchSeparator />
+
+            <SwitchBox>
+              <SwitchText>Email</SwitchText>
+              <Switch
+                onValueChange={toggleSwitch}
+                value={isEnabled}
+                trackColor={{ false: "#767577", true: "#1167aa" }}
+                thumbColor={isEnabled ? "#004b8b" : "#f4f3f4"}
+              />
+            </SwitchBox>
+          </View>
+        </Wrapper>
+
+        <View style={styles.containerButton}>
+          <TouchableOpacity style={styles.buttonSetings}>
+            <Text style={styles.buttonText}>CONFIGURAR CONTA </Text>
+            <FontAwesome style={styles.iconButton} name="angle-double-right" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonSetings}>
+            <Text style={styles.buttonText}>CONFIGURAR MAPA</Text>
+            <FontAwesome style={styles.iconButton} name="angle-double-right" />
+          </TouchableOpacity>  
+          <TouchableOpacity style={styles.buttonSetings}>
+            <Text style={styles.buttonText}>CONFIGURAR PRIVACIDADE</Text>
+            <FontAwesome style={styles.iconButton} name="angle-double-right" />
+          </TouchableOpacity>
         </View>
-
-        <View style={styles.boxView}>
-          <BoxTitle>Gerenciar notificações</BoxTitle>
-          <Separator />
-          <SwitchBox>
-            <SwitchText>Notificações</SwitchText>
-            <Switch
-              onValueChange={toggleSwitch}
-              value={isEnabled}
-              trackColor={{ false: "#767577", true: "#1167aa" }}
-              thumbColor={isEnabled ? "#004b8b" : "#f4f3f4"}
-            />
-          </SwitchBox>
-
-          <SwitchSeparator />
-
-          <SwitchBox>
-            <SwitchText>E-mail</SwitchText>
-            <Switch
-              onValueChange={toggleSwitch}
-              value={isEnabled}
-              trackColor={{ false: "#767577", true: "#1167aa" }}
-              thumbColor={isEnabled ? "#004b8b" : "#f4f3f4"}
-            />
-          </SwitchBox>
-
-          <SwitchSeparator />
-
-          <SwitchBox>
-            <SwitchText>SMS</SwitchText>
-            <Switch
-              onValueChange={toggleSwitch}
-              value={isEnabled}
-              trackColor={{ false: "#767577", true: "#1167aa" }}
-              thumbColor={isEnabled ? "#004b8b" : "#f4f3f4"}
-            />
-          </SwitchBox>
-        </View>
-      </Wrapper>
+      </ScrollView>
     </Container>
   );
 }
@@ -106,4 +122,35 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 10,
   },
+  containerButton:{
+    padding:20,
+  },
+  buttonSetings: {
+    height: 60,
+    marginTop:13,
+    backgroundColor:'#e2e2e2',
+    borderRadius: 2,
+    borderColor:'#006bad',
+    borderWidth:1,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 5,
+  },
+  buttonText: {
+    padding:20,
+    fontSize:15,
+    textAlign:'center',
+    color:'#006bad',
+    fontWeight:'bold'
+  },
+  iconButton: {
+    position:'absolute',
+    alignSelf:'flex-end',
+    padding:20,
+    right:10,
+    fontSize:22,
+    color:'#006bad',
+  }
 });
