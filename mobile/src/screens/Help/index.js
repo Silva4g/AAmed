@@ -10,6 +10,7 @@ import styles from "./styles.js";
 import CustomHeader from "../../components/CustomHeader.js";
 
 import helpHospital from '../../assets/hospital.png';
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function Help({ navigation }) {
   return (
@@ -40,7 +41,7 @@ export default function Help({ navigation }) {
           </View>
         </View>
 
-        <View style={styles.containerImage}>
+        <View>
           <Image  source={helpHospital} style={{ width: '100%',height: 150 }}  />
            <View style={styles.viewGreen}>
              <TouchableOpacity style={styles.buttonSuporte}>
@@ -49,21 +50,28 @@ export default function Help({ navigation }) {
            </View>
         </View>
 
-        <View style={styles.viewIcon}>
-          <TouchableOpacity style={styles.buttonOpcoes}>
-                <Text style={styles.textOpcoes}>SOLICITAÇÃO DE ATENDIMENTO</Text>
-          </TouchableOpacity> 
-          <TouchableOpacity style={styles.buttonOpcoes}>
-                <Text style={styles.textOpcoes}>ALTERAR MINHAS INFORMAÇÕES</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonOpcoes}>
-                <Text style={styles.textOpcoes}>ENTRE EM CONTATO CONOSCO</Text>
-          </TouchableOpacity>   
-          <TouchableOpacity style={styles.buttonOpcoes}>
-                <Text style={styles.textOpcoes}>TERMOS E POLÍTICA DE PRIVACIDADE</Text>
-          </TouchableOpacity>   
-        </View>
-      
+        <ScrollView>
+          <View style={styles.containerOptions}>
+            <TouchableOpacity style={styles.buttonOpcoes}>
+                  <Text style={styles.textOptions}>SOLICITAÇÃO DE ATENDIMENTO</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonOptions}>
+                  <Text style={styles.textOptions}>LOCALIZAÇÃO ERRADA NO MAPA</Text>
+            </TouchableOpacity> 
+            <TouchableOpacity style={styles.buttonOptions}>
+                  <Text style={styles.textOptions}>ALTERAR MINHAS INFORMAÇÕES</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonOptions}>
+                  <Text style={styles.textOptions}>DADOS OFICIAIS DO APLICATIVO</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonOptions}>
+                  <Text style={styles.textOptions}>ENTRE EM CONTATO CONOSCO</Text>
+            </TouchableOpacity>   
+            <TouchableOpacity style={styles.buttonOptions}>
+                  <Text style={styles.textOptions}>TERMOS E POLÍTICA DE PRIVACIDADE</Text>
+            </TouchableOpacity>    
+          </View>
+        </ScrollView>   
     </>
   );
 }

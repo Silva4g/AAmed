@@ -2,10 +2,9 @@ import { StyleSheet, Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
 	containerContact: {
-		flex: 1,
 		justifyContent: 'flex-start',
 		alignSelf: 'center',
-		padding: 25
+		padding: 25,
 	},
 	number: {
 		fontSize: 20,
@@ -14,14 +13,14 @@ const styles = StyleSheet.create({
 		color: '#1e1e24'
 	},
 	optionsContact: {
+		textAlign:'center',
 		color: '#b3b5b9',
 		fontSize: 18,
-		height: 45
+		height: 45,
 	},
 	viewInput: {
 		flexDirection: 'row',
 		justifyContent: 'center',
-		//alignItems: 'center',
 	},
 	inputSearch: {
 		width:'100%',
@@ -56,10 +55,6 @@ const styles = StyleSheet.create({
 		fontSize: 15,
 		fontWeight:'bold'
 	},
-	containerImage:{ 
-		flex:1,
-		paddingBottom:150, 
-	},
     viewGreen: {
 		height:80,
 		width:'100%',
@@ -81,20 +76,20 @@ const styles = StyleSheet.create({
 		padding:6,
 		fontWeight:'bold',
 	},
-	viewIcon:{
-		justifyContent:"flex-end",
-		height: 200,
+	containerOptions:{
+		height: 'auto',
 		backgroundColor:'#006bad',
+		paddingTop:20
 	},
-	buttonOpcoes:{
+	buttonOptions:{
 		width:'100%',
 		height:45,
+		padding:20
 	},
-	textOpcoes:{
+	textOptions:{
 		fontSize:15,
 		color:'#fff',
 		textAlign:'center',
-		padding:6,
 		fontWeight:'bold',
 	}
 
