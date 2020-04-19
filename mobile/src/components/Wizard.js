@@ -8,6 +8,7 @@ import Step from './Step';
 
 export default function Wizard(props) {
   const [index, setIndex] = useState(0);
+  const [errorMsg, setErrorMsg] = useState(null);
   const navigation = useNavigation();
   Wizard.Step = props => <Step {...props} />;
 
@@ -44,9 +45,20 @@ export default function Wizard(props) {
       } else {
         Alert.alert('Erro', 'Por favor preencha todos os campos!');
       }
-    } catch (err) {
-      Alert.alert('Erro', 'Houve um erro interno');
-      console.log('houve um erro', err);
+    } catch (error) {
+      if (await error.response) {
+        setErrorMsg(error.response.data.error)
+        console.log(error.response.data);
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log("Error", error.message);
+        Alert.alert('Erro', 'Houve um erro interno. \nPor favor, tente mais tarde.');
+      }
+      // errorMsg ? Alert.alert('Erro', errorMsg) : "";
+      // da para fazer um 'esquema'
+      Alert.alert('Erro', errorMsg)
+      console.log("Erro fora dos ifs ", error); // depois de 2min que vai aparecer
     }
   };
 
@@ -56,7 +68,7 @@ export default function Wizard(props) {
   // const { index, values } = state;
   console.log(props.initialValues);
   return (
-    <View style={{ flex: 1, backgroundColor: '#24292e' }}>
+    <View style={{ flex: 1, backgroundColor: '#006bad' }}>
       {React.Children.map(props.children, (el, position) => {
         if (position === index) {
           return React.cloneElement(el, {

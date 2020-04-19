@@ -1,11 +1,24 @@
-import React from 'react';
-import { View, Text, StyleSheet} from 'react-native';
+import React from "react";
+import { Text, TouchableOpacity } from "react-native";
+import { CommonActions } from "@react-navigation/native";
+import { Ionicons } from "@expo/vector-icons";
 
-import styles from './styles.js';
+import styles from "./styles.js";
+import CustomHeader from "../../components/CustomHeader";
 
-export default function History() {
-	return (
-		<Text style={styles.teste}>	History</Text>
-	
-	);
+export default function History({ navigation }) {
+  return (
+    <CustomHeader>
+      <TouchableOpacity
+        onPress={() => navigation.dispatch(CommonActions.goBack())}
+        style={{ position: "absolute", left: 12 }}
+      >
+        <Ionicons name="md-arrow-back" size={30} color="#fff" />
+      </TouchableOpacity>
+
+      <Text style={{ alignSelf: "center", color: "#fff", fontSize: 16 }}>
+        HISTÓRICO
+      </Text>
+    </CustomHeader>
+  );
 }

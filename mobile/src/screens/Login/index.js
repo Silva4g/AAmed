@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useFormik } from "formik";
 import {
-  Text,
   KeyboardAvoidingView,
   Image,
   SafeAreaView,
   ImageBackground,
   Button,
-  ActivityIndicator
+  ActivityIndicator,
 } from "react-native";
 
 import {
@@ -18,12 +17,13 @@ import {
   Input,
   InputMask,
   Touch,
+  TouchText,
   Icon,
   IconEye,
   TouchEye,
   ViewOptions,
   Option,
-  ErrorText
+  ErrorText,
 } from "./styles";
 import screen from "../../assets/screen.png";
 import logo from "../../assets/logo.png";
@@ -31,8 +31,6 @@ import api from "../../services/api";
 import { useAuth } from "../../utils/auth";
 
 export const Login = () => {
-  // const [cpf, setCpf] = useState("");
-  // const [pass, setPass] = useState("");
   const [showPass, setShowPass] = useState(true);
   const [press, setPress] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
@@ -42,9 +40,9 @@ export const Login = () => {
   const formik = useFormik({
     initialValues: {
       cpf: "",
-      password: ""
+      password: "",
     },
-    onSubmit: async values => {
+    onSubmit: async (values) => {
       try {
         const response = await api.post("/login/user", values);
 
@@ -63,21 +61,7 @@ export const Login = () => {
         // setErrorMsg(error.message); // depois vejo isso
         console.log("Erro fora dos ifs ", error); // depois de 2min que vai aparecer
       }
-    }
-  });
-
-  navigation.setOptions({
-    headerRight: () => (
-      <Button
-        onPress={() => navigation.navigate("SignUp")}
-        title="Cadastre-se"
-        color="#0277BD"
-      />
-    ),
-    headerRightContainerStyle: {
-      padding: 15
     },
-    title: "Bem-Vindo"
   });
 
   function toggleShowPass() {
@@ -90,37 +74,26 @@ export const Login = () => {
     }
   }
 
-  // o plano e usar o formik
-  // async function onSubmit() {
-  //   try {
-  //     const response = await api.post("/login/user", {
-  //       cpf: cpf,
-  //       password: pass
-  //     });
-
-  //     login(response.data);
-  //     console.log(response.data); //debug
-  //   } catch (error) {
-  //     // Error
-  //     if (error.response) {
-  //       setErrorMsg(error.response.data.error);
-  //       console.log(error.response.data);
-  //     } else if (error.request) {
-  //       console.log(error.request);
-  //     } else {
-  //       console.log("Error", error.message);
-  //     }
-  //     // setErrorMsg(error.message); // depois vejo isso
-  //     console.log("Erro fora dos ifs ", error); // depois de 2min que vai aparecer
-  //   }
-  // }
+  navigation.setOptions({
+    headerRight: () => (
+      <Button
+        onPress={() => navigation.navigate("SignUp")}
+        title="Cadastre-se"
+        color="#0277BD"
+      />
+    ),
+    headerRightContainerStyle: {
+      padding: 15,
+    },
+    title: "Bem-Vindo",
+    headerTitleStyle: { color: "#fff" },
+  });
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ImageBackground source={screen} style={{ flex: 1 }}>
         <KeyboardAvoidingView
           keyboardVerticalOffset={0}
-          // enabled={Platform.OS == "android" || Platform.OS == "ios"}
           enabled={false}
           behavior="padding"
           style={{ flex: 1 }}
@@ -130,7 +103,7 @@ export const Login = () => {
               source={logo}
               style={{
                 width: 150,
-                height: 150
+                height: 150,
               }}
             />
           </ImageContainer>
@@ -170,7 +143,7 @@ export const Login = () => {
               {formik.isSubmitting ? (
                 <ActivityIndicator size="small" color="#FFF" />
               ) : (
-                <Text>ENTRAR</Text>
+                <TouchText>ENTRAR</TouchText>
               )}
             </Touch>
           </LoginBox>
