@@ -19,7 +19,6 @@ import {
 import CustomHeader from "../../components/CustomHeader";
 import styles from "./styles.js";
 import api from "../../services/api";
-import LoadingCustom from "../../components/LoadingCustom";
 
 export default function Home() {
   const [hospitals, setHospitals] = useState([]);
@@ -36,30 +35,10 @@ export default function Home() {
     // socket.on("connect", () => console.log("[IO] Connect => connected on mobile"));
   }, []);
 
-  // essa funcção não pode ficar em um botão (pelo menos a conexão do socket)
-  // depois retirar
-  // function getIds() {
-  //   const allIds = [];
-  //   hospitals.map((hospital) => {
-  //     allIds.push(hospital._id);
-  //   });
-
-  //   const user_id = user._id;
-  //   const user_email = user.email;
-  //   console.debug("[ID: user] => ", user_id);
-  //   console.debug("[EMAIL: user] => ", user_email);
-
-  //   socket.emit("hospitals_id", {
-  //     ids: { allIds }, //ids de hospitais perto de mim
-  //     user_id, //id do user logado
-  //     email: user_email, //email do user logado
-  //   });
-  // }
-
   async function handleSolicitation() {
-    const user_data = await AsyncStorage.getItem("store");
-    const parsed_user = JSON.parse(user_data);
-    const user_id = parsed_user.auth.user._id;
+    // const user_data = await AsyncStorage.getItem("store");
+    // const parsed_user = JSON.parse(user_data);
+    // const user_id = parsed_user.auth.user._id;
     const hospital_ids = [];
 
     hospitals.map((hospital) => {
@@ -72,19 +51,6 @@ export default function Home() {
       description,
     });
     Alert.alert("Solicitação enviada");
-    // try {
-    //   await api.post(`/hospital/${'5e829725a3525ef2988b818b'}/solicitation`,{
-    //       description,
-    //     },{
-    //       headers: { user_id },
-    //     }
-    //   );
-
-    //   Alert.alert("Solicitação enviada");
-    // } catch (err) {
-    //   console.og("[ERROR: solicitation] => ", err);
-    // }
-    // socket.emit("ola", { id: user_id, description });
   }
 
   // função que vai carregar a posição inicial do paciente no mapa
@@ -99,9 +65,10 @@ export default function Home() {
 
         const { latitude, longitude } = coords;
 
+        // deu ruim
         const data = await AsyncStorage.getItem("store");
         const dataParse = JSON.parse(data);
-        setUser(dataParse.auth.user);
+        setUser(dataParse.auth.user || 1);
 
         setCurrentRegion({
           latitude,
@@ -114,8 +81,6 @@ export default function Home() {
 
     loadInitialPosition();
   }, []);
-
-  // problemas aqui
 
   useEffect(() => {
     async function loadHospitals() {
@@ -190,8 +155,7 @@ export default function Home() {
               <Text style={styles.name}>{hospital.name}</Text>
               <Text style={styles.desc}>
                 {hospital.address.street}/{hospital.address.neighborhood}/
-                {hospital.address.cep}/
-                {hospital._id}
+                {hospital.address.cep}/{hospital._id}
               </Text>
               <Text style={styles.data}>
                 {hospital.address.city}/{hospital.address.state}
@@ -213,9 +177,9 @@ export default function Home() {
             onPress={() => console.log("hospitais", hospitals)}
             style={styles.callout}
           >
-            <Text style={styles.name}>Nome do paciente</Text>
-            <Text style={styles.desc}>Alguma descrição?</Text>
-            <Text style={styles.data}>Dados?Não sei.</Text>
+            <Text style={styles.name}>{user.name}</Text>
+            <Text style={styles.desc}>{user.bio}</Text>
+            <Text style={styles.data}>CPF: {user.cpf}</Text>
           </Callout>
         </Marker>
       </MapView>

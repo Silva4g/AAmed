@@ -1,4 +1,5 @@
 import React from "react";
+import { Image } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Feather, AntDesign } from "@expo/vector-icons";
@@ -21,7 +22,9 @@ export const AuthDrawerScreen = () => (
     drawerType="slide"
     drawerContentOptions={{
       labelStyle: { fontWeight: "bold" },
-      itemStyle: { padding: 2 },
+      activeBackgroundColor: "#006bad",
+      activeTintColor: "#fff",
+      itemStyle: { padding: 7 },
       contentContainerStyle: { backgroundColor: "#fff" },
     }}
     drawerContent={(props) => <CustomDrawerContent {...props} />}
@@ -32,7 +35,7 @@ export const AuthDrawerScreen = () => (
       labelStyle={{ fontSize: 23 }}
       options={{
         drawerLabel: "HOME",
-        drawerIcon: () => <Feather name="user" size={20} />,
+        drawerIcon: ({ color }) => <Feather name="user" size={20} color={color} />,
       }}
     />
     <AuthDrawer.Screen
@@ -40,7 +43,7 @@ export const AuthDrawerScreen = () => (
       component={History}
       options={{
         drawerLabel: "HISTÓRICO",
-        drawerIcon: () => <Feather name="calendar" size={20} />,
+        drawerIcon: ({ color }) => <Feather name="calendar" size={20} color={color} />,
       }}
     />
     <AuthDrawer.Screen
@@ -48,7 +51,7 @@ export const AuthDrawerScreen = () => (
       component={Help}
       options={{
         drawerLabel: "AJUDA",
-        drawerIcon: () => <AntDesign name="questioncircleo" size={20} />,
+        drawerIcon: ({ color }) => <AntDesign name="questioncircleo" size={20} color={color} />,
       }}
     />
     <AuthDrawer.Screen
@@ -56,7 +59,7 @@ export const AuthDrawerScreen = () => (
       component={Setting}
       options={{
         drawerLabel: "CONFIGURAÇÕES",
-        drawerIcon: () => <Feather name="settings" size={20} />,
+        drawerIcon: ({ color }) => <Feather name="settings" size={20} color={color} />,
       }}
     />
   </AuthDrawer.Navigator>
@@ -66,10 +69,42 @@ export const AuthDrawerScreen = () => (
 const GuestStack = createStackNavigator();
 export const GuestStackScreen = () => (
   <GuestStack.Navigator
-    screenOptions={{ headerStyle: { backgroundColor: "#29B6F6" } }}
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: "#006bad",
+        borderBottomColor: "#d9d9d9",
+        borderBottomWidth: 2,
+      },
+      headerTintColor: "#fff",
+    }}
   >
     <GuestStack.Screen name="Login" component={Login} />
-    <GuestStack.Screen name="SignUp" component={SignUp} />
-    <GuestStack.Screen name="ForgotPassword" component={ForgotPassword} />
+    <GuestStack.Screen
+      name="SignUp"
+      component={SignUp}
+      options={{
+        headerTitle: "Cadastre-se",
+        headerTitleAlign: "center",
+        headerRight: () => (
+          <Image
+            source={require("../assets/icon.png")}
+            style={{ width: 45, height: 45, marginRight: 20 }}
+          />
+        ),
+      }}
+    />
+    <GuestStack.Screen
+      name="ForgotPassword"
+      component={ForgotPassword}
+      options={{
+        headerTitle: () => (
+          <Image
+            source={require("../assets/icon.png")}
+            style={{ width: 50, height: 50 }}
+          />
+        ),
+        headerTitleAlign: "center",
+      }}
+    />
   </GuestStack.Navigator>
 );

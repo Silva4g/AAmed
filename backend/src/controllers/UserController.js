@@ -11,14 +11,14 @@ module.exports = {
   //cadastro de usuarios
   async store(req, res) {
     try {
-      const { name, password, email, susCard, cpf, bio } = req.body;
+      const { name, cpf, email, password,  susCard, bio } = req.body;
 
       //const { location: url = "", key } = req.file;
       //verificar se tem no banco
-      if (await User.findOne({ cpf, susCard }))
-        return res.status(400).json({ error: "Usuário existente" });
+      if (await User.findOne({ cpf }))
+        return res.status(400).json({ error: "Usuário com o CPF informado já cadastrado" });
       if (await User.findOne({ susCard }))
-        return res.status(400).json({ error: "Usuário existente" });
+        return res.status(400).json({ error: "Usuário com o cartão do SUS informado já cadastrado" });
 
       const user = await User.create({
         name,

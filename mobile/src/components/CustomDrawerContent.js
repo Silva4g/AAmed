@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  View,
-  Text,
-  ImageBackground,
-  StyleSheet,
-  Dimensions,
-} from "react-native";
+import { View, Text, ImageBackground, StyleSheet } from "react-native";
 import {
   DrawerContentScrollView,
   DrawerItemList,
@@ -40,17 +34,12 @@ export default function CustomDrawerContent(props) {
       </View>
 
       <DrawerItemList {...props} />
-      <View
-        style={{
-          width: Dimensions.get("window").width,
-          height: 1,
-          backgroundColor: "#e2e2e2",
-        }}
-      ></View>
+      <View style={styles.separator} />
       <DrawerItem
         onPress={logout}
         label="SAIR"
-        labelStyle={{ fontWeight: "bold" }}
+        style={styles.drawerItem}
+        labelStyle={styles.drawerItemLabel}
         icon={() => <Feather name="log-out" size={20} color="#E53935" />}
       />
     </DrawerContentScrollView>
@@ -82,5 +71,21 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginVertical: 8,
     alignSelf: "center",
+  },
+  separator: {
+    width: "100%",
+    height: 1,
+    backgroundColor: "#e2e2e2",
+  },
+  drawerItem: {
+    marginTop: 170,
+    borderWidth: 1,
+    borderColor: "#E53935",
+    backgroundColor: "#fff",
+  },
+  drawerItemLabel: {
+    fontWeight: "bold",
+    padding: 7,
+    color: "#E53935",
   },
 });
