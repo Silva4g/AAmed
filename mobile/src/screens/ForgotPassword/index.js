@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { View, TouchableOpacity } from "react-native";
 
+import MainButton from '../../components/MainButton';
+
 import {
   Keyboard,
   Container,
@@ -11,7 +13,6 @@ import {
   Description,
   Icon,
   Input,
-  ButtonReset,
   ButtonResetText,
   BottomContainer,
   BottomContainerText,
@@ -51,9 +52,9 @@ export default function ForgotPasword() {
             autoFocus
           />
 
-          <ButtonReset onPress={() => handleSubmit()}>
+          <MainButton onPress={() => handleSubmit()}>
             <ButtonResetText>Resetar senha</ButtonResetText>
-          </ButtonReset>
+          </MainButton>
         </View>
 
         <BottomContainer>

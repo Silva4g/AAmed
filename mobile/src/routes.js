@@ -84,7 +84,6 @@ export const GuestStackScreen = () => (
       component={SignUp}
       options={{
         headerTitle: "Cadastre-se",
-        headerTitleAlign: "center",
         headerRight: () => (
           <Image
             source={require("../assets/icon.png")}

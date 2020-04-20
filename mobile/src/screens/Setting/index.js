@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TouchableOpacity, Text, Switch, StyleSheet } from "react-native";
+import { View, TouchableOpacity, Text, Switch, StyleSheet, Image } from "react-native";
 import { CommonActions } from "@react-navigation/native";
 
 import { FontAwesome } from "@expo/vector-icons";
@@ -21,7 +21,7 @@ import { ScrollView } from "react-native-gesture-handler";
 export default function Setting({ navigation }) {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-  
+
   return (
     <Container>
       <ScrollView>
@@ -34,15 +34,21 @@ export default function Setting({ navigation }) {
           </TouchableOpacity>
 
           <Title>CONFIGURAÇÕES</Title>
+
+          <Image
+            source={require("../../../assets/icon.png")}
+            style={{ width: 45, height: 45, position: "absolute", right: 12 }}
+          />
         </CustomHeader>
 
         <Wrapper>
-      
           <View style={styles.boxView}>
             <BoxTitle>Permissões</BoxTitle>
             <Separator />
             <SwitchBox>
-              <SwitchText style={{fontWeight:'bold'}}>Aceitar todas as permissões</SwitchText>
+              <SwitchText style={{ fontWeight: "bold" }}>
+                Aceitar todas as permissões
+              </SwitchText>
               <Switch
                 onValueChange={toggleSwitch}
                 value={isEnabled}
@@ -95,7 +101,7 @@ export default function Setting({ navigation }) {
           <TouchableOpacity style={styles.buttonSetings}>
             <Text style={styles.buttonText}>CONFIGURAR MAPA</Text>
             <FontAwesome style={styles.iconButton} name="angle-double-right" />
-          </TouchableOpacity>  
+          </TouchableOpacity>
           <TouchableOpacity style={styles.buttonSetings}>
             <Text style={styles.buttonText}>CONFIGURAR PRIVACIDADE</Text>
             <FontAwesome style={styles.iconButton} name="angle-double-right" />
@@ -122,16 +128,16 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 10,
   },
-  containerButton:{
-    padding:20,
+  containerButton: {
+    padding: 20,
   },
   buttonSetings: {
     height: 60,
-    marginTop:13,
-    backgroundColor:'#e2e2e2',
+    marginTop: 13,
+    backgroundColor: "#e2e2e2",
     borderRadius: 2,
-    borderColor:'#006bad',
-    borderWidth:1,
+    borderColor: "#006bad",
+    borderWidth: 1,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.5,
@@ -139,18 +145,18 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   buttonText: {
-    padding:20,
-    fontSize:15,
-    textAlign:'center',
-    color:'#006bad',
-    fontWeight:'bold'
+    padding: 20,
+    fontSize: 15,
+    textAlign: "center",
+    color: "#006bad",
+    fontWeight: "bold",
   },
   iconButton: {
-    position:'absolute',
-    alignSelf:'flex-end',
-    padding:20,
-    right:10,
-    fontSize:22,
-    color:'#006bad',
-  }
+    position: "absolute",
+    alignSelf: "flex-end",
+    padding: 20,
+    right: 10,
+    fontSize: 22,
+    color: "#006bad",
+  },
 });

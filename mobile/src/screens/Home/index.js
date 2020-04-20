@@ -5,12 +5,17 @@ import {
   Text,
   AsyncStorage,
   TouchableOpacity,
+  TextInput,
   Alert,
 } from "react-native";
 import MapView, { Marker, Callout } from "react-native-maps";
 import { useNavigation } from "@react-navigation/native";
 import io from "socket.io-client";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  Ionicons,
+  MaterialCommunityIcons,
+  MaterialIcons,
+} from "@expo/vector-icons";
 import {
   requestPermissionsAsync,
   getCurrentPositionAsync,
@@ -25,7 +30,7 @@ export default function Home() {
   const [user, setUser] = useState(null);
   const [currentRegion, setCurrentRegion] = useState(null);
   const [regionChange, setRegionChange] = useState(null);
-  const [description, setDescription] = useState("Descrição padrão!");
+  const [description, setDescription] = useState("");
   const navigation = useNavigation();
   const [connection, setConnection] = useState(null);
   // let connection = null;
@@ -44,6 +49,8 @@ export default function Home() {
     hospitals.map((hospital) => {
       hospital_ids.push(hospital._id);
     });
+
+    if (description === "") return Alert.alert("AVISO", "Preencha o campo.");
 
     connection.emit("user_solicitation", {
       hospital_ids,
@@ -122,10 +129,13 @@ export default function Home() {
           <Ionicons name="md-menu" size={35} color="#fff" />
         </TouchableOpacity>
 
-        <Text style={{ alignSelf: "center", color: "#fff" }}>Icone, nome?</Text>
+        <Image
+          source={require("../../../assets/icon.png")}
+          style={{ width: 45, height: 45, alignSelf: "center" }}
+        />
 
         <TouchableOpacity
-          onPress={() => handleSolicitation()}
+          onPress={() => navigation.navigate("Historic")}
           style={{ position: "absolute", right: 12 }}
         >
           <MaterialCommunityIcons name="hospital" size={35} color="#fff" />
@@ -183,9 +193,25 @@ export default function Home() {
           </Callout>
         </Marker>
       </MapView>
+      <View style={styles.searchForm}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Descrição..."
+          placeholderTextColor="#999"
+          autoCapitalize="words"
+          autoCorrect={false}
+          value={description}
+          onChangeText={setDescription}
+        />
+
+        <TouchableOpacity
+          onPress={() => handleSolicitation()}
+          style={styles.loadButton}
+        >
+          <MaterialIcons name="send" size={25} color="#fff" />
+        </TouchableOpacity>
+      </View>
       <View style={styles.mapDrawerOverlay} />
     </View>
   );
 }
-
-// { latitude: -22.9442145, longitude: -47.0581135 }

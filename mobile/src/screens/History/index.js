@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, Image } from "react-native";
 import { CommonActions } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -19,6 +19,11 @@ export default function History({ navigation }) {
       <Text style={{ alignSelf: "center", color: "#fff", fontSize: 16 }}>
         HISTÓRICO
       </Text>
+
+      <Image
+        source={require("../../../assets/icon.png")}
+        style={{ width: 45, height: 45, position: "absolute", right: 12 }}
+      />
     </CustomHeader>
   );
 }

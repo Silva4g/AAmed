@@ -10,18 +10,18 @@ import {
   ActivityIndicator,
 } from "react-native";
 
+import MainButton from "../../components/MainButton";
+
 import {
   ImageContainer,
   LoginBox,
   InputBox,
   Input,
   InputMask,
-  Touch,
   TouchText,
   Icon,
   IconEye,
   TouchEye,
-  ViewOptions,
   Option,
   ErrorText,
 } from "./styles";
@@ -86,7 +86,6 @@ export const Login = () => {
       padding: 15,
     },
     title: "Bem-Vindo",
-    headerTitleStyle: { color: "#fff" },
   });
 
   return (
@@ -139,16 +138,13 @@ export const Login = () => {
               </TouchEye>
             </InputBox>
 
-            <Touch onPress={formik.handleSubmit}>
+            <MainButton onPress={formik.handleSubmit}>
               {formik.isSubmitting ? (
                 <ActivityIndicator size="small" color="#FFF" />
               ) : (
                 <TouchText>ENTRAR</TouchText>
               )}
-            </Touch>
-          </LoginBox>
-
-          <ViewOptions>
+            </MainButton>
             <Option
               onPress={() => {
                 navigation.navigate("ForgotPassword");
@@ -156,7 +152,10 @@ export const Login = () => {
             >
               Esqueceu a senha?
             </Option>
-          </ViewOptions>
+          </LoginBox>
+
+          {/* <ViewOptions>
+          </ViewOptions> */}
         </KeyboardAvoidingView>
       </ImageBackground>
     </SafeAreaView>

@@ -4,7 +4,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 export const Keyboard = styled.KeyboardAvoidingView`
   flex: 1;
   background-color: #fff;
-  padding: 24px;
+  padding: 20px;
 `;
 
 export const Container = styled.View`
@@ -47,27 +47,16 @@ export const Input = styled.TextInput`
   font-size: 16px;
   padding-right: 40px;
   padding-left: 40px;
+  margin-bottom: 20px;
   color: #24292e;
   border-bottom-width: 2px;
   border-bottom-color: #24292e;
 `;
 
-export const ButtonReset = styled.TouchableOpacity`
-  width: 100%;
-  height: 60px;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-  background-color: #fff;
-  border-width: 1px;
-  border-radius: 2px;
-  border-color: #006bad;
-`;
-
 export const ButtonResetText = styled.Text`
   font-size: 16px;
   font-weight: bold;
-  color: #006bad;
+  color: #fff;
 `;
 
 export const BottomContainer = styled.View`
