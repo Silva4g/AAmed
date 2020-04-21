@@ -67,4 +67,6 @@ app.use(
 app.use(routes);
 //log de requisições http
 app.use(morgan("dev"));
-server.listen(3333);
+server.listen(3333, () => {
+  console.log('🚀 Back-end started!!!')
+});

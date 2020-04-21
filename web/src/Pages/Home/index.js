@@ -32,9 +32,10 @@ export default function Home() {
 
   return (
     <>
-      <div className="slide">
+      {/* <div className="slide">
         <Slide />
-      </div>
+      </div> */}
+      
       <div className="patrocinios">
         <h1>PATROCÍNIOS</h1>
         <div className="patrocinios-list">
