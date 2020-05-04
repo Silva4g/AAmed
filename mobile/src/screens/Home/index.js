@@ -36,7 +36,7 @@ export default function Home() {
   // let connection = null;
 
   useEffect(() => {
-    setConnection(io("http://192.168.15.9:3333"));
+    setConnection(io("http://192.168.15.5:3333"));
     // socket.on("connect", () => console.log("[IO] Connect => connected on mobile"));
   }, []);
 
@@ -188,8 +188,6 @@ export default function Home() {
             style={styles.callout}
           >
             <Text style={styles.name}>{user.name}</Text>
-            <Text style={styles.desc}>{user.bio}</Text>
-            <Text style={styles.data}>CPF: {user.cpf}</Text>
           </Callout>
         </Marker>
       </MapView>

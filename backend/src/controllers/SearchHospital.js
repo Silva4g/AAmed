@@ -28,18 +28,3 @@ module.exports = {
     }
   },
 };
-
-// tirei só para teste!!!!
-// {
-//   $and: [{ _id: { $ne: hospital } }],
-//   location: {
-//     //variaveis do mongo
-//     $near: {
-//       $geometry: {
-//         type: "Point",
-//         coordinates: [longitude, latitude]
-//       },
-//       $maxDistance: 10000
-//     }
-//   }
-// }

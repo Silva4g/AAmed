@@ -1,45 +1,9 @@
-import React, { PureComponent, useState } from "react";
-import { View, Text, TextInput, StyleSheet, Button } from "react-native";
-import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
-import AntDesign from "@expo/vector-icons/AntDesign";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import React, { useState } from "react";
 import { TextInputMask } from "react-native-masked-text";
+import styled from "styled-components/native";
 
 import Wizard from "./Wizard";
-import Step from './Step';
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1
-  },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#fff"
-  },
-  inputContainer: {
-    // backgroundColor: '#c1aa99',
-    width: "90%",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  input: {
-    backgroundColor: "#52c8fa00",
-    width: "90%",
-    height: 45,
-    paddingHorizontal: 40,
-    borderRadius: 2,
-    borderBottomWidth: 2,
-    borderBottomColor: "#24292e"
-  },
-  iconUser: {
-    position: "absolute",
-    top: 10,
-    left: 25,
-    zIndex: 5
-  }
-});
+import Step from "./Step";
 
 function WizardScreen() {
   const [name, setName] = useState("");
@@ -48,6 +12,44 @@ function WizardScreen() {
   const [senha, setSenha] = useState("");
   const [susCard, setSusCard] = useState("");
   const [bio, setBio] = useState("");
+  const [bottomLineColor, setBottomLineColor] = useState(false);
+
+  function changeBottomLineColor() {
+    setBottomLineColor((prevState) => !prevState);
+  }
+
+  const inputs = [
+    {
+      key: String(Math.random()),
+      value: name,
+      label: "Nome",
+    },
+    {
+      key: String(Math.random()),
+      value: cpf,
+      label: "CPF",
+    },
+    {
+      key: String(Math.random()),
+      value: email,
+      label: "E-mail",
+    },
+    {
+      key: String(Math.random()),
+      value: senha,
+      label: "Senha",
+    },
+    {
+      key: String(Math.random()),
+      value: susCard,
+      label: "Cartão do SUS",
+    },
+    {
+      key: String(Math.random()),
+      value: bio,
+      label: "Bio",
+    },
+  ];
 
   const args = {
     name,
@@ -55,187 +57,174 @@ function WizardScreen() {
     email,
     senha,
     susCard,
-    bio
+    bio,
   };
 
   return (
-    <View style={styles.root}>
+    <Container>
       <Wizard initialValues={args}>
         <Step>
-          <View style={styles.container}>
-            <View style={styles.inputContainer}>
-              <SimpleLineIcons
-                name="user"
-                size={25}
-                color="#24292e"
-                style={styles.iconUser}
-              />
-              <TextInput
-                style={styles.input}
+          <StepContainer>
+            <InputContainer>
+              <Label>Nome completo</Label>
+              <Input
                 autoFocus
-                placeholderTextColor="#24292e"
-                placeholder="Nome completo"
-                onChangeText={e => setName(e)}
+                placeholder="ex: José da Silva"
+                placeholderTextColor="#00000066"
+                selectionColor="#006bad66"
+                onChangeText={setName}
                 value={name}
               />
-            </View>
-          </View>
+            </InputContainer>
+          </StepContainer>
         </Step>
         <Step>
-          <View style={styles.container}>
-            <View style={styles.inputContainer}>
-              <AntDesign
-                name="idcard"
-                size={25}
-                color="#24292e"
-                style={styles.iconUser}
-              />
-              <TextInputMask
-                type={'cpf'}
-                style={styles.input}
+          <StepContainer>
+            <InputContainer>
+              <Label>CPF</Label>
+              <InputMask
+                type={"cpf"}
                 autoFocus
-                placeholderTextColor="#24292e"
-                placeholder="CPF"
+                placeholder="000.000.000-00"
+                placeholderTextColor="#00000066"
                 keyboardType="number-pad"
-                onChangeText={e => setCpf(e)}
+                selectionColor="#006bad66"
+                onChangeText={(e) => setCpf(e)}
                 value={cpf}
               />
-            </View>
-          </View>
+            </InputContainer>
+          </StepContainer>
         </Step>
         <Step>
-          <View style={styles.container}>
-            <View style={styles.inputContainer}>
-              <MaterialCommunityIcons
-                name="email-outline"
-                size={25}
-                color="#24292e"
-                style={styles.iconUser}
-              />
-              <TextInput
-                style={styles.input}
+          <StepContainer>
+            <InputContainer>
+              <Label>E-mail</Label>
+              <Input
                 autoFocus
                 autoCapitalize="none"
-                placeholderTextColor="#24292e"
-                placeholder="Email"
+                placeholder="jose.silva@mail.com"
+                placeholderTextColor="#00000066"
                 keyboardType="email-address"
+                selectionColor="#006bad66"
                 onChangeText={setEmail}
                 value={email}
               />
-            </View>
-          </View>
+            </InputContainer>
+          </StepContainer>
         </Step>
         <Step>
-          <View style={styles.container}>
-            <View style={styles.inputContainer}>
-              <SimpleLineIcons
-                name="lock"
-                size={25}
-                color="#24292e"
-                style={styles.iconUser}
-              />
-              <TextInput
-                style={styles.input}
+          <StepContainer>
+            <InputContainer>
+              <Label>Senha</Label>
+              <Input
                 autoFocus
-                placeholderTextColor="#24292e"
-                placeholder="Senha"
+                placeholder="************"
+                placeholderTextColor="#00000066"
                 secureTextEntry
+                selectionColor="#006bad66"
                 onChangeText={setSenha}
                 value={senha}
               />
-            </View>
-          </View>
+            </InputContainer>
+          </StepContainer>
         </Step>
         <Step>
-          <View style={styles.container}>
-            <View style={styles.inputContainer}>
-              <SimpleLineIcons
-                name="credit-card"
-                size={25}
-                color="#24292e"
-                style={styles.iconUser}
-              />
-              <TextInputMask
-                type={'custom'}
+          <StepContainer>
+            <InputContainer>
+              <Label>Cartão do SUS</Label>
+              <InputMask
+                type={"custom"}
                 options={{
-                  mask: '9 99 9999 9999 9999'
+                  mask: "9 99 9999 9999 9999",
                 }}
-                style={styles.input}
                 autoFocus
-                placeholderTextColor="#24292e"
-                placeholder="Cartão do SUS"
+                placeholder="0 00 0000 0000 0000"
+                placeholderTextColor="#00000066"
                 keyboardType="number-pad"
-                onChangeText={e => setSusCard(e)}
+                selectionColor="#006bad66"
+                onChangeText={(e) => setSusCard(e)}
                 value={susCard}
               />
-            </View>
-          </View>
+            </InputContainer>
+          </StepContainer>
         </Step>
         <Step>
-          <View style={styles.container}>
-            <View style={styles.inputContainer}>
-              <MaterialCommunityIcons
-                name="text-subject"
-                size={25}
-                color="#24292e"
-                style={styles.iconUser}
-              />
-              <TextInput
-                style={styles.input}
+          <StepContainer>
+            <InputContainer>
+              <Label>Bio</Label>
+              <Input
                 autoFocus
-                placeholderTextColor="#24292e"
-                placeholder="Bio"
+                placeholder="ex: Problemas respiratórios..."
+                placeholderTextColor="#00000066"
+                multiline
+                selectionColor="#006bad66"
                 onChangeText={setBio}
                 value={bio}
+                onFocus={changeBottomLineColor}
+                // style={{borderBottomColor: bottomLineColor ? "#006bad" : "#00000066" }}
               />
-            </View>
-          </View>
+            </InputContainer>
+          </StepContainer>
         </Step>
         <Step>
-          <View style={styles.container}>
-            <View style={styles.inputContainer}>
-              <TextInput
-                style={styles.input}
-                editable={false}
-                placeholderTextColor="#24292e"
-                value={name}
-              />
-              <TextInput
-                style={styles.input}
-                editable={false}
-                placeholderTextColor="#24292e"
-                value={cpf}
-              />
-              <TextInput
-                style={styles.input}
-                editable={false}
-                placeholderTextColor="#24292e"
-                value={email}
-              />
-              <TextInput
-                style={styles.input}
-                editable={false}
-                placeholderTextColor="#24292e"
-                value={senha}
-              />
-              <TextInput
-                style={styles.input}
-                editable={false}
-                placeholderTextColor="#24292e"
-                value={susCard}
-              />
-              <TextInput
-                style={styles.input}
-                editable={false}
-                placeholderTextColor="#24292e"
-                value={bio}
-              />
-            </View>
-          </View>
+          <StepContainer>
+            {inputs.map((input) => (
+              <InputContainerFinal key={input.key}>
+                <Label>{input.label}</Label>
+                <Input
+                  editable={false}
+                  value={input.value}
+                />
+              </InputContainerFinal>
+            ))}
+          </StepContainer>
         </Step>
       </Wizard>
-    </View>
+    </Container>
   );
 }
+
+const Container = styled.View`
+  flex: 1;
+`;
+
+const StepContainer = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+`;
+
+const InputContainer = styled.View`
+  width: 90%;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Label = styled.Text`
+  align-self: flex-start;
+  color: #006bad;
+  font-size: 14px;
+`;
+
+const Input = styled.TextInput`
+  width: 100%;
+  font-size: 18px;
+  border-radius: 2px;
+  border-bottom-width: 1px;
+  border-bottom-color: #00000066;
+`;
+
+const InputMask = styled(TextInputMask)`
+  width: 100%;
+  font-size: 18px;
+  border-radius: 2px;
+  border-bottom-width: 1px;
+  border-bottom-color: #00000066;
+`;
+
+const InputContainerFinal = styled(InputContainer)`
+  margin-top: 10px;
+`;
 
 export default WizardScreen;

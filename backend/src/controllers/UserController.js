@@ -50,8 +50,6 @@ module.exports = {
       }
 
       if (!(await bcrypt.compare(password, userPlus.password))) {
-          // No mobile, o erro não vem para cá(as vezes) e sim para o catch
-          // provavelmente por causa da senha(+password)
         return res.status(401).json({ error: "Senha incorreta!" });
       }
 

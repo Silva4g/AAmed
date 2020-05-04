@@ -41,16 +41,22 @@ export const Icon = styled(MaterialCommunityIcons)`
   z-index: 5;
 `;
 
+export const Label = styled.Text`
+  align-self: flex-start;
+  color: #006bad;
+  font-size: 14px;
+`;
+
 export const Input = styled.TextInput`
-  width: 100%;
-  height: 44px;
-  font-size: 16px;
-  padding-right: 40px;
-  padding-left: 40px;
-  margin-bottom: 20px;
+  font-size: 18px;
   color: #24292e;
-  border-bottom-width: 2px;
-  border-bottom-color: #24292e;
+  margin-bottom: 18px;
+  border-bottom-width: 1px;
+  border-bottom-color: #00000066;
+  /* width: 100%; */
+  /* height: 44px; */
+  /* padding-right: 40px;
+  padding-left: 40px; */
 `;
 
 export const ButtonResetText = styled.Text`

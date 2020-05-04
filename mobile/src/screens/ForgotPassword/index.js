@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, Alert } from "react-native";
 
-import MainButton from '../../components/MainButton';
+import MainButton from "../../components/MainButton";
 
 import {
   Keyboard,
@@ -12,6 +12,7 @@ import {
   BoxDescription,
   Description,
   Icon,
+  Label,
   Input,
   ButtonResetText,
   BottomContainer,
@@ -24,6 +25,9 @@ export default function ForgotPasword() {
   const navigation = useNavigation();
 
   function handleSubmit() {
+    if (email === "") {
+      return Alert.alert("Aviso", "Preencha o campo de e-mail.")
+    }
     console.log(email);
   }
 
@@ -42,14 +46,17 @@ export default function ForgotPasword() {
         </TopContainer>
 
         <View>
-          <Icon name="email-outline" size={25} />
+          {/* <Icon name="email-outline" size={25} /> */}
+          <Label>E-mail</Label>
           <Input
-            placeholder="Email"
-            placeholderTextColor="#24292e"
+            autoFocus
+            autoCapitalize="none"
+            placeholder="jose.silva@mail.com"
+            placeholderTextColor="#00000066"
             keyboardType="email-address"
+            selectionColor="#006bad66"
             onChangeText={setEmail}
             value={email}
-            autoFocus
           />
 
           <MainButton onPress={() => handleSubmit()}>

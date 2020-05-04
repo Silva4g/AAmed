@@ -3,23 +3,24 @@ import { useNavigation } from "@react-navigation/native";
 import { useFormik } from "formik";
 import {
   KeyboardAvoidingView,
-  Image,
   SafeAreaView,
   ImageBackground,
   Button,
   ActivityIndicator,
+  Text,
 } from "react-native";
 
 import MainButton from "../../components/MainButton";
 
 import {
   ImageContainer,
+  Image,
   LoginBox,
   InputBox,
+  Label,
   Input,
   InputMask,
-  TouchText,
-  Icon,
+  ButtonText,
   IconEye,
   TouchEye,
   Option,
@@ -98,38 +99,36 @@ export const Login = () => {
           style={{ flex: 1 }}
         >
           <ImageContainer>
-            <Image
-              source={logo}
-              style={{
-                width: 150,
-                height: 150,
-              }}
-            />
+            <Image source={logo} />
           </ImageContainer>
 
           {!!errorMsg && <ErrorText>{errorMsg}</ErrorText>}
           <LoginBox>
             <InputBox>
-              <Icon name="user" />
+              {/* <Icon name="user" /> */}
+              <Label>CPF</Label>
               <InputMask
                 name="cpf"
                 type={"cpf"}
-                placeholder="CPF"
-                placeholderTextColor="#24292e"
+                placeholder="000.000.000-00"
+                placeholderTextColor="#00000066"
                 returnKeyType="next"
+                selectionColor="#006bad66"
                 value={formik.values.cpf}
                 onChangeText={formik.handleChange("cpf")}
               />
             </InputBox>
 
             <InputBox>
-              <Icon name="lock" />
+              {/* <Icon name="lock" /> */}
+              <Label>Senha</Label>
               <Input
                 name="password"
                 secureTextEntry={showPass}
-                placeholder="Senha"
-                placeholderTextColor="#24292e"
+                placeholder="************"
+                placeholderTextColor="#00000066"
                 returnKeyType="done"
+                selectionColor="#006bad66"
                 value={formik.values.password}
                 onChangeText={formik.handleChange("password")}
               />
@@ -142,7 +141,7 @@ export const Login = () => {
               {formik.isSubmitting ? (
                 <ActivityIndicator size="small" color="#FFF" />
               ) : (
-                <TouchText>ENTRAR</TouchText>
+                <ButtonText>ENTRAR</ButtonText>
               )}
             </MainButton>
             <Option
@@ -153,9 +152,6 @@ export const Login = () => {
               Esqueceu a senha?
             </Option>
           </LoginBox>
-
-          {/* <ViewOptions>
-          </ViewOptions> */}
         </KeyboardAvoidingView>
       </ImageBackground>
     </SafeAreaView>

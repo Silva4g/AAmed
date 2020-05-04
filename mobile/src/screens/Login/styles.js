@@ -3,14 +3,19 @@ import { TextInputMask } from "react-native-masked-text";
 import { SimpleLineIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 export const ImageContainer = styled.View`
-  flex: 1;
+  flex: 0.7;
   align-items: center;
   justify-content: center;
   background-color: #2f900000;
 `;
 
+export const Image = styled.Image`
+  width: 150px;
+  height: 150px;
+`;
+
 export const LoginBox = styled.View`
-  flex: 1.35;
+  flex: 1.25;
   padding-left: 20px;
   padding-right: 20px;
   background-color: #778beb00;
@@ -21,24 +26,32 @@ export const InputBox = styled.View`
   background-color: #59627500;
 `;
 
+export const Label = styled.Text`
+  align-self: flex-start;
+  color: #006bad;
+  font-size: 14px;
+`;
+
 export const InputMask = styled(TextInputMask)`
-  background-color: #e9e9e9;
-  height: 30px;
   font-size: 18px;
-  padding-left: 40px;
-  border-width: 1px;
-  border-color: #c9c9c9;
+  color: #24292e;
   margin-bottom: 18px;
+  border-bottom-width: 1px;
+  border-bottom-color: #00000066;
+  /* background-color: #e9e9e9; */
+  /* height: 30px; */
+  /* padding-left: 40px; */
 `;
 
 export const Input = styled.TextInput`
-  background-color: #e9e9e9;
-  height: 30px;
   font-size: 18px;
-  padding-left: 40px;
-  border-color: #c9c9c9;
-  border-width: 1px;
+  color: #24292e;
   margin-bottom: 18px;
+  border-bottom-width: 1px;
+  border-bottom-color: #00000066;
+  /* background-color: #e9e9e9; */
+  /* height: 30px; */
+  /* padding-left: 40px; */
 `;
 
 export const Icon = styled(SimpleLineIcons)`
@@ -51,29 +64,21 @@ export const Icon = styled(SimpleLineIcons)`
 `;
 
 export const TouchEye = styled.TouchableOpacity`
-  top: 2px;
+  bottom: 20px;
   position: absolute;
-  left: 290px;
+  right: 0;
   z-index: 5;
 `;
 
 export const IconEye = styled(MaterialCommunityIcons)`
   font-size: 25px;
-  color: #24292e;
+  color: #00000066;
 `;
 
-export const TouchText = styled.Text`
+export const ButtonText = styled.Text`
   font-size: 16px;
   font-weight: bold;
   color: #fff;
-`;
-
-export const ViewOptions = styled.View`
-  flex: 1;
-  justify-content: center;
-  /* padding: 16px; */
-  /* margin-top: 38px; */
-  background-color: #f29;
 `;
 
 export const Option = styled.Text`
@@ -81,7 +86,7 @@ export const Option = styled.Text`
   font-weight: bold;
   align-self: center;
   font-size: 16px;
-  margin-top: 18px;
+  margin-top: 12px;
   text-decoration: underline;
 `;
 
