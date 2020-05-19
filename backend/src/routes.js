@@ -45,7 +45,7 @@ routes.get("/user", UserController.index);
 //route auth user
 routes.post("/login/user", UserController.login);
 //route update user
-routes.put("/user/:id", UserController.update);
+routes.put("/user/:id", authConfig.hospital, UserController.update);
 
 //route register a support
 routes.post("/support", SupportController.store);
@@ -63,7 +63,13 @@ routes.get("/hospital/solicitations", SolicitaionController.index);
 routes.post("/hospital/:hospital_id/solicitation", SolicitaionController.store);
 
 routes.get("/solicitations/:id", SolicitaionController.show);
-routes.post("/solicitations/:solicitation_id/approvals", ApprovalController.store);
-routes.post("/solicitations/:solicitation_id/rejections", RejectionController.store);
+routes.post(
+  "/solicitations/:solicitation_id/approvals",
+  ApprovalController.store
+);
+routes.post(
+  "/solicitations/:solicitation_id/rejections",
+  RejectionController.store
+);
 
 module.exports = routes;

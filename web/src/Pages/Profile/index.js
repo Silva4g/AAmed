@@ -19,18 +19,8 @@ export default function Profile(props) {
   const [cep, setCep] = useState("");
 
   useEffect(() => {
-    async function getIdLogged() {
-      const response = await api.get("/hospital/token", {
-        withCredentials: true,
-      });
-      const tk = response.headers["tk_acc"];
-      return tk;
-    }
     async function reqTk() {
       const response = await api.get("/hospital/home", {
-        headers: {
-          Authorization: `Bearer ${await getIdLogged()}`,
-        },
         withCredentials: true,
       });
       const {
@@ -52,7 +42,6 @@ export default function Profile(props) {
       setNeighborhood(address.neighborhood);
       setCep(address.cep);
     }
-    getIdLogged();
     reqTk();
   }, []);
 

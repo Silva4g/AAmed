@@ -1,0 +1,1 @@
+Vou arrumar essa autenticacao do hospital pq ta bem feito. Vou colocar em context pra ficar mais automatico as requisições

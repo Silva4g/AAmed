@@ -52,8 +52,7 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    exposedHeaders: "id",
-    exposedHeaders: "tk_acc",
+    exposedHeaders: "id, tk_acc",
     origin: "http://localhost:3000",
   })
 );
@@ -68,5 +67,5 @@ app.use(routes);
 //log de requisições http
 app.use(morgan("dev"));
 server.listen(3333, () => {
-  console.log('🚀 Back-end started!!!')
+  console.log("🚀 Back-end started!!!");
 });

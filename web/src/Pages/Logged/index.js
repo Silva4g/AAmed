@@ -19,25 +19,20 @@ export default function Logged() {
   const [ok, setOk] = useState(null);
 
   //provavelmente não precisa desse useEffect aqui, vou ver dps
-  // useEffect(() => {
-  //   async function getIdLogged() {
-  //     const response = await api.get("/hospital/token", {
-  //       withCredentials: true,
-  //     });
-  //     const tk = response.headers["tk_acc"];
-  //     return tk;
-  //   }
-  //   async function reqTk() {
-  //     await api.get("/hospital/home", {
-  //       headers: {
-  //         Authorization: `Bearer ${await getIdLogged()}`,
-  //       },
-  //       withCredentials: true,
-  //     });
-  //   }
-  //   getIdLogged();
-  //   reqTk();
-  // }, [id]);
+  useEffect(() => {
+    async function getIdLogged() {
+      const response = await api.get("/hospital/token", {
+        withCredentials: true,
+      });
+      const tk = response.data.token;
+      return tk;
+    }
+    async function reqTk() {
+      api.defaults.headers.Authorization = `Bearer ${await getIdLogged()}`;
+    }
+    getIdLogged();
+    reqTk();
+  }, [id]);
 
   useEffect(() => {
     const socket = socketio("http://localhost:3333", {

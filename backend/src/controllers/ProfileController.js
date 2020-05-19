@@ -86,8 +86,7 @@ module.exports = {
       if (!jwt.verify(token_access, config.secret)) {
         return res.status(401).send({ error: "Hospital não autenticado!" });
       }
-      res.setHeader("tk_acc", token_access);
-      return res.status(200).end();
+      return res.send({ token: token_access });
     } catch (error) {
       return res.status(400).send({ error: `Erro: ${error}` });
     }
