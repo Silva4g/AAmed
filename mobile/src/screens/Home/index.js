@@ -36,7 +36,7 @@ export default function Home() {
   // let connection = null;
 
   useEffect(() => {
-    setConnection(io("http://192.168.15.5:3333"));
+    setConnection(io("http://192.168.0.53:3333"));
     // socket.on("connect", () => console.log("[IO] Connect => connected on mobile"));
   }, []);
 
@@ -161,14 +161,20 @@ export default function Home() {
               color="#0984e3"
             />
 
-            <Callout style={styles.callout}>
-              <Text style={styles.name}>{hospital.name}</Text>
-              <Text style={styles.desc}>
-                {hospital.address.street}/{hospital.address.neighborhood}/
-                {hospital.address.cep}/{hospital._id}
+            <Callout style={styles.calloutHospital}>
+              <Text style={styles.name}>{hospital.name}
               </Text>
-              <Text style={styles.data}>
-                {hospital.address.city}/{hospital.address.state}
+              <Text style={styles.desc}>
+                <Text style={styles.tittles}>RUA:</Text> {hospital.address.street}
+              </Text>
+              <Text>
+                <Text style={styles.tittles}>BAIRRO:</Text> {hospital.address.neighborhood}
+              </Text>
+              <Text>
+                <Text style={styles.tittles}>CEP:</Text> {hospital.address.cep} 
+              </Text>
+              <Text>
+                <Text style={styles.tittles}>TELEFONE: </Text>{hospital.phone}
               </Text>
             </Callout>
           </Marker>
@@ -185,9 +191,9 @@ export default function Home() {
 
           <Callout
             onPress={() => console.log("hospitais", hospitals)}
-            style={styles.callout}
+            style={styles.calloutUser}
           >
-            <Text style={styles.name}>{user.name}</Text>
+            <Text  style={styles.name}>{user.name}</Text>
           </Callout>
         </Marker>
       </MapView>

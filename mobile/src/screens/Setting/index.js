@@ -134,9 +134,9 @@ const styles = StyleSheet.create({
   buttonSetings: {
     height: 60,
     marginTop: 13,
-    backgroundColor: "#e2e2e2",
+    backgroundColor: "#006bad",
     borderRadius: 2,
-    borderColor: "#006bad",
+    borderColor: "#000000",
     borderWidth: 1,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     padding: 20,
     fontSize: 15,
     textAlign: "center",
-    color: "#006bad",
+    color: "#e2e2e2",
     fontWeight: "bold",
   },
   iconButton: {
@@ -157,6 +157,6 @@ const styles = StyleSheet.create({
     padding: 20,
     right: 10,
     fontSize: 22,
-    color: "#006bad",
+    color: "#e2e2e2",
   },
 });

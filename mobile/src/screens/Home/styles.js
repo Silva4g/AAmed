@@ -28,16 +28,24 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#E02041",
   },
-  callout: {
+  calloutHospital: {
+    width: 200,
+  },
+  calloutUser: {
     width: 200,
   },
   name: {
     fontWeight: "bold",
-    fontSize: 16,
+    fontSize: 15,
+    textAlign:'center',
   },
   desc: {
-    color: "#666",
+    color: "#000000",
     marginTop: 5,
+  },
+  tittles:{
+    color: "#000000",
+    fontWeight:'bold',
   },
   data: {
     marginTop: 5,
