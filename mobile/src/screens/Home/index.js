@@ -185,7 +185,7 @@ export default function Home() {
             style={styles.avatar}
             source={{
               uri:
-                "https://avatars1.githubusercontent.com/u/57529750?s=460&u=ecdea07170683c8188c3fda98756f90dff1978e6&v=4",
+                "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg",
             }}
           />
 

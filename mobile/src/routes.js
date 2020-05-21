@@ -12,6 +12,7 @@ import Home from "./screens/Home";
 import History from "./screens/History";
 import Help from "./screens/Help";
 import Setting from "./screens/Setting";
+import EditProfile from "./screens/EditProfile";
 
 import CustomDrawerContent from "./components/CustomDrawerContent";
 
@@ -44,6 +45,14 @@ export const AuthDrawerScreen = () => (
       options={{
         drawerLabel: "HISTÓRICO",
         drawerIcon: ({ color }) => <Feather name="calendar" size={20} color={color} />,
+      }}
+    />
+     <AuthDrawer.Screen
+      name="EditProfile"
+      component={EditProfile}
+      options={{
+        drawerLabel: "EDITAR PERFIL",
+        drawerIcon: ({ color }) => <Feather name="edit" size={20} color={color} />,
       }}
     />
     <AuthDrawer.Screen
