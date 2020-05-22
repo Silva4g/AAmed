@@ -64,12 +64,13 @@ module.exports = {
   //atualizar dados do usuario
   async update(req, res) {
     try {
-      const { name, password, email, susCard, cpf, bio } = req.body;
+      // const { name, password, email, susCard, cpf, bio } = req.body;
+      const { name, email, bio } = req.body;
       //esses dados não poderão ser alterados
-      if (password || susCard || cpf)
-        return res
-          .status(400)
-          .send({ error: "Esses dados não podem ser atualizados" });
+      // if (password || susCard || cpf)
+      //   return res
+      //     .status(400)
+      //     .send({ error: "Esses dados não podem ser atualizados" });
 
       const user = await User.findByIdAndUpdate(
         req.params.id,

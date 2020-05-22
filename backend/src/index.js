@@ -26,6 +26,7 @@ io.on("connection", (socket) => {
   console.log("[SOCKET: connected] => ", socket.id);
   //console.log("[SOCKET: connected mobile] => ", socket.handshake.query);
   const { hospital_id } = socket.handshake.query;
+  console.log(hospital_id)
   connectedUsers[hospital_id] = socket.id;
 
   //console.log('connectedUsersVar => ', connectedUsers);

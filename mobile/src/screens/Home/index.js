@@ -27,7 +27,7 @@ import api from "../../services/api";
 
 export default function Home() {
   const [hospitals, setHospitals] = useState([]);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null || "");
   const [currentRegion, setCurrentRegion] = useState(null);
   const [regionChange, setRegionChange] = useState(null);
   const [description, setDescription] = useState("");
@@ -36,8 +36,24 @@ export default function Home() {
   // let connection = null;
 
   useEffect(() => {
-    setConnection(io("http://192.168.0.53:3333"));
+    setConnection(io("http://192.168.15.4:3333"));
     // socket.on("connect", () => console.log("[IO] Connect => connected on mobile"));
+  }, []);
+
+  useEffect(() => {
+    function getUserLogged() {
+      return new Promise((resolve, result) => {
+        setTimeout(() => {
+          resolve(AsyncStorage.getItem("store"));
+        }, 1000);
+      });
+    }
+    getUserLogged()
+      .then((data) => {
+        const dataParse = JSON.parse(data);
+        setUser(dataParse.auth.user);
+      })
+      .catch((error) => console.log(error));
   }, []);
 
   async function handleSolicitation() {
@@ -73,9 +89,9 @@ export default function Home() {
         const { latitude, longitude } = coords;
 
         // deu ruim
-        const data = await AsyncStorage.getItem("store");
-        const dataParse = JSON.parse(data);
-        setUser(dataParse.auth.user || 1);
+        // const data = await AsyncStorage.getItem("store");
+        // const dataParse = JSON.parse(data);
+        // setUser(dataParse.auth.user || 1);
 
         setCurrentRegion({
           latitude,
@@ -162,19 +178,21 @@ export default function Home() {
             />
 
             <Callout style={styles.calloutHospital}>
-              <Text style={styles.name}>{hospital.name}
-              </Text>
+              <Text style={styles.name}>{hospital.name}</Text>
               <Text style={styles.desc}>
-                <Text style={styles.tittles}>RUA:</Text> {hospital.address.street}
+                <Text style={styles.tittles}>RUA:</Text>{" "}
+                {hospital.address.street}
               </Text>
               <Text>
-                <Text style={styles.tittles}>BAIRRO:</Text> {hospital.address.neighborhood}
+                <Text style={styles.tittles}>BAIRRO:</Text>{" "}
+                {hospital.address.neighborhood}
               </Text>
               <Text>
-                <Text style={styles.tittles}>CEP:</Text> {hospital.address.cep} 
+                <Text style={styles.tittles}>CEP:</Text> {hospital.address.cep}
               </Text>
               <Text>
-                <Text style={styles.tittles}>TELEFONE: </Text>{hospital.phone}
+                <Text style={styles.tittles}>TELEFONE: </Text>
+                {hospital.phone}
               </Text>
             </Callout>
           </Marker>
@@ -193,7 +211,7 @@ export default function Home() {
             onPress={() => console.log("hospitais", hospitals)}
             style={styles.calloutUser}
           >
-            <Text  style={styles.name}>{user.name}</Text>
+            <Text style={styles.name}>{user.name}</Text>
           </Callout>
         </Marker>
       </MapView>

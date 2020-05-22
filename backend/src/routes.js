@@ -45,7 +45,7 @@ routes.get("/user", UserController.index);
 //route auth user
 routes.post("/login/user", UserController.login);
 //route update user
-routes.put("/user/:id", authConfig.hospital, UserController.update);
+routes.put("/user/:id", /*authConfig.user,*/ UserController.update);
 
 //route register a support
 routes.post("/support", SupportController.store);
