@@ -22,21 +22,28 @@ export default function CustomDrawerContent(props) {
   const [, { logout }] = useAuth();
   const [user, setUser] = useState(null || "");
 
+  // A função getUserLogged recupera os dados do usuário por meio de uma Promise
+  // que é executada assim que o componente e montado
   useEffect(() => {
     function getUserLogged() {
+      // O uso da Promise + setTmeout foi necessário pois leva um tempo até os dados do AsyncStorage sejam recuperados
       return new Promise((resolve, reject) => {
         setTimeout(() => {
+          // A função resolve() irá conter os dados do usuário após 2s definidos no setTimeout()
           resolve(AsyncStorage.getItem("store"));
         }, 2000);
       });
     }
     getUserLogged()
       .then((data) => {
+        // Para acessar os dados recuperados é usado o .then()
+        // Como os dados armazenados estão em formato de string, é utilizado o JSON.parse() para tranforma-los em objeto
         const dataParse = JSON.parse(data);
-        // console.log(dataParse);
+        // Após esse processo teremos um objeto que terá dentro outro objeto "auth", nele está os dados do usuário além do token
+        // Como só é necessário apenas o usuário, o estado é setado apenas com os dados do mesmo (id, nome, bio, etc.)
         setUser(dataParse.auth.user);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err)); // Por fim é usado um .catch() para tratar algum erro
   }, []);
 
   return (
