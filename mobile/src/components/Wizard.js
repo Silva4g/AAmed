@@ -26,16 +26,16 @@ export default function Wizard(props) {
   };
 
   async function onSubmit() {
-    const { name, cpf, email, senha, susCard, bio } = props.initialValues;
+    const { name, cpf, email, senha, /*susCard,*/ bio } = props.initialValues;
     // Da para melhorar, mas por enquanto está "resolvendo" o problema
     try {
-      if (!(name === "" || cpf === "" || email === "" || senha === "" || susCard === "" || bio === "")) {
+      if (!(name === "" || cpf === "" || email === "" || senha === "" || /*susCard === "" ||*/ bio === "")) {
         const response = await api.post('/user', {
           name,
           cpf,
           email,
           password: senha,
-          susCard,
+          // susCard,
           bio
         });
 

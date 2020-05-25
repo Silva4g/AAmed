@@ -25,11 +25,11 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  susCard: {
-    type: String,
-    required: true,
-    unique: true
-  }
+  // susCard: {
+  //   type: String,
+  //   required: true,
+  //   unique: true
+  // }
   // url: {
   //     type: String,
   // },

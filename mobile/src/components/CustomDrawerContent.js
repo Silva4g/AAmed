@@ -49,6 +49,7 @@ export default function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.topDrawer}>
+        <View style={styles.viewAvatar}>
           <Avatar
             avatarStyle={styles.avatarStyle}
             containerStyle={styles.avatarContainerStyle}
@@ -61,11 +62,11 @@ export default function CustomDrawerContent(props) {
                 "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg",
             }}
           />
-          <View style={styles.viewDados}>
+        </View>
+        <View style={styles.viewDados}>
           <Text style={styles.nameUser}>{user.name}</Text>
           <Text style={styles.bioUser}>{user.bio}</Text>
-          </View>
-          
+        </View>
       </View>
 
       <DrawerItemList {...props} />
@@ -85,32 +86,43 @@ const styles = StyleSheet.create({
   topDrawer: {
     flex: 1,
     height: 70,
-    justifyContent: "center",
-    flexDirection:"row",
-    borderBottomColor: "#d9d9d9",
+    alignItems: "center",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    borderBottomColor: "#e2e2e2",
+    // backgroundColor: "#d45",
     borderBottomWidth: 1,
   },
-
-  avatarContainerStyle: {
-    alignSelf: "flex-start",
-    marginTop: 10,
-    marginRight:15
+  viewAvatar: {
+    flex: 1,
+    alignItems: 'center',
+    // backgroundColor: '#090909',
   },
-  viewDados:{
-    marginRight:70,
-    marginTop:15,
+  avatarContainerStyle: {
+    // alignSelf: "center",
+    // justifyContent: "center",
+    // backgroundColor: "#f29",
+    // marginTop: 10,
+    // marginRight: 15,
+  },
+  viewDados: {
+    flex: 3,
+    alignItems: 'flex-start',
+    marginLeft: 4
+    // marginRight: 70,
+    // marginTop: 15,
   },
   nameUser: {
     color: "black",
     fontSize: 15,
-    alignSelf: "center",
+    // alignSelf: "center",
     fontWeight: "bold",
   },
   bioUser: {
     fontSize: 12,
     color: "#878787",
-    alignSelf:"center",
-    marginRight:35,
+    // alignSelf: "center",
+    // marginRight: 35,
   },
   separator: {
     width: "100%",

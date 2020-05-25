@@ -10,7 +10,7 @@ function WizardScreen() {
   const [cpf, setCpf] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [susCard, setSusCard] = useState("");
+  // const [susCard, setSusCard] = useState("");
   const [bio, setBio] = useState("");
   const [bottomLineColor, setBottomLineColor] = useState(false);
 
@@ -39,11 +39,11 @@ function WizardScreen() {
       value: senha,
       label: "Senha",
     },
-    {
-      key: String(Math.random()),
-      value: susCard,
-      label: "Cartão do SUS",
-    },
+    // {
+    //   key: String(Math.random()),
+    //   value: susCard,
+    //   label: "Cartão do SUS",
+    // },
     {
       key: String(Math.random()),
       value: bio,
@@ -56,7 +56,7 @@ function WizardScreen() {
     cpf,
     email,
     senha,
-    susCard,
+    // susCard,
     bio,
   };
 
@@ -128,7 +128,7 @@ function WizardScreen() {
             </InputContainer>
           </StepContainer>
         </Step>
-        <Step>
+        {/* <Step>
           <StepContainer>
             <InputContainer>
               <Label>Cartão do SUS</Label>
@@ -147,7 +147,7 @@ function WizardScreen() {
               />
             </InputContainer>
           </StepContainer>
-        </Step>
+        </Step> */}
         <Step>
           <StepContainer>
             <InputContainer>
