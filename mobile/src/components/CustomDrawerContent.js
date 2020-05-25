@@ -49,22 +49,23 @@ export default function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.topDrawer}>
-        <ImageBackground source={fundoDrawer} style={styles.imgTopDrawer}>
           <Avatar
             avatarStyle={styles.avatarStyle}
             containerStyle={styles.avatarContainerStyle}
             onPress={() => props.navigation.navigate("EditProfile")}
             activeOpacity={0.7}
-            size="large"
+            size="medium"
             rounded
             source={{
               uri:
                 "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg",
             }}
           />
+          <View style={styles.viewDados}>
           <Text style={styles.nameUser}>{user.name}</Text>
           <Text style={styles.bioUser}>{user.bio}</Text>
-        </ImageBackground>
+          </View>
+          
       </View>
 
       <DrawerItemList {...props} />
@@ -83,31 +84,33 @@ export default function CustomDrawerContent(props) {
 const styles = StyleSheet.create({
   topDrawer: {
     flex: 1,
-    height: 140,
+    height: 70,
     justifyContent: "center",
+    flexDirection:"row",
+    borderBottomColor: "#d9d9d9",
+    borderBottomWidth: 1,
   },
-  imgTopDrawer: {
-    width: 280,
-    height: 140,
-    marginBottom: 8,
-  },
+
   avatarContainerStyle: {
     alignSelf: "flex-start",
     marginTop: 10,
-    marginLeft: 20,
+    marginRight:15
+  },
+  viewDados:{
+    marginRight:70,
+    marginTop:15,
   },
   nameUser: {
-    color: "#f7fdfc",
-    fontSize: 14,
-    marginTop: 10,
-    alignSelf: "flex-start",
+    color: "black",
+    fontSize: 15,
+    alignSelf: "center",
     fontWeight: "bold",
-    marginLeft: 15,
   },
   bioUser: {
     fontSize: 12,
-    color: "#fbf9f6",
-    marginLeft: 15,
+    color: "#878787",
+    alignSelf:"center",
+    marginRight:35,
   },
   separator: {
     width: "100%",
@@ -115,7 +118,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#e2e2e2",
   },
   drawerItem: {
-    marginTop: 65,
+    marginTop: 130,
     borderWidth: 1,
     borderColor: "#E53935",
     backgroundColor: "#fff",
