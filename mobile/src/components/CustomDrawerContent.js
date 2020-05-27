@@ -90,39 +90,25 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
     borderBottomColor: "#e2e2e2",
-    // backgroundColor: "#d45",
     borderBottomWidth: 1,
   },
   viewAvatar: {
     flex: 1,
     alignItems: 'center',
-    // backgroundColor: '#090909',
-  },
-  avatarContainerStyle: {
-    // alignSelf: "center",
-    // justifyContent: "center",
-    // backgroundColor: "#f29",
-    // marginTop: 10,
-    // marginRight: 15,
   },
   viewDados: {
     flex: 3,
     alignItems: 'flex-start',
     marginLeft: 4
-    // marginRight: 70,
-    // marginTop: 15,
   },
   nameUser: {
     color: "black",
     fontSize: 15,
-    // alignSelf: "center",
     fontWeight: "bold",
   },
   bioUser: {
     fontSize: 12,
     color: "#878787",
-    // alignSelf: "center",
-    // marginRight: 35,
   },
   separator: {
     width: "100%",
