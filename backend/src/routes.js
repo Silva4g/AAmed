@@ -53,7 +53,7 @@ routes.post("/support", SupportController.store);
 //route hospital logged and user logged
 //precisa ver oq fazer com esse authConfig.hospital ja que agr está com cookies
 //authConfig.hospital
-routes.get("/hospital/home", authConfig.hospital, ProfileController.index);
+routes.get("/hospital/home" /*, authConfig.hospital*/, ProfileController.index);
 routes.get("/hospital/logout", ProfileController.logout);
 routes.get("/hospital/verify", ProfileController.isLogged);
 routes.get("/hospital/token", ProfileController.sendToken);

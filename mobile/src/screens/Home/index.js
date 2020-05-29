@@ -36,7 +36,8 @@ export default function Home() {
   // let connection = null;
 
   useEffect(() => {
-    setConnection(io("http://192.168.15.6:3333"));
+    //mudar ip aq tb vini e japa
+    setConnection(io("http://192.168.1.14:3333"));
     // socket.on("connect", () => console.log("[IO] Connect => connected on mobile"));
   }, []);
 
@@ -111,18 +112,17 @@ export default function Home() {
       try {
         const response = await api.get("search", {
           params: {
-            latitude,
             longitude,
+            latitude,
           },
         });
 
         setHospitals(response.data.hospitais);
-        // console.log("[API] => ", response.data.hospitais);
+        console.log("[API] => ", response.data.hospitais);
       } catch (err) {
         console.debug("[ERROR: loadHospitals] => ", err);
       }
     }
-
     loadHospitals();
   }, [currentRegion]);
 
@@ -227,7 +227,7 @@ export default function Home() {
         />
 
         <TouchableOpacity
-          onPress={() => handleSolicitation()}
+          onPress={handleSolicitation}
           style={styles.loadButton}
         >
           <MaterialIcons name="send" size={25} color="#fff" />
