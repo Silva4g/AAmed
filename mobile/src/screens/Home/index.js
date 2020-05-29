@@ -36,6 +36,7 @@ export default function Home() {
   // let connection = null;
 
   useEffect(() => {
+    //mudar ip aq tb vini e japa
     setConnection(io("http://192.168.1.14:3333"));
     // socket.on("connect", () => console.log("[IO] Connect => connected on mobile"));
   }, []);
