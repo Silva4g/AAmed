@@ -10,10 +10,10 @@ import "./styles.css";
 import { useEffect } from "react";
 import api from "../../services/api";
 
-export default function Logged() {
+export default function Logged({ match }) {
   let click = React.createRef();
   let changeColor = React.createRef();
-  const [id, setId] = useState(null);
+  const [id, setId] = useState(match.params.id);
   //requisição do socket
   const [user, setUser] = useState([]);
   const [ok, setOk] = useState(null);
@@ -58,19 +58,6 @@ export default function Logged() {
 
   return (
     <div className="container-logged">
-      {ok
-        ? user.map((users) => (
-            <div key={users.user._id}>
-              <div className="user-help">
-                {users.user.name} está solicitando uma ajuda! com a seguinte
-                descrição: {users.description}
-                <button>ACEITAR</button>
-                <br />
-                <button>RECUSAR</button>
-              </div>
-            </div>
-          ))
-        : ""}
       <div className="grid">
         <img src={require("../../assets/hospital.jpg")} alt="" />
         <Link to="/profile" className="items">
@@ -127,6 +114,19 @@ export default function Logged() {
       </div>
       <div className="espera">
         <span>A caminho</span>
+        {ok
+          ? user.map((users) => (
+              <div key={users.user._id}>
+                <div className="user-help">
+                  {users.user.name} está solicitando uma ajuda! com a seguinte
+                  descrição: {users.description}
+                  <button>ACEITAR</button>
+                  <br />
+                  <button>RECUSAR</button>
+                </div>
+              </div>
+            ))
+          : ""}
       </div>
       <div className="atendimento">
         <span>Em atendimento</span>

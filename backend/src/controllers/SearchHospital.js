@@ -6,19 +6,35 @@ module.exports = {
     try {
       const { latitude, longitude } = req.query;
       const { hospital } = req.headers;
-      const hospitais = await Hospital.find({
-        $and: [{ _id: { $ne: hospital } }],
-        location: {
-          //variaveis do mongo
-          $near: {
-            $geometry: {
-              type: "Point",
-              coordinates: [longitude, latitude],
+      let hospitais;
+      if (hospital) {
+        hospitais = await Hospital.find({
+          $and: [{ _id: { $ne: hospital } }],
+          location: {
+            //variaveis do mongo
+            $near: {
+              $geometry: {
+                type: "Point",
+                coordinates: [longitude, latitude],
+              },
+              $maxDistance: 10000,
             },
-            $maxDistance: 10000,
           },
-        },
-      });
+        });
+      } else {
+        hospitais = await Hospital.find({
+          location: {
+            //variaveis do mongo
+            $near: {
+              $geometry: {
+                type: "Point",
+                coordinates: [longitude, latitude],
+              },
+              $maxDistance: 10000,
+            },
+          },
+        });
+      }
 
       return res.json({ hospitais });
     } catch (err) {
