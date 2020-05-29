@@ -36,7 +36,7 @@ export default function Home() {
   // let connection = null;
 
   useEffect(() => {
-    setConnection(io("http://192.168.0.53:3333"));
+    setConnection(io("http://192.168.15.6:3333"));
     // socket.on("connect", () => console.log("[IO] Connect => connected on mobile"));
   }, []);
 
