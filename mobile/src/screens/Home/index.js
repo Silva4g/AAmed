@@ -8,6 +8,7 @@ import {
   TextInput,
   Alert,
 } from "react-native";
+import * as Animatable from "react-native-animatable";
 import MapView, { Marker, Callout } from "react-native-maps";
 import { useNavigation } from "@react-navigation/native";
 import io from "socket.io-client";
@@ -15,6 +16,7 @@ import {
   Ionicons,
   MaterialCommunityIcons,
   MaterialIcons,
+  FontAwesome,
 } from "@expo/vector-icons";
 import {
   requestPermissionsAsync,
@@ -33,11 +35,13 @@ export default function Home() {
   const [description, setDescription] = useState("");
   const navigation = useNavigation();
   const [connection, setConnection] = useState(null);
+  const [isActiveButton, setIsActiveButton] = useState(false);
+  const [modal, setModal] = useState(false);
   // let connection = null;
 
   useEffect(() => {
     //mudar ip aq tb vini e japa
-    setConnection(io("http://192.168.1.14:3333"));
+    setConnection(io("http://192.168.15.5:3333"));
     // socket.on("connect", () => console.log("[IO] Connect => connected on mobile"));
   }, []);
 
@@ -58,9 +62,6 @@ export default function Home() {
   }, []);
 
   async function handleSolicitation() {
-    // const user_data = await AsyncStorage.getItem("store");
-    // const parsed_user = JSON.parse(user_data);
-    // const user_id = parsed_user.auth.user._id;
     const hospital_ids = [];
 
     hospitals.map((hospital) => {
@@ -74,7 +75,16 @@ export default function Home() {
       user,
       description,
     });
-    Alert.alert("Solicitação enviada");
+    Alert.alert(
+      "Solicitação enviada",
+      "Sua solicitação de atendimento foi enviada aos hospitais próximos à sua lolcalização."
+    );
+    setDescription("");
+    setIsActiveButton(true);
+    setModal(true);
+    setTimeout(() => {
+      setIsActiveButton(false);
+    }, 60000);
   }
 
   // função que vai carregar a posição inicial do paciente no mapa
@@ -118,7 +128,7 @@ export default function Home() {
         });
 
         setHospitals(response.data.hospitais);
-        console.log("[API] => ", response.data.hospitais);
+        // console.log("[API] => ", response.data.hospitais);
       } catch (err) {
         console.debug("[ERROR: loadHospitals] => ", err);
       }
@@ -215,6 +225,17 @@ export default function Home() {
           </Callout>
         </Marker>
       </MapView>
+      {modal ? (
+        <Animatable.View
+          style={styles.modal}
+          animation="fadeInDown"
+          duration={1000}
+          useNativeDriver
+        >
+          <FontAwesome name="circle" size={15} color="#ff9f1a" />
+          <Text>Solicitação aguardando aprovação do hospital.</Text>
+        </Animatable.View>
+      ) : null}
       <View style={styles.searchForm}>
         <TextInput
           style={styles.searchInput}
@@ -227,8 +248,13 @@ export default function Home() {
         />
 
         <TouchableOpacity
-          onPress={handleSolicitation}
-          style={styles.loadButton}
+          onPress={() => handleSolicitation()}
+          style={
+            isActiveButton
+              ? [styles.loadButton, { backgroundColor: "#006bad55" }]
+              : styles.loadButton
+          }
+          disabled={isActiveButton}
         >
           <MaterialIcons name="send" size={25} color="#fff" />
         </TouchableOpacity>

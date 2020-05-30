@@ -48,6 +48,17 @@ const styles = StyleSheet.create({
   data: {
     marginTop: 5,
   },
+  modal: {
+    position: "absolute",
+    top: 82,
+    height: 50,
+    width: '100%',
+    flexDirection: "row",
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: "#f5f6fa",
+    elevation: 4
+  },
   searchForm: {
     position: "absolute",
     bottom: 20,
