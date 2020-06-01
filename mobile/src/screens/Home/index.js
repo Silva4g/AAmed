@@ -23,9 +23,10 @@ import {
   getCurrentPositionAsync,
 } from "expo-location";
 
-import CustomHeader from "../../components/CustomHeader";
+// import CustomHeader from "../../components/CustomHeader";
 import styles from "./styles.js";
 import api from "../../services/api";
+import { Header } from "../../components/Header/index";
 
 export default function Home() {
   const [hospitals, setHospitals] = useState([]);
@@ -99,11 +100,6 @@ export default function Home() {
 
         const { latitude, longitude } = coords;
 
-        // deu ruim
-        // const data = await AsyncStorage.getItem("store");
-        // const dataParse = JSON.parse(data);
-        // setUser(dataParse.auth.user || 1);
-
         setCurrentRegion({
           latitude,
           longitude,
@@ -147,26 +143,7 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <CustomHeader>
-        <TouchableOpacity
-          onPress={() => navigation.toggleDrawer()}
-          style={{ position: "absolute", left: 12 }}
-        >
-          <Ionicons name="md-menu" size={35} color="#fff" />
-        </TouchableOpacity>
-
-        <Image
-          source={require("../../../assets/icon.png")}
-          style={{ width: 45, height: 45, alignSelf: "center" }}
-        />
-
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Historic")}
-          style={{ position: "absolute", right: 12 }}
-        >
-          <MaterialCommunityIcons name="hospital" size={35} color="#fff" />
-        </TouchableOpacity>
-      </CustomHeader>
+      <Header flag={true} navigation={navigation} />
 
       <MapView
         onRegionChangeComplete={handleRegionChanged}

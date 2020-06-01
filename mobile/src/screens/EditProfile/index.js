@@ -1,23 +1,12 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  IconEye,
-  TouchEye,
-  AsyncStorage,
-} from "react-native";
-import { CommonActions } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
+import { Alert, Text, AsyncStorage } from "react-native";
 
 import api from "../../services/api";
 
 import { EditBox, InputBox, Label, Input } from "./styles";
-import CustomHeader from "../../components/CustomHeader";
 
-import MainButton from "../../components/MainButton";
-import { Alert } from "react-native";
+import { MainButton } from "../../components/MainButton";
+import { Header } from "../../components/Header";
 
 export default function EditProfile({ navigation }) {
   const [id, setId] = useState("");
@@ -76,23 +65,7 @@ export default function EditProfile({ navigation }) {
 
   return (
     <>
-      <CustomHeader>
-        <TouchableOpacity
-          onPress={() => navigation.dispatch(CommonActions.goBack())}
-          style={{ position: "absolute", left: 12 }}
-        >
-          <Ionicons name="md-arrow-back" size={30} color="#fff" />
-        </TouchableOpacity>
-
-        <Text style={{ alignSelf: "center", color: "#fff", fontSize: 16 }}>
-          EDITAR PERFIL
-        </Text>
-
-        <Image
-          source={require("../../../assets/icon.png")}
-          style={{ width: 45, height: 45, position: "absolute", right: 12 }}
-        />
-      </CustomHeader>
+      <Header navigation={navigation} label={"EDITAR PERFIL"} />
       <EditBox>
         <InputBox>
           <Label>Nome</Label>
@@ -124,13 +97,12 @@ export default function EditProfile({ navigation }) {
             placeholderTextColor="#00000066"
             returnKeyType="done"
             selectionColor="#006bad66"
+            multiline
             onChangeText={(e) => setBio(e)}
             value={bio}
           />
         </InputBox>
-        <MainButton onPress={() => onSubmit()}>
-          <Text style={{ color: "#fff", fontWeight: "bold" }}>EDITAR</Text>
-        </MainButton>
+        <MainButton onPress={() => onSubmit()} label="EDITAR"/>
       </EditBox>
     </>
   );

@@ -10,7 +10,7 @@ import {
   Text,
 } from "react-native";
 
-import MainButton from "../../components/MainButton";
+import { MainButton } from "../../components/MainButton";
 
 import {
   ImageContainer,
@@ -137,12 +137,12 @@ export const Login = () => {
               </TouchEye>
             </InputBox>
 
-            <MainButton onPress={formik.handleSubmit}>
-              {formik.isSubmitting ? (
-                <ActivityIndicator size="small" color="#FFF" />
-              ) : (
-                <ButtonText>ENTRAR</ButtonText>
-              )}
+            <MainButton
+              onPress={formik.handleSubmit}
+              flag={formik.isSubmitting}
+              label={"ENTRAR"}
+            >
+              <ActivityIndicator size="small" color="#FFF" />
             </MainButton>
             <Option
               onPress={() => {

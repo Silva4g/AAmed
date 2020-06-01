@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
-import {
-  Text,
-  TouchableOpacity,
-  Image,
-  View,
-  FlatList,
-  AsyncStorage,
-} from "react-native";
-import { CommonActions } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
+import { AsyncStorage } from "react-native";
 import moment from "moment";
 
 import api from "../../services/api";
 
-import styles from "./styles.js";
-import CustomHeader from "../../components/CustomHeader";
+import {
+  List,
+  HistoryView,
+  HistoryProp,
+  HistoryInfo,
+  NoHistoryView,
+  Img,
+  NoHistoryLabel,
+} from "./styles.js";
 import Loading from "../../components/Loading";
+import { Header } from "../../components/Header";
 
 export default function History({ navigation }) {
   const [user, setUser] = useState(null || "");
@@ -60,65 +59,40 @@ export default function History({ navigation }) {
 
   return (
     <>
-      <CustomHeader>
-        <TouchableOpacity
-          onPress={() => navigation.dispatch(CommonActions.goBack())}
-          style={{ position: "absolute", left: 12 }}
-        >
-          <Ionicons name="md-arrow-back" size={30} color="#fff" />
-        </TouchableOpacity>
-
-        <Text style={{ alignSelf: "center", color: "#fff", fontSize: 16 }}>
-          HISTÓRICO
-        </Text>
-
-        <Image
-          source={require("../../../assets/icon.png")}
-          style={{ width: 45, height: 45, position: "absolute", right: 12 }}
-        />
-      </CustomHeader>
-      {/* {console.log(hasHistory)} */}
+      <Header navigation={navigation} label={"HISTÓRICO"} />
       {hasHistory ? (
-        <FlatList
-          style={styles.historyList}
+        <List
           data={solicitations}
           keyExtractor={(solicitations) => String(solicitations._id)}
           renderItem={({ item: solicitations }) => (
-            <View style={styles.viewHistory}>
-              <Text style={styles.historyProp}>HOSPITAL:</Text>
-              <Text style={styles.infoHistory}>
-                {solicitations.hospital.name}
-              </Text>
+            <HistoryView>
+              <HistoryProp>HOSPITAL:</HistoryProp>
+              <HistoryInfo>{solicitations.hospital.name}</HistoryInfo>
 
-              <Text style={styles.historyProp}>TELEFONE:</Text>
-              <Text style={styles.infoHistory}>
-                {solicitations.hospital.phone}
-              </Text>
+              <HistoryProp>TELEFONE:</HistoryProp>
+              <HistoryInfo>{solicitations.hospital.phone}</HistoryInfo>
 
-              <Text style={styles.historyProp}>DESCRIÇÃO:</Text>
-              <Text style={styles.infoHistory}>
-                {solicitations.description}
-              </Text>
+              <HistoryProp>DESCRIÇÃO:</HistoryProp>
+              <HistoryInfo>{solicitations.description}</HistoryInfo>
 
-              <Text style={styles.historyProp}>DATA:</Text>
-              <Text style={styles.infoHistory}>
-                {moment(solicitations.createdAt).format("DD/MM/YYYY")}
-              </Text>
-            </View>
+              <HistoryProp>DATA e HORA:</HistoryProp>
+              <HistoryInfo>
+                {moment(solicitations.createdAt).format("DD/MM/YYYY HH:mm")}
+              </HistoryInfo>
+            </HistoryView>
           )}
         />
       ) : (
-        <View style={styles.hasNoHistoryView}>
-          <Image
+        <NoHistoryView>
+          <Img
             resizeMode="contain"
             source={require("../../../assets/icon.png")}
-            style={styles.img}
           />
-          <Text style={styles.hasNoHistoryText}>
+          <NoHistoryLabel>
             {`    Você ainda não possui 
   histórico de solicitações!`}
-          </Text>
-        </View>
+          </NoHistoryLabel>
+        </NoHistoryView>
       )}
     </>
   );

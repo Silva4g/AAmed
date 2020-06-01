@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
-  ImageBackground,
   StyleSheet,
   AsyncStorage,
 } from "react-native";
@@ -14,9 +13,6 @@ import {
 import { useAuth } from "../utils/auth";
 import { Feather } from "@expo/vector-icons";
 import { Avatar } from "react-native-elements";
-import fundoDrawer from "../assets/fundoDrawer.jpg";
-
-//import api from "../../services/api";
 
 export default function CustomDrawerContent(props) {
   const [, { logout }] = useAuth();
