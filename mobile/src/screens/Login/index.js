@@ -27,7 +27,7 @@ import {
   ErrorText,
 } from "./styles";
 import screen from "../../assets/screen.png";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/icon.png";
 import api from "../../services/api";
 import { useAuth } from "../../utils/auth";
 
@@ -99,7 +99,7 @@ export const Login = () => {
           style={{ flex: 1 }}
         >
           <ImageContainer>
-            <Image source={logo} />
+            <Image source={logo} resizeMode="contain" />
           </ImageContainer>
 
           {!!errorMsg && <ErrorText>{errorMsg}</ErrorText>}

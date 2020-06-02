@@ -158,7 +158,7 @@ export default function Register(props) {
             <span>Junte-se a nós e ajude a salvar o próximo!</span>
           </div>
           <div>
-            <img src={require("../../assets/logo.png")} alt="" />
+            <img src={require("../../assets/icon.png")} alt="" />
           </div>
         </div>
         <div className="content-form-register">

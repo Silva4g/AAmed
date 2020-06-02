@@ -95,7 +95,7 @@ export const GuestStackScreen = () => (
         headerTitle: "Cadastre-se",
         headerRight: () => (
           <Image
-            source={require("../assets/icon.png")}
+            source={require("./assets/icon_.png")}
             style={{ width: 45, height: 45, marginRight: 20 }}
           />
         ),
@@ -107,7 +107,7 @@ export const GuestStackScreen = () => (
       options={{
         headerTitle: () => (
           <Image
-            source={require("../assets/icon.png")}
+            source={require("./assets/icon_.png")}
             style={{ width: 50, height: 50 }}
           />
         ),

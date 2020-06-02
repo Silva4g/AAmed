@@ -10,8 +10,8 @@ export const ImageContainer = styled.View`
 `;
 
 export const Image = styled.Image`
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
 `;
 
 export const LoginBox = styled.View`

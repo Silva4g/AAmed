@@ -19,7 +19,7 @@ export const Header = ({ flag, navigation, label }) => {
           <ButtonLeft onPress={() => navigation.toggleDrawer()}>
             <Ionicons name="md-menu" size={35} color="#fff" />
           </ButtonLeft>
-          <ImgCenter source={require("../../../assets/icon.png")} />
+          <ImgCenter source={require("../../assets/icon_.png")} />
           <ButtonRight onPress={() => navigation.navigate("Historic")}>
             <MaterialCommunityIcons name="hospital" size={35} color="#fff" />
           </ButtonRight>
@@ -32,7 +32,7 @@ export const Header = ({ flag, navigation, label }) => {
             <Ionicons name="md-arrow-back" size={30} color="#fff" />
           </ButtonLeft>
           <Label>{label}</Label>
-          <ImgLeft source={require("../../../assets/icon.png")} />
+          <ImgLeft source={require("../../assets/icon_.png")} />
         </>
       )}
     </Container>
