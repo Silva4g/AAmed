@@ -42,7 +42,7 @@ export default function Home() {
 
   useEffect(() => {
     //mudar ip aq tb vini e japa
-    setConnection(io("http://192.168.15.5:3333"));
+    setConnection(io("http://192.168.15.7:3333"));
     // socket.on("connect", () => console.log("[IO] Connect => connected on mobile"));
   }, []);
 
