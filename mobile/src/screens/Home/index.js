@@ -7,7 +7,9 @@ import {
   TouchableOpacity,
   TextInput,
   Alert,
+  Keyboard,
 } from "react-native";
+import MapViewDirections from "react-native-maps-directions";
 import * as Animatable from "react-native-animatable";
 import MapView, { Marker, Callout } from "react-native-maps";
 import { useNavigation } from "@react-navigation/native";
@@ -28,6 +30,7 @@ import styles from "./styles.js";
 import api from "../../services/api";
 import { Header } from "../../components/Header/index";
 import Directions from "../../components/Direction/index.js";
+const GOOGLE_MAPS_APIKEY = "AIzaSyBAJxkbJDUINqKFwXs-WGy-S7W-yD2ueJ4";
 
 export default function Home() {
   const [hospitals, setHospitals] = useState([]);
@@ -44,6 +47,7 @@ export default function Home() {
 
   const [destination, setDestination] = useState({ latitude: 0, longitude: 0 });
   const [origin, setOrigin] = useState({ latitude: 0, longitude: 0 });
+  const [ok, setOk] = useState(false);
 
   useEffect(() => {
     const conn = io("http://192.168.1.14:3333", {
@@ -52,7 +56,7 @@ export default function Home() {
     setConnection(conn);
     conn.on("solicitation_response", (data) => {
       setHospitalName(data.hospital.name);
-      data.approved ? setApproved(!approved) : setApproved(false);
+      data.approved ? setApproved(true) : setApproved(false);
       setDestination({
         latitude: data.hospital.location.coordinates[1],
         longitude: data.hospital.location.coordinates[0],
@@ -94,6 +98,7 @@ export default function Home() {
       "Solicitação enviada",
       "Sua solicitação de atendimento foi enviada aos hospitais próximos à sua localização."
     );
+    Keyboard.dismiss();
     setDescription("");
     setIsActiveButton(true);
     setModal(true);
@@ -128,7 +133,6 @@ export default function Home() {
   useEffect(() => {
     async function loadHospitals() {
       const { latitude, longitude } = currentRegion || 1;
-      setOrigin({ latitude, longitude });
       try {
         const response = await api.get("search", {
           params: {
@@ -162,13 +166,18 @@ export default function Home() {
       <MapView
         onRegionChangeComplete={handleRegionChanged}
         initialRegion={currentRegion}
+        loadingEnabled
         style={styles.mapContainer}
       >
-        {approved && (
-          <Directions
-            origin={origin}
-            destination={destination}
+        {approved && !!destination.latitude && !!destination.longitude && (
+          <MapViewDirections
+            origin={currentRegion}
             onReady={() => {}}
+            onError={(err) => console.log(err)}
+            destination={destination}
+            apikey={GOOGLE_MAPS_APIKEY}
+            strokeWidth={4}
+            strokeColor={"#222"}
           />
         )}
         {hospitals.map((hospital) => (
