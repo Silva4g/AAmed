@@ -20,26 +20,23 @@ mongoose.connect("mongodb://localhost:27017/tcc", {
 //conexão do websocket
 const io = socketio(server);
 
-//o certo seria colocar no banco, dps eu vejo isso
 const connectedUsers = {}; //id_user: id_socket
 io.on("connection", (socket) => {
   console.log("[SOCKET: connected] => ", socket.id);
   //console.log("[SOCKET: connected mobile] => ", socket.handshake.query);
-  const { hospital_id } = socket.handshake.query;
-  if (hospital_id) {
-    console.log(hospital_id);
+  const { hospital_id, user_id } = socket.handshake.query;
+  if (hospital_id && !user_id) {
     connectedUsers[hospital_id] = socket.id;
   }
-
-  //console.log('connectedUsersVar => ', connectedUsers);
-  // socket.on("user_solicitation", (data) => console.log(data.hospital_ids));
+  if (user_id && !hospital_id) {
+    connectedUsers[user_id] = socket.id;
+  }
 
   socket.on("user_solicitation", (data) => {
     console.log(data);
     const { user, description } = data;
     data.hospital_ids.map((ids) => {
       const ownerSocket = connectedUsers[ids];
-      // console.log('[OWNERSOCKET] => ', ownerSocket);
       if (ownerSocket) {
         socket.to(ownerSocket).emit("aviso", { user, description }); //aqui os hospitais perto vão receber esse chamado
       }
@@ -50,7 +47,12 @@ io.on("connection", (socket) => {
     console.log("[SOCKET: disconnected] => ", reason)
   );
 });
+app.use((req, res, next) => {
+  req.io = io;
+  req.connectedUsers = connectedUsers;
 
+  return next();
+});
 app.use(cookieParser());
 app.use(
   cors({
@@ -69,6 +71,4 @@ app.use(
 app.use(routes);
 //log de requisições http
 app.use(morgan("dev"));
-server.listen(3333, () => {
-  console.log("🚀 Back-end started!!!");
-});
+server.listen(3333);

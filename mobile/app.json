@@ -4,11 +4,15 @@
     "slug": "mobile",
     "privacy": "public",
     "sdkVersion": "36.0.0",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "platforms": ["ios", "android", "web"],
+    "android": {
+      "package": "com.tcc.tccsenai",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBAJxkbJDUINqKFwXs-WGy-S7W-yD2ueJ4"
+        }
+      }
+    },
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,9 +24,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     }

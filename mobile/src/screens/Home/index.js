@@ -27,6 +27,7 @@ import {
 import styles from "./styles.js";
 import api from "../../services/api";
 import { Header } from "../../components/Header/index";
+import Directions from "../../components/Direction/index.js";
 
 export default function Home() {
   const [hospitals, setHospitals] = useState([]);
@@ -38,13 +39,26 @@ export default function Home() {
   const [connection, setConnection] = useState(null);
   const [isActiveButton, setIsActiveButton] = useState(false);
   const [modal, setModal] = useState(false);
-  // let connection = null;
+  const [approved, setApproved] = useState(false);
+  const [hospitalName, setHospitalName] = useState("");
+
+  const [destination, setDestination] = useState({ latitude: 0, longitude: 0 });
+  const [origin, setOrigin] = useState({ latitude: 0, longitude: 0 });
 
   useEffect(() => {
-    //mudar ip aq tb vini e japa
-    setConnection(io("http://192.168.15.7:3333"));
-    // socket.on("connect", () => console.log("[IO] Connect => connected on mobile"));
-  }, []);
+    const conn = io("http://192.168.1.14:3333", {
+      query: { user_id: user._id },
+    });
+    setConnection(conn);
+    conn.on("solicitation_response", (data) => {
+      setHospitalName(data.hospital.name);
+      data.approved ? setApproved(!approved) : setApproved(false);
+      setDestination({
+        latitude: data.hospital.location.coordinates[1],
+        longitude: data.hospital.location.coordinates[0],
+      });
+    });
+  }, [user]);
 
   useEffect(() => {
     function getUserLogged() {
@@ -78,7 +92,7 @@ export default function Home() {
     });
     Alert.alert(
       "Solicitação enviada",
-      "Sua solicitação de atendimento foi enviada aos hospitais próximos à sua lolcalização."
+      "Sua solicitação de atendimento foi enviada aos hospitais próximos à sua localização."
     );
     setDescription("");
     setIsActiveButton(true);
@@ -99,7 +113,6 @@ export default function Home() {
         });
 
         const { latitude, longitude } = coords;
-
         setCurrentRegion({
           latitude,
           longitude,
@@ -115,6 +128,7 @@ export default function Home() {
   useEffect(() => {
     async function loadHospitals() {
       const { latitude, longitude } = currentRegion || 1;
+      setOrigin({ latitude, longitude });
       try {
         const response = await api.get("search", {
           params: {
@@ -150,6 +164,13 @@ export default function Home() {
         initialRegion={currentRegion}
         style={styles.mapContainer}
       >
+        {approved && (
+          <Directions
+            origin={origin}
+            destination={destination}
+            onReady={() => {}}
+          />
+        )}
         {hospitals.map((hospital) => (
           <Marker
             key={hospital._id}
@@ -209,8 +230,19 @@ export default function Home() {
           duration={1000}
           useNativeDriver
         >
-          <FontAwesome name="circle" size={15} color="#ff9f1a" />
-          <Text>Solicitação aguardando aprovação do hospital.</Text>
+          {!approved ? (
+            <>
+              <FontAwesome name="circle" size={15} color="#ff9f1a" />
+              <Text>Solicitação aguardando aprovação do hospital.</Text>
+            </>
+          ) : (
+            <>
+              <FontAwesome name="circle" size={15} color="#0ec445" />
+              <Text>
+                Sua solicitação foi aprovada no hospital: {hospitalName}.
+              </Text>
+            </>
+          )}
         </Animatable.View>
       ) : null}
       <View style={styles.searchForm}>
@@ -225,7 +257,7 @@ export default function Home() {
         />
 
         <TouchableOpacity
-          onPress={() => handleSolicitation()}
+          onPress={handleSolicitation}
           style={
             isActiveButton
               ? [styles.loadButton, { backgroundColor: "#006bad55" }]

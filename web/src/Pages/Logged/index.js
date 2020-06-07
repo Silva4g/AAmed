@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-//socket io
 import socketio from "socket.io-client";
 import { IoMdSettings } from "react-icons/io";
 import { AiFillMedicineBox } from "react-icons/ai";
@@ -13,33 +12,19 @@ import api from "../../services/api";
 export default function Logged({ match }) {
   let click = React.createRef();
   let changeColor = React.createRef();
-  const [id, setId] = useState(match.params.id);
+  const id = match.params.id;
   //requisição do socket
   const [user, setUser] = useState([]);
   const [ok, setOk] = useState(null);
 
-  //provavelmente não precisa desse useEffect aqui, vou ver dps
-  useEffect(() => {
-    async function getIdLogged() {
-      const response = await api.get("/hospital/token", {
-        withCredentials: true,
-      });
-      const tk = response.data.token;
-      return tk;
-    }
-    async function reqTk() {
-      api.defaults.headers.Authorization = `Bearer ${await getIdLogged()}`;
-    }
-    getIdLogged();
-    reqTk();
-  }, [id]);
+  const [socketAll, setSocketAll] = useState(null);
 
   useEffect(() => {
     const socket = socketio("http://localhost:3333", {
       query: { hospital_id: id },
     });
+    setSocketAll(socket);
     socket.on("aviso", (data) => {
-      console.log(data);
       setUser([...user, data]);
       setOk(true);
     });
@@ -55,6 +40,33 @@ export default function Logged({ match }) {
     localStorage.removeItem("hptid");
     window.location.href = "/";
   }
+
+  async function accept(id) {
+    try {
+      await api.post(`/solicitations/${id}/approvals`, null, {
+        headers: { hospital_id: match.params.id },
+      });
+      const userFiltered = setUser(
+        user.filter((users) => users.user._id !== id)
+      );
+      console.log(id);
+      console.log(userFiltered);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // async function reject(id) {
+  //   try {
+  //     await api.post(`/bookings/${id}/rejections`, null, {
+  //       headers: { hospital_id },
+  //     });
+  //     setUser(user.filter((user) => user.user_id !== id));
+  //     socketAll.emit("");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   return (
     <div className="container-logged">
@@ -91,8 +103,8 @@ export default function Logged({ match }) {
           <AiFillMedicineBox size={25} />
           <span>Atendimentos</span>
         </Link>
-        <div onClick={handleLogout} href="#" className="items logout">
-          <span>Sair</span>
+        <div onClick={handleLogout} className="items logout">
+          <span className="click">Sair</span>
         </div>
       </div>
       <div className="menu-logado">
@@ -113,23 +125,22 @@ export default function Logged({ match }) {
         </table>
       </div>
       <div className="espera">
-        <span>A caminho</span>
-        {ok
-          ? user.map((users) => (
-              <div key={users.user._id}>
-                <div className="user-help">
-                  {users.user.name} está solicitando uma ajuda! com a seguinte
-                  descrição: {users.description}
-                  <button>ACEITAR</button>
-                  <br />
-                  <button>RECUSAR</button>
-                </div>
+        <span>Requisições</span>
+        {ok &&
+          user.map((users) => (
+            <div key={users.user._id}>
+              <div className="user-help">
+                {users.user.name} está solicitando uma ajuda! com a seguinte
+                descrição: {users.description}
+                <button onClick={() => accept(users.user._id)}>ACEITAR</button>
+                <br />
+                <button>RECUSAR</button>
               </div>
-            ))
-          : ""}
+            </div>
+          ))}
       </div>
       <div className="atendimento">
-        <span>Em atendimento</span>
+        <span>A caminho</span>
       </div>
     </div>
   );
