@@ -30,6 +30,26 @@ export default function Logged({ match }) {
     });
   }, [id, user]);
 
+  useEffect(() => {
+    async function userAccepted() {
+      const response = await api.get(`/solicitations/${id}`);
+      const user_id = response.data[0].user._id;
+      setUser(user.filter((users) => users.user._id !== user_id));
+      console.log(user_id);
+    }
+    userAccepted();
+  }, [id, user]);
+
+  // useEffect(() => {
+  //   async function loadHome() {
+  //     const response = await api.get("/hospital/home", {
+  //       withCredentials: true,
+  //     });
+  //     console.log(response.data);
+  //   }
+  //   loadHome();
+  // }, []);
+
   function handleClick() {
     const cc = changeColor.current;
     cc.classList.toggle("bgcolorClick");
@@ -45,12 +65,15 @@ export default function Logged({ match }) {
     try {
       await api.post(`/solicitations/${id}/approvals`, null, {
         headers: { hospital_id: match.params.id },
+        withCredentials: true,
       });
-      const userFiltered = setUser(
-        user.filter((users) => users.user._id !== id)
-      );
-      console.log(id);
-      console.log(userFiltered);
+      // const response = await api.get(`/solicitations/${id}`);
+      // const user_id = response.data[0].user._id;
+      // if(user_id === id){
+
+      // }
+      // setUser(user.filter((users) => users.user._id !== user_id));
+      setUser(user.filter((users) => users.user._id !== id));
     } catch (error) {
       console.log(error);
     }

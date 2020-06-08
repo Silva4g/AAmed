@@ -19,7 +19,7 @@ export default function Profile(props) {
   const [cep, setCep] = useState("");
 
   useEffect(() => {
-    async function reqTk() {
+    async function handleInformations() {
       const response = await api.get("/hospital/home", {
         withCredentials: true,
       });
@@ -42,7 +42,7 @@ export default function Profile(props) {
       setNeighborhood(address.neighborhood);
       setCep(address.cep);
     }
-    reqTk();
+    handleInformations();
   }, []);
 
   return (

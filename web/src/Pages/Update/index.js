@@ -18,7 +18,7 @@ export default function Update({ history }) {
         withCredentials: true,
       });
 
-      const { _id, name, email, phone } = user.data;
+      const { _id, name, email, phone } = user.data.hospital;
       setName(name);
       setEmail(email);
       setPhone(phone);
@@ -29,11 +29,15 @@ export default function Update({ history }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await api.put(`/hospital/${id}`, {
-      name,
-      email,
-      phone,
-    });
+    await api.put(
+      `/hospital/${id}`,
+      {
+        name,
+        email,
+        phone,
+      },
+      { withCredentials: true }
+    );
     history.push("/");
   }
 
