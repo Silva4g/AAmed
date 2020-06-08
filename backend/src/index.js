@@ -33,7 +33,6 @@ io.on("connection", (socket) => {
   }
 
   socket.on("user_solicitation", (data) => {
-    console.log(data);
     const { user, description } = data;
     data.hospital_ids.map((ids) => {
       const ownerSocket = connectedUsers[ids];

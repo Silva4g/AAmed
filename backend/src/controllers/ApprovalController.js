@@ -6,7 +6,6 @@ module.exports = {
   async store(req, res) {
     const { user_id } = req.params;
     const { hospital_id } = req.headers;
-
     if (!(await User.findById(user_id))) {
       return res.status(400).send({ error: "Usuário não existe" });
     }

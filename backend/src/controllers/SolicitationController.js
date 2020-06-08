@@ -38,4 +38,25 @@ module.exports = {
 
     return res.json(solicitation);
   },
+  /**
+   *
+   * @param {Request} req
+   * @param {Response} res
+   */
+  async verify(req, res) {
+    const { hospital_id } = req.params;
+    const { user_id } = req.headers;
+
+    const solicitation = await Solicitation.findOne({
+      hospital: hospital_id,
+      user: user_id,
+    });
+    if (!solicitation) {
+      return res.status(400).send({ error: "Não há registros" });
+    }
+    return res.json({
+      hospital_id: solicitation.hospital,
+      user_id: solicitation.user,
+    });
+  },
 };
