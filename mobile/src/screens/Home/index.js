@@ -46,7 +46,7 @@ export default function Home() {
   const [origin, setOrigin] = useState({ latitude: 0, longitude: 0 });
 
   useEffect(() => {
-    const conn = io("http://192.168.1.14:3333", {
+    const conn = io("http://192.168.15.6:3333", {
       query: { user_id: user._id },
     });
     setConnection(conn);
@@ -257,7 +257,7 @@ export default function Home() {
         />
 
         <TouchableOpacity
-          onPress={handleSolicitation}
+          onPress={()=>handleSolicitation()}
           style={
             isActiveButton
               ? [styles.loadButton, { backgroundColor: "#006bad55" }]

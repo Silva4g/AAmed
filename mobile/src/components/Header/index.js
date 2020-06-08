@@ -1,6 +1,6 @@
 import React from "react";
 import { CommonActions } from "@react-navigation/native";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons, AntDesign, Feather } from "@expo/vector-icons";
 import {
   Container,
   ButtonLeft,
@@ -20,8 +20,8 @@ export const Header = ({ flag, navigation, label }) => {
             <Ionicons name="md-menu" size={35} color="#fff" />
           </ButtonLeft>
           <ImgCenter source={require("../../assets/icon_.png")} />
-          <ButtonRight onPress={() => navigation.navigate("Historic")}>
-            <MaterialCommunityIcons name="hospital" size={35} color="#fff" />
+          <ButtonRight onPress={() => navigation.navigate("Help")}>
+            <Feather name="help-circle" size={35} color="#fff" />
           </ButtonRight>
         </>
       ) : (
