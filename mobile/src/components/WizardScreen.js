@@ -22,7 +22,7 @@ function WizardScreen() {
     {
       key: String(Math.random()),
       value: name,
-      label: "Nome",
+      label: "Nome completo",
     },
     {
       key: String(Math.random()),
@@ -32,7 +32,7 @@ function WizardScreen() {
     {
       key: String(Math.random()),
       value: email,
-      label: "E-mail",
+      label: "E-email",
     },
     {
       key: String(Math.random()),
@@ -178,6 +178,10 @@ function WizardScreen() {
               </InputContainerFinal>
             ))}
           </StepContainer>
+          <PrivacyPolicy>
+            Ao se cadastar você concorda com os nossos <Span>Termos de Uso </Span>
+            e <Span>Política de Privacidade</Span>.
+          </PrivacyPolicy>
         </Step>
       </Wizard>
     </Container>
@@ -225,6 +229,17 @@ const InputMask = styled(TextInputMask)`
 
 const InputContainerFinal = styled(InputContainer)`
   margin-top: 10px;
+`;
+
+const PrivacyPolicy = styled.Text`
+  align-self: center;
+  background-color: #f5f5f5;
+  font-size: 12px;
+  margin-bottom: 5px;
+`;
+
+const Span = styled.Text`
+  color: #006bad;
 `;
 
 export default WizardScreen;

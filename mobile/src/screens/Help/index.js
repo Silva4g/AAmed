@@ -17,7 +17,8 @@ import {
   Label,
   MgGlass,
 } from "./styles.js";
-import { Header } from "../../components/Header/index.js";
+import { Header } from "../../components/Header";
+import { MainButton } from '../../components/MainButton';
 
 export default function Help({ navigation }) {
   return (
@@ -46,24 +47,12 @@ export default function Help({ navigation }) {
 
       <ScrollView>
         <Options>
-          <Button>
-            <Label>SOLICITAÇÃO DE ATENDIMENTO</Label>
-          </Button>
-          <Button>
-            <Label>LOCALIZAÇÃO ERRADA NO MAPA</Label>
-          </Button>
-          <Button>
-            <Label>ALTERAR MINHAS INFORMAÇÕES</Label>
-          </Button>
-          <Button>
-            <Label>DADOS OFICIAIS DO APLICATIVO</Label>
-          </Button>
-          <Button>
-            <Label>ENTRE EM CONTATO CONOSCO</Label>
-          </Button>
-          <Button>
-            <Label>TERMOS E POLÍTICA DE PRIVACIDADE</Label>
-          </Button>
+          <MainButton label="SOLICITAÇÃO DE ATENDIMENTO" onPress={() => navigation.navigate('HelpServiceRequest')} />
+          <MainButton label="LOCALIZAÇÃO ERRADA NO MAPA" />
+          <MainButton label="ALTERAR MINHAS INFORMAÇÕES" onPress={() => navigation.navigate('HelpEditInfos')} />
+          <MainButton label="DADOS OFICIAIS DO APLICATIVO" />
+          <MainButton label="ENTRE EM CONTATO CONOSCO" />
+          <MainButton label="TERMOS E POLÍTICA DE PRIVACIDADE" />
         </Options>
       </ScrollView>
     </>

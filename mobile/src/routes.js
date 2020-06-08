@@ -13,10 +13,24 @@ import History from "./screens/History";
 import Help from "./screens/Help";
 import Setting from "./screens/Setting";
 import EditProfile from "./screens/EditProfile";
+import HelpServiceRequest from "./screens/HelpServiceRequest";
+import HelpEditInfos from "./screens/HelpEditInfos";
 
 import CustomDrawerContent from "./components/CustomDrawerContent";
 
 // Rota autenticada
+const AuthStack = createStackNavigator();
+export const HelpStackScreen = () => (
+  <AuthStack.Navigator screenOptions={{ headerShown: false }}>
+    <AuthStack.Screen name="Help" component={Help} />
+    <AuthStack.Screen
+      name="HelpServiceRequest"
+      component={HelpServiceRequest}
+    />
+    <AuthStack.Screen name="HelpEditInfos" component={HelpEditInfos} />
+  </AuthStack.Navigator>
+);
+
 const AuthDrawer = createDrawerNavigator();
 export const AuthDrawerScreen = () => (
   <AuthDrawer.Navigator
@@ -36,7 +50,9 @@ export const AuthDrawerScreen = () => (
       labelStyle={{ fontSize: 23 }}
       options={{
         drawerLabel: "HOME",
-        drawerIcon: ({ color }) => <Feather name="user" size={20} color={color} />,
+        drawerIcon: ({ color }) => (
+          <Feather name="user" size={20} color={color} />
+        ),
       }}
     />
     <AuthDrawer.Screen
@@ -44,23 +60,29 @@ export const AuthDrawerScreen = () => (
       component={History}
       options={{
         drawerLabel: "HISTÓRICO",
-        drawerIcon: ({ color }) => <Feather name="calendar" size={20} color={color} />,
+        drawerIcon: ({ color }) => (
+          <Feather name="calendar" size={20} color={color} />
+        ),
       }}
     />
-     <AuthDrawer.Screen
+    <AuthDrawer.Screen
       name="EditProfile"
       component={EditProfile}
       options={{
         drawerLabel: "EDITAR PERFIL",
-        drawerIcon: ({ color }) => <Feather name="edit" size={20} color={color} />,
+        drawerIcon: ({ color }) => (
+          <Feather name="edit-2" size={20} color={color} />
+        ),
       }}
     />
     <AuthDrawer.Screen
       name="Help"
-      component={Help}
+      component={HelpStackScreen}
       options={{
         drawerLabel: "AJUDA",
-        drawerIcon: ({ color }) => <AntDesign name="questioncircleo" size={20} color={color} />,
+        drawerIcon: ({ color }) => (
+          <Feather name="help-circle" size={20} color={color} />
+        ),
       }}
     />
     <AuthDrawer.Screen
@@ -68,7 +90,9 @@ export const AuthDrawerScreen = () => (
       component={Setting}
       options={{
         drawerLabel: "CONFIGURAÇÕES",
-        drawerIcon: ({ color }) => <Feather name="settings" size={20} color={color} />,
+        drawerIcon: ({ color }) => (
+          <Feather name="settings" size={20} color={color} />
+        ),
       }}
     />
   </AuthDrawer.Navigator>

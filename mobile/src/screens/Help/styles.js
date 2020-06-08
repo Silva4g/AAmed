@@ -93,7 +93,7 @@ export const WebSupportLabel = styled.Text`
 
 export const Options = styled.View`
   background-color: #006bad;
-  padding-top: 20px;
+  /* padding-top: 20px; */
 `;
 
 export const Button = styled.TouchableOpacity`
