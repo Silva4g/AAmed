@@ -60,7 +60,7 @@ export default function Home() {
         longitude: data.hospital.location.coordinates[0],
       });
     });
-  }, [user]);
+  }, []);
 
   useEffect(() => {
     function getUserLogged() {
@@ -168,7 +168,11 @@ export default function Home() {
         {approved && !!destination.latitude && !!destination.longitude && (
           <MapViewDirections
             origin={currentRegion}
-            onReady={() => {}}
+            onReady={(result) => {
+              //da pra colocar num alert ou um pop-up
+              console.log(`Distância: ${result.distance} km`);
+              console.log(`Duração: ${result.duration} min.`);
+            }}
             onError={(err) => console.log(err)}
             destination={destination}
             apikey={GOOGLE_MAPS_APIKEY}

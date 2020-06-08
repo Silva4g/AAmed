@@ -63,6 +63,7 @@ routes.get("/hospital/solicitations", SolicitaionController.index);
 routes.post("/hospital/:hospital_id/solicitation", SolicitaionController.store);
 
 routes.get("/solicitations/:id", SolicitaionController.show);
+routes.get("/solicitations/:hospital_id", SolicitaionController.verify);
 routes.post(
   "/solicitations/:user_id/approvals",
   authConfig.hospital,

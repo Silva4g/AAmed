@@ -15,9 +15,13 @@ export default function Logged({ match }) {
   const id = match.params.id;
   //requisição do socket
   const [user, setUser] = useState([]);
+  const [acceptUser, setAcceptUser] = useState([]);
   const [ok, setOk] = useState(null);
 
   const [socketAll, setSocketAll] = useState(null);
+  const [solicitationUser, setSolicitationUser] = useState("");
+
+  const [userAccept, setUserAccept] = useState(false);
 
   useEffect(() => {
     const socket = socketio("http://localhost:3333", {
@@ -28,27 +32,17 @@ export default function Logged({ match }) {
       setUser([...user, data]);
       setOk(true);
     });
-  }, [id, user]);
-
-  useEffect(() => {
-    async function userAccepted() {
-      const response = await api.get(`/solicitations/${id}`);
-      const user_id = response.data[0].user._id;
-      setUser(user.filter((users) => users.user._id !== user_id));
-      console.log(user_id);
-    }
-    userAccepted();
-  }, [id, user]);
-
-  // useEffect(() => {
-  //   async function loadHome() {
-  //     const response = await api.get("/hospital/home", {
-  //       withCredentials: true,
-  //     });
-  //     console.log(response.data);
-  //   }
-  //   loadHome();
-  // }, []);
+    socket.on("filter", (data) => {
+      if (
+        match.params.id !== data.hospital_id &&
+        solicitationUser !== data.user_accept
+      ) {
+        setUser(user.filter((users) => users.user._id !== data.user_accept));
+      } else {
+        setUserAccept(true);
+      }
+    });
+  }, [id, match.params.id, solicitationUser, user]);
 
   function handleClick() {
     const cc = changeColor.current;
@@ -67,12 +61,12 @@ export default function Logged({ match }) {
         headers: { hospital_id: match.params.id },
         withCredentials: true,
       });
-      // const response = await api.get(`/solicitations/${id}`);
-      // const user_id = response.data[0].user._id;
-      // if(user_id === id){
-
-      // }
-      // setUser(user.filter((users) => users.user._id !== user_id));
+      setSolicitationUser(id);
+      socketAll.emit("accept", {
+        hospital_id: match.params.id,
+        user_accept: id,
+      });
+      setAcceptUser(user.filter((users) => users.user._id === id));
       setUser(user.filter((users) => users.user._id !== id));
     } catch (error) {
       console.log(error);
@@ -164,6 +158,14 @@ export default function Logged({ match }) {
       </div>
       <div className="atendimento">
         <span>A caminho</span>
+        {userAccept &&
+          acceptUser.map((users) => (
+            <div key={users.user._id}>
+              <div className="user-help">
+                {users.user.name} está à caminho descrição: {users.description}
+              </div>
+            </div>
+          ))}
       </div>
     </div>
   );

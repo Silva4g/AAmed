@@ -42,6 +42,10 @@ io.on("connection", (socket) => {
     });
   });
 
+  socket.on("accept", (data) => {
+    io.sockets.emit("filter", data);
+  });
+
   socket.on("disconnect", (reason) =>
     console.log("[SOCKET: disconnected] => ", reason)
   );
