@@ -30,6 +30,16 @@ export default function Logged({ match }) {
     });
   }, [id, user]);
 
+  // useEffect(() => {
+  //   async function loadHome() {
+  //     const response = await api.get("/hospital/home", {
+  //       withCredentials: true,
+  //     });
+  //     console.log(response.data);
+  //   }
+  //   loadHome();
+  // }, []);
+
   function handleClick() {
     const cc = changeColor.current;
     cc.classList.toggle("bgcolorClick");

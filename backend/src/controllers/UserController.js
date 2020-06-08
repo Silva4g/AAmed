@@ -11,12 +11,14 @@ module.exports = {
   //cadastro de usuarios
   async store(req, res) {
     try {
-      const { name, cpf, email, password,  /*susCard,*/ bio } = req.body;
+      const { name, cpf, email, password, /*susCard,*/ bio } = req.body;
 
       //const { location: url = "", key } = req.file;
       //verificar se tem no banco
       if (await User.findOne({ cpf }))
-        return res.status(400).json({ error: "Usuário com o CPF informado já cadastrado" });
+        return res.status(400).json({ error: "Usuário já cadastrado" });
+      if (await User.findOne({ email }))
+        return res.status(400).json({ error: "Usuário já cadastrado" });
       // if (await User.findOne({ susCard }))
       //   return res.status(400).json({ error: "Usuário com o cartão do SUS informado já cadastrado" });
 
@@ -26,7 +28,7 @@ module.exports = {
         email,
         password,
         // susCard,
-        bio
+        bio,
         // url,
         // key
       });
@@ -55,7 +57,7 @@ module.exports = {
 
       return res.json({
         user,
-        token: user.generateToken() //token para login
+        token: user.generateToken(), //token para login
       });
     } catch (err) {
       return res.status(400).json({ error: "Falha no login: " + err });
@@ -77,7 +79,7 @@ module.exports = {
         {
           name,
           email,
-          bio
+          bio,
         },
         { new: true }
       );
@@ -88,5 +90,5 @@ module.exports = {
         .status(400)
         .send({ error: "Falha na atualização do usuário" + err });
     }
-  }
+  },
 };

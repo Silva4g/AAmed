@@ -46,8 +46,6 @@ export default function Home() {
   const [hospitalName, setHospitalName] = useState("");
 
   const [destination, setDestination] = useState({ latitude: 0, longitude: 0 });
-  const [origin, setOrigin] = useState({ latitude: 0, longitude: 0 });
-  const [ok, setOk] = useState(false);
 
   useEffect(() => {
     const conn = io("http://192.168.1.14:3333", {
@@ -121,8 +119,8 @@ export default function Home() {
         setCurrentRegion({
           latitude,
           longitude,
-          latitudeDelta: 0.04,
-          longitudeDelta: 0.04,
+          latitudeDelta: 0.014,
+          longitudeDelta: 0.014,
         });
       }
     }
@@ -140,9 +138,7 @@ export default function Home() {
             latitude,
           },
         });
-
         setHospitals(response.data.hospitais);
-        // console.log("[API] => ", response.data.hospitais);
       } catch (err) {
         console.debug("[ERROR: loadHospitals] => ", err);
       }
