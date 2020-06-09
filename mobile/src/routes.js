@@ -51,7 +51,7 @@ export const AuthDrawerScreen = () => (
       options={{
         drawerLabel: "HOME",
         drawerIcon: ({ color }) => (
-          <Feather name="user" size={20} color={color} />
+          <Feather name="home" size={20} color={color} />
         ),
       }}
     />

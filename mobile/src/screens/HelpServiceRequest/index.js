@@ -21,7 +21,7 @@ export default function HelpServiceRequest({ navigation }) {
           <Text style={{fontSize: 18, marginBottom: 10}}>1 - Preencha o motivo de sua solicitação.</Text>
           <Text style={{fontSize: 18, marginBottom: 10}}>2 - Envie a solicitação.</Text>
           <Text style={{fontSize: 18, marginBottom: 10}}>3 - Aguarde à solicitação ser aceita.</Text>
-          <Text style={{fontSize: 18, marginBottom: 10}}>Caso solicitação for aceita, o aplicativo mostrará quem aceitou-a, compartilhando os respectivos dados/orientações do hospital. </Text>
+          <Text style={{fontSize: 18, marginBottom: 10}}>4 - Caso solicitação for aceita, o aplicativo mostrará quem aceitou-a, compartilhando os respectivos dados/orientações do hospital. </Text>
         </ScrollView>
       </ScrollView>
     </>
