@@ -31,9 +31,13 @@ io.on("connection", (socket) => {
   if (user_id && !hospital_id) {
     connectedUsers[user_id] = socket.id;
   }
-
   socket.on("user_solicitation", (data) => {
     const { user, description } = data;
+    if (!!connectedUsers[user._id]) {
+      return;
+    } else {
+      connectedUsers[user._id] = socket.id;
+    }
     data.hospital_ids.map((ids) => {
       const ownerSocket = connectedUsers[ids];
       if (ownerSocket) {
