@@ -18,10 +18,11 @@ export default function HelpEditInfos({ navigation }) {
           <Image source={editar_per_3} resizeMode="contain" style={{height: 400, width: 220}} />
         </ScrollView>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{flex: 1, paddingHorizontal: 20}}>
-          <Text style={{fontSize: 18, marginBottom: 10}}>1 - Entre no menu</Text>
-          <Text style={{fontSize: 18, marginBottom: 10}}>2 - Escolha a opção de "EDITAR PERFIL"</Text>
-          <Text style={{fontSize: 18, marginBottom: 10}}>3 - Altere suas informações</Text>
-          <Text style={{fontSize: 18, marginBottom: 10}}>4 - Pressione o botão "EDITAR" para salvar as alterações</Text>
+          <Text style={{fontSize: 18, marginBottom: 10}}>1 - Entre no menu de opções.</Text>
+          <Text style={{fontSize: 18, marginBottom: 10}}>2 - Selecione a opção de "EDITAR PERFIL".</Text>
+          <Text style={{fontSize: 18, marginBottom: 10}}>3 - Altere suas informações nos campos de texto.</Text>
+          <Text style={{fontSize: 18, marginBottom: 10}}>4 - Pressione o botão "EDITAR" para salvar as alterações.</Text>
+          <Text style={{fontSize: 18, marginBottom: 10}}>5 - Faça logout e login para atualizar as informações no perfil.</Text>
         </ScrollView>
       </ScrollView>
     </>

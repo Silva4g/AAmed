@@ -18,10 +18,10 @@ export default function HelpServiceRequest({ navigation }) {
           <Image source={solicitacao_3} resizeMode="contain" style={{height: 400, width: 220}} />
         </ScrollView>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{flex: 1, paddingHorizontal: 20}}>
-          <Text style={{fontSize: 18, marginBottom: 10}}>1 - Descreva qual é o problema</Text>
-          <Text style={{fontSize: 18, marginBottom: 10}}>2 - Envie a solicitação</Text>
-          <Text style={{fontSize: 18, marginBottom: 10}}>3 - Solicitação Pendente</Text>
-          <Text style={{fontSize: 18, marginBottom: 10}}>4 - Solicitação Aprovada</Text>
+          <Text style={{fontSize: 18, marginBottom: 10}}>1 - Preencha o motivo de sua solicitação.</Text>
+          <Text style={{fontSize: 18, marginBottom: 10}}>2 - Envie a solicitação.</Text>
+          <Text style={{fontSize: 18, marginBottom: 10}}>3 - Aguarde à solicitação ser aceita.</Text>
+          <Text style={{fontSize: 18, marginBottom: 10}}>Caso solicitação for aceita, o aplicativo mostrará quem aceitou-a, compartilhando os respectivos dados/orientações do hospital. </Text>
         </ScrollView>
       </ScrollView>
     </>
