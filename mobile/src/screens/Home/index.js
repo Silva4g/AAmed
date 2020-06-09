@@ -29,7 +29,8 @@ import {
 import styles from "./styles.js";
 import api from "../../services/api";
 import { Header } from "../../components/Header/index";
-import Directions from "../../components/Direction/index.js";
+import axios from "axios";
+
 const GOOGLE_MAPS_APIKEY = "AIzaSyBAJxkbJDUINqKFwXs-WGy-S7W-yD2ueJ4";
 
 export default function Home() {
@@ -46,6 +47,7 @@ export default function Home() {
   const [hospitalName, setHospitalName] = useState("");
 
   const [destination, setDestination] = useState({ latitude: 0, longitude: 0 });
+  // let conn;
 
   useEffect(() => {
     const conn = io("http://192.168.0.53:3333", {
@@ -53,6 +55,7 @@ export default function Home() {
     });
     setConnection(conn);
     conn.on("solicitation_response", (data) => {
+      console.log(data);
       setHospitalName(data.hospital.name);
       data.approved ? setApproved(true) : setApproved(false);
       setDestination({
@@ -131,16 +134,18 @@ export default function Home() {
   useEffect(() => {
     async function loadHospitals() {
       const { latitude, longitude } = currentRegion || 1;
-      try {
-        const response = await api.get("search", {
-          params: {
-            longitude,
-            latitude,
-          },
-        });
-        setHospitals(response.data.hospitais);
-      } catch (err) {
-        console.debug("[ERROR: loadHospitals] => ", err);
+      if (latitude && longitude) {
+        try {
+          const response = await api.get("search", {
+            params: {
+              longitude,
+              latitude,
+            },
+          });
+          setHospitals(response.data.hospitais);
+        } catch (err) {
+          console.debug("[ERROR: loadHospitals] => ", err);
+        }
       }
     }
     loadHospitals();
@@ -162,7 +167,6 @@ export default function Home() {
       <MapView
         onRegionChangeComplete={handleRegionChanged}
         initialRegion={currentRegion}
-        loadingEnabled
         style={styles.mapContainer}
       >
         {approved && !!destination.latitude && !!destination.longitude && (
@@ -266,7 +270,7 @@ export default function Home() {
         />
 
         <TouchableOpacity
-          onPress={()=>handleSolicitation()}
+          onPress={handleSolicitation}
           style={
             isActiveButton
               ? [styles.loadButton, { backgroundColor: "#006bad55" }]
