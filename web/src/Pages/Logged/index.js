@@ -37,9 +37,10 @@ export default function Logged({ match }) {
         match.params.id !== data.hospital_id &&
         solicitationUser !== data.user_accept
       ) {
-        setUser(user.filter((users) => users.user._id !== data.user_accept));
+        setUser(user.filter((users) => users.user._id !== data.user_accept)); //tirar  da tela so hospital q n aceitou
       } else {
         setUserAccept(true);
+        // setAcceptUser(user.filter((users) => users.user._id === data.user_accept));
       }
     });
   }, [id, match.params.id, solicitationUser, user]);
@@ -54,7 +55,6 @@ export default function Logged({ match }) {
     localStorage.removeItem("hptid");
     window.location.href = "/";
   }
-
   async function accept(id) {
     try {
       await api.post(`/solicitations/${id}/approvals`, null, {
@@ -72,7 +72,10 @@ export default function Logged({ match }) {
       console.log(error);
     }
   }
-
+  const [testUser, setTest] = useState([]);
+  useEffect(() => {
+    acceptUser.filter((users) => setTest([...testUser, users]));
+  }, [acceptUser]);
   // async function reject(id) {
   //   try {
   //     await api.post(`/bookings/${id}/rejections`, null, {
@@ -144,8 +147,8 @@ export default function Logged({ match }) {
       <div className="espera">
         <span>Requisições</span>
         {ok &&
-          user.map((users) => (
-            <div key={users.user._id}>
+          user.map((users, i) => (
+            <div key={i}>
               <div className="user-help">
                 {users.user.name} está solicitando uma ajuda! com a seguinte
                 descrição: {users.description}
@@ -159,10 +162,12 @@ export default function Logged({ match }) {
       <div className="atendimento">
         <span>A caminho</span>
         {userAccept &&
-          acceptUser.map((users) => (
-            <div key={users.user._id}>
+          testUser.map((users, i) => (
+            <div key={i}>
               <div className="user-help">
-                {users.user.name} está à caminho descrição: {users.description}
+                {users.user.name} está à caminho descrição:
+                <br />
+                {users.description}
               </div>
             </div>
           ))}

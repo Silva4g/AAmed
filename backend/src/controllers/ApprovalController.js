@@ -32,7 +32,6 @@ module.exports = {
       .execPopulate();
 
     const solicitationUserSocket = req.connectedUsers[user_id];
-    console.log(solicitationUserSocket);
     if (solicitationUserSocket) {
       req.io.to(solicitationUserSocket).emit("solicitation_response", userID);
     }

@@ -50,12 +50,11 @@ export default function Home() {
   // let conn;
 
   useEffect(() => {
-    const conn = io("http://192.168.15.6:3333", {
+    const conn = io("http://192.168.1.14:3333", {
       query: { user_id: user._id },
     });
     setConnection(conn);
     conn.on("solicitation_response", (data) => {
-      console.log(data);
       setHospitalName(data.hospital.name);
       data.approved ? setApproved(true) : setApproved(false);
       setDestination({

@@ -33,9 +33,8 @@ io.on("connection", (socket) => {
   }
   socket.on("user_solicitation", (data) => {
     const { user, description } = data;
-    if (!!connectedUsers[user._id]) {
-      return;
-    } else {
+    if (connectedUsers[user._id] === undefined) {
+      console.log("nao existe esse socket");
       connectedUsers[user._id] = socket.id;
     }
     data.hospital_ids.map((ids) => {
