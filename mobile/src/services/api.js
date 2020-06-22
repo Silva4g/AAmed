@@ -4,7 +4,7 @@ import axios from "axios";
 // olhar o endereço na aba do expo quando abrir
 const api = axios.create({
   //mudar de ip japa e vini
-  baseURL: "http://192.168.0.53:3333",
+  baseURL: "http://192.168.15.4:3333",
 });
 
 export default api;
