@@ -12,6 +12,7 @@ import Update from "./Update";
 import ChangePass from "./ChangePassword";
 import Delete from "./Delete";
 import Logged from "./Logged";
+import Treatment from "./Treatment";
 
 export {
   Home,
@@ -28,4 +29,5 @@ export {
   Update,
   ChangePass,
   Delete,
+  Treatment,
 };

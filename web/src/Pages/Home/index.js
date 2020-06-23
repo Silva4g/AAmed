@@ -1,66 +1,81 @@
 import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import { Slide } from "../../components";
 
 import "./styles.css";
+import Menu from "../../components/Menu";
 import api from "../../services/api";
 
 export default function Home() {
-  document.title = "1° Socorros";
+  document.title = "AAMed";
+
+  const { push } = useHistory();
 
   useEffect(() => {
     async function redirectToLogged() {
+      if (!localStorage.getItem("hptid")) {
+        return;
+      }
       try {
-        api.get("/hospital/token", { withCredentials: true }).then((res) => {
-          console.log(res);
-        });
-
         const response = await api.get("/hospital/verify", {
           withCredentials: true,
         });
         if (response.data.auth === "isAuth") {
           localStorage.setItem("hptid", true);
-          window.location.href = `/home/${response.headers["id"]}`;
+          push(`/home/${response.headers["id"]}`);
         }
       } catch (error) {
         console.log(error);
       }
     }
     redirectToLogged();
-    console.log("estou aqui");
   });
 
   return (
     <>
-       <div className="slide">
+      <Menu />
+
+      <div className="slide">
         <Slide />
       </div>
-      
+
       <div className="patrocinios">
         <h1>PATROCÍNIOS</h1>
         <div className="patrocinios-list">
           <div className="pat-respon">
-            <img src={require("../../assets/sus.png")} alt="banner-sus" />
+            <img
+              src={require("../../assets/sus.png")}
+              alt="SUS - Sistema Único de Saúde"
+              title="SUS - Sistema Único de Saúde"
+            />
           </div>
           <div className="pat-respon">
-            <img src={require("../../assets/sebrae.png")} alt="banner-ima" />
+            <img
+              src={require("../../assets/sebrae.png")}
+              alt="SEBRAE"
+              title="SEBRAE"
+            />
           </div>
           <div className="pat-respon">
             <img
               src={require("../../assets/unimed2.png")}
-              alt="banner-unimed"
+              alt="Unimed"
+              title="Unimed"
             />
           </div>
           <div className="pat-respon">
             <img
               src={require("../../assets/google_maps_2020.png")}
-              alt="banner-google-maps"
+              alt="Google Maps"
+              title="Google Maps"
             />
           </div>
           <div className="pat-respon">
             <img
               src={require("../../assets/unicamp.png")}
-              alt="banner-unicamp"
+              alt="Unicamp"
+              title="Unicamp"
             />
           </div>
         </div>

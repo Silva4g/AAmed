@@ -6,7 +6,7 @@ import "./styles.css";
 import api from "../../services/api";
 
 export default function Delete({ history }) {
-  document.title = "Excluir conta";
+  document.title = "AAMed - Excluir conta";
 
   const [id, setId] = useState("");
   const [pass, setPass] = useState("");

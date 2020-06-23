@@ -7,6 +7,7 @@ import "./styles.css";
 import { HospitalModal } from "../../components";
 
 export default function Hospitals(props) {
+  document.title = "AAMed - Hospitais por perto";
   const [hospitals, setHospitals] = useState([]);
   const [nameLogged, setNamelogged] = useState("");
   const [modal, setModal] = useState(null);
@@ -58,8 +59,8 @@ export default function Hospitals(props) {
         <div>
           <img
             src={require("../../assets/profile.png")}
-            alt="Suporte do 1° Socorros"
-            title="Suporte do 1° Socorros"
+            alt="Gerenciamento de hospitais por perto"
+            title="Encontre hospitais por perto"
           />
         </div>
       </div>

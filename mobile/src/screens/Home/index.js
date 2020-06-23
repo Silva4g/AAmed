@@ -50,7 +50,7 @@ export default function Home() {
   // let conn;
 
   useEffect(() => {
-    const conn = io("http://192.168.15.4:3333", {
+    const conn = io("http://192.168.1.10:3333", {
       query: { user_id: user._id },
     });
     setConnection(conn);
@@ -166,6 +166,7 @@ export default function Home() {
       <MapView
         onRegionChangeComplete={handleRegionChanged}
         initialRegion={currentRegion}
+        showsUserLocation
         style={styles.mapContainer}
       >
         {approved && !!destination.latitude && !!destination.longitude && (

@@ -7,6 +7,8 @@ import api from "../../services/api";
 import "./styles.css";
 
 export default function Profile(props) {
+  document.title = "AAMed - Perfil";
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");

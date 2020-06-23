@@ -5,10 +5,9 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import "./styles.css";
 import api from "../../services/api";
 
-export default function ChangePass({ history }) {
-  document.title = "Trocar de senha";
+export default function ChangePass({ history, match }) {
+  document.title = "AAMed - Trocar de senha";
 
-  const [id, setId] = useState("");
   const [oldPassword, setOldPassword] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -20,8 +19,7 @@ export default function ChangePass({ history }) {
         withCredentials: true,
       });
 
-      const { _id, name } = hospital.data.hospital;
-      setId(_id);
+      const { name } = hospital.data.hospital;
       setName(name);
     }
     loadHospital();
@@ -30,12 +28,12 @@ export default function ChangePass({ history }) {
   async function handleSubmit(e) {
     e.preventDefault();
     await api
-      .put(`/change/${id}`, {
+      .put(`/change/${match.params.id}`, {
         password,
         oldPassword,
       })
       .then((response) => {
-        history.push("/");
+        history.push(`/home/${match.params.id}`);
       })
       .catch((err) => {
         setError(err.response.data.error);

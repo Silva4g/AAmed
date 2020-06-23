@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
-import api from '../../services/api';
-import '../Support/styles.css';
+import React, { useState } from "react";
+
+import api from "../../services/api";
+import Menu from "../../components/Menu";
+import "../Support/styles.css";
 
 export default function Support() {
-  document.title = "Suporte";
+  document.title = "Suporte AAMed";
 
-  const [email, setEmail] = useState('');
-  const [subject, setSubject] = useState('');
-  const [description, setDescription] = useState('');
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [description, setDescription] = useState("");
 
   // verificações
   const [hasEmail, setHasEmail] = useState(false);
@@ -39,14 +41,14 @@ export default function Support() {
     }
 
     try {
-      await api.post('/support', {
+      await api.post("/support", {
         email,
         subject,
-        description
-      })
-      setEmail('');
-      setSubject('');
-      setDescription('');
+        description,
+      });
+      setEmail("");
+      setSubject("");
+      setDescription("");
       setModal(true);
       setTimeout(() => {
         setModal(false);
@@ -60,11 +62,12 @@ export default function Support() {
       window.scrollTo(0, 0);
       console.log("Houve um erro " + error);
     }
-
-  }
+  };
 
   return (
     <>
+      <Menu />
+
       <div className="content-support">
         <div>
           <h2>Suporte do 1° Socorros</h2>
@@ -72,7 +75,11 @@ export default function Support() {
           <a href="#form-support">Entre em contato conosco! :)</a>
         </div>
         <div>
-          <img src={require('../../assets/support.png')} alt="Suporte do 1° Socorros" title="Suporte do 1° Socorros" />
+          <img
+            src={require("../../assets/support.png")}
+            alt="Suporte AAMed"
+            title="Suporte AAMed"
+          />
         </div>
       </div>
       <div className="support-types">
@@ -80,26 +87,54 @@ export default function Support() {
         <div className="line"></div>
         <div className="support-user">
           <div>
-            <img src={require('../../assets/computer.png')} alt=""/>
+            <img
+              src={require("../../assets/computer.png")}
+              alt="Logo notebook - sistema e design"
+              title="Sistema e design"
+            />
             <span>Sistema e design</span>
           </div>
           <div>
-            <img src={require('../../assets/engine.png')} alt=""/>
+            <img
+              src={require("../../assets/engine.png")}
+              alt="Logo funcionalidades - nossas funcionalidades"
+              title="Nossas funcionalidades"
+            />
             <span>Nossas funcionalidades</span>
           </div>
           <div>
-            <img src={require('../../assets/comunication.png')} alt=""/>
-            <span>Ajude-nos a melhorar.</span>
+            <img
+              src={require("../../assets/comunication.png")}
+              alt="Logo ajude-nos a melhorar - ajude-nos a melhorar"
+              title="Ajude-nos a melhorar"
+            />
+            <span>Ajude-nos a melhorar</span>
           </div>
           <div>
-            <img src={require('../../assets/user.png')} alt=""/>
+            <img
+              src={require("../../assets/user.png")}
+              alt="Logo usuários e contas - contas e usuários"
+              title="Contas e usuários"
+            />
             <span>Contas e usuários</span>
           </div>
         </div>
       </div>
       <div className="wrapper" id="form-support">
-        {modal ? <span className="success-support">Formulário enviado com suceso!</span> : ""}
-        {show ? <span className="error-support">HOUVE UM ERRO INTERNO, POR FAVOR TENTE NOVAMENTE MAIS TARDE!!</span> : ""}
+        {modal ? (
+          <span className="success-support">
+            Formulário enviado com suceso!
+          </span>
+        ) : (
+          ""
+        )}
+        {show ? (
+          <span className="error-support">
+            HOUVE UM ERRO INTERNO, POR FAVOR TENTE NOVAMENTE MAIS TARDE!!
+          </span>
+        ) : (
+          ""
+        )}
         <div className="content-form-support">
           <h1>Envie uma mensagem para nós!</h1>
         </div>
@@ -113,9 +148,13 @@ export default function Support() {
                 id="email"
                 placeholder="Email"
                 value={email}
-                onChange={email => setEmail(email.target.value)}
+                onChange={(email) => setEmail(email.target.value)}
               />
-              {hasEmail ? <span className="error-support">Email requerido.</span> : ""}
+              {hasEmail ? (
+                <span className="error-support">Email requerido.</span>
+              ) : (
+                ""
+              )}
             </div>
           </div>
 
@@ -127,9 +166,13 @@ export default function Support() {
                 id="subject"
                 placeholder="Assunto"
                 value={subject}
-                onChange={e => setSubject(e.target.value)}
+                onChange={(e) => setSubject(e.target.value)}
               />
-              {hasSubject ? <span className="error-support">Assunto requerido.</span> : ""}
+              {hasSubject ? (
+                <span className="error-support">Assunto requerido.</span>
+              ) : (
+                ""
+              )}
             </div>
           </div>
 
@@ -141,9 +184,13 @@ export default function Support() {
                 className="form-area"
                 placeholder="Descrição"
                 value={description}
-                onChange={e => setDescription(e.target.value)}
+                onChange={(e) => setDescription(e.target.value)}
               ></textarea>
-              {hasDescription ? <span className="error-support">Descrição requerida.</span> : ""}
+              {hasDescription ? (
+                <span className="error-support">Descrição requerida.</span>
+              ) : (
+                ""
+              )}
             </div>
           </div>
 
