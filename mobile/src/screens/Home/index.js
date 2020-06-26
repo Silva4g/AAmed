@@ -23,6 +23,8 @@ import {
 import {
   requestPermissionsAsync,
   getCurrentPositionAsync,
+  watchPositionAsync,
+  Accuracy,
 } from "expo-location";
 
 // import CustomHeader from "../../components/CustomHeader";
@@ -45,12 +47,14 @@ export default function Home() {
   const [modal, setModal] = useState(false);
   const [approved, setApproved] = useState(false);
   const [hospitalName, setHospitalName] = useState("");
+  const [distance, setDistance] = useState("");
+  const [duration, setDuration] = useState("");
 
   const [destination, setDestination] = useState({ latitude: 0, longitude: 0 });
   // let conn;
 
   useEffect(() => {
-    const conn = io("http://192.168.15.2:3333", {
+    const conn = io("http://192.168.1.10:3333", {
       query: { user_id: user._id },
     });
     setConnection(conn);
@@ -130,6 +134,47 @@ export default function Home() {
     loadInitialPosition();
   }, []);
 
+  watchPositionAsync(
+    {
+      accuracy: Accuracy.High,
+      timeInterval: 1000,
+      enableHighAccuracy: true,
+    },
+    (data) => {
+      if (approved) {
+        if (
+          calculateDistance(data.coords, destination) == 0.01 ||
+          calculateDistance(data.coords, destination) == 0.02
+        ) {
+          console.log("chegou");
+          setApproved(false);
+          setDestination({ latitude: 0, longitude: 0 });
+          setModal(!modal);
+          setDuration(null);
+          setDistance(null);
+        }
+      }
+    }
+  );
+  function rad(x) {
+    return (x * Math.PI) / 180;
+  }
+
+  function calculateDistance(pointA, pointB) {
+    let R = 6378137;
+    let dLat = rad(pointB.latitude - pointA.latitude);
+    let dLong = rad(pointB.longitude - pointA.longitude);
+    let a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(rad(pointA.latitude)) *
+        Math.cos(rad(pointB.latitude)) *
+        Math.sin(dLong / 2) *
+        Math.sin(dLong / 2);
+    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    let d = (R * c) / 1000;
+    return d.toFixed(2);
+  }
+
   useEffect(() => {
     async function loadHospitals() {
       const { latitude, longitude } = currentRegion || 1;
@@ -173,9 +218,8 @@ export default function Home() {
           <MapViewDirections
             origin={currentRegion}
             onReady={(result) => {
-              //da pra colocar num alert ou um pop-up
-              console.log(`Distância: ${result.distance} km`);
-              console.log(`Duração: ${result.duration} min.`);
+              setDistance(result.distance);
+              setDuration(result.duration);
             }}
             onError={(err) => console.log(err)}
             destination={destination}
@@ -252,35 +296,39 @@ export default function Home() {
             <>
               <FontAwesome name="circle" size={15} color="#0ec445" />
               <Text>
-                Sua solicitação foi aprovada no hospital: {hospitalName}.
+                Sua solicitação foi aprovada no hospital: {hospitalName}.{"\n"}
+                Duração: {`${duration.toFixed(2)} min \n`}
+                Distância: {`${distance} km`}
               </Text>
             </>
           )}
         </Animatable.View>
       ) : null}
-      <View style={styles.searchForm}>
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Descrição..."
-          placeholderTextColor="#999"
-          autoCapitalize="words"
-          autoCorrect={false}
-          value={description}
-          onChangeText={setDescription}
-        />
+      {!approved && (
+        <View style={styles.searchForm}>
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Descrição..."
+            placeholderTextColor="#999"
+            autoCapitalize="words"
+            autoCorrect={false}
+            value={description}
+            onChangeText={setDescription}
+          />
 
-        <TouchableOpacity
-          onPress={handleSolicitation}
-          style={
-            isActiveButton
-              ? [styles.loadButton, { backgroundColor: "#006bad55" }]
-              : styles.loadButton
-          }
-          disabled={isActiveButton}
-        >
-          <MaterialIcons name="send" size={25} color="#fff" />
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity
+            onPress={handleSolicitation}
+            style={
+              isActiveButton
+                ? [styles.loadButton, { backgroundColor: "#006bad55" }]
+                : styles.loadButton
+            }
+            disabled={isActiveButton}
+          >
+            <MaterialIcons name="send" size={25} color="#fff" />
+          </TouchableOpacity>
+        </View>
+      )}
       <View style={styles.mapDrawerOverlay} />
     </View>
   );

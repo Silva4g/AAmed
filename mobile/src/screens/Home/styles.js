@@ -35,15 +35,15 @@ const styles = StyleSheet.create({
   name: {
     fontWeight: "bold",
     fontSize: 15,
-    textAlign:'center',
+    textAlign: "center",
   },
   desc: {
     color: "#000000",
     marginTop: 5,
   },
-  tittles:{
+  tittles: {
     color: "#000000",
-    fontWeight:'bold',
+    fontWeight: "bold",
   },
   data: {
     marginTop: 5,
@@ -51,13 +51,13 @@ const styles = StyleSheet.create({
   modal: {
     position: "absolute",
     top: 82,
-    height: 50,
-    width: '100%',
+    height: 65,
+    width: "100%",
     flexDirection: "row",
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    justifyContent: "space-around",
+    alignItems: "center",
     backgroundColor: "#f5f6fa",
-    elevation: 4
+    elevation: 4,
   },
   searchForm: {
     position: "absolute",
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     color: "#333",
     borderRadius: 25,
     borderWidth: 1,
-    borderColor: '#006bad',
+    borderColor: "#006bad",
     paddingHorizontal: 20,
     fontSize: 16,
     shadowColor: "#000",
