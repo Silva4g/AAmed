@@ -1,4 +1,4 @@
-# 1º Socorros
+# AAMed
 
 # INDICE
  - [Instalações necessarias](#instalacoes) - todas as aplicações usadas na nossa plataforma.
