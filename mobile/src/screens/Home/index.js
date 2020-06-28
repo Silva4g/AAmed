@@ -54,7 +54,7 @@ export default function Home() {
   // let conn;
 
   useEffect(() => {
-    const conn = io("http://192.168.1.10:3333", {
+    const conn = io("http://192.168.15.7:3333", {
       query: { user_id: user._id },
     });
     setConnection(conn);
@@ -297,7 +297,7 @@ export default function Home() {
               <FontAwesome name="circle" size={15} color="#0ec445" />
               <Text>
                 Sua solicitação foi aprovada no hospital: {hospitalName}.{"\n"}
-                Duração: {`${duration.toFixed(2)} min \n`}
+                Duração: {`${duration} min \n`}
                 Distância: {`${distance} km`}
               </Text>
             </>

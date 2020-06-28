@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Link, useHistory } from "react-router-dom";
 import socketio from "socket.io-client";
 import { IoMdSettings } from "react-icons/io";
@@ -27,10 +27,11 @@ export default function Logged({ match }) {
 
   const { push } = useHistory();
 
+  const socket = useMemo(() => socketio("http://localhost:3333", {
+    query: { hospital_id: id },
+  }), [id]);
+
   useEffect(() => {
-    const socket = socketio("http://localhost:3333", {
-      query: { hospital_id: id },
-    });
     setSocketAll(socket);
     socket.on("aviso", (data) => {
       setUser([...user, data]);
@@ -66,7 +67,7 @@ export default function Logged({ match }) {
         withCredentials: true,
       });
       setSolicitationUser(id);
-      socketAll.emit("accept", {
+      socket.emit("accept", {
         hospital_id: match.params.id,
         user_accept: id,
       });
