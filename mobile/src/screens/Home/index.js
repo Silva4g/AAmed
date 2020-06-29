@@ -54,7 +54,7 @@ export default function Home() {
   // let conn;
 
   useEffect(() => {
-    const conn = io("http://192.168.15.7:3333", {
+    const conn = io("http://192.168.15.2:3333", {
       query: { user_id: user._id },
     });
     setConnection(conn);
@@ -262,23 +262,6 @@ export default function Home() {
             </Callout>
           </Marker>
         ))}
-
-        <Marker coordinate={currentRegion}>
-          <Image
-            style={styles.avatar}
-            source={{
-              uri:
-                "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg",
-            }}
-          />
-
-          <Callout
-            onPress={() => console.log("hospitais", hospitals)}
-            style={styles.calloutUser}
-          >
-            <Text style={styles.name}>{user.name}</Text>
-          </Callout>
-        </Marker>
       </MapView>
       {modal ? (
         <Animatable.View
@@ -296,9 +279,9 @@ export default function Home() {
             <>
               <FontAwesome name="circle" size={15} color="#0ec445" />
               <Text>
-                Sua solicitação foi aprovada no hospital: {hospitalName}.{"\n"}
-                Duração: {`${duration} min \n`}
-                Distância: {`${distance} km`}
+                Sua solicitação foi aprovada em {hospitalName}.{"\n"}
+                Tempo estimado: {`${Math.round(duration)} min \n`}
+                Distância: {`${Number(distance).toFixed(2)} km`}
               </Text>
             </>
           )}
