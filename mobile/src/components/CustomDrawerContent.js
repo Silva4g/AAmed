@@ -53,10 +53,7 @@ export default function CustomDrawerContent(props) {
             activeOpacity={0.7}
             size="medium"
             rounded
-            source={{
-              uri:
-                "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg",
-            }}
+            title={user ? JSON.stringify(user.name[0]) : 'a'}
           />
         </View>
         <View style={styles.viewDados}>

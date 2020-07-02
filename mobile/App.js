@@ -9,6 +9,7 @@ import { AuthDrawerScreen, GuestStackScreen } from "./src/routes";
 
 YellowBox.ignoreWarnings(["Unrecognized WebSocket"]);
 YellowBox.ignoreWarnings(["MapViewDirections Error"]);
+YellowBox.ignoreWarnings(["Can't perform a React state update"]);
 
 const Router = () => {
   const [store] = useStore();

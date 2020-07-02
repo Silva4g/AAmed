@@ -295,6 +295,7 @@ export default function Home() {
             placeholderTextColor="#999"
             autoCapitalize="words"
             autoCorrect={false}
+            multiline
             value={description}
             onChangeText={setDescription}
           />
