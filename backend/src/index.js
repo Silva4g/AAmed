@@ -5,7 +5,6 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const morgan = require("morgan");
 const routes = require("./routes");
-const path = require("path");
 const socketio = require("socket.io");
 const http = require("http");
 
@@ -33,10 +32,7 @@ io.on("connection", (socket) => {
   }
   socket.on("user_solicitation", (data) => {
     const { user, description } = data;
-    if (connectedUsers[user._id] === undefined) {
-      console.log("nao existe esse socket");
-      connectedUsers[user._id] = socket.id;
-    }
+    connectedUsers[user._id] = socket.id;
     data.hospital_ids.map((ids) => {
       const ownerSocket = connectedUsers[ids];
       if (ownerSocket) {
@@ -70,10 +66,10 @@ app.use(
 //uso do json para envio e recebimento de dados
 app.use(express.json());
 //url de fotos
-app.use(
-  "/files",
-  express.static(path.resolve(__dirname, "..", "tmp", "uploads"))
-);
+// app.use(
+//   "/files",
+//   express.static(path.resolve(__dirname, "..", "tmp", "uploads"))
+// );
 app.use(routes);
 //log de requisições http
 app.use(morgan("dev"));

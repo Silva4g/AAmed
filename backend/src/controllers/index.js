@@ -4,7 +4,6 @@ const SearchHospital = require("./SearchHospital");
 const SupportController = require("./SupportController");
 const SolicitaionController = require("./SolicitationController");
 const ApprovalController = require("./ApprovalController");
-const RejectionController = require("./RejectionController");
 const SessionController = require("./SessionController");
 const ProfileController = require("./ProfileController");
 module.exports = {
@@ -14,7 +13,6 @@ module.exports = {
   SupportController,
   SolicitaionController,
   ApprovalController,
-  RejectionController,
   SessionController,
   ProfileController,
 };
