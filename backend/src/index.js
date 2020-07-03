@@ -31,14 +31,24 @@ io.on("connection", (socket) => {
     connectedUsers[user_id] = socket.id;
   }
   socket.on("user_solicitation", (data) => {
-    const { user, description } = data;
+    const { user, description, currentLocation } = data;
     connectedUsers[user._id] = socket.id;
     data.hospital_ids.map((ids) => {
       const ownerSocket = connectedUsers[ids];
       if (ownerSocket) {
-        socket.to(ownerSocket).emit("aviso", { user, description }); //aqui os hospitais perto vão receber esse chamado
+        socket
+          .to(ownerSocket)
+          .emit("aviso", { user, description, currentLocation }); //aqui os hospitais perto vão receber esse chamado
       }
     });
+  });
+
+  socket.on("arrived", (data) => {
+    const { hospital_id, arrived, user } = data;
+    const ownerSocket = connectedUsers[hospital_id];
+    if (ownerSocket) {
+      socket.to(ownerSocket).emit("arrived_web", { arrived, user });
+    }
   });
 
   socket.on("accept", (data) => {

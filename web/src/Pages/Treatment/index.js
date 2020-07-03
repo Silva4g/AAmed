@@ -56,6 +56,7 @@ export default function Treatment({ match }) {
             email={treat.hospital.email}
             username={treat.user.name}
             bio={treat.user.bio}
+            description={treat.description}
             date={new Date(treat.createdAt).toLocaleDateString("pt-br", {
               day: "numeric",
               month: "long",

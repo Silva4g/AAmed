@@ -9,6 +9,7 @@ export default function TreatmentModal({
   username,
   bio,
   date,
+  description,
 }) {
   return (
     <>
@@ -18,6 +19,7 @@ export default function TreatmentModal({
             <h2>Hospital:</h2>
             <h2>Telefone:</h2>
             <h2>E-mail:</h2>
+            <h2>Descrição:</h2>
             <h2>Usuário atendido:</h2>
             <h2>Bio do usuário:</h2>
             <h2>Hora e data:</h2>
@@ -26,6 +28,7 @@ export default function TreatmentModal({
             <h2>{name}</h2>
             <h2>{phone}</h2>
             <h2>{email}</h2>
+            <h2>{description}</h2>
             <h2>{username}</h2>
             <h2 style={{ paddingTop: 20 }}>{bio}</h2>
             <h2>{date}</h2>

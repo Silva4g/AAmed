@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import socketio from "socket.io-client";
 import { IoMdSettings } from "react-icons/io";
@@ -24,14 +24,15 @@ export default function Logged({ match }) {
   const [solicitationUser, setSolicitationUser] = useState("");
 
   const [userAccept, setUserAccept] = useState(false);
+  const [arrived, setArrived] = useState(false);
+  const [userTreatment, setUserTreatment] = useState([]);
 
   const { push } = useHistory();
 
-  const socket = useMemo(() => socketio("http://localhost:3333", {
-    query: { hospital_id: id },
-  }), [id]);
-
   useEffect(() => {
+    const socket = socketio("http://localhost:3333", {
+      query: { hospital_id: id },
+    });
     setSocketAll(socket);
     socket.on("aviso", (data) => {
       setUser([...user, data]);
@@ -47,6 +48,11 @@ export default function Logged({ match }) {
         setUserAccept(true);
       }
     });
+    socket.on("arrived_web", (data) => {
+      data.arrived ? setArrived(true) : setArrived(false);
+      setTest(acceptUser.filter((users) => users.user._id !== data.user._id));
+      setUserTreatment([...userTreatment, data.user]);
+    });
   }, [id, match.params.id, solicitationUser, user]);
 
   function handleClick() {
@@ -60,14 +66,18 @@ export default function Logged({ match }) {
     push("/");
   }
 
-  async function accept(id) {
+  async function accept(id, desc) {
     try {
-      await api.post(`/solicitations/${id}/approvals`, null, {
-        headers: { hospital_id: match.params.id },
-        withCredentials: true,
-      });
+      await api.post(
+        `/solicitations/${id}/approvals`,
+        { description: desc },
+        {
+          headers: { hospital_id: match.params.id },
+          withCredentials: true,
+        }
+      );
       setSolicitationUser(id);
-      socket.emit("accept", {
+      socketAll.emit("accept", {
         hospital_id: match.params.id,
         user_accept: id,
       });
@@ -77,6 +87,10 @@ export default function Logged({ match }) {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  function hasAttended(id) {
+    setUserTreatment(userTreatment.filter((users) => users._id !== id));
   }
 
   function reject(id) {
@@ -111,7 +125,9 @@ export default function Logged({ match }) {
             </label>
             <ul className="info-config">
               <Link to="/update">Atualizar</Link>
-              <Link to="/changepassword">Trocar senha</Link>
+              <Link to={`/changepassword/${match.params.id}`}>
+                Trocar senha
+              </Link>
               <Link to="/deleteaccount">Excluir conta</Link>
             </ul>
           </div>
@@ -136,8 +152,11 @@ export default function Logged({ match }) {
               <div className="user-help" key={i}>
                 <span>{users.user.name} está solicitando uma ajuda!</span>
                 <span>Descrição: {users.description}</span>
+                <span>Localização: {users.currentLocation}</span>
                 <div>
-                  <button onClick={() => accept(users.user._id)}>
+                  <button
+                    onClick={() => accept(users.user._id, users.description)}
+                  >
                     Aceitar
                   </button>
                   <button onClick={() => reject(users.user._id)}>
@@ -147,7 +166,7 @@ export default function Logged({ match }) {
               </div>
             ))}
         </div>
-        <div className="atendimento">
+        <div className="caminho">
           <h2>A caminho</h2>
           {userAccept &&
             testUser.map((users, i) => (
@@ -156,6 +175,20 @@ export default function Logged({ match }) {
                   {users.user.name} está foi aceito e chegará em breve!
                 </span>
                 <span>Descrição: {users.description}</span>
+              </div>
+            ))}
+        </div>
+        <div className="atendimento">
+          <h2>Em atendimento</h2>
+          {arrived &&
+            userTreatment.map((user, i) => (
+              <div className="user-help" key={i}>
+                <span>{user.name} está em atendimento</span>
+                <div>
+                  <button onClick={() => hasAttended(user._id)}>
+                    Atendido
+                  </button>
+                </div>
               </div>
             ))}
         </div>
