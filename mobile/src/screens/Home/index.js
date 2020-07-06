@@ -25,6 +25,7 @@ import {
   getCurrentPositionAsync,
   watchPositionAsync,
   Accuracy,
+  reverseGeocodeAsync,
 } from "expo-location";
 
 // import CustomHeader from "../../components/CustomHeader";
@@ -36,17 +37,20 @@ import axios from "axios";
 const GOOGLE_MAPS_APIKEY = "AIzaSyBAJxkbJDUINqKFwXs-WGy-S7W-yD2ueJ4";
 
 export default function Home() {
+  const navigation = useNavigation();
+
   const [hospitals, setHospitals] = useState([]);
   const [user, setUser] = useState(null || "");
   const [currentRegion, setCurrentRegion] = useState(null);
   const [regionChange, setRegionChange] = useState(null);
+  const [currentLocation, setCurrentLocation] = useState(null);
   const [description, setDescription] = useState("");
-  const navigation = useNavigation();
   const [connection, setConnection] = useState(null);
   const [isActiveButton, setIsActiveButton] = useState(false);
   const [modal, setModal] = useState(false);
   const [approved, setApproved] = useState(false);
   const [hospitalName, setHospitalName] = useState("");
+  const [hospitalDest, setHospitalDest] = useState({});
   const [distance, setDistance] = useState("");
   const [duration, setDuration] = useState("");
 
@@ -54,11 +58,16 @@ export default function Home() {
   // let conn;
 
   useEffect(() => {
+<<<<<<< HEAD
     const conn = io("http://192.168.0.53:3333", {
+=======
+    const conn = io("http://10.0.0.200:3333", {
+>>>>>>> 6175107537f9f2662388c6a5bb9b7cbc2556b257
       query: { user_id: user._id },
     });
     setConnection(conn);
     conn.on("solicitation_response", (data) => {
+      setHospitalDest(data);
       setHospitalName(data.hospital.name);
       data.approved ? setApproved(true) : setApproved(false);
       setDestination({
@@ -97,6 +106,7 @@ export default function Home() {
       hospital_ids,
       user,
       description,
+      currentLocation,
     });
     Alert.alert(
       "Solicitação enviada",
@@ -108,7 +118,7 @@ export default function Home() {
     setModal(true);
     setTimeout(() => {
       setIsActiveButton(false);
-    }, 60000);
+    }, 1000);
   }
 
   // função que vai carregar a posição inicial do paciente no mapa
@@ -120,7 +130,6 @@ export default function Home() {
         const { coords } = await getCurrentPositionAsync({
           enableHighAccuracy: true,
         });
-
         const { latitude, longitude } = coords;
         setCurrentRegion({
           latitude,
@@ -128,6 +137,20 @@ export default function Home() {
           latitudeDelta: 0.014,
           longitudeDelta: 0.014,
         });
+
+        fetch(
+          "https://maps.googleapis.com/maps/api/geocode/json?address=" +
+            latitude +
+            "," +
+            longitude +
+            "&key=" +
+            GOOGLE_MAPS_APIKEY
+        )
+          .then((response) => response.json())
+          .then((responseJson) => {
+            setCurrentLocation(responseJson.results[0].formatted_address);
+            console.log(currentLocation);
+          });
       }
     }
 
@@ -146,7 +169,11 @@ export default function Home() {
           calculateDistance(data.coords, destination) == 0.01 ||
           calculateDistance(data.coords, destination) == 0.02
         ) {
-          console.log("chegou");
+          connection.emit("arrived", {
+            hospital_id: hospitalDest.hospital._id,
+            user,
+            arrived: true,
+          });
           setApproved(false);
           setDestination({ latitude: 0, longitude: 0 });
           setModal(!modal);
@@ -156,6 +183,7 @@ export default function Home() {
       }
     }
   );
+
   function rad(x) {
     return (x * Math.PI) / 180;
   }

@@ -117,7 +117,10 @@ input:checked ~ .info-config a {
   width: 50%;
   margin: 25px 0;
 }
-.treatments div:nth-child(1) {
+.treatments .espera {
+  border-right: 1.5px solid rgb(95, 94, 94);
+}
+.treatments .caminho {
   border-right: 1.5px solid rgb(95, 94, 94);
 }
 .treatments div h2 {

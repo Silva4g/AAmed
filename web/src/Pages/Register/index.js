@@ -312,26 +312,6 @@ export default function Register(props) {
                     }
                   />
                 </div>
-                <div className="termos">
-                  <div>
-                    <label htmlFor="termos">Aceitar termos de cadastro</label>
-                    <input
-                      type="checkbox"
-                      id="termos"
-                      checked={check}
-                      onChange={changeCheck}
-                    />
-                  </div>
-                  {check ? (
-                    ""
-                  ) : (
-                    <span className="error">Você deve aceitar os termos</span>
-                  )}
-                  <div>
-                    <span>Termos de cadastro do sistema: </span>
-                    <Link to="/terms">Veja nossos termos para cadastro</Link>
-                  </div>
-                </div>
                 <button type="submit">Cadastrar</button>
               </form>
             </div>

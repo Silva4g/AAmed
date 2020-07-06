@@ -5,7 +5,6 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const morgan = require("morgan");
 const routes = require("./routes");
-const path = require("path");
 const socketio = require("socket.io");
 const http = require("http");
 
@@ -32,17 +31,24 @@ io.on("connection", (socket) => {
     connectedUsers[user_id] = socket.id;
   }
   socket.on("user_solicitation", (data) => {
-    const { user, description } = data;
-    if (connectedUsers[user._id] === undefined) {
-      console.log("nao existe esse socket");
-      connectedUsers[user._id] = socket.id;
-    }
+    const { user, description, currentLocation } = data;
+    connectedUsers[user._id] = socket.id;
     data.hospital_ids.map((ids) => {
       const ownerSocket = connectedUsers[ids];
       if (ownerSocket) {
-        socket.to(ownerSocket).emit("aviso", { user, description }); //aqui os hospitais perto vão receber esse chamado
+        socket
+          .to(ownerSocket)
+          .emit("aviso", { user, description, currentLocation }); //aqui os hospitais perto vão receber esse chamado
       }
     });
+  });
+
+  socket.on("arrived", (data) => {
+    const { hospital_id, arrived, user } = data;
+    const ownerSocket = connectedUsers[hospital_id];
+    if (ownerSocket) {
+      socket.to(ownerSocket).emit("arrived_web", { arrived, user });
+    }
   });
 
   socket.on("accept", (data) => {
@@ -70,10 +76,10 @@ app.use(
 //uso do json para envio e recebimento de dados
 app.use(express.json());
 //url de fotos
-app.use(
-  "/files",
-  express.static(path.resolve(__dirname, "..", "tmp", "uploads"))
-);
+// app.use(
+//   "/files",
+//   express.static(path.resolve(__dirname, "..", "tmp", "uploads"))
+// );
 app.use(routes);
 //log de requisições http
 app.use(morgan("dev"));

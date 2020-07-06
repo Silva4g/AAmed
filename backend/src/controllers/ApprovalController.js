@@ -6,6 +6,7 @@ module.exports = {
   async store(req, res) {
     const { user_id } = req.params;
     const { hospital_id } = req.headers;
+    const { description } = req.body;
     if (!(await User.findById(user_id))) {
       return res.status(400).send({ error: "Usuário não existe" });
     }
@@ -18,13 +19,8 @@ module.exports = {
       user: user_id,
       hospital: hospital_id,
       approved: true,
+      description,
     });
-
-    // const { approved } = await Solicitation.findOne({ user: user_id });
-    // if (approved) {
-    //   console.log("ja foi atendido");
-    //   return res.status(400).send({ error: "Usuário já foi atendido!" });
-    // }
 
     const userID = await solicitation
       .populate("hospital")
