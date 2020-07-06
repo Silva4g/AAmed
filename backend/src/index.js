@@ -51,6 +51,16 @@ io.on("connection", (socket) => {
     }
   });
 
+  socket.on("arrived_manually", (data) => {
+    const { arrived, user_id } = data;
+    const ownerSocket = connectedUsers[user_id];
+    if (ownerSocket) {
+      socket
+        .to(ownerSocket)
+        .emit("arrived__manually_mobile", { arrived_mobile: arrived });
+    }
+  });
+
   socket.on("accept", (data) => {
     io.sockets.emit("filter", data);
   });

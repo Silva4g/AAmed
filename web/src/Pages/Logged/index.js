@@ -175,6 +175,36 @@ export default function Logged({ match }) {
                   {users.user.name} está foi aceito e chegará em breve!
                 </span>
                 <span>Descrição: {users.description}</span>
+                <div>
+                  <button
+                    onClick={() => {
+                      setTest(
+                        testUser.filter(
+                          (usr) => usr.user._id !== users.user._id
+                        )
+                      );
+                      setArrived(true);
+                      setUserTreatment([...userTreatment, users.user]);
+                      socketAll.emit("arrived_manually", {
+                        user_id: users.user._id,
+                        arrived: true,
+                      });
+                    }}
+                  >
+                    Chegou
+                  </button>
+                  <button
+                    onClick={() => {
+                      setTest(
+                        testUser.filter(
+                          (usr) => usr.user._id !== users.user._id
+                        )
+                      );
+                    }}
+                  >
+                    Não chegou
+                  </button>
+                </div>
               </div>
             ))}
         </div>

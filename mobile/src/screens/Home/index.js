@@ -25,14 +25,12 @@ import {
   getCurrentPositionAsync,
   watchPositionAsync,
   Accuracy,
-  reverseGeocodeAsync,
 } from "expo-location";
 
 // import CustomHeader from "../../components/CustomHeader";
 import styles from "./styles.js";
 import api from "../../services/api";
 import { Header } from "../../components/Header/index";
-import axios from "axios";
 
 const GOOGLE_MAPS_APIKEY = "AIzaSyBAJxkbJDUINqKFwXs-WGy-S7W-yD2ueJ4";
 
@@ -58,11 +56,7 @@ export default function Home() {
   // let conn;
 
   useEffect(() => {
-<<<<<<< HEAD
-    const conn = io("http://192.168.0.53:3333", {
-=======
     const conn = io("http://10.0.0.200:3333", {
->>>>>>> 6175107537f9f2662388c6a5bb9b7cbc2556b257
       query: { user_id: user._id },
     });
     setConnection(conn);
@@ -74,6 +68,17 @@ export default function Home() {
         latitude: data.hospital.location.coordinates[1],
         longitude: data.hospital.location.coordinates[0],
       });
+    });
+
+    conn.on("arrived__manually_mobile", (data) => {
+      const { arrived_mobile } = data;
+      if (arrived_mobile) {
+        setDuration("");
+        setDistance("");
+        setDestination({ latitude: 0, longitude: 0 });
+        setModal(false);
+        setApproved(false);
+      }
     });
   }, []);
 
