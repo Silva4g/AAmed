@@ -54,7 +54,7 @@ export default function Home() {
   // let conn;
 
   useEffect(() => {
-    const conn = io("http://192.168.15.2:3333", {
+    const conn = io("http://192.168.0.53:3333", {
       query: { user_id: user._id },
     });
     setConnection(conn);
