@@ -51,10 +51,9 @@ export default function Treatment({ match }) {
         return (
           <TreatmentModal
             key={treat._id}
-            name={treat.hospital.name}
-            phone={treat.hospital.phone}
-            email={treat.hospital.email}
-            username={treat.user.name}
+            name={treat.user.name}
+            cpf={treat.user.cpf}
+            email={treat.user.email}
             bio={treat.user.bio}
             description={treat.description}
             date={new Date(treat.createdAt).toLocaleDateString("pt-br", {

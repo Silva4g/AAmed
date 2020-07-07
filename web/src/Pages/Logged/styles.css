@@ -102,7 +102,7 @@ input:checked ~ .info-config a {
   text-align: center;
   padding: 15px;
   border-radius: 8px;
-  background-color: #0d9ddb;
+  background-color: #e82c2c;
   transition: all 0.5s;
 }
 .logout span:hover {
@@ -134,7 +134,7 @@ input:checked ~ .info-config a {
   border-bottom: 1.5px solid #999;
 }
 .user-help span {
-  font-size: 18px;
+  font-size: 16px;
   margin: 5px 0;
 }
 .user-help div {
@@ -145,18 +145,27 @@ input:checked ~ .info-config a {
 .user-help div button {
   outline: none;
   border: none;
-  padding: 10px 15px;
+  padding: 9px 20px;
   border-radius: 4px;
   cursor: pointer;
   background-color: #0d9ddb;
   color: #fff;
   text-transform: uppercase;
-  font-size: 18px;
-  transition: 0.4s all;
+  font-size: 13px;
+  transition: filter 0.4s;
 }
-.user-help div button:nth-child(1):hover {
+
+.user-help div button:nth-child(1){
   background-color: #10b341;
 }
-.user-help div button:nth-child(2):hover {
+
+.user-help div button:nth-child(2){
   background-color: #e82c2c;
+}
+
+.user-help div button:nth-child(1):hover {
+  filter: brightness(90%);
+}
+.user-help div button:nth-child(2):hover {
+  filter: brightness(80%);
 }
