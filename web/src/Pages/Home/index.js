@@ -3,7 +3,10 @@ import { useHistory } from "react-router-dom";
 
 import { Slide } from "../../components";
 
-import "./styles.css";
+import illustration from '../../assets/undraw_medicine.svg';
+import aamed from '../../assets/aamed.svg';
+
+import { Main, Container } from "./styles.js";
 import Menu from "../../components/Menu";
 import api from "../../services/api";
 
@@ -35,51 +38,15 @@ export default function Home() {
   return (
     <>
       <Menu />
-
-      <div className="slide">
-        <Slide />
-      </div>
-
-      <div className="patrocinios">
-        <h1>PATROCÍNIOS</h1>
-        <div className="patrocinios-list">
-          <div className="pat-respon">
-            <img
-              src={require("../../assets/sus.png")}
-              alt="SUS - Sistema Único de Saúde"
-              title="SUS - Sistema Único de Saúde"
-            />
-          </div>
-          <div className="pat-respon">
-            <img
-              src={require("../../assets/sebrae.png")}
-              alt="SEBRAE"
-              title="SEBRAE"
-            />
-          </div>
-          <div className="pat-respon">
-            <img
-              src={require("../../assets/unimed2.png")}
-              alt="Unimed"
-              title="Unimed"
-            />
-          </div>
-          <div className="pat-respon">
-            <img
-              src={require("../../assets/google_maps_2020.png")}
-              alt="Google Maps"
-              title="Google Maps"
-            />
-          </div>
-          <div className="pat-respon">
-            <img
-              src={require("../../assets/unicamp.png")}
-              alt="Unicamp"
-              title="Unicamp"
-            />
-          </div>
-        </div>
-      </div>
+      <Container>
+        <Main>
+          <img src={aamed} alt="AAMed"/>
+          <h2>
+            Atendimento e Agilidade Médica
+          </h2> 
+        </Main>
+          <img src={illustration} alt="Médicos"/>
+      </Container>
     </>
   );
 }
