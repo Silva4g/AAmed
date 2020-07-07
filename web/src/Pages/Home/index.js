@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-import { Slide } from "../../components";
-
 import illustration from '../../assets/undraw_medicine.svg';
 import aamed from '../../assets/aamed.svg';
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import api from "../../services/api";
 import Menu from "../../components/Menu";
@@ -35,11 +35,11 @@ export default function Register(props) {
   const [error, setError] = useState(null);
   const [show, setShow] = useState(false);
 
-  function changeCheck(e) {
-    const target = e.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    setCheck(value);
-  }
+  // function changeCheck(e) {
+  //   const target = e.target;
+  //   const value = target.type === "checkbox" ? target.checked : target.value;
+  //   setCheck(value);
+  // }
 
   async function handleForm(e) {
     e.preventDefault();
