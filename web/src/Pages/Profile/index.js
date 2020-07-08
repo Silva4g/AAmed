@@ -76,8 +76,8 @@ export default function Profile(props) {
       <div className="profile">
         <div className="container-profile">
           <div className="container-top">
-            <div>
-              <img src={require("../../assets/logo.png")} alt="" />
+            <div className="container-img">
+              <img src={require("../../assets/icon.png")} alt="" />
             </div>
             <div>
               <span>
