@@ -1,10 +1,14 @@
 import React from "react";
 import "./styles.css";
-import { FaFacebookF, FaLinkedin, FaTwitter, FaInstagram } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaLinkedin,
+  FaTwitter,
+  FaInstagram,
+} from "react-icons/fa";
 
 export default function Rodape() {
   return (
-
     <div className="rodape">
       <div className="sub_rodape">
         <div className="redes_sociais">
@@ -44,7 +48,7 @@ export default function Rodape() {
         </div>
         <div>
           <ul>
-            <span className="fast_Help">Fast Help</span>
+            <span className="fast_Help">AAMed</span>
 
             <li>Certificações</li>
             <li>Membros</li>
@@ -67,7 +71,6 @@ export default function Rodape() {
           </ul>
         </div>
       </div>
-
     </div>
   );
-};
+}

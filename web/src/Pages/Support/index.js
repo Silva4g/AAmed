@@ -70,7 +70,7 @@ export default function Support() {
 
       <div className="content-support">
         <div>
-          <h2>Suporte do 1° Socorros</h2>
+          <h2>Suporte AAMed</h2>
           <span>O que nós podemos fazer por você?</span>
           <a href="#form-support">Entre em contato conosco! :)</a>
         </div>
