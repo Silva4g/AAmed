@@ -1,4 +1,4 @@
-const Hospital = require("../models/Hospital");
+const Hospital = require('../models/Hospital');
 
 module.exports = {
   //trazer hospitais por perto em torno de 10km atraves da url(query)
@@ -14,7 +14,7 @@ module.exports = {
             //variaveis do mongo
             $near: {
               $geometry: {
-                type: "Point",
+                type: 'Point',
                 coordinates: [longitude, latitude],
               },
               $maxDistance: 30000,
@@ -27,7 +27,7 @@ module.exports = {
             //variaveis do mongo
             $near: {
               $geometry: {
-                type: "Point",
+                type: 'Point',
                 coordinates: [longitude, latitude],
               },
               $maxDistance: 30000,
@@ -40,7 +40,7 @@ module.exports = {
     } catch (err) {
       return res
         .status(400)
-        .send({ error: "Erro na busca de hospitais: " + err });
+        .send({ error: 'Erro na busca de hospitais: ' + err });
     }
   },
 };

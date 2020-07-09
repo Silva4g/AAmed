@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-import logo from "../../assets/icon.png";
-import "./styles.css";
-import $ from "jquery";
-import { findDOMNode } from "react-dom";
+import logo from '../../assets/icon.png';
+import './styles.css';
+import $ from 'jquery';
+import { findDOMNode } from 'react-dom';
 
 export default class Menu extends Component {
   componentDidMount() {
@@ -14,9 +14,9 @@ export default class Menu extends Component {
       var node = findDOMNode(this.refs.btn);
       var links = findDOMNode(this.refs.links);
 
-      node.addEventListener("click", () => {
-        links.classList.toggle("nav-active");
-        node.classList.toggle("toggle");
+      node.addEventListener('click', () => {
+        links.classList.toggle('nav-active');
+        node.classList.toggle('toggle');
       });
 
       var lastScroll = 0;
@@ -24,9 +24,9 @@ export default class Menu extends Component {
       $(window).scroll(function (e) {
         var st = $(this).scrollTop();
         if (st > lastScroll) {
-          $(el).css("transform", "translateY(-120px)");
+          $(el).css('transform', 'translateY(-120px)');
         } else {
-          $(el).css("transform", "none");
+          $(el).css('transform', 'none');
         }
         lastScroll = st;
       });

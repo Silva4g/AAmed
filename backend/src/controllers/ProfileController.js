@@ -1,6 +1,6 @@
-const Hospital = require("../models/Hospital");
-const jwt = require("jsonwebtoken");
-const config = require("../config/auth.json");
+const Hospital = require('../models/Hospital');
+const jwt = require('jsonwebtoken');
+const config = require('../config/auth.json');
 
 module.exports = {
   /**
@@ -16,7 +16,7 @@ module.exports = {
         hospital = await Hospital.findById(id_hospital);
       }
       if (!hospital) {
-        return res.status(400).send({ error: "Hospital não autenticado" });
+        return res.status(400).send({ error: 'Hospital não autenticado' });
       }
 
       return res.json({ hospital });
@@ -35,12 +35,12 @@ module.exports = {
       const hospital = await Hospital.findById(id_hospital);
 
       if (!hospital) {
-        return res.status(400).send({ error: "Hospital não encontrado" });
+        return res.status(400).send({ error: 'Hospital não encontrado' });
       }
 
-      res.clearCookie("token_access");
-      res.clearCookie("id_hospital");
-      res.removeHeader("id");
+      res.clearCookie('token_access');
+      res.clearCookie('id_hospital');
+      res.removeHeader('id');
       return res.status(200).end();
     } catch (error) {
       return res.status(400).send({ error: `Erro: ${error}` });
@@ -57,11 +57,11 @@ module.exports = {
       const hospital = await Hospital.findById(id_hospital);
 
       if (!hospital) {
-        return res.status(401).send({ error: "Hospital não encontrado!" });
+        return res.status(401).send({ error: 'Hospital não encontrado!' });
       }
 
-      res.setHeader("id", hospital._id);
-      return res.json({ auth: "isAuth" });
+      res.setHeader('id', hospital._id);
+      return res.json({ auth: 'isAuth' });
     } catch (error) {
       return res.status(400).send({ error: `Erro: ${error}` });
     }
@@ -75,7 +75,7 @@ module.exports = {
     try {
       const { token_access } = req.cookies;
       if (!jwt.verify(token_access, config.secret)) {
-        return res.status(401).send({ error: "Hospital não autenticado!" });
+        return res.status(401).send({ error: 'Hospital não autenticado!' });
       }
       return res.send({ token: token_access });
     } catch (error) {

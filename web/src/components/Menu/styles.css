@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
 img {
   max-width: 100%;
 }
@@ -19,6 +19,8 @@ a {
 
 .menu {
   width: 100%;
+  max-width: 2290px;
+  margin: 0 auto;
   transition: transform 0.3s ease;
   height: 120px;
   position: fixed;
@@ -55,17 +57,36 @@ a {
 }
 
 .itemsMenu ul li a {
+  position: relative;
   color: #52c8fa;
   font-size: 22px;
-  padding: 6px 12px;
+  /* padding: 6px 12px; */
   font-weight: 700;
   text-rendering: optimizeLegibility;
   transition: 0.3s all;
   letter-spacing: 2px;
+  margin-left: 20px;
+}
+
+.itemsMenu ul li a::before {
+  content: '';
+  width: 0px;
+  height: 2px;
+  background: #2196f3;
+  border-radius: 5px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  transition: 0.4s;
+}
+
+.itemsMenu ul li:hover a::before {
+  width: 50%;
+  transform: translateX(50%);
 }
 
 .itemsMenu ul li a:hover {
-  color: #7a7a7a;
+  color: #2196f3;
 }
 
 .signInUp > a,

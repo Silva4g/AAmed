@@ -1,10 +1,21 @@
-import styled from "styled-components";
+import styled, { keyframes } from 'styled-components';
+
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
 
 export const Container = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
   align-content: space-between;
+  justify-content: center;
+  animation: 500ms ${fadeIn} ease-in;
   img {
     width: 800px;
   }
@@ -42,6 +53,7 @@ export const ListInfo = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  animation: 500ms ${fadeIn} ease-in;
 `;
 export const Card = styled.div`
   height: 80%;
@@ -81,6 +93,7 @@ export const InstallApp = styled.div`
   flex-wrap: wrap;
   justify-content: space-around;
   cursor: pointer;
+  animation: 500ms ${fadeIn} ease-in;
 `;
 export const Store = styled.div`
   width: 30%;

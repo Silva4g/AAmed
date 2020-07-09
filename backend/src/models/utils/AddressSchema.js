@@ -9,18 +9,18 @@ const AddressSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  cep:{
+  cep: {
     type: String,
-    required: true
+    required: true,
   },
   neighborhood: {
     type: String,
-    required: true
+    required: true,
   },
   street: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
 module.exports = AddressSchema;

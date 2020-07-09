@@ -155,11 +155,11 @@ input:checked ~ .info-config a {
   transition: filter 0.4s;
 }
 
-.user-help div button:nth-child(1){
+.user-help div button:nth-child(1) {
   background-color: #10b341;
 }
 
-.user-help div button:nth-child(2){
+.user-help div button:nth-child(2) {
   background-color: #e82c2c;
 }
 

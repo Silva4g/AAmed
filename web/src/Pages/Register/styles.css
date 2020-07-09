@@ -11,7 +11,7 @@
   left: 0;
   width: 100%;
   height: 60px;
-  background: url("../../assets/wave.png");
+  background: url('../../assets/wave.png');
   background-size: 1000px 100px;
 }
 
@@ -61,7 +61,7 @@
   justify-content: space-around;
   background-image: linear-gradient(
     141deg,
-    #9fb8ad 0%,
+    #8acae2 0%,
     #1fc8db 51%,
     #2cb5e8 75%
   );
@@ -158,6 +158,7 @@
   color: #fff;
   font-size: 18px;
   margin: 10px auto;
+  transition: 0.3s;
 }
 
 .form-register > div input:nth-child(1),

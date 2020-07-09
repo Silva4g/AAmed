@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const SolicitationSchema = new mongoose.Schema(
   {
@@ -6,14 +6,14 @@ const SolicitationSchema = new mongoose.Schema(
     approved: Boolean,
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
     },
     hospital: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Hospital",
+      ref: 'Hospital',
     },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Solicitation", SolicitationSchema);
+module.exports = mongoose.model('Solicitation', SolicitationSchema);

@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { IoMdArrowRoundBack } from "react-icons/io";
+import React, { useEffect, useState } from 'react';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 
-import api from "../../services/api";
+import api from '../../services/api';
 
-import "./styles.css";
-import { HospitalModal } from "../../components";
+import './styles.css';
+import { HospitalModal } from '../../components';
 
 export default function Hospitals(props) {
-  document.title = "AAMed - Hospitais por perto";
+  document.title = 'AAMed - Hospitais por perto';
   const [hospitals, setHospitals] = useState([]);
-  const [nameLogged, setNamelogged] = useState("");
+  const [nameLogged, setNamelogged] = useState('');
   const [modal, setModal] = useState(null);
   const [idClick, setIdclick] = useState(null);
 
   useEffect(() => {
     async function getHospitals10() {
-      const hospitalLogged = await api.get("/hospital/home", {
+      const hospitalLogged = await api.get('/hospital/home', {
         withCredentials: true,
       });
       const { location, _id, name } = hospitalLogged.data.hospital;
@@ -24,7 +24,7 @@ export default function Hospitals(props) {
       const longitude = location.coordinates[0];
       const latitude = location.coordinates[1];
 
-      const response = await api.get("/search", {
+      const response = await api.get('/search', {
         headers: {
           hospital: _id,
         },
@@ -58,7 +58,7 @@ export default function Hospitals(props) {
         </div>
         <div>
           <img
-            src={require("../../assets/profile.png")}
+            src={require('../../assets/profile.png')}
             alt="Gerenciamento de hospitais por perto"
             title="Encontre hospitais por perto"
           />
@@ -93,7 +93,7 @@ export default function Hospitals(props) {
             </button>
           </>
         ) : (
-          ""
+          ''
         )}
       </div>
     </>

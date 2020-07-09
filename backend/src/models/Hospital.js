@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const PointSchema = require("./utils/PointSchema");
-const AddressSchema = require("./utils/AddressSchema");
-const bcrypt = require("bcryptjs");
+const mongoose = require('mongoose');
+const PointSchema = require('./utils/PointSchema');
+const AddressSchema = require('./utils/AddressSchema');
+const bcrypt = require('bcryptjs');
 
 const HospitalSchema = new mongoose.Schema({
   email: {
@@ -38,13 +38,13 @@ const HospitalSchema = new mongoose.Schema({
   },
   location: {
     type: PointSchema,
-    index: "2dsphere",
+    index: '2dsphere',
   },
 });
 //antes de salvar no banco, faz um hash na senha do hospital (encriptando)
-HospitalSchema.pre("save", async function (next) {
+HospitalSchema.pre('save', async function (next) {
   const hash = await bcrypt.hash(this.password, 10);
   this.password = hash;
   next();
 });
-module.exports = mongoose.model("Hospital", HospitalSchema);
+module.exports = mongoose.model('Hospital', HospitalSchema);

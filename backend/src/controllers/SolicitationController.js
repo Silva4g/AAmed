@@ -1,10 +1,10 @@
-const Solicitation = require("../models/Solicitation");
+const Solicitation = require('../models/Solicitation');
 
 module.exports = {
   async index(req, res) {
     const solicitation = await Solicitation.find()
-      .populate("hospital")
-      .populate("user")
+      .populate('hospital')
+      .populate('user')
       .exec();
 
     return res.json(solicitation);
@@ -21,7 +21,7 @@ module.exports = {
       description,
     });
 
-    await solicitation.populate("hospital").populate("user").execPopulate();
+    await solicitation.populate('hospital').populate('user').execPopulate();
 
     return res.json(solicitation);
   },
@@ -32,8 +32,8 @@ module.exports = {
     const solicitation = await Solicitation.find({
       $or: [{ user: id }, { hospital: id }],
     })
-      .populate("hospital")
-      .populate("user")
+      .populate('hospital')
+      .populate('user')
       .exec();
 
     return res.json(solicitation);
@@ -52,7 +52,7 @@ module.exports = {
       user: user_id,
     });
     if (!solicitation) {
-      return res.status(400).send({ error: "Não há registros" });
+      return res.status(400).send({ error: 'Não há registros' });
     }
     return res.json({
       hospital_id: solicitation.hospital,

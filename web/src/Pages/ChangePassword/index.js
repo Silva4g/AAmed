@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import { IoMdArrowRoundBack } from "react-icons/io";
+import { IoMdArrowRoundBack } from 'react-icons/io';
 
-import "./styles.css";
-import api from "../../services/api";
+import './styles.css';
+import api from '../../services/api';
 
 export default function ChangePass({ history, match }) {
-  document.title = "AAMed - Trocar de senha";
+  document.title = 'AAMed - Trocar de senha';
 
-  const [oldPassword, setOldPassword] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [name, setName] = useState("");
+  const [oldPassword, setOldPassword] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [name, setName] = useState('');
 
   useEffect(() => {
     async function loadHospital() {
-      const hospital = await api.get("/hospital/home", {
+      const hospital = await api.get('/hospital/home', {
         withCredentials: true,
       });
 
@@ -32,10 +32,10 @@ export default function ChangePass({ history, match }) {
         password,
         oldPassword,
       })
-      .then((response) => {
+      .then(response => {
         history.push(`/home/${match.params.id}`);
       })
-      .catch((err) => {
+      .catch(err => {
         setError(err.response.data.error);
       });
   }
@@ -60,7 +60,7 @@ export default function ChangePass({ history, match }) {
         </div>
         <div>
           <img
-            src={require("../../assets/profile.png")}
+            src={require('../../assets/profile.png')}
             alt="Suporte do 1° Socorros"
             title="Suporte do 1° Socorros"
           />
@@ -79,7 +79,7 @@ export default function ChangePass({ history, match }) {
             type="password"
             name="old-password"
             id="old-password"
-            onChange={(e) => setOldPassword(e.target.value)}
+            onChange={e => setOldPassword(e.target.value)}
             value={oldPassword}
           />
         </div>
@@ -89,7 +89,7 @@ export default function ChangePass({ history, match }) {
             type="password"
             name="password"
             id="password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
             value={password}
           />
         </div>

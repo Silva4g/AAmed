@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import { IoMdArrowRoundBack } from "react-icons/io";
+import { IoMdArrowRoundBack } from 'react-icons/io';
 
-import "./styles.css";
-import api from "../../services/api";
+import './styles.css';
+import api from '../../services/api';
 
 export default function Delete({ history }) {
-  document.title = "AAMed - Excluir conta";
+  document.title = 'AAMed - Excluir conta';
 
-  const [id, setId] = useState("");
-  const [pass, setPass] = useState("");
-  const [error, setError] = useState("");
-  const [name, setName] = useState("");
+  const [id, setId] = useState('');
+  const [pass, setPass] = useState('');
+  const [error, setError] = useState('');
+  const [name, setName] = useState('');
 
   useEffect(() => {
     async function loadHospital() {
-      const hospital = await api.get("/hospital/home", {
+      const hospital = await api.get('/hospital/home', {
         withCredentials: true,
       });
 
@@ -35,12 +35,12 @@ export default function Delete({ history }) {
           password: pass,
         },
       })
-      .then((response) => {
+      .then(response => {
         localStorage.clear();
-        history.push("/");
+        history.push('/');
         window.location.reload();
       })
-      .catch((err) => {
+      .catch(err => {
         setError(err.response.data.error);
       });
   }
@@ -65,7 +65,7 @@ export default function Delete({ history }) {
         </div>
         <div>
           <img
-            src={require("../../assets/profile.png")}
+            src={require('../../assets/profile.png')}
             alt="Suporte do 1° Socorros"
             title="Suporte do 1° Socorros"
           />
@@ -84,7 +84,7 @@ export default function Delete({ history }) {
             type="password"
             name="password"
             id="password"
-            onChange={(e) => setPass(e.target.value)}
+            onChange={e => setPass(e.target.value)}
             value={pass}
             placeholder="Confirme sua senha"
           />

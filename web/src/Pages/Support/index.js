@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import api from "../../services/api";
-import Menu from "../../components/Menu";
-import "../Support/styles.css";
+import api from '../../services/api';
+import Menu from '../../components/Menu';
+import '../Support/styles.css';
 
 export default function Support() {
-  document.title = "Suporte AAMed";
+  document.title = 'Suporte AAMed';
 
-  const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
-  const [description, setDescription] = useState("");
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [description, setDescription] = useState('');
 
   // verificações
   const [hasEmail, setHasEmail] = useState(false);
@@ -18,7 +18,7 @@ export default function Support() {
   const [modal, setModal] = useState(false);
   const [show, setShow] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     // verificações
@@ -41,14 +41,14 @@ export default function Support() {
     }
 
     try {
-      await api.post("/support", {
+      await api.post('/support', {
         email,
         subject,
         description,
       });
-      setEmail("");
-      setSubject("");
-      setDescription("");
+      setEmail('');
+      setSubject('');
+      setDescription('');
       setModal(true);
       setTimeout(() => {
         setModal(false);
@@ -60,7 +60,7 @@ export default function Support() {
         setShow(false);
       }, 6000);
       window.scrollTo(0, 0);
-      console.log("Houve um erro " + error);
+      console.log('Houve um erro ' + error);
     }
   };
 
@@ -76,7 +76,7 @@ export default function Support() {
         </div>
         <div>
           <img
-            src={require("../../assets/support.png")}
+            src={require('../../assets/support.png')}
             alt="Suporte AAMed"
             title="Suporte AAMed"
           />
@@ -88,7 +88,7 @@ export default function Support() {
         <div className="support-user">
           <div>
             <img
-              src={require("../../assets/computer.png")}
+              src={require('../../assets/computer.png')}
               alt="Logo notebook - sistema e design"
               title="Sistema e design"
             />
@@ -96,7 +96,7 @@ export default function Support() {
           </div>
           <div>
             <img
-              src={require("../../assets/engine.png")}
+              src={require('../../assets/engine.png')}
               alt="Logo funcionalidades - nossas funcionalidades"
               title="Nossas funcionalidades"
             />
@@ -104,7 +104,7 @@ export default function Support() {
           </div>
           <div>
             <img
-              src={require("../../assets/comunication.png")}
+              src={require('../../assets/comunication.png')}
               alt="Logo ajude-nos a melhorar - ajude-nos a melhorar"
               title="Ajude-nos a melhorar"
             />
@@ -112,7 +112,7 @@ export default function Support() {
           </div>
           <div>
             <img
-              src={require("../../assets/user.png")}
+              src={require('../../assets/user.png')}
               alt="Logo usuários e contas - contas e usuários"
               title="Contas e usuários"
             />
@@ -126,14 +126,14 @@ export default function Support() {
             Formulário enviado com suceso!
           </span>
         ) : (
-          ""
+          ''
         )}
         {show ? (
           <span className="error-support">
             HOUVE UM ERRO INTERNO, POR FAVOR TENTE NOVAMENTE MAIS TARDE!!
           </span>
         ) : (
-          ""
+          ''
         )}
         <div className="content-form-support">
           <h1>Envie uma mensagem para nós!</h1>
@@ -148,12 +148,12 @@ export default function Support() {
                 id="email"
                 placeholder="Email"
                 value={email}
-                onChange={(email) => setEmail(email.target.value)}
+                onChange={email => setEmail(email.target.value)}
               />
               {hasEmail ? (
                 <span className="error-support">Email requerido.</span>
               ) : (
-                ""
+                ''
               )}
             </div>
           </div>
@@ -166,12 +166,12 @@ export default function Support() {
                 id="subject"
                 placeholder="Assunto"
                 value={subject}
-                onChange={(e) => setSubject(e.target.value)}
+                onChange={e => setSubject(e.target.value)}
               />
               {hasSubject ? (
                 <span className="error-support">Assunto requerido.</span>
               ) : (
-                ""
+                ''
               )}
             </div>
           </div>
@@ -184,12 +184,12 @@ export default function Support() {
                 className="form-area"
                 placeholder="Descrição"
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={e => setDescription(e.target.value)}
               ></textarea>
               {hasDescription ? (
                 <span className="error-support">Descrição requerida.</span>
               ) : (
-                ""
+                ''
               )}
             </div>
           </div>

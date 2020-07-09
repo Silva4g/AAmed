@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
-import { useFormik } from "formik";
+import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { useFormik } from 'formik';
 import {
   KeyboardAvoidingView,
   SafeAreaView,
@@ -8,9 +8,9 @@ import {
   Button,
   ActivityIndicator,
   Text,
-} from "react-native";
+} from 'react-native';
 
-import { MainButton } from "../../components/MainButton";
+import { MainButton } from '../../components/MainButton';
 
 import {
   ImageContainer,
@@ -25,11 +25,11 @@ import {
   TouchEye,
   Option,
   ErrorText,
-} from "./styles";
-import screen from "../../assets/screen.png";
-import logo from "../../assets/icon.png";
-import api from "../../services/api";
-import { useAuth } from "../../utils/auth";
+} from './styles';
+import screen from '../../assets/screen.png';
+import logo from '../../assets/icon.png';
+import api from '../../services/api';
+import { useAuth } from '../../utils/auth';
 
 export const Login = () => {
   const [showPass, setShowPass] = useState(true);
@@ -40,12 +40,12 @@ export const Login = () => {
 
   const formik = useFormik({
     initialValues: {
-      cpf: "",
-      password: "",
+      cpf: '',
+      password: '',
     },
-    onSubmit: async (values) => {
+    onSubmit: async values => {
       try {
-        const response = await api.post("/login/user", values);
+        const response = await api.post('/login/user', values);
 
         login(response.data);
         console.log(response.data); //debug
@@ -57,10 +57,10 @@ export const Login = () => {
         } else if (error.request) {
           console.log(error.request);
         } else {
-          console.log("Error", error.message);
+          console.log('Error', error.message);
         }
         // setErrorMsg(error.message); // depois vejo isso
-        console.log("Erro fora dos ifs ", error); // depois de 2min que vai aparecer
+        console.log('Erro fora dos ifs ', error); // depois de 2min que vai aparecer
       }
     },
   });
@@ -78,7 +78,7 @@ export const Login = () => {
   navigation.setOptions({
     headerRight: () => (
       <Button
-        onPress={() => navigation.navigate("SignUp")}
+        onPress={() => navigation.navigate('SignUp')}
         title="Cadastre-se"
         color="#0277BD"
       />
@@ -86,7 +86,7 @@ export const Login = () => {
     headerRightContainerStyle: {
       padding: 15,
     },
-    title: "Bem-Vindo",
+    title: 'Bem-Vindo',
   });
 
   return (
@@ -109,13 +109,13 @@ export const Login = () => {
               <Label>CPF</Label>
               <InputMask
                 name="cpf"
-                type={"cpf"}
+                type={'cpf'}
                 placeholder="000.000.000-00"
                 placeholderTextColor="#00000066"
                 returnKeyType="next"
                 selectionColor="#006bad66"
                 value={formik.values.cpf}
-                onChangeText={formik.handleChange("cpf")}
+                onChangeText={formik.handleChange('cpf')}
               />
             </InputBox>
 
@@ -130,23 +130,23 @@ export const Login = () => {
                 returnKeyType="done"
                 selectionColor="#006bad66"
                 value={formik.values.password}
-                onChangeText={formik.handleChange("password")}
+                onChangeText={formik.handleChange('password')}
               />
               <TouchEye onPress={toggleShowPass}>
-                <IconEye name={press ? "eye-off-outline" : "eye-outline"} />
+                <IconEye name={press ? 'eye-off-outline' : 'eye-outline'} />
               </TouchEye>
             </InputBox>
 
             <MainButton
               onPress={formik.handleSubmit}
               flag={formik.isSubmitting}
-              label={"ENTRAR"}
+              label={'ENTRAR'}
             >
               <ActivityIndicator size="small" color="#FFF" />
             </MainButton>
             <Option
               onPress={() => {
-                navigation.navigate("ForgotPassword");
+                navigation.navigate('ForgotPassword');
               }}
             >
               Esqueceu a senha?

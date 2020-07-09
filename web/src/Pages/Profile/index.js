@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import { IoMdArrowRoundBack } from "react-icons/io";
-import { MdLocationOn } from "react-icons/md";
+import { IoMdArrowRoundBack } from 'react-icons/io';
+import { MdLocationOn } from 'react-icons/md';
 
-import api from "../../services/api";
-import "./styles.css";
+import api from '../../services/api';
+import './styles.css';
 
 export default function Profile(props) {
-  document.title = "AAMed - Perfil";
+  document.title = 'AAMed - Perfil';
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [cnpj, setCnpj] = useState("");
-  const [cnes, setCnes] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [street, setStreet] = useState("");
-  const [neighborhood, setNeighborhood] = useState("");
-  const [cep, setCep] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [cnpj, setCnpj] = useState('');
+  const [cnes, setCnes] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [street, setStreet] = useState('');
+  const [neighborhood, setNeighborhood] = useState('');
+  const [cep, setCep] = useState('');
 
   useEffect(() => {
     async function handleInformations() {
-      const response = await api.get("/hospital/home", {
+      const response = await api.get('/hospital/home', {
         withCredentials: true,
       });
       const {
@@ -67,7 +67,7 @@ export default function Profile(props) {
         </div>
         <div>
           <img
-            src={require("../../assets/profile.png")}
+            src={require('../../assets/profile.png')}
             alt="Suporte do 1° Socorros"
             title="Suporte do 1° Socorros"
           />
@@ -77,7 +77,7 @@ export default function Profile(props) {
         <div className="container-profile">
           <div className="container-top">
             <div className="container-img">
-              <img src={require("../../assets/icon.png")} alt="" />
+              <img src={require('../../assets/icon.png')} alt="" />
             </div>
             <div>
               <span>

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { AsyncStorage } from "react-native";
-import moment from "moment";
+import React, { useEffect, useState } from 'react';
+import { AsyncStorage } from 'react-native';
+import moment from 'moment';
 
-import api from "../../services/api";
+import api from '../../services/api';
 
 import {
   List,
@@ -12,12 +12,12 @@ import {
   NoHistoryView,
   Img,
   NoHistoryLabel,
-} from "./styles.js";
-import Loading from "../../components/Loading";
-import { Header } from "../../components/Header";
+} from './styles.js';
+import Loading from '../../components/Loading';
+import { Header } from '../../components/Header';
 
 export default function History({ navigation }) {
-  const [user, setUser] = useState(null || "");
+  const [user, setUser] = useState(null || '');
   const [isLoading, setIsLoading] = useState(true);
   const [hasHistory, setHasHistory] = useState(false);
   const [solicitations, setSolicitations] = useState([]);
@@ -26,16 +26,16 @@ export default function History({ navigation }) {
     function getLoggedUser() {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
-          resolve(AsyncStorage.getItem("store"));
+          resolve(AsyncStorage.getItem('store'));
         }, 1000);
       });
     }
     getLoggedUser()
-      .then((data) => {
+      .then(data => {
         const dataParse = JSON.parse(data);
         setUser(dataParse.auth.user);
       })
-      .catch((error) => console.log(error));
+      .catch(error => console.log(error));
   }, []);
 
   async function loadSolicitations() {
@@ -59,11 +59,11 @@ export default function History({ navigation }) {
 
   return (
     <>
-      <Header navigation={navigation} label={"HISTÓRICO"} />
+      <Header navigation={navigation} label={'HISTÓRICO'} />
       {hasHistory ? (
         <List
           data={solicitations}
-          keyExtractor={(solicitations) => String(solicitations._id)}
+          keyExtractor={solicitations => String(solicitations._id)}
           renderItem={({ item: solicitations }) => (
             <HistoryView>
               <HistoryProp>HOSPITAL:</HistoryProp>
@@ -77,7 +77,7 @@ export default function History({ navigation }) {
 
               <HistoryProp>DATA e HORA:</HistoryProp>
               <HistoryInfo>
-                {moment(solicitations.createdAt).format("DD/MM/YYYY HH:mm")}
+                {moment(solicitations.createdAt).format('DD/MM/YYYY HH:mm')}
               </HistoryInfo>
             </HistoryView>
           )}
@@ -86,10 +86,10 @@ export default function History({ navigation }) {
         <NoHistoryView>
           <Img
             resizeMode="contain"
-            source={require("../../../assets/icon.png")}
+            source={require('../../../assets/icon.png')}
           />
           <NoHistoryLabel>
-            {`    Você ainda não possui 
+            {`    Você ainda não possui
   histórico de solicitações!`}
           </NoHistoryLabel>
         </NoHistoryView>

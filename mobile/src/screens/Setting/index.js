@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Switch, View, ScrollView } from "react-native";
+import React, { useState } from 'react';
+import { Switch, View, ScrollView } from 'react-native';
 
 import {
   Container,
@@ -14,66 +14,66 @@ import {
   ButtonView,
   ButtonText,
   ButtonIcon,
-} from "./styles.js";
+} from './styles.js';
 
-import { MainButton } from "../../components/MainButton";
-import { Header } from "../../components/Header";
+import { MainButton } from '../../components/MainButton';
+import { Header } from '../../components/Header';
 
 export default function Setting({ navigation }) {
   const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
   const switches = [
     {
       key: String(Math.random()),
-      label: "Localização",
+      label: 'Localização',
     },
     {
       key: String(Math.random()),
-      label: "Notificações",
+      label: 'Notificações',
     },
     {
       key: String(Math.random()),
-      label: "E-mail",
+      label: 'E-mail',
     },
   ];
 
   const buttons = [
     {
       key: String(Math.random()),
-      label: "CONFIGURAR CONTA",
+      label: 'CONFIGURAR CONTA',
     },
     {
       key: String(Math.random()),
-      label: "CONFIGURAR MAPA",
+      label: 'CONFIGURAR MAPA',
     },
     {
       key: String(Math.random()),
-      label: "CONFIGURAR PRIVACIDADE",
+      label: 'CONFIGURAR PRIVACIDADE',
     },
   ];
 
   return (
     <Container>
       <ScrollView>
-        <Header navigation={navigation} label={"CONFIGURAÇÕES"} />
+        <Header navigation={navigation} label={'CONFIGURAÇÕES'} />
 
         <Wrapper>
           <Permissions>
             <PermissionsTitle>Permissões</PermissionsTitle>
             <Separator />
             <SwitchPermissions>
-              <SwitchText style={{ fontWeight: "bold" }}>
+              <SwitchText style={{ fontWeight: 'bold' }}>
                 Aceitar todas as permissões
               </SwitchText>
               <Switch
                 onValueChange={toggleSwitch}
                 value={isEnabled}
-                trackColor={{ false: "#767577", true: "#1167aa" }}
-                thumbColor={isEnabled ? "#004b8b" : "#f4f3f4"}
+                trackColor={{ false: '#767577', true: '#1167aa' }}
+                thumbColor={isEnabled ? '#004b8b' : '#f4f3f4'}
               />
             </SwitchPermissions>
-            {switches.map((switchh) => (
+            {switches.map(switchh => (
               <View key={switchh.key}>
                 <SwitchSeparator />
                 <SwitchPermissions>
@@ -81,8 +81,8 @@ export default function Setting({ navigation }) {
                   <Switch
                     onValueChange={toggleSwitch}
                     value={isEnabled}
-                    trackColor={{ false: "#767577", true: "#1167aa" }}
-                    thumbColor={isEnabled ? "#004b8b" : "#f4f3f4"}
+                    trackColor={{ false: '#767577', true: '#1167aa' }}
+                    thumbColor={isEnabled ? '#004b8b' : '#f4f3f4'}
                   />
                 </SwitchPermissions>
               </View>
@@ -91,7 +91,7 @@ export default function Setting({ navigation }) {
         </Wrapper>
 
         <ConfigButtons>
-          {buttons.map((button) => (
+          {buttons.map(button => (
             <ButtonView key={button.key}>
               <MainButton flag={true}>
                 <ButtonText>{button.label}</ButtonText>

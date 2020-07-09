@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
-import { View, TouchableOpacity, Alert } from "react-native";
+import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { View, TouchableOpacity, Alert } from 'react-native';
 
-import { MainButton } from "../../components/MainButton";
+import { MainButton } from '../../components/MainButton';
 
 import {
   Keyboard,
@@ -17,15 +17,15 @@ import {
   BottomContainer,
   BottomContainerText,
   BottomContainerTextTouch,
-} from "./styles";
+} from './styles';
 
 export default function ForgotPasword() {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
   const navigation = useNavigation();
 
   function handleSubmit() {
-    if (email === "") {
-      return Alert.alert("Aviso", "Preencha o campo de e-mail.");
+    if (email === '') {
+      return Alert.alert('Aviso', 'Preencha o campo de e-mail.');
     }
     console.log(email);
   }
@@ -37,8 +37,8 @@ export default function ForgotPasword() {
           <Title>Esqueceu a senha?</Title>
           <BoxDescription>
             <Description>
-              {`Digite seu endereço de e-mail 
-        e enviaremos um link 
+              {`Digite seu endereço de e-mail
+        e enviaremos um link
       para redefinir sua senha`}
             </Description>
           </BoxDescription>
@@ -57,12 +57,15 @@ export default function ForgotPasword() {
             value={email}
           />
 
-          <MainButton onPress={() => handleSubmit()} label={"Recuperar senha"}/>
+          <MainButton
+            onPress={() => handleSubmit()}
+            label={'Recuperar senha'}
+          />
         </View>
 
         <BottomContainer>
           <BottomContainerText>Não tem uma conta?</BottomContainerText>
-          <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+          <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
             <BottomContainerTextTouch>Cadastre-se</BottomContainerTextTouch>
           </TouchableOpacity>
         </BottomContainer>

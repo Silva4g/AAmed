@@ -1,7 +1,7 @@
-import React from "react";
-import MapViewDirections from "react-native-maps-directions";
+import React from 'react';
+import MapViewDirections from 'react-native-maps-directions';
 
-const GOOGLE_MAPS_APIKEY = "AIzaSyBAJxkbJDUINqKFwXs-WGy-S7W-yD2ueJ4";
+const GOOGLE_MAPS_APIKEY = 'AIzaSyBAJxkbJDUINqKFwXs-WGy-S7W-yD2ueJ4';
 
 export default function Directions({ origin, destination, onReady }) {
   return (
@@ -11,7 +11,7 @@ export default function Directions({ origin, destination, onReady }) {
       destination={destination}
       apikey={GOOGLE_MAPS_APIKEY}
       strokeWidth={4}
-      strokeColor={"#222"}
+      strokeColor={'#222'}
     />
   );
 }

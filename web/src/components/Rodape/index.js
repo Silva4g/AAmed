@@ -1,11 +1,11 @@
-import React from "react";
-import "./styles.css";
+import React from 'react';
+import './styles.css';
 import {
   FaFacebookF,
   FaLinkedin,
   FaTwitter,
   FaInstagram,
-} from "react-icons/fa";
+} from 'react-icons/fa';
 
 export default function Rodape() {
   return (
