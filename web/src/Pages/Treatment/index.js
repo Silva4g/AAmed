@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import { IoMdArrowRoundBack } from "react-icons/io";
-import TreatmentModal from "../../components/TreatmentModal";
-import api from "../../services/api";
+import { IoMdArrowRoundBack } from 'react-icons/io';
+import TreatmentModal from '../../components/TreatmentModal';
+import api from '../../services/api';
 
 export default function Treatment({ match }) {
-  document.title = "AAMed - Seus atendimentos";
+  document.title = 'AAMed - Seus atendimentos';
   const history = useHistory();
   const [atendimentos, setAtendimentos] = useState([]);
 
@@ -41,13 +41,13 @@ export default function Treatment({ match }) {
         </div>
         <div>
           <img
-            src={require("../../assets/profile.png")}
+            src={require('../../assets/profile.png')}
             alt="Gerenciamento de hospitais por perto"
             title="Encontre hospitais por perto"
           />
         </div>
       </div>
-      {atendimentos.map((treat) => {
+      {atendimentos.map(treat => {
         return (
           <TreatmentModal
             key={treat._id}
@@ -56,14 +56,14 @@ export default function Treatment({ match }) {
             email={treat.user.email}
             bio={treat.user.bio}
             description={treat.description}
-            date={new Date(treat.createdAt).toLocaleDateString("pt-br", {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-              weekday: "long",
-              timeZoneName: "short",
-              hour: "numeric",
-              minute: "numeric",
+            date={new Date(treat.createdAt).toLocaleDateString('pt-br', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+              weekday: 'long',
+              timeZoneName: 'short',
+              hour: 'numeric',
+              minute: 'numeric',
             })}
           />
         );

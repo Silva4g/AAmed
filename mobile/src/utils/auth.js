@@ -1,5 +1,5 @@
-import { useCallback } from "react";
-import { useStore } from "../store/store";
+import { useCallback } from 'react';
+import { useStore } from '../store/store';
 
 export const useAuth = () => {
   const [store, setStore] = useStore();

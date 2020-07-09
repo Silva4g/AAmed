@@ -1,5 +1,5 @@
-import React from "react";
-import { View, ScrollView } from "react-native";
+import React from 'react';
+import { View, ScrollView } from 'react-native';
 
 import {
   Contact,
@@ -16,14 +16,14 @@ import {
   Button,
   Label,
   MgGlass,
-} from "./styles.js";
-import { Header } from "../../components/Header";
+} from './styles.js';
+import { Header } from '../../components/Header';
 import { MainButton } from '../../components/MainButton';
 
 export default function Help({ navigation }) {
   return (
     <>
-      <Header navigation={navigation} label={"AJUDA"} />
+      <Header navigation={navigation} label={'AJUDA'} />
 
       <Contact>
         <NumberContact>Entre em contato 0800-091-002</NumberContact>
@@ -37,7 +37,7 @@ export default function Help({ navigation }) {
       </Contact>
 
       <View>
-        <Img source={require("../../assets/hospital.png")} />
+        <Img source={require('../../assets/hospital.png')} />
         <WebSupport>
           <WebSupportButton>
             <WebSupportLabel>SUPORTE WEB</WebSupportLabel>
@@ -47,9 +47,15 @@ export default function Help({ navigation }) {
 
       <ScrollView>
         <Options>
-          <MainButton label="SOLICITAÇÃO DE ATENDIMENTO" onPress={() => navigation.navigate('HelpServiceRequest')} />
+          <MainButton
+            label="SOLICITAÇÃO DE ATENDIMENTO"
+            onPress={() => navigation.navigate('HelpServiceRequest')}
+          />
           <MainButton label="LOCALIZAÇÃO ERRADA NO MAPA" />
-          <MainButton label="ALTERAR MINHAS INFORMAÇÕES" onPress={() => navigation.navigate('HelpEditInfos')} />
+          <MainButton
+            label="ALTERAR MINHAS INFORMAÇÕES"
+            onPress={() => navigation.navigate('HelpEditInfos')}
+          />
           <MainButton label="DADOS OFICIAIS DO APLICATIVO" />
           <MainButton label="ENTRE EM CONTATO CONOSCO" />
           <MainButton label="TERMOS E POLÍTICA DE PRIVACIDADE" />

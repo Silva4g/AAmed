@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import "./style.css";
-import Menu from "../../components/Menu";
-import imgInicial from "../../assets/imgAbout.jpeg";
-import imgDescription2 from "../../assets/imgDescription2.jpeg";
-import imgDescription1 from "../../assets/imgDescription.jpeg";
+import React, { Component } from 'react';
+import './style.css';
+import Menu from '../../components/Menu';
+import imgInicial from '../../assets/imgAbout.jpeg';
+import imgDescription2 from '../../assets/imgDescription2.jpeg';
+import imgDescription1 from '../../assets/imgDescription.jpeg';
 
 export default class About extends Component {
   componentDidMount() {
-    document.title = "Sobre a AAMed";
+    document.title = 'Sobre a AAMed';
   }
   render() {
     return (
@@ -33,7 +33,7 @@ export default class About extends Component {
             <div className="text_descricao1">
               <h2> A melhor empresa</h2>
               <h2>
-                {" "}
+                {' '}
                 FourMembers é considerada a melhor empresa para se trabalhar em
                 Campinas
               </h2>

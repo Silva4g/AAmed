@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { Button, Label } from "./styles";
+import { Button, Label } from './styles';
 
 export const MainButton = ({ onPress, label, children, flag }) => {
   return (
@@ -8,4 +8,4 @@ export const MainButton = ({ onPress, label, children, flag }) => {
       {flag ? children : <Label>{label}</Label>}
     </Button>
   );
-}
+};

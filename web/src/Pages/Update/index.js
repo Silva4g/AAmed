@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import { IoMdArrowRoundBack } from "react-icons/io";
-import InputMask from "react-input-mask";
+import { IoMdArrowRoundBack } from 'react-icons/io';
+import InputMask from 'react-input-mask';
 
-import "./styles.css";
-import api from "../../services/api";
+import './styles.css';
+import api from '../../services/api';
 
 export default function Update({ history }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [id, setId] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [id, setId] = useState('');
 
   useEffect(() => {
     async function loadHospital() {
-      const user = await api.get("/hospital/home", {
+      const user = await api.get('/hospital/home', {
         withCredentials: true,
       });
 
@@ -38,7 +38,7 @@ export default function Update({ history }) {
       },
       { withCredentials: true }
     );
-    history.push("/");
+    history.push('/');
   }
 
   return (
@@ -61,7 +61,7 @@ export default function Update({ history }) {
         </div>
         <div>
           <img
-            src={require("../../assets/profile.png")}
+            src={require('../../assets/profile.png')}
             alt="Suporte do 1° Socorros"
             title="Suporte do 1° Socorros"
           />
@@ -76,7 +76,7 @@ export default function Update({ history }) {
             name="name"
             id="name"
             defaultValue={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={e => setName(e.target.value)}
             value={name}
           />
         </div>
@@ -88,7 +88,7 @@ export default function Update({ history }) {
             name="phone"
             id="phone"
             defaultValue={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={e => setPhone(e.target.value)}
             value={phone}
           />
         </div>
@@ -99,7 +99,7 @@ export default function Update({ history }) {
             name="email"
             id="email"
             defaultValue={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
             value={email}
           />
         </div>

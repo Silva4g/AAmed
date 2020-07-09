@@ -12,31 +12,38 @@ export default function Wizard(props) {
   const navigation = useNavigation();
   Wizard.Step = props => <Step {...props} />;
 
-
   function nextStep() {
     if (index !== props.children.length - 1) {
       setIndex(index + 1);
     }
-  };
+  }
 
   function prevStep() {
     if (index !== 0) {
-      setIndex(index - 1)
+      setIndex(index - 1);
     }
-  };
+  }
 
   async function onSubmit() {
     const { name, cpf, email, senha, /*susCard,*/ bio } = props.initialValues;
     // Da para melhorar, mas por enquanto está "resolvendo" o problema
     try {
-      if (!(name === "" || cpf === "" || email === "" || senha === "" || /*susCard === "" ||*/ bio === "")) {
+      if (
+        !(
+          name === '' ||
+          cpf === '' ||
+          email === '' ||
+          senha === '' ||
+          /*susCard === "" ||*/ bio === ''
+        )
+      ) {
         const response = await api.post('/user', {
           name,
           cpf,
           email,
           password: senha,
           // susCard,
-          bio
+          bio,
         });
 
         Alert.alert('Sucesso', 'Cadastrado com sucesso');
@@ -47,21 +54,23 @@ export default function Wizard(props) {
       }
     } catch (error) {
       if (await error.response) {
-        setErrorMsg(error.response.data.error)
+        setErrorMsg(error.response.data.error);
         console.log(error.response.data);
       } else if (error.request) {
         console.log(error.request);
       } else {
-        console.log("Error", error.message);
-        Alert.alert('Erro', 'Houve um erro interno. \nPor favor, tente mais tarde.');
+        console.log('Error', error.message);
+        Alert.alert(
+          'Erro',
+          'Houve um erro interno. \nPor favor, tente mais tarde.'
+        );
       }
       // errorMsg ? Alert.alert('Erro', errorMsg) : "";
       // da para fazer um 'esquema'
-      Alert.alert('Erro', errorMsg)
-      console.log("Erro fora dos ifs ", error); // depois de 2min que vai aparecer
+      Alert.alert('Erro', errorMsg);
+      console.log('Erro fora dos ifs ', error); // depois de 2min que vai aparecer
     }
-  };
-
+  }
 
   // console.log('values', this.props.initialValues);
   // const { children } = props;

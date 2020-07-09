@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Image,
@@ -8,49 +8,49 @@ import {
   TextInput,
   Alert,
   Keyboard,
-} from "react-native";
-import MapViewDirections from "react-native-maps-directions";
-import * as Animatable from "react-native-animatable";
-import MapView, { Marker, Callout } from "react-native-maps";
-import { useNavigation } from "@react-navigation/native";
-import io from "socket.io-client";
+} from 'react-native';
+import MapViewDirections from 'react-native-maps-directions';
+import * as Animatable from 'react-native-animatable';
+import MapView, { Marker, Callout } from 'react-native-maps';
+import { useNavigation } from '@react-navigation/native';
+import io from 'socket.io-client';
 import {
   Ionicons,
   MaterialCommunityIcons,
   MaterialIcons,
   FontAwesome,
-} from "@expo/vector-icons";
+} from '@expo/vector-icons';
 import {
   requestPermissionsAsync,
   getCurrentPositionAsync,
   watchPositionAsync,
   Accuracy,
-} from "expo-location";
+} from 'expo-location';
 
 // import CustomHeader from "../../components/CustomHeader";
-import styles from "./styles.js";
-import api from "../../services/api";
-import { Header } from "../../components/Header/index";
+import styles from './styles.js';
+import api from '../../services/api';
+import { Header } from '../../components/Header/index';
 
-const GOOGLE_MAPS_APIKEY = "AIzaSyBAJxkbJDUINqKFwXs-WGy-S7W-yD2ueJ4";
+const GOOGLE_MAPS_APIKEY = 'AIzaSyBAJxkbJDUINqKFwXs-WGy-S7W-yD2ueJ4';
 
 export default function Home() {
   const navigation = useNavigation();
 
   const [hospitals, setHospitals] = useState([]);
-  const [user, setUser] = useState(null || "");
+  const [user, setUser] = useState(null || '');
   const [currentRegion, setCurrentRegion] = useState(null);
   const [regionChange, setRegionChange] = useState(null);
   const [currentLocation, setCurrentLocation] = useState(null);
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState('');
   const [connection, setConnection] = useState(null);
   const [isActiveButton, setIsActiveButton] = useState(false);
   const [modal, setModal] = useState(false);
   const [approved, setApproved] = useState(false);
-  const [hospitalName, setHospitalName] = useState("");
+  const [hospitalName, setHospitalName] = useState('');
   const [hospitalDest, setHospitalDest] = useState({});
-  const [distance, setDistance] = useState("");
-  const [duration, setDuration] = useState("");
+  const [distance, setDistance] = useState('');
+  const [duration, setDuration] = useState('');
 
   const [userOrigin, setUserOrigin] = useState(null);
 
@@ -58,11 +58,11 @@ export default function Home() {
   // let conn;
 
   useEffect(() => {
-    const conn = io("http://10.0.0.200:3333", {
+    const conn = io('http://10.0.0.200:3333', {
       query: { user_id: user._id },
     });
     setConnection(conn);
-    conn.on("solicitation_response", (data) => {
+    conn.on('solicitation_response', data => {
       setHospitalDest(data);
       setHospitalName(data.hospital.name);
       data.approved ? setApproved(true) : setApproved(false);
@@ -72,27 +72,27 @@ export default function Home() {
       });
     });
 
-    conn.on("arrived__manually_mobile", (data) => {
+    conn.on('arrived__manually_mobile', data => {
       const { arrived_mobile } = data;
       if (arrived_mobile) {
-        setDuration("");
-        setDistance("");
+        setDuration('');
+        setDistance('');
         setDestination({ latitude: 0, longitude: 0 });
         setModal(false);
         setApproved(false);
       }
     });
-    conn.on("warning", (data) => {
+    conn.on('warning', data => {
       const { not_here } = data;
       if (not_here) {
-        setDuration("");
-        setDistance("");
+        setDuration('');
+        setDistance('');
         setDestination({ latitude: 0, longitude: 0 });
         setModal(false);
         setApproved(false);
         Alert.alert(
-          "Você não compareceu",
-          "Você tem mais 2 oportunidades antes de ser banido"
+          'Você não compareceu',
+          'Você tem mais 2 oportunidades antes de ser banido'
         );
       }
     });
@@ -102,39 +102,39 @@ export default function Home() {
     function getUserLogged() {
       return new Promise((resolve, result) => {
         setTimeout(() => {
-          resolve(AsyncStorage.getItem("store"));
+          resolve(AsyncStorage.getItem('store'));
         }, 1000);
       });
     }
     getUserLogged()
-      .then((data) => {
+      .then(data => {
         const dataParse = JSON.parse(data);
         setUser(dataParse.auth.user);
       })
-      .catch((error) => console.log(error));
+      .catch(error => console.log(error));
   }, []);
 
   async function handleSolicitation() {
     const hospital_ids = [];
 
-    hospitals.map((hospital) => {
+    hospitals.map(hospital => {
       hospital_ids.push(hospital._id);
     });
 
-    if (description === "") return Alert.alert("AVISO", "Preencha o campo.");
+    if (description === '') return Alert.alert('AVISO', 'Preencha o campo.');
 
-    connection.emit("user_solicitation", {
+    connection.emit('user_solicitation', {
       hospital_ids,
       user,
       description,
       currentLocation,
     });
     Alert.alert(
-      "Solicitação enviada",
-      "Sua solicitação de atendimento foi enviada aos hospitais próximos à sua localização."
+      'Solicitação enviada',
+      'Sua solicitação de atendimento foi enviada aos hospitais próximos à sua localização.'
     );
     Keyboard.dismiss();
-    setDescription("");
+    setDescription('');
     setIsActiveButton(true);
     setModal(true);
     setTimeout(() => {
@@ -147,7 +147,7 @@ export default function Home() {
     async function loadInitialPosition() {
       const { granted } = await requestPermissionsAsync();
       if (!granted) {
-        return Alert.alert("Ops", "Você precisa habilitar a permissão");
+        return Alert.alert('Ops', 'Você precisa habilitar a permissão');
       }
       const { coords } = await getCurrentPositionAsync({
         enableHighAccuracy: true,
@@ -170,17 +170,17 @@ export default function Home() {
       timeInterval: 5000,
       enableHighAccuracy: true,
     },
-    (data) => {
+    data => {
       fetch(
-        "https://maps.googleapis.com/maps/api/geocode/json?address=" +
+        'https://maps.googleapis.com/maps/api/geocode/json?address=' +
           data.coords.latitude +
-          "," +
+          ',' +
           data.coords.longitude +
-          "&key=" +
+          '&key=' +
           GOOGLE_MAPS_APIKEY
       )
-        .then((response) => response.json())
-        .then((responseJson) => {
+        .then(response => response.json())
+        .then(responseJson => {
           setCurrentLocation(responseJson.results[0].formatted_address);
         });
       if (approved) {
@@ -192,7 +192,7 @@ export default function Home() {
           calculateDistance(data.coords, destination) == 0.01 ||
           calculateDistance(data.coords, destination) == 0.02
         ) {
-          connection.emit("arrived", {
+          connection.emit('arrived', {
             hospital_id: hospitalDest.hospital._id,
             user,
             arrived: true,
@@ -231,7 +231,7 @@ export default function Home() {
       const { latitude, longitude } = currentRegion || 1;
       if (latitude && longitude) {
         try {
-          const response = await api.get("search", {
+          const response = await api.get('search', {
             params: {
               longitude,
               latitude,
@@ -239,7 +239,7 @@ export default function Home() {
           });
           setHospitals(response.data.hospitais);
         } catch (err) {
-          console.debug("[ERROR: loadHospitals] => ", err);
+          console.debug('[ERROR: loadHospitals] => ', err);
         }
       }
     }
@@ -268,18 +268,18 @@ export default function Home() {
         {approved && !!destination.latitude && !!destination.longitude && (
           <MapViewDirections
             origin={userOrigin}
-            onReady={(result) => {
+            onReady={result => {
               setDistance(result.distance);
               setDuration(result.duration);
             }}
-            onError={(err) => console.log(err)}
+            onError={err => console.log(err)}
             destination={destination}
             apikey={GOOGLE_MAPS_APIKEY}
             strokeWidth={4}
-            strokeColor={"#222"}
+            strokeColor={'#222'}
           />
         )}
-        {hospitals.map((hospital) => (
+        {hospitals.map(hospital => (
           <Marker
             key={hospital._id}
             coordinate={{
@@ -296,11 +296,11 @@ export default function Home() {
             <Callout style={styles.calloutHospital}>
               <Text style={styles.name}>{hospital.name}</Text>
               <Text style={styles.desc}>
-                <Text style={styles.tittles}>RUA:</Text>{" "}
+                <Text style={styles.tittles}>RUA:</Text>{' '}
                 {hospital.address.street}
               </Text>
               <Text>
-                <Text style={styles.tittles}>BAIRRO:</Text>{" "}
+                <Text style={styles.tittles}>BAIRRO:</Text>{' '}
                 {hospital.address.neighborhood}
               </Text>
               <Text>
@@ -330,7 +330,7 @@ export default function Home() {
             <>
               <FontAwesome name="circle" size={15} color="#0ec445" />
               <Text>
-                Sua solicitação foi aprovada em {hospitalName}.{"\n"}
+                Sua solicitação foi aprovada em {hospitalName}.{'\n'}
                 Tempo estimado: {`${Math.round(duration)} min \n`}
                 Distância: {`${Number(distance).toFixed(2)} km`}
               </Text>
@@ -355,7 +355,7 @@ export default function Home() {
             onPress={handleSolicitation}
             style={
               isActiveButton
-                ? [styles.loadButton, { backgroundColor: "#006bad55" }]
+                ? [styles.loadButton, { backgroundColor: '#006bad55' }]
                 : styles.loadButton
             }
             disabled={isActiveButton}

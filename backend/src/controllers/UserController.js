@@ -1,11 +1,11 @@
-const User = require("../models/User");
-const bcrypt = require("bcryptjs");
-const generateToken = require("../utils/generateToken");
+const User = require('../models/User');
+const bcrypt = require('bcryptjs');
+const generateToken = require('../utils/generateToken');
 
 module.exports = {
   //listar usuarios
   async index(req, res) {
-    const users = await User.find({}, "-_id");
+    const users = await User.find({}, '-_id');
     return res.send(users);
   },
   //cadastro de usuarios
@@ -15,9 +15,9 @@ module.exports = {
 
       //verificar se tem no banco
       if (await User.findOne({ cpf }))
-        return res.status(400).json({ error: "Usuário já cadastrado" });
+        return res.status(400).json({ error: 'Usuário já cadastrado' });
       if (await User.findOne({ email }))
-        return res.status(400).json({ error: "Usuário já cadastrado" });
+        return res.status(400).json({ error: 'Usuário já cadastrado' });
 
       const user = await User.create({
         name,
@@ -29,7 +29,7 @@ module.exports = {
       user.password = undefined; //não trazer a senha quando cadastrar
       return res.json({ user });
     } catch (err) {
-      return res.status(400).json({ error: "Falha no cadastro: " + err });
+      return res.status(400).json({ error: 'Falha no cadastro: ' + err });
     }
   },
   //login do usuario
@@ -37,16 +37,16 @@ module.exports = {
     try {
       const { cpf, password } = req.body;
 
-      const userPlus = await User.findOne({ cpf }).select("+password");
+      const userPlus = await User.findOne({ cpf }).select('+password');
       const user = await User.findOne({ cpf });
 
       //verificar se existe e se a senha é igual
       if (!userPlus) {
-        res.status(401).json({ error: "Usuário incorreto!" }); // algum erro no console
+        res.status(401).json({ error: 'Usuário incorreto!' }); // algum erro no console
       }
 
       if (!(await bcrypt.compare(password, userPlus.password))) {
-        return res.status(401).json({ error: "Senha incorreta!" });
+        return res.status(401).json({ error: 'Senha incorreta!' });
       }
 
       return res.json({
@@ -54,7 +54,7 @@ module.exports = {
         token: user.generateToken(), //token para login
       });
     } catch (err) {
-      return res.status(400).json({ error: "Falha no login: " + err });
+      return res.status(400).json({ error: 'Falha no login: ' + err });
     }
   },
   //atualizar dados do usuario
@@ -82,7 +82,7 @@ module.exports = {
     } catch (err) {
       return res
         .status(400)
-        .send({ error: "Falha na atualização do usuário" + err });
+        .send({ error: 'Falha na atualização do usuário' + err });
     }
   },
 };

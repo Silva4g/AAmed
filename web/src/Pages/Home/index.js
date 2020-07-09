@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import illustration from "../../assets/undraw_medicine.svg";
-import aamed from "../../assets/aamed.svg";
+import illustration from '../../assets/undraw_medicine.svg';
+import aamed from '../../assets/aamed.svg';
 
 import {
   Main,
@@ -12,27 +12,27 @@ import {
   CustomLine,
   InstallApp,
   Store,
-} from "./styles.js";
-import Menu from "../../components/Menu";
-import api from "../../services/api";
+} from './styles.js';
+import Menu from '../../components/Menu';
+import api from '../../services/api';
 
 export default function Home() {
-  document.title = "AAMed";
+  document.title = 'AAMed';
 
   const { push } = useHistory();
 
   useEffect(() => {
     async function redirectToLogged() {
-      if (!localStorage.getItem("hptid")) {
+      if (!localStorage.getItem('hptid')) {
         return;
       }
       try {
-        const response = await api.get("/hospital/verify", {
+        const response = await api.get('/hospital/verify', {
           withCredentials: true,
         });
-        if (response.data.auth === "isAuth") {
-          localStorage.setItem("hptid", true);
-          push(`/home/${response.headers["id"]}`);
+        if (response.data.auth === 'isAuth') {
+          localStorage.setItem('hptid', true);
+          push(`/home/${response.headers['id']}`);
         }
       } catch (error) {
         console.log(error);
@@ -54,7 +54,7 @@ export default function Home() {
       <CustomLine />
       <ListInfo>
         <Card>
-          <img src={require("../../assets/profile.png")} alt="Profile" />
+          <img src={require('../../assets/profile.png')} alt="Profile" />
           <h2>Agilidade</h2>
           <span>Em tempo real suas solicitações</span>
           <span>são enviadas para os</span>
@@ -62,7 +62,7 @@ export default function Home() {
           <span>Chega de esperar!</span>
         </Card>
         <Card>
-          <img src={require("../../assets/engine.png")} alt="Profile" />
+          <img src={require('../../assets/engine.png')} alt="Profile" />
           <h2>Gerenciamento</h2>
           <span>Você consegue facilmente</span>
           <span>abrir e gerenciar todo o</span>
@@ -70,7 +70,7 @@ export default function Home() {
           <span>fácil e dinâmica!</span>
         </Card>
         <Card>
-          <img src={require("../../assets/paper.png")} alt="Profile" />
+          <img src={require('../../assets/paper.png')} alt="Profile" />
           <h2>Simplicidade</h2>
           <span>Além de bonito é simples</span>
           <span>sem problemas para usar</span>

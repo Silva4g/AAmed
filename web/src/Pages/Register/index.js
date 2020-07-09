@@ -1,32 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import api from "../../services/api";
-import Menu from "../../components/Menu";
+import api from '../../services/api';
+import Menu from '../../components/Menu';
 
-import InputMask from "react-input-mask";
-import { cnpj } from "cpf-cnpj-validator";
+import InputMask from 'react-input-mask';
+import { cnpj } from 'cpf-cnpj-validator';
 
-import "./styles.css";
+import './styles.css';
 
 export default function Register(props) {
-  document.title = "Cadastre seu hospital";
+  document.title = 'Cadastre seu hospital';
 
   const { push } = useHistory();
 
-  const [latitude, setLatitude] = useState("");
-  const [longitude, setLongitude] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [cnes, setCnes] = useState("");
-  const [phone, setPhone] = useState("");
-  const [cnpj_hospital, setCnpj] = useState("");
-  const [cep_hospital, setCep] = useState("");
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [cnes, setCnes] = useState('');
+  const [phone, setPhone] = useState('');
+  const [cnpj_hospital, setCnpj] = useState('');
+  const [cep_hospital, setCep] = useState('');
   const [coords, setCoords] = useState(false);
 
   //restrições, verificações
-  const [confirmPassword, setConfirmpass] = useState("");
+  const [confirmPassword, setConfirmpass] = useState('');
   const [check, setCheck] = useState(true);
   const [passEqual, setPassequal] = useState(false);
   const [validateCnpj, setValidateCnpj] = useState(true);
@@ -81,7 +81,7 @@ export default function Register(props) {
 
     try {
       await api
-        .post("/hospital", {
+        .post('/hospital', {
           name,
           password,
           cnes,
@@ -92,27 +92,27 @@ export default function Register(props) {
           phone,
           email,
         })
-        .then((res) => {
+        .then(res => {
           window.scrollTo(0, 0);
           setModal(true);
-          setName("");
-          setCnpj("");
-          setCnes("");
-          setPassword("");
-          setConfirmpass("");
-          setPhone("");
-          setCep("");
-          setEmail("");
-          push("Login");
+          setName('');
+          setCnpj('');
+          setCnes('');
+          setPassword('');
+          setConfirmpass('');
+          setPhone('');
+          setCep('');
+          setEmail('');
+          push('Login');
         })
-        .catch((exp) => {
+        .catch(exp => {
           setShow(true);
           setTimeout(() => {
             setShow(false);
           }, 7500);
           setError(
             exp.response === undefined
-              ? "Falha na conexão com o servidor!"
+              ? 'Falha na conexão com o servidor!'
               : exp.response.data.error
           );
         });
@@ -123,12 +123,12 @@ export default function Register(props) {
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
-      (position) => {
+      position => {
         const { latitude, longitude } = position.coords;
         setLatitude(latitude);
         setLongitude(longitude);
       },
-      (err) => {
+      err => {
         console.log(err);
       },
       {
@@ -144,9 +144,9 @@ export default function Register(props) {
       <div className="container">
         {coords
           ? window.alert(
-              "Você deve permitir a localização. Precisamos da latitude e longitude"
+              'Você deve permitir a localização. Precisamos da latitude e longitude'
             )
-          : ""}
+          : ''}
         <div className="wave wave1"></div>
         <div className="wave wave2"></div>
         <div className="wave wave3"></div>
@@ -157,7 +157,7 @@ export default function Register(props) {
               <span>Junte-se a nós e ajude a salvar o próximo!</span>
             </div>
             <div>
-              <img src={require("../../assets/icon.png")} alt="" />
+              <img src={require('../../assets/icon.png')} alt="" />
             </div>
           </div>
           <div className="content-form-register">
@@ -167,14 +167,14 @@ export default function Register(props) {
                 <div>Cadastro realizado com sucesso</div>
               </div>
             ) : (
-              ""
+              ''
             )}
             {error !== null ? (
-              <div className={show ? "modal-error" : "hide-modal"}>
+              <div className={show ? 'modal-error' : 'hide-modal'}>
                 <div>{error}</div>
               </div>
             ) : (
-              ""
+              ''
             )}
             <div>
               <form className="form-register" onSubmit={handleForm}>
@@ -184,7 +184,7 @@ export default function Register(props) {
                     name="email"
                     id="email"
                     required
-                    onChange={(email) => setEmail(email.target.value)}
+                    onChange={email => setEmail(email.target.value)}
                     value={email}
                   />
                   <label htmlFor="email">Digite seu email</label>
@@ -195,7 +195,7 @@ export default function Register(props) {
                     name="password"
                     id="password"
                     required
-                    onChange={(password) => setPassword(password.target.value)}
+                    onChange={password => setPassword(password.target.value)}
                     value={password}
                   />
                   <label htmlFor="passowrd">Digite sua senha</label>
@@ -206,7 +206,7 @@ export default function Register(props) {
                     name="confirmPass"
                     id="confirmPass"
                     required
-                    onChange={(confirmPassword) =>
+                    onChange={confirmPassword =>
                       setConfirmpass(confirmPassword.target.value)
                     }
                     value={confirmPassword}
@@ -216,7 +216,7 @@ export default function Register(props) {
                 {passEqual ? (
                   <span className="error">Senhas incompatíveis</span>
                 ) : (
-                  ""
+                  ''
                 )}
                 <div>
                   <input
@@ -224,7 +224,7 @@ export default function Register(props) {
                     required
                     id="name"
                     name="name"
-                    onChange={(name) => setName(name.target.value)}
+                    onChange={name => setName(name.target.value)}
                     value={name}
                   />
                   <label htmlFor="name">Digite o nome do hospital</label>
@@ -234,7 +234,7 @@ export default function Register(props) {
                     Nome deve ter pelo menos 5 caracteres!
                   </span>
                 ) : (
-                  ""
+                  ''
                 )}
                 <div>
                   <InputMask
@@ -243,7 +243,7 @@ export default function Register(props) {
                     required
                     name="cnes"
                     id="cnes"
-                    onChange={(cnes) => setCnes(cnes.target.value)}
+                    onChange={cnes => setCnes(cnes.target.value)}
                     value={cnes}
                   />
                   <label htmlFor="cnes">Digite o número do CNES</label>
@@ -254,13 +254,13 @@ export default function Register(props) {
                     required
                     mask="99.999.999/9999-99"
                     id="cnpj"
-                    onChange={(cnpj_hpt) => setCnpj(cnpj_hpt.target.value)}
+                    onChange={cnpj_hpt => setCnpj(cnpj_hpt.target.value)}
                     value={cnpj_hospital}
                   />
                   <label htmlFor="cnpj">Digite o cnpj do hospital</label>
                 </div>
                 {validateCnpj ? (
-                  ""
+                  ''
                 ) : (
                   <span className="error">CNPJ inválido!</span>
                 )}
@@ -271,7 +271,7 @@ export default function Register(props) {
                     mask="(99)9999-9999"
                     required
                     id="phone"
-                    onChange={(phone) => setPhone(phone.target.value)}
+                    onChange={phone => setPhone(phone.target.value)}
                     value={phone}
                   />
                   <label htmlFor="phone">Digite o telefone do hospital</label>
@@ -283,7 +283,7 @@ export default function Register(props) {
                     name="cep_hospital"
                     required
                     id="cep"
-                    onChange={(cep) => setCep(cep.target.value)}
+                    onChange={cep => setCep(cep.target.value)}
                     value={cep_hospital}
                   />
                   <label htmlFor="cep">CEP do hospital</label>
@@ -296,7 +296,7 @@ export default function Register(props) {
                     placeholder="Latitude"
                     className="coordinate"
                     value={latitude}
-                    onChange={(latitude) => setLatitude(latitude.target.value)}
+                    onChange={latitude => setLatitude(latitude.target.value)}
                   />
                 </div>
                 <div>
@@ -307,9 +307,7 @@ export default function Register(props) {
                     required
                     className="coordinate"
                     value={longitude}
-                    onChange={(longitude) =>
-                      setLongitude(longitude.target.value)
-                    }
+                    onChange={longitude => setLongitude(longitude.target.value)}
                   />
                 </div>
                 <button type="submit">Cadastrar</button>

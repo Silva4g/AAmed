@@ -1,4 +1,4 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 import { FontAwesome } from '@expo/vector-icons';
 
 export const Container = styled.View`
@@ -61,8 +61,8 @@ export const ConfigButtons = styled.View`
 `;
 
 export const ButtonView = styled.View`
-padding-left: 30px;
-    padding-right: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
 `;
 
 export const ButtonText = styled.Text`

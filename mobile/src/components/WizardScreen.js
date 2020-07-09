@@ -1,43 +1,43 @@
-import React, { useState } from "react";
-import { TextInputMask } from "react-native-masked-text";
-import styled from "styled-components/native";
+import React, { useState } from 'react';
+import { TextInputMask } from 'react-native-masked-text';
+import styled from 'styled-components/native';
 
-import Wizard from "./Wizard";
-import Step from "./Step";
+import Wizard from './Wizard';
+import Step from './Step';
 
 function WizardScreen() {
-  const [name, setName] = useState("");
-  const [cpf, setCpf] = useState("");
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [name, setName] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
   // const [susCard, setSusCard] = useState("");
-  const [bio, setBio] = useState("");
+  const [bio, setBio] = useState('');
   const [bottomLineColor, setBottomLineColor] = useState(false);
 
   function changeBottomLineColor() {
-    setBottomLineColor((prevState) => !prevState);
+    setBottomLineColor(prevState => !prevState);
   }
 
   const inputs = [
     {
       key: String(Math.random()),
       value: name,
-      label: "Nome completo",
+      label: 'Nome completo',
     },
     {
       key: String(Math.random()),
       value: cpf,
-      label: "CPF",
+      label: 'CPF',
     },
     {
       key: String(Math.random()),
       value: email,
-      label: "E-email",
+      label: 'E-email',
     },
     {
       key: String(Math.random()),
       value: senha,
-      label: "Senha",
+      label: 'Senha',
     },
     // {
     //   key: String(Math.random()),
@@ -47,7 +47,7 @@ function WizardScreen() {
     {
       key: String(Math.random()),
       value: bio,
-      label: "Bio",
+      label: 'Bio',
     },
   ];
 
@@ -83,13 +83,13 @@ function WizardScreen() {
             <InputContainer>
               <Label>CPF</Label>
               <InputMask
-                type={"cpf"}
+                type={'cpf'}
                 autoFocus
                 placeholder="000.000.000-00"
                 placeholderTextColor="#00000066"
                 keyboardType="number-pad"
                 selectionColor="#006bad66"
-                onChangeText={(e) => setCpf(e)}
+                onChangeText={e => setCpf(e)}
                 value={cpf}
               />
             </InputContainer>
@@ -168,19 +168,16 @@ function WizardScreen() {
         </Step>
         <Step>
           <StepContainer>
-            {inputs.map((input) => (
+            {inputs.map(input => (
               <InputContainerFinal key={input.key}>
                 <Label>{input.label}</Label>
-                <Input
-                  editable={false}
-                  value={input.value}
-                />
+                <Input editable={false} value={input.value} />
               </InputContainerFinal>
             ))}
           </StepContainer>
           <PrivacyPolicy>
-            Ao se cadastar você concorda com os nossos <Span>Termos de Uso </Span>
-            e <Span>Política de Privacidade</Span>.
+            Ao se cadastar você concorda com os nossos{' '}
+            <Span>Termos de Uso </Span>e <Span>Política de Privacidade</Span>.
           </PrivacyPolicy>
         </Step>
       </Wizard>

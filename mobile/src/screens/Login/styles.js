@@ -1,6 +1,6 @@
-import styled from "styled-components/native";
-import { TextInputMask } from "react-native-masked-text";
-import { SimpleLineIcons, MaterialCommunityIcons } from "@expo/vector-icons";
+import styled from 'styled-components/native';
+import { TextInputMask } from 'react-native-masked-text';
+import { SimpleLineIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 export const ImageContainer = styled.View`
   flex: 0.7;

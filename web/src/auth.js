@@ -1,5 +1,5 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
 
 const check = () => {
   var bool;
@@ -14,7 +14,7 @@ const check = () => {
 
 const auth = () => {
   let logged;
-  if (localStorage.getItem("hptid")) {
+  if (localStorage.getItem('hptid')) {
     logged = true;
   } else {
     logged = false;
@@ -27,8 +27,8 @@ const LoginRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={(props) =>
-        check() ? <Component {...props} /> : <Redirect to={{ pathname: "/" }} />
+      render={props =>
+        check() ? <Component {...props} /> : <Redirect to={{ pathname: '/' }} />
       }
     />
   );
@@ -37,8 +37,8 @@ const RegisterRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={(props) =>
-        check() ? <Component {...props} /> : <Redirect to={{ pathname: "/" }} />
+      render={props =>
+        check() ? <Component {...props} /> : <Redirect to={{ pathname: '/' }} />
       }
     />
   );
@@ -47,8 +47,8 @@ const LogoutRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={(props) =>
-        check() ? <Component {...props} /> : <Redirect to={{ pathname: "/" }} />
+      render={props =>
+        check() ? <Component {...props} /> : <Redirect to={{ pathname: '/' }} />
       }
     />
   );
@@ -58,8 +58,8 @@ const PrivateLogged = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={(props) =>
-        auth() ? <Component {...props} /> : <Redirect to={{ pathname: "/" }} />
+      render={props =>
+        auth() ? <Component {...props} /> : <Redirect to={{ pathname: '/' }} />
       }
     />
   );

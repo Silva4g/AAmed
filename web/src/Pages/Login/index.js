@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import Menu from "../../components/Menu";
-import "./styles.css";
-import api from "../../services/api";
+import Menu from '../../components/Menu';
+import './styles.css';
+import api from '../../services/api';
 
 export default function Login(props) {
-  document.title = "Faça login com seu hospital";
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  document.title = 'Faça login com seu hospital';
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const [show, setShow] = useState(false);
 
   const { push } = useHistory();
@@ -18,15 +18,15 @@ export default function Login(props) {
     e.preventDefault();
     try {
       const response = await api.post(
-        "/login/hospital",
+        '/login/hospital',
         {
           email,
           password,
         },
         { withCredentials: true }
       );
-      localStorage.setItem("hptid", true);
-      push(`/home/${response.headers["id"]}`);
+      localStorage.setItem('hptid', true);
+      push(`/home/${response.headers['id']}`);
     } catch (err) {
       window.scrollTo(0, 0);
       setShow(true);
@@ -35,7 +35,7 @@ export default function Login(props) {
       }, 7500);
       setError(
         err.response === undefined
-          ? "Falha na conexão com o servidor!"
+          ? 'Falha na conexão com o servidor!'
           : err.response.data.error
       );
     }
@@ -56,7 +56,7 @@ export default function Login(props) {
             </div>
             <div>
               <img
-                src={require("../../assets/icon.png")}
+                src={require('../../assets/icon.png')}
                 alt="AAMED - logo"
                 title="AAMed"
               />
@@ -65,11 +65,11 @@ export default function Login(props) {
           <div className="content-form-login">
             <h1>Login</h1>
             {error !== null ? (
-              <div className={show ? "modal-error" : "hide-modal"}>
+              <div className={show ? 'modal-error' : 'hide-modal'}>
                 <div>{error}</div>
               </div>
             ) : (
-              ""
+              ''
             )}
             <form className="form-login" onSubmit={submit}>
               <div>
@@ -79,7 +79,7 @@ export default function Login(props) {
                   id="email"
                   placeholder="Digite seu email"
                   autoCapitalize="none"
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={e => setEmail(e.target.value)}
                   value={email}
                 />
               </div>
@@ -89,7 +89,7 @@ export default function Login(props) {
                   name="password"
                   id="password"
                   placeholder="Digite sua senha"
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={e => setPassword(e.target.value)}
                   value={password}
                 />
               </div>

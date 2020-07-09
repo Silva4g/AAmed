@@ -1,14 +1,14 @@
-import "react-native-gesture-handler";
-import React from "react";
-import { StatusBar, YellowBox } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import 'react-native-gesture-handler';
+import React from 'react';
+import { StatusBar, YellowBox } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
-import Loading from "./src/components/Loading";
-import { StoreProvider, useStore } from "./src/store/store";
-import { AuthDrawerScreen, GuestStackScreen } from "./src/routes";
+import Loading from './src/components/Loading';
+import { StoreProvider, useStore } from './src/store/store';
+import { AuthDrawerScreen, GuestStackScreen } from './src/routes';
 
-YellowBox.ignoreWarnings(["Unrecognized WebSocket"]);
-YellowBox.ignoreWarnings(["MapViewDirections Error"]);
+YellowBox.ignoreWarnings(['Unrecognized WebSocket']);
+YellowBox.ignoreWarnings(['MapViewDirections Error']);
 YellowBox.ignoreWarnings(["Can't perform a React state update"]);
 
 const Router = () => {

@@ -1,4 +1,4 @@
-const Support = require("../models/Support");
+const Support = require('../models/Support');
 
 module.exports = {
   async store(req, res) {
@@ -15,7 +15,7 @@ module.exports = {
         support,
       });
     } catch (err) {
-      return res.status(400).send({ error: "Falha no cadastro: " + err });
+      return res.status(400).send({ error: 'Falha no cadastro: ' + err });
     }
   },
 };

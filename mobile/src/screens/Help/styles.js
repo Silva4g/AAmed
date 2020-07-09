@@ -1,5 +1,5 @@
-import styled from "styled-components/native";
-import { MaterialIcons } from "@expo/vector-icons";
+import styled from 'styled-components/native';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export const Contact = styled.View`
   justify-content: flex-start;

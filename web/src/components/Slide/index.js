@@ -1,7 +1,7 @@
-import React from "react";
-import { Carousel } from "react-responsive-carousel";
+import React from 'react';
+import { Carousel } from 'react-responsive-carousel';
 
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const properties = {
   showArrows: true,
@@ -12,7 +12,7 @@ const properties = {
   stopOnHover: true,
   interval: 4000,
   transitionTime: 750,
-  autoPlay: true
+  autoPlay: true,
 };
 
 export default function Slide() {
