@@ -52,6 +52,8 @@ export default function Home() {
   const [distance, setDistance] = useState("");
   const [duration, setDuration] = useState("");
 
+  const [userOrigin, setUserOrigin] = useState(null);
+
   const [destination, setDestination] = useState({ latitude: 0, longitude: 0 });
   // let conn;
 
@@ -78,6 +80,20 @@ export default function Home() {
         setDestination({ latitude: 0, longitude: 0 });
         setModal(false);
         setApproved(false);
+      }
+    });
+    conn.on("warning", (data) => {
+      const { not_here } = data;
+      if (not_here) {
+        setDuration("");
+        setDistance("");
+        setDestination({ latitude: 0, longitude: 0 });
+        setModal(false);
+        setApproved(false);
+        Alert.alert(
+          "Você não compareceu",
+          "Você tem mais 2 oportunidades antes de ser banido"
+        );
       }
     });
   }, []);
@@ -130,46 +146,48 @@ export default function Home() {
   useEffect(() => {
     async function loadInitialPosition() {
       const { granted } = await requestPermissionsAsync();
-
-      if (granted) {
-        const { coords } = await getCurrentPositionAsync({
-          enableHighAccuracy: true,
-        });
-        const { latitude, longitude } = coords;
-        setCurrentRegion({
-          latitude,
-          longitude,
-          latitudeDelta: 0.014,
-          longitudeDelta: 0.014,
-        });
-
-        fetch(
-          "https://maps.googleapis.com/maps/api/geocode/json?address=" +
-            latitude +
-            "," +
-            longitude +
-            "&key=" +
-            GOOGLE_MAPS_APIKEY
-        )
-          .then((response) => response.json())
-          .then((responseJson) => {
-            setCurrentLocation(responseJson.results[0].formatted_address);
-            console.log(currentLocation);
-          });
+      if (!granted) {
+        return Alert.alert("Ops", "Você precisa habilitar a permissão");
       }
+      const { coords } = await getCurrentPositionAsync({
+        enableHighAccuracy: true,
+      });
+      const { latitude, longitude } = coords;
+      setCurrentRegion({
+        latitude,
+        longitude,
+        latitudeDelta: 0.014,
+        longitudeDelta: 0.014,
+      });
     }
 
     loadInitialPosition();
-  }, []);
+  }, [currentRegion]);
 
   watchPositionAsync(
     {
       accuracy: Accuracy.High,
-      timeInterval: 1000,
+      timeInterval: 5000,
       enableHighAccuracy: true,
     },
     (data) => {
+      fetch(
+        "https://maps.googleapis.com/maps/api/geocode/json?address=" +
+          data.coords.latitude +
+          "," +
+          data.coords.longitude +
+          "&key=" +
+          GOOGLE_MAPS_APIKEY
+      )
+        .then((response) => response.json())
+        .then((responseJson) => {
+          setCurrentLocation(responseJson.results[0].formatted_address);
+        });
       if (approved) {
+        setUserOrigin({
+          latitude: data.coords.latitude,
+          longitude: data.coords.longitude,
+        });
         if (
           calculateDistance(data.coords, destination) == 0.01 ||
           calculateDistance(data.coords, destination) == 0.02
@@ -249,7 +267,7 @@ export default function Home() {
       >
         {approved && !!destination.latitude && !!destination.longitude && (
           <MapViewDirections
-            origin={currentRegion}
+            origin={userOrigin}
             onReady={(result) => {
               setDistance(result.distance);
               setDuration(result.duration);

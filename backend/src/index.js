@@ -61,6 +61,14 @@ io.on("connection", (socket) => {
     }
   });
 
+  socket.on("not_here", (data) => {
+    const { not_here, user_id } = data;
+    const ownerSocket = connectedUsers[user_id];
+    if (ownerSocket) {
+      socket.to(ownerSocket).emit("warning", { not_here });
+    }
+  });
+
   socket.on("accept", (data) => {
     io.sockets.emit("filter", data);
   });
