@@ -1,5 +1,5 @@
 <h3 align="center">
-    <img alt="logo" title="#logo" width="400px" src=".github/icon.png">
+    <img alt="logo" title="#logo" width="150px" src=".github/icon.png">
 </h3>
 
 <h3 align="center">AAMED - NODE, REACT, REACT NATIVE</h3>
@@ -12,7 +12,7 @@
 
 ---
 
-### Tecnologias utilizadas
+### 💻 Tecnologias utilizadas 
 - [Node](https://nodejs.org/en/)
 - [React](https://pt-br.reactjs.org/)
 - [React Native](https://reactnative.dev/)
@@ -21,7 +21,7 @@
 
 ---
 
-### Instalações
+### 🚧 Instalações
   - Clone o repositório:
 
   ```bash
@@ -46,9 +46,9 @@
 
   ---
 
-  ### Executando a aplicação
+  ### ⏯ Executando a aplicação
 
-  - BACKEND
+  #### Backend
 
   Para o login, cadastro e a página de gerenciamento do hospital funcione, é preciso que o servidor Node esteja sendo executado.
   Dentro da pasta backend:
@@ -61,7 +61,7 @@
   ```
   Observação: Para fazer todas as funcionalidades do backend, é necessário o mongodb instalado na sua máquina e o nome do banco deve ser "tcc"
 
-  - WEB
+  #### Web
 
   Para fazer os testes no sistema da web (front-ent) é necessário apenas um comando
   dentro da pasta web:
@@ -78,7 +78,7 @@
   ```
   Pronto, agora é só esperar o navegador executar a página
 
-  - Mobile
+  #### Mobile
 
   Aqui é um pouco diferente pois você deve ter o EXPO instalado globalmente ( siga o guia de instalações acima)
   Dentro da pasta mobile
@@ -101,9 +101,9 @@
 
   ---
 
-  # Dependências
+  ### ✋ Dependências
 
-  BACKEND
+  #### Backend
 
   - aws-sdk
   - axios
@@ -123,7 +123,7 @@
   - nodemon
   - socket.io
 
-  WEB
+  #### Web
 
   - axios
   - cep-promise
@@ -141,7 +141,7 @@
   - socket.io-client
   - styled-components
 
-  MOBILE
+  #### Mobile
 
   - axios
   - expo
@@ -166,6 +166,6 @@
   
 ---
 
-### Licença
+### 🔒 Licença
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
