@@ -57,30 +57,31 @@ export default function Home() {
           <img src={require("../../assets/profile.png")} alt="Profile" />
           <h2>Agilidade</h2>
           <span>Em tempo real suas solicitações</span>
-          <span>São enviadas para</span>
-          <span>Os hospitais próximos a você</span>
-          <span>Chega de esperar</span>
+          <span>são enviadas para os</span>
+          <span>hospitais próximos a você</span>
+          <span>Chega de esperar!</span>
         </Card>
         <Card>
           <img src={require("../../assets/engine.png")} alt="Profile" />
           <h2>Gerenciamento</h2>
           <span>Você consegue facilmente</span>
-          <span>Abrir e gerenciar sua conta</span>
-          <span>Em um jeito fácil dinâmico</span>
+          <span>abrir e gerenciar todo o</span>
+          <span>procedimento de maneira</span>
+          <span>fácil e dinâmica!</span>
         </Card>
         <Card>
           <img src={require("../../assets/paper.png")} alt="Profile" />
           <h2>Simplicidade</h2>
           <span>Além de bonito é simples</span>
-          <span>Sem problemas para usar o app</span>
-          <span>Interface ágil e simples</span>
-          <span>Não perca tempo</span>
+          <span>sem problemas para usar</span>
+          <span>Interface ágil e veloz</span>
+          <span>Não perca tempo!</span>
         </Card>
       </ListInfo>
       <InstallApp>
         <Store>
           <h2>Google Play</h2>
-          <span>Instale agora o app na google play</span>
+          <span>Instale agora o app na Google Play</span>
           <img
             src="https://pt.seaicons.com/wp-content/uploads/2015/10/Google-Play-Store-alt-icon.png"
             alt="Google Play Store"
@@ -88,7 +89,7 @@ export default function Home() {
         </Store>
         <Store>
           <h2>App Store</h2>
-          <span>Instale agora o app na apple store</span>
+          <span>Instale agora o app na Apple Store</span>
           <img
             src="https://cdn2.iconfinder.com/data/icons/ios-7-style-metro-ui-icons/512/MetroUI_Mac_App_Store.png"
             alt="Apple Store"

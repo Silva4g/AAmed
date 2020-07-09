@@ -19,7 +19,7 @@ export default class NotFound extends Component {
             <p className="upper">Oops! 404 - Not found.</p>
             <img src={logo} alt="logo broken" />
             <p className="lower">Não conseguimos encontrar a página que você está solicitando.</p>
-            <Link to="/" className="btnHome">Voltar a página inicial</Link>
+            <Link to="/" className="btnHome">Voltar à página inicial</Link>
           </div>
         </header>
       </div>
