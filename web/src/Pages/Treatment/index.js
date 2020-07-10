@@ -28,7 +28,7 @@ export default function Treatment({ match }) {
           </button>
         </div>
         <div className="title-profile">
-          <h2>Olá {}</h2>
+          {/* <h2>Olá {}</h2> */}
         </div>
       </div>
       <div className="content-support">
