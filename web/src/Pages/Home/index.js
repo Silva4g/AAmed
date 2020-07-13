@@ -78,12 +78,12 @@ export default function Home() {
           <span>Não perca tempo!</span>
         </Card>
       </ListInfo>
-      {/* <InstallApp>
+      <InstallApp>
         <Store>
           <h2>Google Play</h2>
           <span>Instale agora o app na Google Play</span>
           <img
-            src={require('../../assets/google-play-icon.png')}
+            src="https://i.ya-webdesign.com/images/google-play-store-icon-png-3.png"
             alt="Google Play Store"
           />
         </Store>
@@ -91,11 +91,11 @@ export default function Home() {
           <h2>App Store</h2>
           <span>Instale agora o app na Apple Store</span>
           <img
-            src={require('../../assets/apple-store-icon.png')}
+            src="https://cdn2.iconfinder.com/data/icons/ios-7-style-metro-ui-icons/512/MetroUI_Mac_App_Store.png"
             alt="Apple Store"
           />
         </Store>
-      </InstallApp> */}
+      </InstallApp>
     </>
   );
 }
