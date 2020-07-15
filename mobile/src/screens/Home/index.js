@@ -32,6 +32,7 @@ import styles from './styles.js';
 import api from '../../services/api';
 import { Header } from '../../components/Header/index';
 
+let aaa = 0;
 const GOOGLE_MAPS_APIKEY = 'AIzaSyBAJxkbJDUINqKFwXs-WGy-S7W-yD2ueJ4';
 
 export default function Home() {
@@ -52,7 +53,7 @@ export default function Home() {
   const [distance, setDistance] = useState('');
   const [duration, setDuration] = useState('');
 
-  const [userOrigin, setUserOrigin] = useState(null);
+  const [userOrigin, setUserOrigin] = useState({ latitude: 0, longitude: 0 });
 
   const [destination, setDestination] = useState({ latitude: 0, longitude: 0 });
   // let conn;
@@ -112,7 +113,112 @@ export default function Home() {
         setUser(dataParse.auth.user);
       })
       .catch(error => console.log(error));
+
+    watchPositionAsync(
+      {
+        accuracy: Accuracy.High,
+        timeInterval: 10000,
+        enableHighAccuracy: true,
+      },
+      data => {
+        console.log('10s se passaram');
+        setUserOrigin({
+          latitude: data.coords.latitude,
+          longitude: data.coords.longitude,
+        });
+        if (approved) {
+          console.log('aprovado');
+          fetch(
+            'https://maps.googleapis.com/maps/api/geocode/json?address=' +
+              data.coords.latitude +
+              ',' +
+              data.coords.longitude +
+              '&key=' +
+              GOOGLE_MAPS_APIKEY
+          )
+            .then(response => response.json())
+            .then(responseJson => {
+              setCurrentLocation(responseJson.results[0].formatted_address);
+            });
+          if (
+            calculateDistance(data.coords, destination) == 0.01 ||
+            calculateDistance(data.coords, destination) == 0.02
+          ) {
+            console.log('chegou');
+            connection.emit('arrived', {
+              hospital_id: hospitalDest.hospital._id,
+              user,
+              arrived: true,
+            });
+            setApproved(false);
+            setDestination({ latitude: 0, longitude: 0 });
+            setModal(!modal);
+            setDuration(null);
+            setDistance(null);
+          }
+        }
+      }
+    );
   }, []);
+
+  // função que vai carregar a posição inicial do paciente no mapa
+  useEffect(() => {
+    async function loadInitialPosition() {
+      const { granted } = await requestPermissionsAsync();
+      if (!granted) {
+        return Alert.alert('Ops', 'Você precisa habilitar a permissão');
+      }
+      const { coords } = await getCurrentPositionAsync({
+        enableHighAccuracy: true,
+      });
+      const { latitude, longitude } = coords;
+      setCurrentRegion({
+        latitude,
+        longitude,
+        latitudeDelta: 0.014,
+        longitudeDelta: 0.014,
+      });
+      setUserOrigin({
+        latitude: latitude,
+        longitude: longitude,
+      });
+      fetch(
+        'https://maps.googleapis.com/maps/api/geocode/json?address=' +
+          latitude +
+          ',' +
+          longitude +
+          '&key=' +
+          GOOGLE_MAPS_APIKEY
+      )
+        .then(response => response.json())
+        .then(responseJson => {
+          setCurrentLocation(responseJson.results[0].formatted_address);
+        });
+    }
+
+    loadInitialPosition();
+    //handlePositionUpdate();
+  }, [currentRegion]);
+
+  useEffect(() => {
+    async function loadHospitals() {
+      const { latitude, longitude } = currentRegion || 1;
+      if (latitude && longitude) {
+        try {
+          const response = await api.get('search', {
+            params: {
+              longitude,
+              latitude,
+            },
+          });
+          setHospitals(response.data.hospitais);
+        } catch (err) {
+          console.debug('[ERROR: loadHospitals] => ', err);
+        }
+      }
+    }
+    loadHospitals();
+  }, [currentRegion]);
 
   async function handleSolicitation() {
     const hospital_ids = [];
@@ -142,71 +248,6 @@ export default function Home() {
     }, 1000);
   }
 
-  // função que vai carregar a posição inicial do paciente no mapa
-  useEffect(() => {
-    async function loadInitialPosition() {
-      const { granted } = await requestPermissionsAsync();
-      if (!granted) {
-        return Alert.alert('Ops', 'Você precisa habilitar a permissão');
-      }
-      const { coords } = await getCurrentPositionAsync({
-        enableHighAccuracy: true,
-      });
-      const { latitude, longitude } = coords;
-      setCurrentRegion({
-        latitude,
-        longitude,
-        latitudeDelta: 0.014,
-        longitudeDelta: 0.014,
-      });
-    }
-
-    loadInitialPosition();
-  }, [currentRegion]);
-
-  watchPositionAsync(
-    {
-      accuracy: Accuracy.High,
-      timeInterval: 5000,
-      enableHighAccuracy: true,
-    },
-    data => {
-      fetch(
-        'https://maps.googleapis.com/maps/api/geocode/json?address=' +
-          data.coords.latitude +
-          ',' +
-          data.coords.longitude +
-          '&key=' +
-          GOOGLE_MAPS_APIKEY
-      )
-        .then(response => response.json())
-        .then(responseJson => {
-          setCurrentLocation(responseJson.results[0].formatted_address);
-        });
-      if (approved) {
-        setUserOrigin({
-          latitude: data.coords.latitude,
-          longitude: data.coords.longitude,
-        });
-        if (
-          calculateDistance(data.coords, destination) == 0.01 ||
-          calculateDistance(data.coords, destination) == 0.02
-        ) {
-          connection.emit('arrived', {
-            hospital_id: hospitalDest.hospital._id,
-            user,
-            arrived: true,
-          });
-          setApproved(false);
-          setDestination({ latitude: 0, longitude: 0 });
-          setModal(!modal);
-          setDuration(null);
-          setDistance(null);
-        }
-      }
-    }
-  );
-
   function rad(x) {
     return (x * Math.PI) / 180;
   }
@@ -226,28 +267,7 @@ export default function Home() {
     return d.toFixed(2);
   }
 
-  useEffect(() => {
-    async function loadHospitals() {
-      const { latitude, longitude } = currentRegion || 1;
-      if (latitude && longitude) {
-        try {
-          const response = await api.get('search', {
-            params: {
-              longitude,
-              latitude,
-            },
-          });
-          setHospitals(response.data.hospitais);
-        } catch (err) {
-          console.debug('[ERROR: loadHospitals] => ', err);
-        }
-      }
-    }
-    loadHospitals();
-  }, [currentRegion]);
-
   async function handleRegionChanged(region) {
-    // console.log(region);
     setRegionChange(region);
   }
 
@@ -263,6 +283,7 @@ export default function Home() {
         onRegionChangeComplete={handleRegionChanged}
         initialRegion={currentRegion}
         showsUserLocation
+        loadingEnabled={true}
         style={styles.mapContainer}
       >
         {approved && !!destination.latitude && !!destination.longitude && (
