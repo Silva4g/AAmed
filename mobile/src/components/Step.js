@@ -1,26 +1,6 @@
 import React, { PureComponent } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: '#24292e',
-  },
-  buttonWrapper: {
-    flexDirection: 'row',
-    height: 80,
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  button: {
-    // backgroundColor: '#fff',
-    padding: 10,
-  },
-  buttonText: {
-    color: '#fff',
-  },
-});
-
 class Step extends PureComponent {
   render() {
     const {
@@ -56,5 +36,25 @@ class Step extends PureComponent {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    backgroundColor: '#24292e',
+  },
+  buttonWrapper: {
+    flexDirection: 'row',
+    height: 80,
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  button: {
+    // backgroundColor: '#fff',
+    padding: 10,
+  },
+  buttonText: {
+    color: '#fff',
+  },
+});
 
 export default Step;

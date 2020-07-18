@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextInputMask } from 'react-native-masked-text';
 import styled from 'styled-components/native';
+import CheckBox from '@react-native-community/checkbox';
 
 import Wizard from './Wizard';
 import Step from './Step';
@@ -10,13 +11,14 @@ function WizardScreen() {
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  // const [susCard, setSusCard] = useState("");
   const [bio, setBio] = useState('');
-  const [bottomLineColor, setBottomLineColor] = useState(false);
-
-  function changeBottomLineColor() {
-    setBottomLineColor(prevState => !prevState);
-  }
+  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const [isRitine, setIsRinite] = useState(false);
+  const [isSinusite, setIsSinusite] = useState(false);
+  const [isD1, setIsD1] = useState(false);
+  const [isD2, setIsD2] = useState(false);
+  const [isD3, setIsD3] = useState(false);
+  const [isD4, setIsD4] = useState(false);
 
   const inputs = [
     {
@@ -51,12 +53,25 @@ function WizardScreen() {
     },
   ];
 
+  let arr = [];
+  useEffect(() => {
+    isRitine ? arr.push("Rinite") : arr.filter(item => item !== "Rinite");
+    isSinusite ? arr.push(" Sinusite") : arr.filter(item => item !== "Sinusite");
+    isD1 ? arr.push(" D1") : arr.filter(item => item !== "D1");
+    isD2 ? arr.push(" D2") : arr.filter(item => item !== "D2");
+    isD3 ? arr.push(" D3") : arr.filter(item => item !== "D3");
+    isD4 ? arr.push(" D4") : arr.filter(item => item !== "D4");
+    // arr.forEach(item => setBio(prev=>prev+item))
+    setBio(arr.toString())
+
+    // console.log(arr)
+  }, [isRitine, isSinusite, isD1, isD2, isD3, isD4]);
+
   const args = {
     name,
     cpf,
     email,
     senha,
-    // susCard,
     bio,
   };
 
@@ -128,40 +143,68 @@ function WizardScreen() {
             </InputContainer>
           </StepContainer>
         </Step>
-        {/* <Step>
-          <StepContainer>
-            <InputContainer>
-              <Label>Cartão do SUS</Label>
-              <InputMask
-                type={"custom"}
-                options={{
-                  mask: "9 99 9999 9999 9999",
-                }}
-                autoFocus
-                placeholder="0 00 0000 0000 0000"
-                placeholderTextColor="#00000066"
-                keyboardType="number-pad"
-                selectionColor="#006bad66"
-                onChangeText={(e) => setSusCard(e)}
-                value={susCard}
-              />
-            </InputContainer>
-          </StepContainer>
-        </Step> */}
         <Step>
           <StepContainer>
+            <TitleLabel>Bio</TitleLabel>
+            <CheckBoxWrapper>
+              <CheckBoxContainer>
+                <CheckBoxC
+                  tintColors={{ true: '#006bad', false: '#00000066' }}
+                  value={isRitine}
+                  onValueChange={() => setIsRinite(!isRitine)}
+                />
+                <CheckLabel>Rinite</CheckLabel>
+              </CheckBoxContainer>
+              <CheckBoxContainer>
+                <CheckBoxC
+                  tintColors={{ true: '#006bad', false: '#00000066' }}
+                  value={isSinusite}
+                  onValueChange={() => setIsSinusite(!isSinusite)}
+                />
+                <CheckLabel>Sinusite</CheckLabel>
+              </CheckBoxContainer>
+              <CheckBoxContainer>
+                <CheckBoxC
+                  tintColors={{ true: '#006bad', false: '#00000066' }}
+                  value={isD1}
+                  onValueChange={() => setIsD1(!isD1)}
+                />
+                <CheckLabel>D1</CheckLabel>
+              </CheckBoxContainer>
+              <CheckBoxContainer>
+                <CheckBoxC
+                  tintColors={{ true: '#006bad', false: '#00000066' }}
+                  value={isD2}
+                  onValueChange={() => setIsD2(!isD2)}
+                />
+                <CheckLabel>D2</CheckLabel>
+              </CheckBoxContainer>
+              <CheckBoxContainer>
+                <CheckBoxC
+                  tintColors={{ true: '#006bad', false: '#00000066' }}
+                  value={isD3}
+                  onValueChange={() => setIsD3(!isD3)}
+                />
+                <CheckLabel>D3</CheckLabel>
+              </CheckBoxContainer>
+              <CheckBoxContainer>
+                <CheckBoxC
+                  tintColors={{ true: '#006bad', false: '#00000066' }}
+                  value={isD4}
+                  onValueChange={() => setIsD4(!isD4)}
+                />
+                <CheckLabel>D4</CheckLabel>
+              </CheckBoxContainer>
+            </CheckBoxWrapper>
             <InputContainer>
-              <Label>Bio</Label>
               <Input
                 autoFocus
-                placeholder="ex: Problemas respiratórios..."
+                placeholder="Outro..."
                 placeholderTextColor="#00000066"
                 multiline
                 selectionColor="#006bad66"
                 onChangeText={setBio}
                 value={bio}
-                onFocus={changeBottomLineColor}
-                // style={{borderBottomColor: bottomLineColor ? "#006bad" : "#00000066" }}
               />
             </InputContainer>
           </StepContainer>
@@ -196,9 +239,30 @@ const StepContainer = styled.View`
   background-color: #fff;
 `;
 
+const CheckBoxWrapper = styled.View`
+  width: 93%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  /* align-items: center; */
+  justify-content: space-between;
+`;
+
+const CheckBoxContainer = styled.View`
+  flex-direction: row;
+  /* max-height: 100px; */
+  /* align-items: baseline; */
+  /* justify-content: flex-start; */
+  width: 30%;
+  background: #95a5a600;
+`;
+
+const CheckBoxC = styled(CheckBox)``;
+
 const InputContainer = styled.View`
   width: 90%;
   align-items: center;
+  background: #9b59b600;
   justify-content: center;
 `;
 
@@ -237,6 +301,15 @@ const PrivacyPolicy = styled.Text`
 
 const Span = styled.Text`
   color: #006bad;
+`;
+
+const CheckLabel = styled(Label)`
+  align-self: center;
+`;
+
+const TitleLabel = styled(Label)`
+  align-self: flex-start;
+  margin-left: 18px;
 `;
 
 export default WizardScreen;
