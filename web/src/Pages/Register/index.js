@@ -296,6 +296,7 @@ export default function Register(props) {
                     placeholder="Latitude"
                     className="coordinate"
                     value={latitude}
+                    disabled
                     onChange={latitude => setLatitude(latitude.target.value)}
                   />
                 </div>
@@ -307,6 +308,7 @@ export default function Register(props) {
                     required
                     className="coordinate"
                     value={longitude}
+                    disabled
                     onChange={longitude => setLongitude(longitude.target.value)}
                   />
                 </div>

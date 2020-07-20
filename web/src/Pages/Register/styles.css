@@ -278,6 +278,7 @@
 
 .coordinate {
   color: rgb(32, 27, 27);
+  cursor: not-allowed;
 }
 
 .termos {
