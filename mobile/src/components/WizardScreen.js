@@ -194,6 +194,7 @@ function WizardScreen() {
             <InputContainer>
               <Input
                 autoFocus
+                autoCapitalize="words"
                 placeholder="Outro..."
                 placeholderTextColor="#00000066"
                 multiline
