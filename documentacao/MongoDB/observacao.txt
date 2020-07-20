@@ -1,0 +1,4 @@
+Como o MongoDB é um banco não relacional
+não é necessário a criação manual de tabelas (schemas).
+Assim que uma informação é cadastrada no banco, automáticamente
+a base de dados já é criada junto com a tabela com as informações cadastradas.

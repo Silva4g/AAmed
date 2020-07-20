@@ -41,11 +41,6 @@ function WizardScreen() {
       value: senha,
       label: 'Senha',
     },
-    // {
-    //   key: String(Math.random()),
-    //   value: susCard,
-    //   label: "Cartão do SUS",
-    // },
     {
       key: String(Math.random()),
       value: bio,
@@ -55,12 +50,12 @@ function WizardScreen() {
 
   let arr = [];
   useEffect(() => {
-    isRitine ? arr.push(" Rinite") : arr.filter(item => item !== "Rinite");
+    isRinite ? arr.push(" Rinite") : arr.filter(item => item !== "Rinite");
     isSinusite ? arr.push(" Sinusite") : arr.filter(item => item !== "Sinusite");
-    isD1 ? arr.push(" Asma") : arr.filter(item => item !== "D1");
-    isD2 ? arr.push(" Diabetes") : arr.filter(item => item !== "D2");
-    isD3 ? arr.push(" Osteoporose") : arr.filter(item => item !== "D3");
-    isD4 ? arr.push(" Hipertensão") : arr.filter(item => item !== "D4");
+    isAsma ? arr.push(" Asma") : arr.filter(item => item !== "Asma");
+    isDiabetes ? arr.push(" Diabetes") : arr.filter(item => item !== "Diabetes");
+    isOsteoporose ? arr.push(" Osteoporose") : arr.filter(item => item !== "Osteoporose");
+    isHipertensao ? arr.push(" Hipertensão") : arr.filter(item => item !== "Hipertensão");
     // arr.forEach(item => setBio(prev=>prev+item))
     setBio(arr.toString())
 
