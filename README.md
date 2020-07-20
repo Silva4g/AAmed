@@ -2,7 +2,7 @@
     <img alt="logo" title="#logo" width="150px" src=".github/icon.png">
 </h3>
 
-<h3 align="center">AAMED - NODE, REACT, REACT NATIVE</h3>
+<h3 align="center">AAMED - Atendimento e Agilidade Médica</h3>
 
 <div align="center">  
   <a href="https://github.com/Silva4g/TCC/blob/master/LICENSE">
@@ -16,156 +16,137 @@
 - [Node](https://nodejs.org/en/)
 - [React](https://pt-br.reactjs.org/)
 - [React Native](https://reactnative.dev/)
+- [Expo](https://expo.io)
 - [HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
 - [CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
 
 ---
+### :fire: Como usar
+#### Pré-requisitos
+- É <strong>necessário</strong> ter instalado o [Node.js](https://nodejs.org/en/) qualquer versão <strong>acima de 10</strong>.
+- Instalar o [NPM](https://www.npmjs.com/get-npm) ou [YARN](https://classic.yarnpkg.com/pt-BR/docs/install/) (recomendamos o YARN).
+- Instalar o [MongoDB Compass](https://www.mongodb.com/try/download/compass) ou [Robo 3T](https://robomongo.org/download) para o gerenciamento do banco de dados.
+- Instalar o [Expo](https://expo.io/learn) globalmente.
+- <strong>Recomendamos</strong> instalar o editor [VSCode](https://code.visualstudio.com/download).
+- Caso for rodar a aplicação mobile no <strong>dispositivo fisico</strong>, você irá precisar ter instalado o aplicativo do [Expo](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=pt).
 
-### 🚧 Instalações
-  - Clone o repositório:
+##### 1º :page_facing_up: Faça o clone no repositório:
+```sh
+    $ git clone https://github.com/Silva4g/TCC.git
+```
+##### 2º :fast_forward: Instale as dependências usando NPM ou YARN e execute a aplicação:
+- Iniciando o back-end
+```sh
+    # Pelo prompt de comando entre na pasta backend
+    $ cd tcc/backend
 
-  ```bash
-  $ git clone https://github.com/Silva4g/TCC.git
-  ```
-  - [Node.js](https://nodejs.org/en/) versão acima de 10.
-  - Recomendamos instalar o editor [VSCode](https://code.visualstudio.com/download).
-  - Instalar o [MongoDB](https://www.mongodb.com/download-center) para a execução do banco de dados.
-  - Instalar o react native junto com o expo globalmente.
-  ``` sh
-  $ npm install -g expo-cli
-  ```
-  - Recomendamos o [yarn](https://classic.yarnpkg.com/pt-BR/docs/install/#windows-stable) mas pode utilizar o npm para a execução de código.
-  - Pelo prompt de comando entre na pasta backend, web e mobile e execute o comando a baixo em cada pasta respectivamente.
-  ```sh
-  $ yarn install
-  ```
-  ou 
-  ```
-  $ npm install
-  ```
- 
-  ---
+    # Instale as dependências
+    $ yarn install
+    
+    # Inicie o server
+    $ yarn dev
+```
 
-  ### ⏯ Executando a aplicação
+- Iniciando a aplicação web
+```sh
+    # Pelo prompt de comando entre na pasta web
+    $ cd tcc/web
+    
+    # Instale as dependências
+    $ yarn install
+    
+    # Inicie a aplicação
+    $ yarn start
+    
+    # Automáticamente será aberta uma janela no seu navegador padrão.
+    # Caso isso não ocorra acesse: localhost:3000.
+```
 
-  #### Backend
+- Iniciando a aplicação mobile
+```sh
+    # Pelo prompt de comando entre na pasta mobile
+    $ cd tcc/mobile
+    
+    # Instale as dependências
+    $ yarn install
+    
+    # No arquivo index.js (pasta src -> screens -> Home) na linha 62 troque a string de conexão pelo seu endereço IP. Salve o aquivo.
+    # No arquivo api.js (pasta src -> services) troque a baseURL pelo seu endereço IP. Salve o arquivo.
+    
+    # Inicie a aplicação
+    $ yarn start
+    
+    # O Expo irá abrir no terminal e/ou no navegador.
+    # Você precisa apenas escanear o QRcode com seu dispositivo fisico ou rodar a aplicação no seu emulador.
+```
 
-  Para o login, cadastro e a página de gerenciamento do hospital funcione, é preciso que o servidor Node esteja sendo executado.
-  Dentro da pasta backend:
-  ```
-  $ C:pasta-que-esta-o-projeto/backend
-  ```
-  Insira este comando
-  ```
-  $ node src/index.js
-  ```
-  Observação: Para fazer todas as funcionalidades do backend, é necessário o mongodb instalado na sua máquina e o nome do banco deve ser "tcc"
+ ---
 
-  #### Web
+### :raised_hand: Dependências
 
-  Para fazer os testes no sistema da web (front-ent) é necessário apenas um comando
-  dentro da pasta web:
-  ```
-  $ C:pasta-que-esta-o-projeto/web
-  ```
-   Insira este comando
-  ```
-  $ yarn start
-  ```
-  ou
-  ```
-  $ npm start
-  ```
-  Pronto, agora é só esperar o navegador executar a página
+#### Backend
 
-  #### Mobile
+- aws-sdk
+- axios
+- bcryptjs
+- cep-promise
+- cookie-parser
+- cors
+- dotenv
+- express
+- express-fileupload
+- jsonwebtoken
+- mongoose
+- morgan
+- multer
+- multer-s3
+- nodemailer
+- nodemon
+- socket.io
 
-  Aqui é um pouco diferente pois você deve ter o EXPO instalado globalmente ( siga o guia de instalações acima)
-  Dentro da pasta mobile
-  ```
-  $ C:pasta-que-esta-o-projeto/mobile
-  ```
-  Insira este comando
-  ```
-  $ yarn start
-  ```
-  ou
-  ```
-  $ npm start
-  ```
-  O navegador irá abrir uma página que será o console da aplicação mobile
-  Instale o Expo em seu dispositivo móvel
-  Depois de instalado, abra e scaneie o QR CODE no navegador
-  Utilize o app mobile em seu prórpio dispositivo
-  Caso ocorra algum erro, trocar o endereço de IP do arquivo api.js para o que for apresentado na página do expo ou o IP da máquina. ex: http://192.168...:3333
+#### Web
 
-  ---
+- axios
+- cep-promise
+- cpf-cnpj-validator
+- jquery
+- react-bootstrap
+- react-dom
+- react-router-dom
+- react-scripts
+- react-icons
+- react-input-mask
+- react-responsive-carousel
+- react-router-dom
+- react-slideshow-image
+- socket.io-client
+- styled-components
 
-  ### ✋ Dependências
+#### Mobile
 
-  #### Backend
-
-  - aws-sdk
-  - axios
-  - bcryptjs
-  - cep-promise
-  - cookie-parser
-  - cors
-  - dotenv
-  - express
-  - express-fileupload
-  - jsonwebtoken
-  - mongoose
-  - morgan
-  - multer
-  - multer-s3
-  - nodemailer
-  - nodemon
-  - socket.io
-
-  #### Web
-
-  - axios
-  - cep-promise
-  - cpf-cnpj-validator
-  - jquery
-  - react-bootstrap
-  - react-dom
-  - react-router-dom
-  - react-scripts
-  - react-icons
-  - react-input-mask
-  - react-responsive-carousel
-  - react-router-dom
-  - react-slideshow-image
-  - socket.io-client
-  - styled-components
-
-  #### Mobile
-
-  - axios
-  - expo
-  - expo-font
-  - expo-linear-gradient
-  - expo-location
-  - formik
-  - gerador-validador-cpf
-  - moment
-  - react-dom
-  - react-native-animatable
-  - react-native-maps
-  - react-native-maps-directio
-  - react-native-masked-text
-  - react-native-reanimated
-  - react-native-safe-area-context
-  - react-native-screen
-  - react-native-vector-icons
-  - toggle-switch-react-native
-  - socket.io-client
-  - styled-components
+- axios
+- expo
+- expo-font
+- expo-linear-gradient
+- expo-location
+- formik
+- gerador-validador-cpf
+- moment
+- react-dom
+- react-native-animatable
+- react-native-maps
+- react-native-maps-directio
+- react-native-masked-text
+- react-native-reanimated
+- react-native-safe-area-context
+- react-native-screen
+- react-native-vector-icons
+- toggle-switch-react-native
+- socket.io-client
+- styled-components
   
 ---
 
-### 🔒 Licença
+### :lock: Licença
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
