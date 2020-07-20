@@ -10,11 +10,14 @@ const http = require('http');
 
 const app = express();
 const server = http.Server(app);
-//conexão com o banco de dados mongo local
-mongoose.connect('mongodb://localhost:27017/tcc', {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-});
+//conexão com o banco de dados mongo na nuvem (atlas)
+mongoose.connect(
+  'mongodb+srv://admin:admin@cluster0-hwtas.azure.mongodb.net/aamed?retryWrites=true&w=majority',
+  {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  }
+);
 
 //conexão do websocket
 const io = socketio(server);
